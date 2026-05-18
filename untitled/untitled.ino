@@ -1,7 +1,7 @@
 // 192.168.4.1
 // MECHATAK - Final versiyon kodu
 
-#define PROBOT_WIFI_AP_PASSWORD "ATAKFL"
+#define PROBOT_WIFI_AP_PASSWORD "ATAKFL2026"
 #define PROBOT_WIFI_AP_SSID "ATAKFL"
 #define PROBOT_WIFI_AP_CHANNEL 9
 
@@ -373,7 +373,7 @@ void fanidur(){
 
 digitalWrite(L_IN1, HIGH);
 digitalWrite(L_IN2, HIGH);
-
+ 
 digitalWrite(R_IN1, HIGH);
 digitalWrite(R_IN2, HIGH);
 
