@@ -7,7 +7,7 @@
     "source_url": "https://www.gutenberg.org/files/11/11-0.txt",
     "license": "Public Domain (Project Gutenberg terms apply)",
     "license_url": "https://www.gutenberg.org/policy/license.html",
-    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "retrieved_at": "2026-05-29T12:33:33Z",
     "notes": "",
     "files": [
       {
@@ -23,29 +23,6 @@
     ]
   },
   {
-    "id": "pg-84",
-    "title": "Frankenstein; Or, The Modern Prometheus",
-    "language": "en",
-    "source_name": "Project Gutenberg",
-    "source_url": "https://www.gutenberg.org/files/84/84-0.txt",
-    "license": "Public Domain (Project Gutenberg terms apply)",
-    "license_url": "https://www.gutenberg.org/policy/license.html",
-    "retrieved_at": "2026-05-29T12:14:30+00:00",
-    "notes": "",
-    "files": [
-      {
-        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/pg-84.txt",
-        "sha256": "06c37d2c52d208d3d81eb12c3b10b5edbd7728b73554325ddceadbe2fb427e77",
-        "bytes": 421633
-      },
-      {
-        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/pg-84.txt",
-        "sha256": "3839fa35c116713f811903545470041a86079268307ae9fd3ed4d04c88788bc0",
-        "bytes": 421535
-      }
-    ]
-  },
-  {
     "id": "pg-132",
     "title": "The Art of War",
     "language": "en",
@@ -53,7 +30,7 @@
     "source_url": "https://www.gutenberg.org/files/132/132-0.txt",
     "license": "Public Domain (Project Gutenberg terms apply)",
     "license_url": "https://www.gutenberg.org/policy/license.html",
-    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "retrieved_at": "2026-05-29T12:33:33Z",
     "notes": "",
     "files": [
       {
@@ -76,7 +53,7 @@
     "source_url": "https://www.gutenberg.org/files/1342/1342-0.txt",
     "license": "Public Domain (Project Gutenberg terms apply)",
     "license_url": "https://www.gutenberg.org/policy/license.html",
-    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "retrieved_at": "2026-05-29T12:33:33Z",
     "notes": "",
     "files": [
       {
@@ -99,7 +76,7 @@
     "source_url": "https://www.gutenberg.org/files/1661/1661-0.txt",
     "license": "Public Domain (Project Gutenberg terms apply)",
     "license_url": "https://www.gutenberg.org/policy/license.html",
-    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "retrieved_at": "2026-05-29T12:33:33Z",
     "notes": "",
     "files": [
       {
@@ -122,7 +99,7 @@
     "source_url": "https://www.gutenberg.org/files/174/174-0.txt",
     "license": "Public Domain (Project Gutenberg terms apply)",
     "license_url": "https://www.gutenberg.org/policy/license.html",
-    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "retrieved_at": "2026-05-29T12:33:33Z",
     "notes": "",
     "files": [
       {
@@ -145,7 +122,7 @@
     "source_url": "https://www.gutenberg.org/files/2701/2701-0.txt",
     "license": "Public Domain (Project Gutenberg terms apply)",
     "license_url": "https://www.gutenberg.org/policy/license.html",
-    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "retrieved_at": "2026-05-29T12:33:33Z",
     "notes": "",
     "files": [
       {
@@ -161,6 +138,29 @@
     ]
   },
   {
+    "id": "pg-84",
+    "title": "Frankenstein; Or, The Modern Prometheus",
+    "language": "en",
+    "source_name": "Project Gutenberg",
+    "source_url": "https://www.gutenberg.org/files/84/84-0.txt",
+    "license": "Public Domain (Project Gutenberg terms apply)",
+    "license_url": "https://www.gutenberg.org/policy/license.html",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/pg-84.txt",
+        "sha256": "06c37d2c52d208d3d81eb12c3b10b5edbd7728b73554325ddceadbe2fb427e77",
+        "bytes": 421633
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/pg-84.txt",
+        "sha256": "3839fa35c116713f811903545470041a86079268307ae9fd3ed4d04c88788bc0",
+        "bytes": 421535
+      }
+    ]
+  },
+  {
     "id": "pg-98",
     "title": "A Tale of Two Cities",
     "language": "en",
@@ -168,7 +168,7 @@
     "source_url": "https://www.gutenberg.org/files/98/98-0.txt",
     "license": "Public Domain (Project Gutenberg terms apply)",
     "license_url": "https://www.gutenberg.org/policy/license.html",
-    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "retrieved_at": "2026-05-29T12:33:33Z",
     "notes": "",
     "files": [
       {
@@ -184,14 +184,704 @@
     ]
   },
   {
-    "id": "wb-tr-python",
-    "title": "Python (Vikikitap)",
-    "language": "tr",
-    "source_name": "tr.wikibooks.org",
-    "source_url": "https://tr.wikibooks.org/wiki/Python",
+    "id": "wb-en-c-programming",
+    "title": "programming (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-c-programming.json",
+        "sha256": "079ea8ed78f0ea25a29f5fa1b3a8b4e44eb5c123906ee2af4f0ae1b33fad1bdb",
+        "bytes": 1504
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-c-programming.txt",
+        "sha256": "3a57166da9aba104abe8a86357d04607e2bed03a8c27d73118a190d51752aeee",
+        "bytes": 1311
+      }
+    ]
+  },
+  {
+    "id": "wb-en-c-programming-root",
+    "title": "C Programming (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/C_Programming",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-c-programming-root.json",
+        "sha256": "079ea8ed78f0ea25a29f5fa1b3a8b4e44eb5c123906ee2af4f0ae1b33fad1bdb",
+        "bytes": 1504
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-c-programming-root.txt",
+        "sha256": "3a57166da9aba104abe8a86357d04607e2bed03a8c27d73118a190d51752aeee",
+        "bytes": 1311
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming",
+    "title": "programming (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming.json",
+        "sha256": "74b57574e0c5ab1c03d7cd1a7cde7f3a965e093b5cc958ee69ca90d30af8a940",
+        "bytes": 2485
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming.txt",
+        "sha256": "f58adc0d8a75a2949e33cfa94dd9b91a9696e2460a84ffd76e9c63fb8c7703f8",
+        "bytes": 2251
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_3rd-party_modules_Databases-85364de6",
+    "title": "programming-Python Programming 3rd-party modules Databases (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_3rd-party_modules_Databases",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_3rd-party_modules_Databases-85364de6.json",
+        "sha256": "e6c781304b20080d6306992101fccd0c03d8f3ecc7a129fa58c391bed4717139",
+        "bytes": 7419
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_3rd-party_modules_Databases-85364de6.txt",
+        "sha256": "b66d6f4d1da9a12a391385cc691a798c8fa168827eecd1d6647c9568ef5eacc3",
+        "bytes": 7049
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_3rd-party_modules_Dbus-e01115ac",
+    "title": "programming-Python Programming 3rd-party modules Dbus (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_3rd-party_modules_Dbus",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_3rd-party_modules_Dbus-e01115ac.json",
+        "sha256": "419bdda9b0c338a5422215a40c7f315652b22f67b51063499b5f4fb0c42cf3a2",
+        "bytes": 2543
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_3rd-party_modules_Dbus-e01115ac.txt",
+        "sha256": "a5de0ef1f733ca98989af6639346cfc9c1078171d90ed92bf91ebbf35c567549",
+        "bytes": 2277
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_3rd-party_modules_GUI-564201aa",
+    "title": "programming-Python Programming 3rd-party modules GUI (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_3rd-party_modules_GUI",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_3rd-party_modules_GUI-564201aa.json",
+        "sha256": "2a44a72cb53ab107d5215a62099702325d256b9eaa9ada43288ef2c2c8ba9d58",
+        "bytes": 3727
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_3rd-party_modules_GUI-564201aa.txt",
+        "sha256": "d115d0016b97630cfcd875f5579d9c16109a31c30b2264cf9bb54f46f78b77d1",
+        "bytes": 3420
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_3rd-party_modules_Numpy-5d8ea4cc",
+    "title": "programming-Python Programming 3rd-party modules Numpy (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_3rd-party_modules_Numpy",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_3rd-party_modules_Numpy-5d8ea4cc.json",
+        "sha256": "b53760dbc5f7512330901548d8a53e3cebff1e2895db796f465ff297cf359743",
+        "bytes": 1488
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_3rd-party_modules_Numpy-5d8ea4cc.txt",
+        "sha256": "69ef62b5365a9afebcfdf5caa62e56c03330f955d28624685359861a1b243eef",
+        "bytes": 1229
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_3rd-party_modules_Progress_Ba-b85f8680",
+    "title": "programming-Python Programming 3rd-party modules Progress Ba (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_3rd-party_modules_Progress_Ba",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_3rd-party_modules_Progress_Ba-b85f8680.json",
+        "sha256": "a2c78572351319da6079213eb08685ceb4003b849b7e887eb57629d8315289cd",
+        "bytes": 1400
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_3rd-party_modules_Progress_Ba-b85f8680.txt",
+        "sha256": "a2bc36bae190c178f84579dec50f08dfdd0ef5cd2ef7dc527dea7366a2762537",
+        "bytes": 1117
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_3rd-party_modules_Web-d61c1c09",
+    "title": "programming-Python Programming 3rd-party modules Web (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_3rd-party_modules_Web",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_3rd-party_modules_Web-d61c1c09.json",
+        "sha256": "f6f68ba12f074fdaf7f640a7c325119621b3201797572d90dbe70f2c2749e026",
+        "bytes": 3397
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_3rd-party_modules_Web-d61c1c09.txt",
+        "sha256": "12290deae234fb6f0d832f2a7e6c575b039fffd49f9e30a32222b715ffcca73e",
+        "bytes": 3129
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_3rd-party_modules-d6eb8b6e",
+    "title": "programming-Python Programming 3rd-party modules (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_3rd-party_modules",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_3rd-party_modules-d6eb8b6e.json",
+        "sha256": "1511e7a5c99acdaf9debfe77119ef5a9a83118e345281694da22c054ae59ba2e",
+        "bytes": 2573
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_3rd-party_modules-d6eb8b6e.txt",
+        "sha256": "f58adc0d8a75a2949e33cfa94dd9b91a9696e2460a84ffd76e9c63fb8c7703f8",
+        "bytes": 2251
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Arrays-5eb9965f",
+    "title": "programming-Python Programming Arrays (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Arrays",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Arrays-5eb9965f.json",
+        "sha256": "d856737e1d4924748ad8f7d3bd0a96a2023bea4149522ed6c1736c6030317cf3",
+        "bytes": 12350
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Arrays-5eb9965f.txt",
+        "sha256": "f8300e38389c5fc8c3ba9a843387ee32609f4d2198f875f5558270538549de32",
+        "bytes": 11727
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Authors-d0bfe528",
+    "title": "programming-Python Programming Authors (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Authors",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Authors-d0bfe528.json",
+        "sha256": "7e345c3183279bb5e72eea37cdfa2d91708b1860e592ed11d7ea82b1b77fa1d8",
+        "bytes": 254
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Authors-d0bfe528.txt",
+        "sha256": "526a0dce2f9a352c14689139025c6151a110395e21587aa3d4ae65bc453cd2f3",
+        "bytes": 118
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Basic_Math_Solutions-430cc7fc",
+    "title": "programming-Python Programming Basic Math Solutions (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Basic_Math_Solutions",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Basic_Math_Solutions-430cc7fc.json",
+        "sha256": "ab261f357e49937893a62b8bd3cff9938434a7663628acb9bb5228b335b79bc6",
+        "bytes": 2576
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Basic_Math_Solutions-430cc7fc.txt",
+        "sha256": "f58adc0d8a75a2949e33cfa94dd9b91a9696e2460a84ffd76e9c63fb8c7703f8",
+        "bytes": 2251
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Basic_Math-ef533850",
+    "title": "programming-Python Programming Basic Math (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Basic_Math",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Basic_Math-ef533850.json",
+        "sha256": "e6f64674b2e0b8caac877f1a2e19a6718bb4d42cf8289066a3c2ee8627d9a816",
+        "bytes": 4677
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Basic_Math-ef533850.txt",
+        "sha256": "73dce564d2e5c6dd8cba5a06396165280b7a93ae01dfad0e20ef9b2fde0a9759",
+        "bytes": 4411
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Basic_Syntax-cb16aa3b",
+    "title": "programming-Python Programming Basic Syntax (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Basic_Syntax",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Basic_Syntax-cb16aa3b.json",
+        "sha256": "151d5a542887341b498bf3b353626f845bf4273801d10db364a610e1875ca25e",
+        "bytes": 6662
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Basic_Syntax-cb16aa3b.txt",
+        "sha256": "3d2a77c66a7fb6b5ea676d5d1b9700ac9bf4c74912a18d7aa48c9dc706b890bb",
+        "bytes": 6425
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Basic_syntax-fde70235",
+    "title": "programming-Python Programming Basic syntax (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Basic_syntax",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Basic_syntax-fde70235.json",
+        "sha256": "53ee19a4b790fc6df0a70d15358ca274cbd08c9fadb8573a56dde09de2dd8ce2",
+        "bytes": 6758
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Basic_syntax-fde70235.txt",
+        "sha256": "3d2a77c66a7fb6b5ea676d5d1b9700ac9bf4c74912a18d7aa48c9dc706b890bb",
+        "bytes": 6425
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Booleans-2c9ff11c",
+    "title": "programming-Python Programming Booleans (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Booleans",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Booleans-2c9ff11c.json",
+        "sha256": "d7e14d8ea746a1cccaf9b700eef009c335f5e78ab015d3b734b154cfdf62543e",
+        "bytes": 2564
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Booleans-2c9ff11c.txt",
+        "sha256": "f58adc0d8a75a2949e33cfa94dd9b91a9696e2460a84ffd76e9c63fb8c7703f8",
+        "bytes": 2251
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Builtins-7fc3d695",
+    "title": "programming-Python Programming Builtins (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Builtins",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Builtins-7fc3d695.json",
+        "sha256": "9f494e08f7455d3865eb8a5c4b044910e6869fb3b8551d1724dcb99c781bdfaf",
+        "bytes": 2564
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Builtins-7fc3d695.txt",
+        "sha256": "f58adc0d8a75a2949e33cfa94dd9b91a9696e2460a84ffd76e9c63fb8c7703f8",
+        "bytes": 2251
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_CGI_interface-1b04fc8b",
+    "title": "programming-Python Programming CGI interface (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_CGI_interface",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_CGI_interface-1b04fc8b.json",
+        "sha256": "2dc35869ec5826156716fca6f40005154f3d8b9256b3480b94b48844ca4c2da3",
+        "bytes": 868
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_CGI_interface-1b04fc8b.txt",
+        "sha256": "ba13027a9a324583980070a9e1c9aa147561f68d097696f028a18e12550b98a3",
+        "bytes": 718
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Classes-276fb5a7",
+    "title": "programming-Python Programming Classes (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Classes",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Classes-276fb5a7.json",
+        "sha256": "b25c1af373d9237dd61c26a43882e436fa20e0777ceae88fa65f6e641d5dfa70",
+        "bytes": 20575
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Classes-276fb5a7.txt",
+        "sha256": "8c3aa2806efc8529379c07c1f4c3333835cf47f22ceab547f52a031661b289df",
+        "bytes": 19859
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Command-line_one-liners-44ec2af5",
+    "title": "programming-Python Programming Command-line one-liners (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Command-line_one-liners",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Command-line_one-liners-44ec2af5.json",
+        "sha256": "817340ee171571e30cefa235e021f580cf4fa40ca3ce9d29586c3f84c6d7ab01",
+        "bytes": 1651
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Command-line_one-liners-44ec2af5.txt",
+        "sha256": "de1ad3ee0f746712e3c10aa7b0c3c51333ed13b6a1c8b7491fea84c250ed3f9d",
+        "bytes": 1469
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Cond-eaa83b99",
+    "title": "programming-Python Programming Cond (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Cond",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Cond-eaa83b99.json",
+        "sha256": "e316767dbdc07c345a3570c214a6b7c158578c676a58032fafc567a3b116638b",
+        "bytes": 247
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Cond-eaa83b99.txt",
+        "sha256": "644caebbcca2fac77100c18dff37ad93c135ca4b85904c19778ced3a20a81dc5",
+        "bytes": 126
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Conditional_Statements-2ee0a1f6",
+    "title": "programming-Python Programming Conditional Statements (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Conditional_Statements",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Conditional_Statements-2ee0a1f6.json",
+        "sha256": "c14640e03d0d1aa647dfd073116441da9e8e43d7f6b594681378121e91df0cbf",
+        "bytes": 13841
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Conditional_Statements-2ee0a1f6.txt",
+        "sha256": "a9c1ee42512c03a65507757ef82a4f258384dc24c860131cc3f5fe3c6537a82b",
+        "bytes": 13069
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Context_Managers-35c791c5",
+    "title": "programming-Python Programming Context Managers (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Context_Managers",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Context_Managers-35c791c5.json",
+        "sha256": "2f51697d06a930a5ef1ccc7134807ef85aa0a0d743277850529e5952062fda04",
+        "bytes": 8380
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Context_Managers-35c791c5.txt",
+        "sha256": "c53c21b03fff6af8c72f25912421572c868e6ffc960e7f684f363ff39e0d6fe5",
+        "bytes": 8169
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Control_Flow-3c527be3",
+    "title": "programming-Python Programming Control Flow (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Control_Flow",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Control_Flow-3c527be3.json",
+        "sha256": "aafbccb9f4c533c35f48b24de29abc1d3d756fda5fa99d0ce367820daee491f3",
+        "bytes": 8944
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Control_Flow-3c527be3.txt",
+        "sha256": "1747812d16dca1e09b253aef34f857f71984999a4b2fd74080040c89e326fafd",
+        "bytes": 8418
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Creating_Python_programs_Solu-d2c139b0",
+    "title": "programming-Python Programming Creating Python programs Solu (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Creating_Python_programs_Solu",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Creating_Python_programs_Solu-d2c139b0.json",
+        "sha256": "2db0c458982853a924a5f4712d82039ce3c5df5c9d46c1525a6d48585e07e34c",
+        "bytes": 1081
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Creating_Python_programs_Solu-d2c139b0.txt",
+        "sha256": "22178f192fe76cc41271b9a289906458ea99f31541ec7e8c179a41d095c60f99",
+        "bytes": 916
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Creating_Python_Programs-15e1475f",
+    "title": "programming-Python Programming Creating Python Programs (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Creating_Python_Programs",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Creating_Python_Programs-15e1475f.json",
+        "sha256": "ae7b339af42b880da8cb608a131968540b10f72755e00bcde672d2fdaa527eaf",
+        "bytes": 5031
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Creating_Python_Programs-15e1475f.txt",
+        "sha256": "7b20ffb9f8ca45a35c6a0a5555a02af85671f32124b36b9e91f4ec8bea144a09",
+        "bytes": 4801
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming_Creating_Python_programs-2cfeb902",
+    "title": "programming-Python Programming Creating Python programs (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming_Creating_Python_programs",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming_Creating_Python_programs-2cfeb902.json",
+        "sha256": "2349ce4702af88e4c8683c6ecf6f3314ebcf9fe0eecfbdfa5e36e168be102671",
+        "bytes": 5151
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming_Creating_Python_programs-2cfeb902.txt",
+        "sha256": "7b20ffb9f8ca45a35c6a0a5555a02af85671f32124b36b9e91f4ec8bea144a09",
+        "bytes": 4801
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-Python_Programming-f5197e2f",
+    "title": "programming-Python Programming (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/programming-Python_Programming",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-Python_Programming-f5197e2f.json",
+        "sha256": "de26e16a596b85cfb708ee7d8e3d361928ba76bb112dc9235ee1263698039272",
+        "bytes": 2556
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-Python_Programming-f5197e2f.txt",
+        "sha256": "f58adc0d8a75a2949e33cfa94dd9b91a9696e2460a84ffd76e9c63fb8c7703f8",
+        "bytes": 2251
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming-root",
+    "title": "Python Programming (en.wikibooks.org)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/Python_Programming",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming-root.json",
+        "sha256": "74b57574e0c5ab1c03d7cd1a7cde7f3a965e093b5cc958ee69ca90d30af8a940",
+        "bytes": 2485
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming-root.txt",
+        "sha256": "f58adc0d8a75a2949e33cfa94dd9b91a9696e2460a84ffd76e9c63fb8c7703f8",
+        "bytes": 2251
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python",
+    "title": "Python (Vikikitap) (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_(Vikikitap)",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
     "notes": "",
     "files": [
       {
@@ -208,13 +898,13 @@
   },
   {
     "id": "wb-tr-python-programlama-dili",
-    "title": "Python Programlama Dili (Vikikitap)",
+    "title": "Python Programlama Dili (tr.wikibooks.org)",
     "language": "tr",
     "source_name": "tr.wikibooks.org",
     "source_url": "https://tr.wikibooks.org/wiki/Python_Programlama_Dili",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "retrieved_at": "2026-05-29T12:33:33Z",
     "notes": "",
     "files": [
       {
@@ -230,48 +920,278 @@
     ]
   },
   {
-    "id": "wb-en-python-programming",
-    "title": "Python Programming (Wikibooks)",
-    "language": "en",
-    "source_name": "en.wikibooks.org",
-    "source_url": "https://en.wikibooks.org/wiki/Python_Programming",
+    "id": "wb-tr-python-Python_3_x_Etkileşimli_Python-3bdd25b2",
+    "title": "Python 3 x Etkileşimli Python (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_3_x_Etkile%C5%9Fimli_Python",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "retrieved_at": "2026-05-29T12:33:33Z",
     "notes": "",
     "files": [
       {
-        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming.json",
-        "sha256": "74b57574e0c5ab1c03d7cd1a7cde7f3a965e093b5cc958ee69ca90d30af8a940",
-        "bytes": 2485
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-Python_3_x_Etkileşimli_Python-3bdd25b2.json",
+        "sha256": "c2e72baa0cd1dbb0c1c2cadca9ca0b53436fbc2c603cc3e04854cff3a5997cfe",
+        "bytes": 1531
       },
       {
-        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming.txt",
-        "sha256": "f58adc0d8a75a2949e33cfa94dd9b91a9696e2460a84ffd76e9c63fb8c7703f8",
-        "bytes": 2251
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-Python_3_x_Etkileşimli_Python-3bdd25b2.txt",
+        "sha256": "90d6de68b41c3283e7d43dc52cc5ae4a0aad83dcf172cf72f6a527598245f364",
+        "bytes": 1031
       }
     ]
   },
   {
-    "id": "wb-en-c-programming",
-    "title": "C Programming (Wikibooks)",
-    "language": "en",
-    "source_name": "en.wikibooks.org",
-    "source_url": "https://en.wikibooks.org/wiki/C_Programming",
+    "id": "wb-tr-python-Python_3_x_Giriş-bddc1e1d",
+    "title": "Python 3 x Giriş (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_3_x_Giri%C5%9F",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "retrieved_at": "2026-05-29T12:33:33Z",
     "notes": "",
     "files": [
       {
-        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-c-programming.json",
-        "sha256": "079ea8ed78f0ea25a29f5fa1b3a8b4e44eb5c123906ee2af4f0ae1b33fad1bdb",
-        "bytes": 1504
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-Python_3_x_Giriş-bddc1e1d.json",
+        "sha256": "20f15f4a80d136fdc338dc1e8338113390c878fec691de76cd71ef9c9309fc91",
+        "bytes": 1276
       },
       {
-        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-c-programming.txt",
-        "sha256": "3a57166da9aba104abe8a86357d04607e2bed03a8c27d73118a190d51752aeee",
-        "bytes": 1311
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-Python_3_x_Giriş-bddc1e1d.txt",
+        "sha256": "3a47702ad35696797952884ac65a00b477b33ecf45e1f46d2d3a71c4b736fb65",
+        "bytes": 895
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python-Python_3_x_Komut_satırı-7f79d83d",
+    "title": "Python 3 x Komut satırı (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_3_x_Komut_sat%C4%B1r%C4%B1",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-Python_3_x_Komut_satırı-7f79d83d.json",
+        "sha256": "cfa1e55129a20b02fa0efa0d43287ab8cca65bea8e3add66379a12c0ae56e8b3",
+        "bytes": 4640
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-Python_3_x_Komut_satırı-7f79d83d.txt",
+        "sha256": "6c172ef6ece27452560422c6db0eb9cf17611ed50af527b0b83ef8f8d7574789",
+        "bytes": 3362
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python-Python_3_x-5eb258b7",
+    "title": "Python 3 x (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_3_x",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-Python_3_x-5eb258b7.json",
+        "sha256": "fd1c367d78d74cd3b886e8c9a897e2b73905afc6b8ed842ae9da5e775c1fad06",
+        "bytes": 165
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-Python_3_x-5eb258b7.txt",
+        "sha256": "312e19667177e124b515444afa57d91897ac2440b402096c2ce2747ced6e82aa",
+        "bytes": 41
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python-Python_Değişkenler-a268369b",
+    "title": "Python Değişkenler (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_De%C4%9Fi%C5%9Fkenler",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-Python_Değişkenler-a268369b.json",
+        "sha256": "c3d3c8c835e079e7309777fd3ad30602653c40cc9e5ac3939e5fe5aa0174e186",
+        "bytes": 1909
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-Python_Değişkenler-a268369b.txt",
+        "sha256": "23a121aa7883d2c94fd0f3644d6391fa8cc9567bcf186d0f682e0b881f560332",
+        "bytes": 1361
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python-Python_Fonksiyonlar-569ce8c3",
+    "title": "Python Fonksiyonlar (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_Fonksiyonlar",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-Python_Fonksiyonlar-569ce8c3.json",
+        "sha256": "a1b6547134f311f47c38f472b6f8371a908286555252818fb864c9bcc2437cf2",
+        "bytes": 178
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-Python_Fonksiyonlar-569ce8c3.txt",
+        "sha256": "05050225ee1ca5bf7f40d757ffba26deda6fd4b12f1511517c974448ee836123",
+        "bytes": 43
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python-Python_Giriş-b64452d4",
+    "title": "Python Giriş (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_Giri%C5%9F",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-Python_Giriş-b64452d4.json",
+        "sha256": "33177402613e4031fb0e9b72a4729ef4b328d5c9b654ecb05d4dcc813dc567c4",
+        "bytes": 1748
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-Python_Giriş-b64452d4.txt",
+        "sha256": "85481eeb2fb8a0c45a26c1c20da8d24877b5384bde99ae4d9b2763648b8c11fe",
+        "bytes": 1269
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python-Python_İlk_programımız-da075adb",
+    "title": "Python İlk programımız (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_%C4%B0lk_program%C4%B1m%C4%B1z",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-Python_İlk_programımız-da075adb.json",
+        "sha256": "8bdac726f763bbc9db5ecaf9e936c959aafb8af3eac2781decc5044a34c5013e",
+        "bytes": 1439
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-Python_İlk_programımız-da075adb.txt",
+        "sha256": "3066c44b55c63b04d58ec36ef30cd4a00a2b87aea03702f9d8edf767591f4375",
+        "bytes": 938
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python-Python_Koşul_yapıları-d8f61370",
+    "title": "Python Koşul yapıları (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_Ko%C5%9Ful_yap%C4%B1lar%C4%B1",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-Python_Koşul_yapıları-d8f61370.json",
+        "sha256": "0c981e320f28357b46c4152f58171a028f61ecb4c253bd8d000b84ef940dc742",
+        "bytes": 132
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-Python_Koşul_yapıları-d8f61370.txt",
+        "sha256": "8eda557e11d304c9780244b8735d841f61db58507ac9d1e6e7f97209b674d5ff",
+        "bytes": 170
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python-Python_Sınıflar-d0abe9fb",
+    "title": "Python Sınıflar (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_S%C4%B1n%C4%B1flar",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-Python_Sınıflar-d0abe9fb.json",
+        "sha256": "f16d3480cfc93969992c354fb0324e8d21f7ac7cdb6fee9deef52cf20518f22f",
+        "bytes": 241
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-Python_Sınıflar-d0abe9fb.txt",
+        "sha256": "90a784c9d0ebc80c0516aa121e201ae95316886880fb0cc946db209478a0824e",
+        "bytes": 90
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python-Python_Veri_tipleri-a800ded9",
+    "title": "Python Veri tipleri (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_Veri_tipleri",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-Python_Veri_tipleri-a800ded9.json",
+        "sha256": "3bd72a7a2ef52fa82970798529a5d05ec9b1e95d3aea149aa1a1ed229f66dd4a",
+        "bytes": 733
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-Python_Veri_tipleri-a800ded9.txt",
+        "sha256": "86dc3d3ac2e5b134783da434759f226e48b072c94f2236e6dca5f341fa99f639",
+        "bytes": 476
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python-root",
+    "title": "Python (tr.wikibooks.org)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:33:33Z",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-root.json",
+        "sha256": "6964c928c5cf93b0cf6d28b86cc1237b1d233fe86de4c5fa628efda05fc4705a",
+        "bytes": 656
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-root.txt",
+        "sha256": "6c25d3425ad508b47564ebe40448cfb0ae246a91e41aa2d0f52b5f675a912c60",
+        "bytes": 416
       }
     ]
   }
