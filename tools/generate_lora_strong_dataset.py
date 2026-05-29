@@ -437,7 +437,13 @@ def write_jsonl(out_dir: str, train: List[str], valid: List[str]) -> None:
 
 
 def main() -> None:
-    out_dir = os.path.abspath(os.path.join("lora_data", "lora_strong_v1"))
+    # Default output should be local-only (avoid committing huge datasets / writing into random CWDs).
+    try:
+        from lokum_paths import lora_dir as _lora_dir, ensure_dir as _ensure_dir  # type: ignore
+
+        out_dir = str(_ensure_dir(_lora_dir() / "lora_strong_v1"))
+    except Exception:
+        out_dir = os.path.abspath(os.path.join("lora_data", "lora_strong_v1"))
     train, valid = build_dataset(seed=1337)
     write_jsonl(out_dir, train, valid)
     print(out_dir)
