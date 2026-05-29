@@ -128,15 +128,33 @@ FinetuneEngine = None
 RAG_IMPORT_ERROR = ""
 FINETUNE_IMPORT_ERROR = ""
 try:
-    from rag_engine import RAGEngine as _RAGEngine
+    try:
+        # Prefer the pip package if available
+        from lokum_engine import RAGEngine as _RAGEngine  # type: ignore
+    except Exception:
+        from lokum_engine.rag import RAGEngine as _RAGEngine  # type: ignore
     RAGEngine = _RAGEngine
-except Exception as e:
-    RAG_IMPORT_ERROR = str(e)
+except Exception:
+    try:
+        # Fallback to local implementation (dev / source checkout)
+        from rag_engine import RAGEngine as _RAGEngine
+        RAGEngine = _RAGEngine
+    except Exception as e:
+        RAG_IMPORT_ERROR = str(e)
 try:
-    from finetune_engine import FinetuneEngine as _FinetuneEngine
+    try:
+        # Prefer the pip package if available
+        from lokum_engine import FinetuneEngine as _FinetuneEngine  # type: ignore
+    except Exception:
+        from lokum_engine.finetune import FinetuneEngine as _FinetuneEngine  # type: ignore
     FinetuneEngine = _FinetuneEngine
-except Exception as e:
-    FINETUNE_IMPORT_ERROR = str(e)
+except Exception:
+    try:
+        # Fallback to local implementation (dev / source checkout)
+        from finetune_engine import FinetuneEngine as _FinetuneEngine
+        FinetuneEngine = _FinetuneEngine
+    except Exception as e:
+        FINETUNE_IMPORT_ERROR = str(e)
 
 # Centralized path handling (allows overrides via env vars)
 try:

@@ -20,3 +20,9 @@ _tmp_*/
 # Local internal secrets/docs (never commit)
 internal/
 INTERNAL_*_PASSWORD*
+
+# Python packaging artifacts (lokum-engine)
+lokum-engine/dist/
+lokum-engine/build/
+lokum-engine/*.egg-info/
+lokum-engine/src/*.egg-info/

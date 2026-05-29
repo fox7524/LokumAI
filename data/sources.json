@@ -1,0 +1,278 @@
+[
+  {
+    "id": "pg-11",
+    "title": "Alice's Adventures in Wonderland",
+    "language": "en",
+    "source_name": "Project Gutenberg",
+    "source_url": "https://www.gutenberg.org/files/11/11-0.txt",
+    "license": "Public Domain (Project Gutenberg terms apply)",
+    "license_url": "https://www.gutenberg.org/policy/license.html",
+    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/pg-11.txt",
+        "sha256": "a3a27f8edbf7fcd9b8ba8435494440e24952deaa3e2f2d65192d4cb7ca403754",
+        "bytes": 151191
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/pg-11.txt",
+        "sha256": "4e04ea77acf3b0215cae2089c977bc07526fc834597a1d463598d895354ba41d",
+        "bytes": 151094
+      }
+    ]
+  },
+  {
+    "id": "pg-84",
+    "title": "Frankenstein; Or, The Modern Prometheus",
+    "language": "en",
+    "source_name": "Project Gutenberg",
+    "source_url": "https://www.gutenberg.org/files/84/84-0.txt",
+    "license": "Public Domain (Project Gutenberg terms apply)",
+    "license_url": "https://www.gutenberg.org/policy/license.html",
+    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/pg-84.txt",
+        "sha256": "06c37d2c52d208d3d81eb12c3b10b5edbd7728b73554325ddceadbe2fb427e77",
+        "bytes": 421633
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/pg-84.txt",
+        "sha256": "3839fa35c116713f811903545470041a86079268307ae9fd3ed4d04c88788bc0",
+        "bytes": 421535
+      }
+    ]
+  },
+  {
+    "id": "pg-132",
+    "title": "The Art of War",
+    "language": "en",
+    "source_name": "Project Gutenberg",
+    "source_url": "https://www.gutenberg.org/files/132/132-0.txt",
+    "license": "Public Domain (Project Gutenberg terms apply)",
+    "license_url": "https://www.gutenberg.org/policy/license.html",
+    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/pg-132.txt",
+        "sha256": "0aa964ddb252df7f02e84174ff1a65c6fd971c067303c1da320f5734a3b05c37",
+        "bytes": 322409
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/pg-132.txt",
+        "sha256": "0cad92d6aad6a1fffee9ac628307b9ab0ccb39ce0e48b3ceef6998615509f0d6",
+        "bytes": 322309
+      }
+    ]
+  },
+  {
+    "id": "pg-1342",
+    "title": "Pride and Prejudice",
+    "language": "en",
+    "source_name": "Project Gutenberg",
+    "source_url": "https://www.gutenberg.org/files/1342/1342-0.txt",
+    "license": "Public Domain (Project Gutenberg terms apply)",
+    "license_url": "https://www.gutenberg.org/policy/license.html",
+    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/pg-1342.txt",
+        "sha256": "a5666f87abf2cbfdaa27ea8c73bd284da9649b9a2ab27b4e6c8f6aeab1bd1c88",
+        "bytes": 738046
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/pg-1342.txt",
+        "sha256": "2387304e3cec1adb94b811218a27c6cd503cf7eba8c29c5d18f1bf862c67442f",
+        "bytes": 737913
+      }
+    ]
+  },
+  {
+    "id": "pg-1661",
+    "title": "The Adventures of Sherlock Holmes",
+    "language": "en",
+    "source_name": "Project Gutenberg",
+    "source_url": "https://www.gutenberg.org/files/1661/1661-0.txt",
+    "license": "Public Domain (Project Gutenberg terms apply)",
+    "license_url": "https://www.gutenberg.org/policy/license.html",
+    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/pg-1661.txt",
+        "sha256": "b9c105a5c0cf9fcb37c7d0211658851ed56074519c9455d15e20f04c0c5a3174",
+        "bytes": 607504
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/pg-1661.txt",
+        "sha256": "2b7238758a350af441475489c7db10b8d8e9686a3897b1acebd7e81723960f80",
+        "bytes": 587714
+      }
+    ]
+  },
+  {
+    "id": "pg-174",
+    "title": "The Picture of Dorian Gray",
+    "language": "en",
+    "source_name": "Project Gutenberg",
+    "source_url": "https://www.gutenberg.org/files/174/174-0.txt",
+    "license": "Public Domain (Project Gutenberg terms apply)",
+    "license_url": "https://www.gutenberg.org/policy/license.html",
+    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/pg-174.txt",
+        "sha256": "7782dd93e6a457979ef451735c9fe4bd666968c314859d545f0d27a8c9b86aa2",
+        "bytes": 446090
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/pg-174.txt",
+        "sha256": "cff1585005b24cf871b1aadec2b4413ecc742c8f926c6a39ab76322c2fcf19c0",
+        "bytes": 445978
+      }
+    ]
+  },
+  {
+    "id": "pg-2701",
+    "title": "Moby Dick; Or, The Whale",
+    "language": "en",
+    "source_name": "Project Gutenberg",
+    "source_url": "https://www.gutenberg.org/files/2701/2701-0.txt",
+    "license": "Public Domain (Project Gutenberg terms apply)",
+    "license_url": "https://www.gutenberg.org/policy/license.html",
+    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/pg-2701.txt",
+        "sha256": "0670d7bb10b99d05f095a28942801aa74d4921d1b34dbdc76900e2c4c2bd2189",
+        "bytes": 1234609
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/pg-2701.txt",
+        "sha256": "ebd1c0141b4cf038232421fe24937beba1d729cd0f7e44f686b4c700239f7ea7",
+        "bytes": 1234504
+      }
+    ]
+  },
+  {
+    "id": "pg-98",
+    "title": "A Tale of Two Cities",
+    "language": "en",
+    "source_name": "Project Gutenberg",
+    "source_url": "https://www.gutenberg.org/files/98/98-0.txt",
+    "license": "Public Domain (Project Gutenberg terms apply)",
+    "license_url": "https://www.gutenberg.org/policy/license.html",
+    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/pg-98.txt",
+        "sha256": "e3dfeb67feb904ac0f73a35204a175c58248422c2be8556802cb8820d958d67c",
+        "bytes": 771600
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/pg-98.txt",
+        "sha256": "68f9a91b64b42adee3282d918cdcca8a37310e17c76b597a2a5fcc7724d9db02",
+        "bytes": 771502
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python",
+    "title": "Python (Vikikitap)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python.json",
+        "sha256": "6964c928c5cf93b0cf6d28b86cc1237b1d233fe86de4c5fa628efda05fc4705a",
+        "bytes": 656
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python.txt",
+        "sha256": "6c25d3425ad508b47564ebe40448cfb0ae246a91e41aa2d0f52b5f675a912c60",
+        "bytes": 416
+      }
+    ]
+  },
+  {
+    "id": "wb-tr-python-programlama-dili",
+    "title": "Python Programlama Dili (Vikikitap)",
+    "language": "tr",
+    "source_name": "tr.wikibooks.org",
+    "source_url": "https://tr.wikibooks.org/wiki/Python_Programlama_Dili",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-tr-python-programlama-dili.json",
+        "sha256": "63f053f76ea661075fbb18f9344bd1a33d9cc606f86a849421c46ccc968fb4c2",
+        "bytes": 1917
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-tr-python-programlama-dili.txt",
+        "sha256": "0c1178e59a7a4bd61df7f7fdf920b577a0b4d1268ae3cbd658ea803f09b856f5",
+        "bytes": 1378
+      }
+    ]
+  },
+  {
+    "id": "wb-en-python-programming",
+    "title": "Python Programming (Wikibooks)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/Python_Programming",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-python-programming.json",
+        "sha256": "74b57574e0c5ab1c03d7cd1a7cde7f3a965e093b5cc958ee69ca90d30af8a940",
+        "bytes": 2485
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-python-programming.txt",
+        "sha256": "f58adc0d8a75a2949e33cfa94dd9b91a9696e2460a84ffd76e9c63fb8c7703f8",
+        "bytes": 2251
+      }
+    ]
+  },
+  {
+    "id": "wb-en-c-programming",
+    "title": "C Programming (Wikibooks)",
+    "language": "en",
+    "source_name": "en.wikibooks.org",
+    "source_url": "https://en.wikibooks.org/wiki/C_Programming",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "retrieved_at": "2026-05-29T12:14:30+00:00",
+    "notes": "",
+    "files": [
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/raw/wb-en-c-programming.json",
+        "sha256": "079ea8ed78f0ea25a29f5fa1b3a8b4e44eb5c123906ee2af4f0ae1b33fad1bdb",
+        "bytes": 1504
+      },
+      {
+        "path": "/sessions/6a198098398c0351a0028577/workspace/data/txt/wb-en-c-programming.txt",
+        "sha256": "3a57166da9aba104abe8a86357d04607e2bed03a8c27d73118a190d51752aeee",
+        "bytes": 1311
+      }
+    ]
+  }
+]
