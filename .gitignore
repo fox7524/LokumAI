@@ -4,12 +4,19 @@ __pycache__/
 .venv/
 
 app.db
+memory.db
+dataset.db
 
-lora_data/adapters/
-lora_data/train_only/
-lora_data/validate_only/
-lora_data/lora_cfg_*.yaml
+# Large local ML artifacts / outputs
+*.safetensors
+*.npz
+*.bin
+*.npy
 
-faiss_index.bin
-docs_metadata.npy
-chunks_meta.npy
+# Local-only training outputs (moved to ~/.lokumai by default)
+lora_data/
+_tmp_*/
+
+# Local internal secrets/docs (never commit)
+internal/
+INTERNAL_*_PASSWORD*

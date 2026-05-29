@@ -4,11 +4,20 @@ import unittest
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
-from PyQt5.QtWidgets import QApplication
+try:
+    from PyQt5.QtWidgets import QApplication  # type: ignore
+    _HAS_PYQT5 = True
+except Exception:
+    QApplication = None  # type: ignore
+    _HAS_PYQT5 = False
 
-import main
+if _HAS_PYQT5:
+    import main
+else:
+    main = None  # type: ignore
 
 
+@unittest.skipUnless(_HAS_PYQT5, "PyQt5 not available")
 class TestChatAutoNameAndPersistence(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -89,4 +98,3 @@ class TestChatAutoNameAndPersistence(unittest.TestCase):
         self.gui._on_chat_deleted(chat_name, True, "", 0.0)
         self.assertIsNone(self.gui._pending_chat)
         self.assertIsNone(self.gui._pending_msg_index)
-

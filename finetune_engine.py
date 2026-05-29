@@ -8,45 +8,112 @@ import shutil
 from typing import List
 
 def _presplit_text(text: str, max_seq_length: int, batch_size: int) -> list[str]:
+    """
+    Split overly-long samples into multiple smaller samples to avoid OOM.
+
+    Important quality rule:
+    - Never slice raw ChatML strings in the middle of tags.
+      (That produces invalid training data and hurts quality.)
+    """
     t = text or ""
     max_seq_length = int(max_seq_length) if int(max_seq_length) > 0 else 512
     batch_size = int(batch_size) if int(batch_size) > 0 else 1
-    limit_chars = int(max_seq_length * 2.0)
-    eff_limit = max(256, int(limit_chars / max(1, batch_size)))
+
+    # Rough token->char approximation. Make it configurable.
+    chars_per_token = float(os.environ.get("LOKUMAI_FT_PRESPLIT_CHARS_PER_TOKEN", "4.0").strip() or "4.0")
+    base_limit = int(max(512, max_seq_length * chars_per_token))
+
+    # If the user tries batch>1, reduce per-sample budget slightly (still never tag-slice).
+    eff_limit = int(base_limit * (0.85 if batch_size > 1 else 1.0))
+    eff_limit = max(512, eff_limit)
+
     if len(t) <= eff_limit:
         return [t]
+
+    # ---- ChatML-aware splitting (preferred) ----
     if "<|im_start|>" in t and "<|im_end|>" in t:
-        blocks = re.findall(r"<\|im_start\|>[\s\S]*?<\|im_end\|>\n?", t)
-        if not blocks:
-            blocks = [t]
-        system_prefix = ""
-        rest = blocks
-        if blocks and blocks[0].startswith("<|im_start|>system"):
-            system_prefix = blocks[0]
-            rest = blocks[1:]
-        out: list[str] = []
-        i = 0
-        while i < len(rest):
-            cur = system_prefix
-            j = i
-            while j < len(rest) and len(cur) + len(rest[j]) <= eff_limit:
-                cur += rest[j]
-                j += 1
-            if cur == system_prefix:
-                b = rest[i]
-                k = 0
-                while k < len(b):
-                    seg = b[k : k + eff_limit]
-                    out.append(system_prefix + seg)
-                    k += eff_limit
-                i += 1
-                continue
-            out.append(cur)
-            i = j
-        return [s for s in out if s.strip()]
+        msg_re = re.compile(r"<\|im_start\|>(system|user|assistant)\n([\s\S]*?)<\|im_end\|>\n?")
+        msgs = [(m.group(1), m.group(2)) for m in msg_re.finditer(t)]
+        if not msgs:
+            # Fallback to plain-text splitting below
+            pass
+        else:
+            system_msg = ""
+            rest = msgs
+            if rest and rest[0][0] == "system":
+                system_msg = rest[0][1]
+                rest = rest[1:]
+
+            def wrap(role: str, content: str) -> str:
+                return f"<|im_start|>{role}\n{content.rstrip()}\n<|im_end|>\n"
+
+            def split_content(content: str, limit: int) -> list[str]:
+                s = (content or "").strip()
+                if not s:
+                    return [""]
+                if len(s) <= limit:
+                    return [s]
+                # Prefer paragraph boundaries.
+                parts = [p.strip() for p in re.split(r"\n\s*\n", s) if p.strip()]
+                out: list[str] = []
+                acc = ""
+                for p in parts:
+                    cand = (acc + ("\n\n" if acc else "") + p) if acc else p
+                    if len(cand) <= limit:
+                        acc = cand
+                        continue
+                    if acc:
+                        out.append(acc)
+                        acc = ""
+                    if len(p) <= limit:
+                        acc = p
+                        continue
+                    # Hard split as last resort (still content-only, tags remain intact)
+                    k = 0
+                    while k < len(p):
+                        out.append(p[k : k + limit])
+                        k += limit
+                if acc:
+                    out.append(acc)
+                return [x for x in out if x.strip()]
+
+            # If any single message is huge, split its *content* into multiple messages
+            # to keep ChatML valid (no tag slicing).
+            expanded: list[tuple[str, str]] = []
+            per_msg_limit = max(256, int(eff_limit * 0.75))
+            for role, content in rest:
+                chunks = split_content(content, per_msg_limit)
+                for c in chunks:
+                    expanded.append((role, c))
+
+            out: list[str] = []
+            cur_msgs: list[tuple[str, str]] = []
+
+            def serialize(msgs2: list[tuple[str, str]]) -> str:
+                s = ""
+                if system_msg:
+                    s += wrap("system", system_msg)
+                for r, c in msgs2:
+                    s += wrap(r, c)
+                return s
+
+            for r, c in expanded:
+                cand_msgs = cur_msgs + [(r, c)]
+                if cur_msgs and len(serialize(cand_msgs)) > eff_limit:
+                    out.append(serialize(cur_msgs))
+                    cur_msgs = [(r, c)]
+                else:
+                    cur_msgs = cand_msgs
+
+            if cur_msgs:
+                out.append(serialize(cur_msgs))
+
+            return [s for s in out if s.strip()]
+
+    # ---- Plain-text splitting fallback ----
     parts = re.split(r"\n\s*\n", t)
     acc = ""
-    out: list[str] = []
+    out2: list[str] = []
     for p in parts:
         p = (p or "").strip()
         if not p:
@@ -56,18 +123,18 @@ def _presplit_text(text: str, max_seq_length: int, batch_size: int) -> list[str]
             acc = cand
             continue
         if acc:
-            out.append(acc)
+            out2.append(acc)
             acc = ""
         if len(p) <= eff_limit:
             acc = p
             continue
         k = 0
         while k < len(p):
-            out.append(p[k : k + eff_limit])
+            out2.append(p[k : k + eff_limit])
             k += eff_limit
     if acc:
-        out.append(acc)
-    return [s for s in out if s.strip()]
+        out2.append(acc)
+    return [s for s in out2 if s.strip()]
 
 def _presplit_jsonl_file(fp: str, max_seq_length: int, batch_size: int) -> int:
     if not fp or not os.path.isfile(fp):
@@ -105,8 +172,15 @@ def _presplit_jsonl_file(fp: str, max_seq_length: int, batch_size: int) -> int:
 class FinetuneEngine:
     def __init__(self, model_path: str):
         self.model_path = model_path
-        self.dataset_dir = "lora_data"
-        os.makedirs(self.dataset_dir, exist_ok=True)
+        # Keep large/private training artifacts out of the git repo by default.
+        # Default: ~/.lokumai/lora_data (override via LOKUMAI_LORA_DIR)
+        try:
+            from lokum_paths import lora_dir as _lora_dir, ensure_dir as _ensure_dir  # type: ignore
+
+            self.dataset_dir = str(_ensure_dir(_lora_dir()))
+        except Exception:
+            self.dataset_dir = "lora_data"
+            os.makedirs(self.dataset_dir, exist_ok=True)
             
     def prepare_dataset(self, text_chunks: List[str]):
         """Converts raw text chunks into a train/valid JSONL dataset for MLX lora."""
@@ -212,7 +286,9 @@ class FinetuneEngine:
             raise RuntimeError("valid.jsonl not found in dataset directory.")
 
         ts = time.strftime("%Y%m%d_%H%M%S")
-        eval_dir = os.path.abspath(os.path.join("lora_data", "validate_only", f"run_{ts}"))
+        # Keep validation artifacts next to other LoRA outputs
+        base = os.path.abspath(self.dataset_dir or "lora_data")
+        eval_dir = os.path.abspath(os.path.join(base, "validate_only", f"run_{ts}"))
         os.makedirs(eval_dir, exist_ok=True)
         shutil.copyfile(valid_fp, os.path.join(eval_dir, "test.jsonl"))
         try:

@@ -12,7 +12,7 @@ LokumAI Studio is a dual-mode AI coding assistant with two distinct interfaces:
    - Theme selection (dark/light)
    - Access to Settings panel
 
-2. DEV MODE (password: "123"):
+2. DEV MODE (password: local-only):
    - Advanced developer panel with 5 tabs:
      * RAG Indexer: Index project files, PDFs, DOCX, ZIM archives
      * Fine-tune: Configure and run LoRA fine-tuning
@@ -138,6 +138,12 @@ try:
 except Exception as e:
     FINETUNE_IMPORT_ERROR = str(e)
 
+# Centralized path handling (allows overrides via env vars)
+try:
+    from lokum_paths import rag_dir as _lokum_rag_dir  # type: ignore
+except Exception:
+    _lokum_rag_dir = None
+
 try:
     from file_ingest import iter_files as ingest_iter_files
     from file_ingest import build_text_chunks_from_paths as ingest_build_chunks
@@ -149,7 +155,32 @@ except Exception as e:
 
 # Application version and dev mode password
 VERSION = "LokumAI"
-DEV_MODE_PASSWORD = os.environ.get("LOKUMAI_DEV_PASSWORD", "lokum123")
+try:
+    from lokum_paths import get_or_create_dev_password as _get_or_create_dev_password  # type: ignore
+except Exception:
+    _get_or_create_dev_password = None
+
+if callable(_get_or_create_dev_password):
+    DEV_MODE_PASSWORD, _DEV_PASSWORD_GENERATED, _DEV_PASSWORD_PATH = _get_or_create_dev_password()
+else:
+    DEV_MODE_PASSWORD = os.environ.get("LOKUMAI_DEV_PASSWORD", "lokum123")
+    _DEV_PASSWORD_GENERATED = False
+    _DEV_PASSWORD_PATH = ""
+
+
+def _lora_base_dir() -> str:
+    """
+    Stable LoRA artifact root.
+
+    Previously we used `os.path.abspath("lora_data")` which depends on the current
+    working directory (and can change depending on how the app is launched).
+    """
+    try:
+        from lokum_paths import lora_dir as _lokum_lora_dir, ensure_dir as _ensure_dir  # type: ignore
+
+        return str(_ensure_dir(_lokum_lora_dir()))
+    except Exception:
+        return os.path.abspath(os.path.join(os.path.dirname(__file__), "lora_data"))
 
 # ---------------------------------------------------------
 # WORKER THREADS (Background Processing)
@@ -1252,7 +1283,7 @@ class DevPanelDialog(QWidget):
         except Exception:
             idx_folder = ""
         self.rag_chunks_lbl.setText(f"{int(chunk_count)} chunks indexed")
-        rag_dir = os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
+        rag_dir = str(_lokum_rag_dir()) if callable(_lokum_rag_dir) else os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
         self.rag_index_lbl.setText(f"Store: {rag_dir}")
         self.rag_status_lbl.setText("Active" if ok else "No data")
         if not ok:
@@ -1276,7 +1307,7 @@ class DevPanelDialog(QWidget):
         self.rag_status_lbl.setText("Aborting…")
 
     def refresh_rag_status(self):
-        rag_dir = os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
+        rag_dir = str(_lokum_rag_dir()) if callable(_lokum_rag_dir) else os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
         try:
             use_rag = bool(getattr(self.main_app, "use_rag", True)) if self.main_app else True
         except Exception:
@@ -1303,7 +1334,21 @@ class DevPanelDialog(QWidget):
             chunk_count = int(stats.get("chunk_count", len(getattr(eng, "documents", []) or [])))
         except Exception:
             chunk_count = len(getattr(eng, "documents", []) or [])
-        self.rag_status_lbl.setText("Active" if chunk_count > 0 else "No data")
+        # If there are store files but we couldn't load, show an error instead of "No data"
+        try:
+            has_store_files = False
+            if eng is not None:
+                has_store_files = bool(
+                    os.path.exists(getattr(eng, "index_path", "")) and os.path.exists(getattr(eng, "docs_path", ""))
+                )
+            last_err = str(getattr(eng, "last_error", "") or "") if eng is not None else ""
+        except Exception:
+            has_store_files = False
+            last_err = ""
+        if chunk_count <= 0 and has_store_files and last_err:
+            self.rag_status_lbl.setText("Error")
+        else:
+            self.rag_status_lbl.setText("Active" if chunk_count > 0 else "No data")
         self.rag_chunks_lbl.setText(f"{int(chunk_count)} chunks indexed")
         self.rag_index_lbl.setText(f"Store: {rag_dir}")
 
@@ -1315,7 +1360,7 @@ class DevPanelDialog(QWidget):
             QMessageBox.critical(self, "Docs Indexing Error", err)
             return
         self.rag_chunks_lbl.setText(f"{int(chunk_count)} chunks indexed")
-        rag_dir = os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
+        rag_dir = str(_lokum_rag_dir()) if callable(_lokum_rag_dir) else os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
         self.rag_index_lbl.setText(f"Store: {rag_dir}")
         self.rag_status_lbl.setText("Active" if ok else "No data")
         QMessageBox.information(self, "Docs Indexing Complete", f"Chunks: {int(chunk_count)}")
@@ -1337,7 +1382,8 @@ class DevPanelDialog(QWidget):
             return
 
         self._rag_reset_armed_until = 0.0
-        text, ok = QInputDialog.getText(self, "Confirm Reset", "Type RESET to permanently delete ~/.lokumai/rag:")
+        rag_dir = str(_lokum_rag_dir()) if callable(_lokum_rag_dir) else os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
+        text, ok = QInputDialog.getText(self, "Confirm Reset", f"Type RESET to permanently delete:\n{rag_dir}")
         if not ok or (text or "").strip().upper() != "RESET":
             QMessageBox.information(self, "Reset Cancelled", "RAG reset cancelled.")
             return
@@ -1345,7 +1391,7 @@ class DevPanelDialog(QWidget):
         eng.reset_database()
         self.rag_status_lbl.setText("Disabled")
         self.rag_chunks_lbl.setText("0 chunks indexed")
-        rag_dir = os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
+        rag_dir = str(_lokum_rag_dir()) if callable(_lokum_rag_dir) else os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
         self.rag_index_lbl.setText(f"Store: {rag_dir}")
         QMessageBox.information(self, "Reset Complete", "RAG index has been reset.")
     
@@ -1628,15 +1674,35 @@ class DevPanelDialog(QWidget):
             name = (self.ft_preset.currentText() if hasattr(self, "ft_preset") else "").strip()
         except Exception:
             name = ""
+        if name == "Safe (Recommended)":
+            # Stable default for big models: keep memory headroom by avoiding eval during training.
+            self.lora_rank.setValue(8)
+            self.lora_alpha.setValue(32)
+            self.lora_iters.setValue(500)
+            self.lora_batch.setValue(1)
+            self.lora_layers.setValue(8)
+            self.ft_max_seq.setValue(384)
+            self.ft_steps_per_eval.setValue(0)
+            self.ft_val_batches.setValue(0)
+            self.ft_clear_cache_thr.setValue(1.5)
+            try:
+                if hasattr(self, "ft_presplit") and self.ft_presplit is not None:
+                    self.ft_presplit.setChecked(True)
+            except Exception:
+                pass
+            return
         if name == "Reccommended":
+            # Previously this was too aggressive and could push Metal to OOM.
+            # Make it quality-leaning (user can tolerate spikes).
             self.lora_rank.setValue(16)
             self.lora_alpha.setValue(64)
             self.lora_iters.setValue(900)
             self.lora_batch.setValue(1)
-            self.lora_layers.setValue(16)
-            self.ft_max_seq.setValue(768)
-            self.ft_steps_per_eval.setValue(200)
-            self.ft_val_batches.setValue(1)
+            self.lora_layers.setValue(12)
+            self.ft_max_seq.setValue(512)
+            # Avoid eval during training (smoother memory curve). You can run validate after.
+            self.ft_steps_per_eval.setValue(0)
+            self.ft_val_batches.setValue(0)
             self.ft_clear_cache_thr.setValue(2.0)
             try:
                 if hasattr(self, "ft_presplit") and self.ft_presplit is not None:
@@ -1645,7 +1711,7 @@ class DevPanelDialog(QWidget):
                 pass
             try:
                 if hasattr(self, "ft_do_valid") and self.ft_do_valid is not None:
-                    self.ft_do_valid.setChecked(True)
+                    self.ft_do_valid.setChecked(False)
             except Exception:
                 pass
             return
@@ -1706,7 +1772,7 @@ class DevPanelDialog(QWidget):
             QMessageBox.warning(self, "Unavailable", "file_ingest is not available. Ensure file_ingest.py exists and restarts cleanly.")
             return
 
-        out_dir = os.path.join(os.path.abspath("lora_data"), "ingested_export")
+        out_dir = os.path.join(_lora_base_dir(), "ingested_export")
         if hasattr(self, "train_log") and self.train_log is not None:
             self.train_log.appendPlainText(f"[dataset] Exporting from: {folder}")
         if hasattr(self, "_export_dataset_btn") and self._export_dataset_btn is not None:
@@ -1830,7 +1896,7 @@ class DevPanelDialog(QWidget):
             return
 
         try:
-            base = os.path.abspath(os.path.join("lora_data", "adapters"))
+            base = os.path.abspath(os.path.join(_lora_base_dir(), "adapters"))
             if os.path.isdir(base):
                 for nm in os.listdir(base):
                     if not nm.startswith("run_"):
@@ -1878,7 +1944,7 @@ class DevPanelDialog(QWidget):
                 train_fp = os.path.join(os.path.abspath(data_dir), "train.jsonl")
                 if os.path.isfile(train_fp):
                     ts = time.strftime("%Y%m%d_%H%M%S")
-                    train_only = os.path.abspath(os.path.join("lora_data", "train_only", f"run_{ts}"))
+                    train_only = os.path.abspath(os.path.join(_lora_base_dir(), "train_only", f"run_{ts}"))
                     os.makedirs(train_only, exist_ok=True)
                     shutil.copyfile(train_fp, os.path.join(train_only, "train.jsonl"))
                     data_dir = train_only
@@ -1923,7 +1989,7 @@ class DevPanelDialog(QWidget):
         ts = time.strftime("%Y%m%d_%H%M%S")
         adapter_path = ""
         if do_train:
-            adapter_path = os.path.abspath(os.path.join("lora_data", "adapters", f"run_{ts}"))
+            adapter_path = os.path.abspath(os.path.join(_lora_base_dir(), "adapters", f"run_{ts}"))
             os.makedirs(adapter_path, exist_ok=True)
         else:
             pick = QFileDialog.getExistingDirectory(self, "Select Adapter Folder (must contain adapters.safetensors)")
@@ -1931,7 +1997,9 @@ class DevPanelDialog(QWidget):
                 QMessageBox.warning(self, "Validation", "Adapter folder not selected.")
                 return
             adapter_path = os.path.abspath(pick)
-        cfg_path = os.path.abspath(os.path.join("lora_data", f"lora_cfg_{ts}.yaml"))
+        cfg_dir = os.path.abspath(os.path.join(_lora_base_dir(), "configs"))
+        os.makedirs(cfg_dir, exist_ok=True)
+        cfg_path = os.path.abspath(os.path.join(cfg_dir, f"lora_cfg_{ts}.yaml"))
         with open(cfg_path, "w", encoding="utf-8") as f:
             f.write("lora_parameters:\n")
             f.write(f"  rank: {rank}\n")
@@ -2129,11 +2197,12 @@ class DevPanelDialog(QWidget):
     def _prepare_finetune_data_dir(self) -> str:
         use_sqlite = bool(getattr(self, "use_sqlite", None) and self.use_sqlite.isChecked())
         use_jsonl = bool(getattr(self, "use_jsonl", None) and self.use_jsonl.isChecked())
-        base = os.path.abspath("lora_data")
+        base = _lora_base_dir()
         os.makedirs(base, exist_ok=True)
 
         if use_sqlite:
-            db_path = os.path.abspath("dataset.db")
+            # Keep dataset local-only next to other LoRA artifacts
+            db_path = os.path.abspath(os.path.join(_lora_base_dir(), "dataset.db"))
             conn = sqlite3.connect(db_path)
             cur = conn.cursor()
             cur.execute("CREATE TABLE IF NOT EXISTS dataset (instruction TEXT, output TEXT)")
@@ -2695,13 +2764,141 @@ class ChatbotGUI(QWidget):
         if self._start_service:
             self.start_ai_service()
         self._restore_dev_dialog_state()
+        self._maybe_show_generated_dev_password()
+
+    def _maybe_show_generated_dev_password(self) -> None:
+        """
+        If we generated a dev password automatically, show it once so the user
+        can actually enter Dev Mode.
+        """
+        try:
+            if not bool(_DEV_PASSWORD_GENERATED):
+                return
+            # show once
+            if self._settings.value("dev_password/shown", False, type=bool):
+                return
+            self._settings.setValue("dev_password/shown", True)
+        except Exception:
+            return
+
+        try:
+            loc = str(_DEV_PASSWORD_PATH or "")
+        except Exception:
+            loc = ""
+        msg = (
+            "Dev Mode password was generated on this machine.\n\n"
+            f"Password:\n{DEV_MODE_PASSWORD}\n\n"
+            + (f"Saved to:\n{loc}\n\n" if loc else "")
+            + "Tip: You can override with env var LOKUMAI_DEV_PASSWORD."
+        )
+        try:
+            QMessageBox.information(self, "Dev Mode Password", msg)
+        except Exception:
+            pass
 
     def _db_path(self) -> str:
         if self._db_path_override:
             return self._db_path_override
-        return os.path.abspath("app.db")
+        # Default DB lives in ~/.lokumai to avoid committing private chats into git.
+        try:
+            from lokum_paths import chat_db_path as _chat_db_path, ensure_dir as _ensure_dir  # type: ignore
+
+            p = _chat_db_path()
+            _ensure_dir(p.parent)
+            return str(p)
+        except Exception:
+            return os.path.abspath("app.db")
+
+    def _migrate_local_repo_db_if_needed(self) -> None:
+        """
+        One-time migration:
+        - If the old repo-local app.db exists and the new ~/.lokumai/app.db does not,
+          move it so the user keeps chat history.
+        """
+        try:
+            if self._db_path_override:
+                return
+        except Exception:
+            return
+
+        try:
+            repo_db = os.path.abspath(os.path.join(os.path.dirname(__file__), "app.db"))
+            new_db = self._db_path()
+            if repo_db == new_db:
+                return
+            if os.path.isfile(repo_db) and (not os.path.exists(new_db)):
+                try:
+                    os.makedirs(os.path.dirname(new_db), exist_ok=True)
+                except Exception:
+                    pass
+                try:
+                    os.replace(repo_db, new_db)
+                except Exception:
+                    # fallback: copy + keep old
+                    import shutil
+
+                    shutil.copyfile(repo_db, new_db)
+        except Exception:
+            pass
+
+    def _migrate_local_repo_lora_if_needed(self) -> None:
+        """
+        One-time migration for LoRA artifacts:
+        Move repo-local ./lora_data into ~/.lokumai/lora_data (default) so:
+        - git stays clean
+        - you avoid 100MB+ file push issues
+        """
+        try:
+            repo_lora = os.path.abspath(os.path.join(os.path.dirname(__file__), "lora_data"))
+            new_lora = os.path.abspath(_lora_base_dir())
+            if repo_lora == new_lora:
+                return
+            if not os.path.isdir(repo_lora):
+                return
+            os.makedirs(new_lora, exist_ok=True)
+
+            import shutil
+
+            # Move common subfolders
+            for name in (
+                "adapters",
+                "configs",
+                "train_only",
+                "validate_only",
+                "ingested_export",
+                "sqlite_export",
+                "jsonl_export",
+                "lora-gem",
+            ):
+                src = os.path.join(repo_lora, name)
+                dst = os.path.join(new_lora, name)
+                if os.path.isdir(src) and (not os.path.exists(dst)):
+                    try:
+                        shutil.move(src, dst)
+                    except Exception:
+                        try:
+                            shutil.copytree(src, dst, dirs_exist_ok=True)
+                        except Exception:
+                            pass
+
+            # Move top-level jsonl if present
+            for fn in ("train.jsonl", "valid.jsonl"):
+                src = os.path.join(repo_lora, fn)
+                dst = os.path.join(new_lora, fn)
+                if os.path.isfile(src) and (not os.path.exists(dst)):
+                    try:
+                        shutil.move(src, dst)
+                    except Exception:
+                        try:
+                            shutil.copyfile(src, dst)
+                        except Exception:
+                            pass
+        except Exception:
+            pass
 
     def _init_chat_db(self) -> None:
+        self._migrate_local_repo_db_if_needed()
+        self._migrate_local_repo_lora_if_needed()
         conn = sqlite3.connect(self._db_path())
         try:
             cur = conn.cursor()
@@ -2937,7 +3134,7 @@ class ChatbotGUI(QWidget):
             self.rag_engine = None
             return None
         try:
-            rag_dir = os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
+            rag_dir = str(_lokum_rag_dir()) if callable(_lokum_rag_dir) else os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
             self.rag_engine = RAGEngine(storage_dir=rag_dir)
             try:
                 self.rag_engine_error = ""
@@ -4287,7 +4484,14 @@ class ChatbotGUI(QWidget):
             if not ok or not password:
                 return
             if not dev_mode_gate.attempt_unlock(password):
-                QMessageBox.critical(self, "Access Denied", "Incorrect password for Dev Mode.")
+                hint = ""
+                try:
+                    from lokum_paths import dev_password_file as _dev_password_file  # type: ignore
+
+                    hint = f"\n\nHint: Check {str(_dev_password_file())} or set LOKUMAI_DEV_PASSWORD."
+                except Exception:
+                    hint = "\n\nHint: Set env var LOKUMAI_DEV_PASSWORD."
+                QMessageBox.critical(self, "Access Denied", "Incorrect password for Dev Mode." + hint)
                 return
 
         self.dev_mode_active = True

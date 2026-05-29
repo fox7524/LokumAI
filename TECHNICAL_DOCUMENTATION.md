@@ -13,7 +13,7 @@ Core subsystems:
 - **Inference (MLX / mlx_lm)**: local model loading + token streaming.
 - **RAG (FAISS + sentence-transformers)**: optional local retrieval over indexed files.
 - **Fine-tuning (MLX LoRA)**: optional LoRA training via a subprocess, logs streamed into UI.
-- **Persistence (SQLite)**: chat history stored in `app.db` (project folder).
+- **Persistence (SQLite)**: chat history stored locally (default: `~/.lokumai/app.db`).
 
 Everything runs locally on the same machine. No HTTP server is required.
 

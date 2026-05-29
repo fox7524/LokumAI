@@ -1,121 +1,177 @@
-# LokumAI — Local AI Chat Studio
+# LokumAI
 
-**LokumAI** is a desktop-first AI chat app built with **PyQt** that runs locally on your machine: chat UI, local model inference, optional **RAG** (Retrieval-Augmented Generation) over your files, and optional **MLX LoRA** fine-tuning.
+**Commercial-grade local AI chat studio** for macOS: a polished desktop UI + local MLX inference + persistent RAG + optional LoRA fine-tuning.
 
-## Highlights
+> Local-first by design: your chats, indexes, and adapters live on your machine.
 
-| Area | What it does |
-|---|---|
-| Chat UI | WhatsApp-like layout, streaming responses, Stop button, per-message menu |
-| Dev Mode | Password-gated right sidebar (no separate dev window) |
-| RAG | Index files → retrieve relevant chunks at chat-time (FAISS + sentence embeddings) |
-| Fine-tune | Launches MLX LoRA training via `python -m mlx_lm lora …` with live logs + Stop |
-| Persistence | Chats/messages saved in SQLite so history survives restarts |
-| Multi-format ingest | Code/text + PDF + DOCX + ZIM + optional image OCR |
+---
 
-## Quickstart (macOS)
+## ✨ Key Features
+
+**Chat experience**
+- Desktop app built with **PyQt**
+- Token streaming + Stop button
+- Chat history persisted in SQLite
+
+**RAG (Retrieval-Augmented Generation)**
+- Index a folder (code/docs/PDF/DOCX/ZIM/optional OCR images)
+- Persistent store on disk (survives restarts)
+- Fast similarity search with **FAISS** + **sentence-transformers**
+
+**Fine-tuning (MLX LoRA)**
+- One-click training runner (subprocess via `mlx_lm lora`)
+- Live logs + graceful stop
+- Built-in dataset helpers (JSONL + SQLite)
+
+---
+
+## Table of Contents
+- [Quickstart](#quickstart)
+- [Configuration](#configuration)
+- [RAG: persistent knowledge](#rag-persistent-knowledge)
+- [LoRA fine-tuning](#lora-fine-tuning)
+- [Dataset generation](#dataset-generation)
+- [Project layout](#project-layout)
+- [Troubleshooting](#troubleshooting)
+- [Security](#security)
+
+---
+
+## Quickstart
 
 ### 1) Create + activate a virtualenv
-
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
 ### 2) Install dependencies
-
 ```bash
 pip install -r requirements.txt
 ```
 
-Optional system dependency for OCR (images):
-
+Optional OCR dependency (images):
 ```bash
 brew install tesseract
 ```
 
-### 3) Run the app
-
+### 3) Run
 ```bash
 python3 -u main.py
 ```
 
 Wait until the UI shows `Service: ready`.
 
-## Usage Examples
+---
 
-### Create a chat (auto-naming)
-- Click **+ New**
-- Send your first message
-- The chat title is auto-named from that first message (and updates immediately)
+## Configuration
 
-### Use RAG (Retrieval-Augmented Generation)
-1. Open **Dev Mode** (left sidebar) → enter the developer password
-2. Dev sidebar → **RAG Indexer**
-3. Choose a folder → **Index Project Files**
-4. Ask a question that can only be answered from that folder’s content
+### `prompts.json`
+`prompts.json` controls:
+- system prompt / user prompt
+- theme
+- model path (MLX model directory)
+- RAG on/off
 
-RAG dependencies:
-- Required: `sentence-transformers`, `faiss-cpu`
-- Optional: `pymupdf` (PDF), `python-docx` (DOCX), `libzim`/`python-zim` (ZIM), `pytesseract` stack (images)
+Key fields:
+- `model_path`: local MLX model directory
+- `use_rag`: enable/disable RAG
 
-### Fine-tune (MLX LoRA)
-1. Dev sidebar → **Fine-tune**
-2. Select a dataset source:
-   - JSONL file/folder (`train.jsonl` + `valid.jsonl`), or
-   - SQLite dataset (`dataset.db`, table `dataset(instruction, output)`)
-3. Click **Start Training** and watch logs in real time
-4. Click **Stop** to terminate the training subprocess
+### Environment variables (advanced)
 
-Dataset helper:
-- Dev → Fine-tune → **Build Training Dataset From Files** exports JSONL from a folder (extract → chunk → export).
+**RAG paths (persistent storage)**
+- `LOKUMAI_HOME`: overrides the base app data folder (default: `~/.lokumai`)
+- `LOKUMAI_RAG_DIR`: overrides the RAG store directory (default: `~/.lokumai/rag`)
 
-## Project Files
+**Fine-tune / memory shaping**
+- `LOKUMAI_FT_MAX_SEQ_LENGTH` (default UI-driven)
+- `LOKUMAI_FT_PRESPLIT` (`1` enables presplitting)
+- `LOKUMAI_FT_PRESPLIT_CHARS_PER_TOKEN` (default `4.0`, lower = more aggressive split)
+- `LOKUMAI_FT_CLEAR_CACHE_THRESHOLD` (lower = more frequent cache clears)
 
-| File/Folder | Purpose |
-|---|---|
-| `main.py` | App entrypoint: UI, streaming, chat persistence, Dev sidebar |
-| `rag_engine.py` | RAG ingestion + indexing + retrieval |
-| `file_ingest.py` | Shared extraction/chunking pipeline for multiple file formats |
-| `finetune_engine.py` | MLX LoRA training subprocess orchestration |
-| `app.db` | Chat history database |
-| `lora_data/` | LoRA working/export outputs |
+---
 
-## Documentation
+## RAG: persistent knowledge
 
-- Training + Dev guide: [TRAINING_GUIDE.txt](./TRAINING_GUIDE.txt)
-- Architecture + demo reference: [TECHNICAL_DOCUMENTATION.md](./TECHNICAL_DOCUMENTATION.md)
-- Model ownership/data governance: [MODEL_OWNERSHIP_AND_DATA_GOVERNANCE.txt](./MODEL_OWNERSHIP_AND_DATA_GOVERNANCE.txt)
+RAG stores a cumulative index under the configured RAG directory.
+
+Typical files:
+- `faiss_index.bin` — vector index
+- `docs_metadata.npy` — aligned chunk texts
+- `chunks_meta.npy` — per-chunk metadata
+- `rag_state.json` — per-file indexing state
+- `rag_meta.json` — convenience metadata (e.g., last indexed folder)
+
+**Reliability note**
+- If the store is corrupted or fails to load, LokumAI quarantines the files (renames them with `.corrupt.<timestamp>`) instead of silently appearing empty. This prevents “it exists but doesn’t reload” confusion.
+
+---
+
+## LoRA fine-tuning
+
+### Recommended starting point
+For large models (e.g. 27B 6-bit), start conservative and scale up:
+- `batch_size = 1`
+- `max_seq_len = 384` (then try 512)
+- avoid validation during training (run it after)
+
+### Why training can OOM even with “free RAM”
+On Apple Silicon, Metal memory can spike due to peak allocations + fragmentation. It’s normal to OOM while Activity Monitor still shows headroom.
+
+---
+
+## Dataset generation
+
+### 1) Build a large behavior dataset from `prompts.json`
+This repo includes a generator that reads your `system_prompt` and creates a **multi-turn** ChatML dataset that:
+- asks questions only for **blocking unclear spots**
+- continues immediately after the user answers (no looping)
+
+```bash
+python3 tools/build_prompt_dataset.py
+```
+
+Outputs:
+- `lora_data/train.jsonl`
+- `lora_data/valid.jsonl`
+
+To change dataset size:
+```bash
+LOKUMAI_PROMPT_DATASET_SIZE=20000 python3 tools/build_prompt_dataset.py
+```
+
+---
+
+## Project layout
+
+Core modules:
+- `main.py` — UI, streaming, chat persistence, Dev tools
+- `rag_engine.py` — ingestion/index/search + persistence
+- `file_ingest.py` — extraction + chunking (PDF/DOCX/ZIM/OCR/etc)
+- `finetune_engine.py` — MLX LoRA subprocess + presplit
+- `lokum_paths.py` — centralized path management (RAG dir overrides)
+
+Data directories:
+- `lora_data/` — datasets, adapters, configs, exports
+
+---
 
 ## Troubleshooting
 
-### `Service: model path not found`
-- The app auto-detects a local MLX model folder (LM Studio default location).
-- Set a valid model directory in `prompts.json` (`model_path`) if auto-detect can’t find one.
+### Service: model path not found
+- Set `model_path` in `prompts.json` to a valid local MLX model folder.
 
-### `RAG engine not available`
-- Ensure dependencies are installed:
+### RAG engine not available
+- Ensure RAG deps are installed:
   - `pip install -r requirements.txt`
-  - RAG needs `sentence-transformers` and `faiss-cpu`
+  - must include: `sentence-transformers`, `faiss-cpu`
 
 ### OCR returns empty text
-- Install system `tesseract` and re-run:
+- Install system `tesseract`:
   - `brew install tesseract`
 
-## Contributing
+---
 
-1. Create a branch
-2. Make changes
-3. Run checks:
-
-```bash
-python3 -m py_compile main.py rag_engine.py file_ingest.py finetune_engine.py
-python3 -m unittest discover -s tests -v
-```
-
-4. Open a PR (include screenshots for UI changes)
-
-## Security Notes (Local-First)
-
+## Security
 - RAG indexes file content. Avoid indexing secrets (`.env`, API keys, credentials).
-- Treat `app.db` and RAG index files as sensitive if your chats/docs contain private data.
+- Treat `app.db` and the RAG store as sensitive if they contain private data.

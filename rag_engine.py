@@ -74,7 +74,14 @@ except ImportError:
     HAS_TESSERACT = False
     print("Warning: pytesseract not installed. Run: pip install pytesseract (also requires 'tesseract' installed on your OS)")
 
-DEFAULT_RAG_DIR = os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
+try:
+    # Centralized path handling + override support (LOKUMAI_HOME / LOKUMAI_RAG_DIR)
+    from lokum_paths import rag_dir as _rag_dir, ensure_dir as _ensure_dir  # type: ignore
+
+    DEFAULT_RAG_DIR = str(_ensure_dir(_rag_dir()))
+except Exception:
+    # Fallback (kept for robustness in case lokum_paths is missing)
+    DEFAULT_RAG_DIR = os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
 DEFAULT_INDEX_NAME = "faiss_index.bin"
 DEFAULT_DOCS_NAME = "docs_metadata.npy"
 DEFAULT_META_NAME = "rag_meta.json"
@@ -404,12 +411,11 @@ class RAGEngine:
 
                 print(f"[RAG] Loaded index with {len(self.documents)} chunks.")
             except Exception as e:
+                # If loading fails, do NOT silently "look empty" while the broken files
+                # remain in place forever. Quarantine them so the user can recover them,
+                # and surface a clear error.
+                self._quarantine_store_files(f"load_index failed: {e}")
                 print(f"[RAG] Error loading index: {e}")
-                # Reset to empty state if loading fails
-                self.index = None
-                self.documents = []
-                self.chunk_meta = []
-                self.indexed_folder = ""
 
     def save_index(self) -> None:
         """
