@@ -28,6 +28,7 @@ import hashlib
 import time
 import numpy as np
 from typing import List, Dict, Any, Optional
+from rag import chunk_text as shared_chunk_text
 
 # FAISS for vector similarity search
 try:
@@ -474,29 +475,11 @@ class RAGEngine:
             chunk_text("Hello world test", chunk_size=6, overlap=2)
             -> ["Hello world", "world test"]
         """
-        s = (text or "").strip()
-        if not s:
-            return []
-
         chunk_size = max(1, int(chunk_size))
         overlap = max(0, int(overlap))
         if overlap >= chunk_size:
             overlap = max(0, chunk_size // 4)
-
-        step = chunk_size - overlap
-        if step <= 0:
-            step = max(1, chunk_size)
-
-        chunks = []
-
-        # Walk through text with step of (chunk_size - overlap)
-        # This creates overlapping windows
-        for i in range(0, len(s), step):
-            chunk = s[i:i + chunk_size]
-            if chunk:  # Skip empty chunks
-                chunks.append(chunk.strip())
-
-        return chunks
+        return [chunk.text for chunk in shared_chunk_text(text, chunk_size=chunk_size, overlap=overlap)]
 
     # =========================================================================
     # FILE FORMAT HANDLERS

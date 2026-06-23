@@ -2,6 +2,8 @@ import glob
 import os
 from typing import Iterable, List
 
+from rag import chunk_text as shared_chunk_text
+
 
 try:
     import fitz  # type: ignore
@@ -70,24 +72,11 @@ def iter_files(folder: str, recursive: bool = True, patterns: List[str] | None =
 
 
 def chunk_text(text: str, chunk_size: int = 800, overlap: int = 100) -> List[str]:
-    s = (text or "").strip()
-    if not s:
-        return []
     chunk_size = max(100, int(chunk_size))
     overlap = max(0, int(overlap))
     if overlap >= chunk_size:
         overlap = max(0, chunk_size // 4)
-
-    chunks: List[str] = []
-    start = 0
-    n = len(s)
-    while start < n:
-        end = min(n, start + chunk_size)
-        chunks.append(s[start:end])
-        if end >= n:
-            break
-        start = max(0, end - overlap)
-    return chunks
+    return [chunk.text for chunk in shared_chunk_text(text, chunk_size=chunk_size, overlap=overlap)]
 
 
 def extract_text(file_path: str) -> str:
