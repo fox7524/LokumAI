@@ -1268,6 +1268,11 @@ class RAGEngine:
                     continue
 
             if added <= 0 and skipped > 0 and not failures:
+                try:
+                    if isinstance(self.state, dict):
+                        self._atomic_write_json(self.state_path, self.state)
+                except Exception:
+                    pass
                 elapsed = time.perf_counter() - started_at
                 print(f"[perf] stage=rag_ingest_paths seconds={elapsed:.3f} files={len(file_paths)} chunks={added}")
                 return 0

@@ -91,11 +91,18 @@ class TestRagPersistence(unittest.TestCase):
             rec1 = eng.state.get("files", {}).get(fid)
             self.assertIsInstance(rec1, dict)
             self.assertTrue(rec1.get("content_hash"))
+            first_persisted_mtime = float(rec1.get("mtime", 0.0))
 
             os.utime(p, None)
             ok2 = eng.ingest_documents([p])
             self.assertTrue(ok2)
             self.assertEqual(len(eng.documents), docs_after_1)
+
+            with open(eng.state_path, "r", encoding="utf-8") as f:
+                persisted_state = json.load(f)
+            rec2 = persisted_state.get("files", {}).get(fid)
+            self.assertIsInstance(rec2, dict)
+            self.assertGreater(float(rec2.get("mtime", 0.0)), first_persisted_mtime)
 
     def test_folder_change_preserves_existing_index(self):
         if not getattr(rag_engine, "HAS_FAISS", False):
