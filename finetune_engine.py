@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import List
 
 from finetune import ValidationResult, validate_jsonl_rows, write_jsonl_stream
+from finetune.job_preflight import preflight_training
 
 def _presplit_text(text: str, max_seq_length: int, batch_size: int) -> list[str]:
     """
@@ -271,6 +272,9 @@ class FinetuneEngine:
     ) -> subprocess.Popen:
         """Starts the MLX LoRA training loop as a non-blocking subprocess."""
         data_dir = dataset_path if dataset_path else self.dataset_dir
+        ok, message = preflight_training(self.model_path, Path(data_dir))
+        if not ok:
+            raise RuntimeError(message)
         cmd = [sys.executable, "-m", "mlx_lm", "lora", "--model", self.model_path, "--train", "--data", data_dir]
         cmd += ["--batch-size", str(batch_size), "--num-layers", str(num_layers), "--iters", str(iters)]
         if resume_adapter_file:
