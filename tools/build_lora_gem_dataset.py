@@ -9,6 +9,8 @@ from typing import Iterable, List, Sequence, Tuple
 
 import numpy as np
 
+from finetune import ValidationResult, validate_jsonl_rows, write_jsonl_stream
+
 
 def _norm_ws(text: str) -> str:
     text = text.replace("\r\n", "\n").replace("\r", "\n")
@@ -502,31 +504,9 @@ def _dedupe_texts(texts: Iterable[str]) -> List[str]:
     return out
 
 
-def _write_jsonl(path: Path, texts: Sequence[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as f:
-        for t in texts:
-            f.write(json.dumps({"text": t}, ensure_ascii=False) + "\n")
-
-
-def _validate_jsonl(path: Path) -> Tuple[int, int]:
-    n = 0
-    bad = 0
-    with path.open("r", encoding="utf-8") as f:
-        for line in f:
-            n += 1
-            line = line.strip()
-            if not line:
-                bad += 1
-                continue
-            try:
-                obj = json.loads(line)
-            except Exception:
-                bad += 1
-                continue
-            if not isinstance(obj, dict) or "text" not in obj or not isinstance(obj["text"], str) or not obj["text"].strip():
-                bad += 1
-    return n, bad
+def _validate_jsonl_file(path: Path) -> ValidationResult:
+    with path.open("r", encoding="utf-8") as handle:
+        return validate_jsonl_rows(handle)
 
 
 def build_dataset(
@@ -620,16 +600,20 @@ def main() -> None:
 
     train_path = out_dir / "train.jsonl"
     valid_path = out_dir / "valid.jsonl"
-    _write_jsonl(train_path, train)
-    _write_jsonl(valid_path, valid)
+    write_jsonl_stream(train_path, train)
+    write_jsonl_stream(valid_path, valid)
 
-    tn, tbad = _validate_jsonl(train_path)
-    vn, vbad = _validate_jsonl(valid_path)
-    if tbad or vbad:
-        raise SystemExit(f"JSONL validation failed: train bad={tbad}/{tn} valid bad={vbad}/{vn}")
+    train_result = _validate_jsonl_file(train_path)
+    valid_result = _validate_jsonl_file(valid_path)
+    if train_result.invalid or valid_result.invalid:
+        raise SystemExit(
+            "JSONL validation failed: "
+            f"train bad={train_result.invalid}/{train_result.total} "
+            f"valid bad={valid_result.invalid}/{valid_result.total}"
+        )
 
     print(str(out_dir))
-    print(f"train={tn} valid={vn}")
+    print(f"train={train_result.total} valid={valid_result.total}")
 
 
 if __name__ == "__main__":

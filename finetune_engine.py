@@ -3,9 +3,12 @@ import os
 import re
 import subprocess
 import sys
-import time
 import shutil
+import time
+from pathlib import Path
 from typing import List
+
+from finetune import ValidationResult, validate_jsonl_rows, write_jsonl_stream
 
 def _presplit_text(text: str, max_seq_length: int, batch_size: int) -> list[str]:
     """
@@ -169,6 +172,18 @@ def _presplit_jsonl_file(fp: str, max_seq_length: int, batch_size: int) -> int:
     os.replace(tmp, fp)
     return changed
 
+
+def _validate_jsonl_file(path: Path) -> ValidationResult:
+    with path.open("r", encoding="utf-8") as handle:
+        return validate_jsonl_rows(handle)
+
+
+def _ensure_valid_jsonl_file(path: Path) -> ValidationResult:
+    result = _validate_jsonl_file(path)
+    if result.invalid:
+        raise ValueError(f"Invalid JSONL rows in {path}: {result.invalid}/{result.total}")
+    return result
+
 class FinetuneEngine:
     def __init__(self, model_path: str):
         self.model_path = model_path
@@ -184,8 +199,8 @@ class FinetuneEngine:
             
     def prepare_dataset(self, text_chunks: List[str]):
         """Converts raw text chunks into a train/valid JSONL dataset for MLX lora."""
-        train_path = os.path.join(self.dataset_dir, "train.jsonl")
-        valid_path = os.path.join(self.dataset_dir, "valid.jsonl")
+        train_path = Path(self.dataset_dir) / "train.jsonl"
+        valid_path = Path(self.dataset_dir) / "valid.jsonl"
         
         split_idx = int(len(text_chunks) * 0.9)
         train_chunks = text_chunks[:split_idx]
@@ -194,29 +209,42 @@ class FinetuneEngine:
         if not train_chunks:
             train_chunks = text_chunks
             valid_chunks = text_chunks[:1]
-            
-        with open(train_path, "w", encoding="utf-8") as ft, open(valid_path, "w", encoding="utf-8") as fv:
-            for chunk in train_chunks:
-                ft.write(json.dumps({"text": f"Instruction: Analyze the following knowledge.\n\nKnowledge: {chunk}\n\nResponse: Understood."}) + "\n")
-            for chunk in valid_chunks:
-                fv.write(json.dumps({"text": f"Instruction: Analyze the following knowledge.\n\nKnowledge: {chunk}\n\nResponse: Understood."}) + "\n")
-                
-        return train_path, valid_path
+
+        train_texts = [
+            f"Instruction: Analyze the following knowledge.\n\nKnowledge: {chunk}\n\nResponse: Understood."
+            for chunk in train_chunks
+        ]
+        valid_texts = [
+            f"Instruction: Analyze the following knowledge.\n\nKnowledge: {chunk}\n\nResponse: Understood."
+            for chunk in valid_chunks
+        ]
+
+        write_jsonl_stream(train_path, train_texts)
+        write_jsonl_stream(valid_path, valid_texts)
+        _ensure_valid_jsonl_file(train_path)
+        _ensure_valid_jsonl_file(valid_path)
+
+        return str(train_path), str(valid_path)
 
     def build_ask_before_acting_dataset(self, qa_pairs: List[dict]):
         """
         Specialized builder for the 50 hand-written 'Ask Before Acting' pairs.
         Each dictionary should have 'user' and 'assistant' keys.
         """
-        train_path = os.path.join(self.dataset_dir, "ask_before_acting_train.jsonl")
-        
-        with open(train_path, "w", encoding="utf-8") as ft:
-            for pair in qa_pairs:
-                # ChatML formatting for model explicit behavior
-                formatted_text = f"<|im_start|>user\n{pair['user']}<|im_end|>\n<|im_start|>assistant\n{pair['assistant']}<|im_end|>\n"
-                ft.write(json.dumps({"text": formatted_text}) + "\n")
-                
-        return train_path
+        train_path = Path(self.dataset_dir) / "ask_before_acting_train.jsonl"
+        texts = [
+            "<|im_start|>user\n"
+            + pair["user"]
+            + "<|im_end|>\n<|im_start|>assistant\n"
+            + pair["assistant"]
+            + "<|im_end|>\n"
+            for pair in qa_pairs
+        ]
+
+        write_jsonl_stream(train_path, texts)
+        _ensure_valid_jsonl_file(train_path)
+
+        return str(train_path)
 
     def presplit_dataset(self, dataset_path: str, max_seq_length: int, batch_size: int) -> dict:
         data_dir = os.path.abspath(dataset_path or self.dataset_dir)
