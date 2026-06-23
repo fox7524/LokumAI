@@ -185,6 +185,11 @@ def _ensure_valid_jsonl_file(path: Path) -> ValidationResult:
         raise ValueError(f"Invalid JSONL rows in {path}: {result.invalid}/{result.total}")
     return result
 
+
+def _perf_log(stage: str, started_at: float) -> None:
+    elapsed = time.perf_counter() - started_at
+    print(f"[perf] stage={stage} seconds={elapsed:.3f}")
+
 class FinetuneEngine:
     def __init__(self, model_path: str):
         self.model_path = model_path
@@ -200,6 +205,7 @@ class FinetuneEngine:
             
     def prepare_dataset(self, text_chunks: List[str]):
         """Converts raw text chunks into a train/valid JSONL dataset for MLX lora."""
+        started_at = time.perf_counter()
         train_path = Path(self.dataset_dir) / "train.jsonl"
         valid_path = Path(self.dataset_dir) / "valid.jsonl"
         
@@ -224,6 +230,7 @@ class FinetuneEngine:
         write_jsonl_stream(valid_path, valid_texts)
         _ensure_valid_jsonl_file(train_path)
         _ensure_valid_jsonl_file(valid_path)
+        _perf_log("finetune_prepare_dataset", started_at)
 
         return str(train_path), str(valid_path)
 
@@ -232,6 +239,7 @@ class FinetuneEngine:
         Specialized builder for the 50 hand-written 'Ask Before Acting' pairs.
         Each dictionary should have 'user' and 'assistant' keys.
         """
+        started_at = time.perf_counter()
         train_path = Path(self.dataset_dir) / "ask_before_acting_train.jsonl"
         texts = [
             "<|im_start|>user\n"
@@ -244,6 +252,7 @@ class FinetuneEngine:
 
         write_jsonl_stream(train_path, texts)
         _ensure_valid_jsonl_file(train_path)
+        _perf_log("finetune_build_ask_before_acting_dataset", started_at)
 
         return str(train_path)
 
@@ -272,7 +281,9 @@ class FinetuneEngine:
     ) -> subprocess.Popen:
         """Starts the MLX LoRA training loop as a non-blocking subprocess."""
         data_dir = dataset_path if dataset_path else self.dataset_dir
+        started_at = time.perf_counter()
         ok, message = preflight_training(self.model_path, Path(data_dir))
+        _perf_log("finetune_preflight_training", started_at)
         if not ok:
             raise RuntimeError(message)
         cmd = [sys.executable, "-m", "mlx_lm", "lora", "--model", self.model_path, "--train", "--data", data_dir]

@@ -4,10 +4,13 @@ import json
 import os
 import random
 import re
+import sys
 from pathlib import Path
 from typing import Iterable, List, Sequence, Tuple
 
 import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from finetune import ValidationResult, validate_jsonl_rows, write_jsonl_stream
 

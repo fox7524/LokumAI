@@ -1063,6 +1063,7 @@ class RAGEngine:
         return bool(self._ingest_paths(file_paths, save_on_checkpoint=True))
 
     def _ingest_paths(self, file_paths: List[str], save_on_checkpoint: bool = True) -> int:
+        started_at = time.perf_counter()
         self._check_abort()
         added = 0
         failures: List[str] = []
@@ -1248,6 +1249,8 @@ class RAGEngine:
 
             if save_on_checkpoint and pending_save > 0:
                 self.save_index()
+            elapsed = time.perf_counter() - started_at
+            print(f"[perf] stage=rag_ingest_paths seconds={elapsed:.3f} files={len(file_paths)} chunks={added}")
             return int(added)
         finally:
             try:
@@ -1368,6 +1371,7 @@ class RAGEngine:
             return ""
 
         try:
+            started_at = time.perf_counter()
             self._check_abort()
             # Embed the query using the same model
             query_vector = self.embedding_model.encode([query_text])
@@ -1404,6 +1408,8 @@ class RAGEngine:
             # Join results with separators for context
             # This becomes the RAG context injected into the prompt
             context_str = build_context_block(results)
+            elapsed = time.perf_counter() - started_at
+            print(f"[perf] stage=rag_query seconds={elapsed:.3f} hits={len(results)}")
             return context_str
 
         except Exception as e:
@@ -1436,6 +1442,7 @@ class RAGEngine:
             return {"context": "", "chunks": [], "distances": [], "sources": [], "count": 0}
 
         try:
+            started_at = time.perf_counter()
             self._check_abort()
             query_vector = self.embedding_model.encode([query_text])
             query_vector = np.array(query_vector).astype('float32')
@@ -1468,13 +1475,16 @@ class RAGEngine:
                     if len(results) >= int(k):
                         break
 
-            return {
+            result = {
                 "context": build_context_block(results),
                 "chunks": results,
                 "distances": dists,
                 "sources": sources,
                 "count": len(results)
             }
+            elapsed = time.perf_counter() - started_at
+            print(f"[perf] stage=rag_query_with_sources seconds={elapsed:.3f} hits={len(results)}")
+            return result
 
         except Exception as e:
             if "aborted" in str(e).lower():
