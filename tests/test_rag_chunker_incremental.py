@@ -8,6 +8,7 @@ import file_ingest
 import rag_engine
 from rag.chunker import TextChunk, chunk_signature, chunk_text
 from rag.normalize import normalize_text
+from rag.state_store import build_file_state
 
 
 class TestSharedRagChunker(unittest.TestCase):
@@ -29,6 +30,18 @@ class TestSharedRagChunker(unittest.TestCase):
     def test_chunk_text_rejects_invalid_overlap(self):
         with self.assertRaisesRegex(ValueError, "overlap"):
             chunk_text("abc", chunk_size=4, overlap=4)
+
+    def test_build_file_state_contains_chunk_signatures(self):
+        state = build_file_state(
+            source_path="/tmp/a.txt",
+            raw_text="alpha beta gamma",
+            chunk_size=8,
+            overlap=2,
+        )
+        self.assertEqual(state["source_path"], "/tmp/a.txt")
+        self.assertGreaterEqual(state["chunk_count"], 1)
+        self.assertEqual(len(state["chunk_signatures"]), state["chunk_count"])
+        self.assertEqual(state["file_signature"], chunk_signature("alpha beta gamma"))
 
 
 class TestLegacyCallersUseSharedNormalization(unittest.TestCase):

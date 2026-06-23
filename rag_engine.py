@@ -29,6 +29,8 @@ import time
 import numpy as np
 from typing import List, Dict, Any, Optional
 from rag import chunk_text as shared_chunk_text
+from rag.query_service import build_context_block
+from rag.state_store import build_file_state
 
 # FAISS for vector similarity search
 try:
@@ -89,6 +91,8 @@ DEFAULT_META_NAME = "rag_meta.json"
 DEFAULT_CHUNKS_META_NAME = "chunks_meta.npy"
 DEFAULT_STATE_NAME = "rag_state.json"
 DEFAULT_STAGING_DIRNAME = "staging"
+DEFAULT_CHUNK_SIZE = 800
+DEFAULT_CHUNK_OVERLAP = 100
 
 # ============================================================================
 # RAG ENGINE CLASS
@@ -453,8 +457,8 @@ class RAGEngine:
     def chunk_text(
         self,
         text: str,
-        chunk_size: int = 800,
-        overlap: int = 100
+        chunk_size: int = DEFAULT_CHUNK_SIZE,
+        overlap: int = DEFAULT_CHUNK_OVERLAP
     ) -> List[str]:
         """
         Split long text into overlapping chunks.
@@ -480,6 +484,36 @@ class RAGEngine:
         if overlap >= chunk_size:
             overlap = max(0, chunk_size // 4)
         return [chunk.text for chunk in shared_chunk_text(text, chunk_size=chunk_size, overlap=overlap)]
+
+    def _extract_content(self, file_path: str) -> str:
+        try:
+            ext = os.path.splitext(file_path)[1].lower()
+            if ext == '.pdf':
+                return self.extract_from_pdf(file_path)
+            if ext in ['.docx', '.doc']:
+                return self.extract_from_docx(file_path)
+            if ext == '.zim':
+                return self.extract_from_zim(file_path)
+            if ext in ['.jpg', '.jpeg', '.png', '.webp', '.bmp', '.tif', '.tiff']:
+                return self.extract_from_image(file_path)
+            if ext in [
+                '.py', '.cpp', '.c', '.h', '.hpp', '.js', '.ts',
+                '.html', '.htm', '.css', '.scss', '.sass', '.less',
+                '.txt', '.md', '.markdown', '.rst',
+                '.json', '.xml', '.yaml', '.yml', '.toml', '.ini', '.cfg',
+                '.sh', '.bash', '.zsh', '.csh', '.ps1',
+                '.r', '.java', '.kt', '.swift', '.go', '.rs', '.rb',
+                '.php', '.pl', '.pm', '.lua', '.scala', '.clj', '.ex', '.exs',
+                '.sql', '.graphql', '.gql',
+                '.vim', '.editorconfig', '.gitignore', '.dockerfile',
+                '.makefile', '.cmake',
+            ]:
+                return self.extract_from_code(file_path)
+            return self.extract_from_code(file_path)
+        except Exception as e:
+            self._set_last_error(f"Error processing {file_path}: {e}")
+            print(f"[RAG] Error processing {file_path}: {e}")
+            return ""
 
     # =========================================================================
     # FILE FORMAT HANDLERS
@@ -988,52 +1022,12 @@ class RAGEngine:
         if not self.enabled:
             return []
 
-        # Get lowercase file extension (e.g., '.pdf')
-        ext = os.path.splitext(file_path)[1].lower()
-
         self._set_last_error("")
-        # Route to appropriate extractor based on file type
         try:
-            if ext == '.pdf':
-                # PDF files - use PyMuPDF
-                content = self.extract_from_pdf(file_path)
-
-            elif ext in ['.docx', '.doc']:
-                # Word documents
-                content = self.extract_from_docx(file_path)
-
-            elif ext == '.zim':
-                # Offline Wikipedia / knowledge base archives
-                content = self.extract_from_zim(file_path)
-
-            elif ext in ['.jpg', '.jpeg', '.png', '.webp', '.bmp', '.tif', '.tiff']:
-                content = self.extract_from_image(file_path)
-
-            elif ext in [
-                '.py', '.cpp', '.c', '.h', '.hpp', '.js', '.ts',
-                '.html', '.htm', '.css', '.scss', '.sass', '.less',
-                '.txt', '.md', '.markdown', '.rst',
-                '.json', '.xml', '.yaml', '.yml', '.toml', '.ini', '.cfg',
-                '.sh', '.bash', '.zsh', '.csh', '.ps1',
-                '.r', '.java', '.kt', '.swift', '.go', '.rs', '.rb',
-                '.php', '.pl', '.pm', '.lua', '.scala', '.clj', '.ex', '.exs',
-                '.sql', '.graphql', '.gql',
-                '.vim', '.editorconfig', '.gitignore', '.dockerfile',
-                '.makefile', '.cmake',
-            ]:
-                # Code and text files - direct read
-                content = self.extract_from_code(file_path)
-
-            else:
-                # Unknown format - try as plain text anyway
-                content = self.extract_from_code(file_path)
-
-            # Split content into chunks for better retrieval
+            content = self._extract_content(file_path)
             if content:
                 return self.chunk_text(content)
-
             return []
-
         except Exception as e:
             self._set_last_error(f"Error processing {file_path}: {e}")
             print(f"[RAG] Error processing {file_path}: {e}")
@@ -1143,7 +1137,9 @@ class RAGEngine:
                 if not should_index(p, fid):
                     continue
 
-                chunks = self.process_file(p)
+                self._set_last_error("")
+                raw_content = self._extract_content(p)
+                chunks = self.chunk_text(raw_content) if raw_content else []
                 if not chunks:
                     ext = os.path.splitext(p)[1].lower()
                     if ext == ".zim":
@@ -1161,6 +1157,15 @@ class RAGEngine:
                 max_per_file = 2500 if ext == ".zim" else 1200
                 if len(chunks) > max_per_file:
                     chunks = chunks[:max_per_file]
+                file_state = build_file_state(
+                    source_path=p,
+                    raw_text=raw_content,
+                    chunk_size=DEFAULT_CHUNK_SIZE,
+                    overlap=DEFAULT_CHUNK_OVERLAP,
+                )
+                chunk_signatures = list(file_state.get("chunk_signatures") or [])
+                if len(chunk_signatures) > len(chunks):
+                    chunk_signatures = chunk_signatures[:len(chunks)]
 
                 try:
                     self._check_abort()
@@ -1208,6 +1213,9 @@ class RAGEngine:
                         rec["chunk_start"] = int(start_idx)
                         rec["chunk_end"] = int(end_idx)
                         rec["chunks"] = int(end_idx - start_idx)
+                        rec["file_signature"] = file_state.get("file_signature", "")
+                        rec["chunk_count"] = int(len(chunk_signatures))
+                        rec["chunk_signatures"] = chunk_signatures
                         rec["size"] = size
                         rec["mtime"] = mtime
                         rec.pop("error", None)
@@ -1395,7 +1403,7 @@ class RAGEngine:
 
             # Join results with separators for context
             # This becomes the RAG context injected into the prompt
-            context_str = "\n\n---\n\n".join(results)
+            context_str = build_context_block(results)
             return context_str
 
         except Exception as e:
@@ -1461,7 +1469,7 @@ class RAGEngine:
                         break
 
             return {
-                "context": "\n\n---\n\n".join(results),
+                "context": build_context_block(results),
                 "chunks": results,
                 "distances": dists,
                 "sources": sources,
