@@ -70,6 +70,33 @@ class TestRagPersistence(unittest.TestCase):
                 meta = json.load(f)
             self.assertEqual(str(meta.get("folder")), "/tmp/folderA")
 
+    def test_reindex_skips_when_only_mtime_changes(self):
+        if not getattr(rag_engine, "HAS_FAISS", False):
+            self.skipTest("faiss not available")
+
+        with tempfile.TemporaryDirectory() as td:
+            eng = self._make_engine(td)
+            src_dir = os.path.join(td, "src")
+            os.makedirs(src_dir, exist_ok=True)
+            p = os.path.join(src_dir, "a.txt")
+            with open(p, "w", encoding="utf-8") as f:
+                f.write("hello world")
+
+            ok1 = eng.ingest_documents([p])
+            self.assertTrue(ok1)
+            docs_after_1 = len(eng.documents)
+            self.assertGreater(docs_after_1, 0)
+
+            fid = rag_engine.RAGEngine._file_id_for(eng, p)
+            rec1 = eng.state.get("files", {}).get(fid)
+            self.assertIsInstance(rec1, dict)
+            self.assertTrue(rec1.get("content_hash"))
+
+            os.utime(p, None)
+            ok2 = eng.ingest_documents([p])
+            self.assertTrue(ok2)
+            self.assertEqual(len(eng.documents), docs_after_1)
+
     def test_folder_change_preserves_existing_index(self):
         if not getattr(rag_engine, "HAS_FAISS", False):
             self.skipTest("faiss not available")

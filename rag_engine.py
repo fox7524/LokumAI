@@ -30,7 +30,7 @@ import numpy as np
 from typing import List, Dict, Any, Optional
 from rag import chunk_text as shared_chunk_text
 from rag.query_service import build_context_block
-from rag.state_store import build_file_state
+from rag.state_store import build_file_state, content_hash_for_path
 
 # FAISS for vector similarity search
 try:
@@ -1059,13 +1059,21 @@ class RAGEngine:
 
         self._load_state()
         self._validate_or_quarantine_existing_store()
-
-        return bool(self._ingest_paths(file_paths, save_on_checkpoint=True))
+        try:
+            self._ingest_paths(file_paths, save_on_checkpoint=True)
+            return True
+        except RuntimeError as e:
+            if "aborted" in str(e).lower():
+                raise
+            return False
+        except Exception:
+            return False
 
     def _ingest_paths(self, file_paths: List[str], save_on_checkpoint: bool = True) -> int:
         started_at = time.perf_counter()
         self._check_abort()
         added = 0
+        skipped = 0
         failures: List[str] = []
         pending_save = 0
         last_save_at = time.time()
@@ -1078,26 +1086,28 @@ class RAGEngine:
             except TypeError:
                 return self.embedding_model.encode(texts)
 
-        def should_index(path: str, fid: str) -> bool:
-            rec = (self.state.get("files") or {}).get(fid) if isinstance(self.state, dict) else None
-            if not isinstance(rec, dict):
-                return True
+        def should_index(rec: dict, path: str, size: int, mtime: float) -> tuple[bool, str | None, bool]:
             if rec.get("deleted"):
-                return False
+                return False, None, False
             if rec.get("status") != "ok":
-                return True
-            try:
-                st = os.stat(path)
-            except Exception:
-                return False
+                return True, None, False
             try:
                 prev_size = int(rec.get("size", -1))
                 prev_mtime = float(rec.get("mtime", -1))
             except Exception:
-                return True
-            if prev_size == int(st.st_size) and prev_mtime == float(st.st_mtime):
-                return False
-            return True
+                return True, None, False
+            if prev_size == int(size) and prev_mtime == float(mtime):
+                return False, None, False
+
+            prev_hash = rec.get("content_hash")
+            if isinstance(prev_hash, str) and prev_hash:
+                new_hash = content_hash_for_path(path, size=size)
+                if new_hash and new_hash == prev_hash:
+                    return False, new_hash, True
+                return True, new_hash, False
+
+            new_hash = content_hash_for_path(path, size=size)
+            return True, new_hash, False
 
         txn_id = f"{int(time.time() * 1000)}"
         txn_dir = os.path.join(self.staging_dir, txn_id)
@@ -1128,15 +1138,29 @@ class RAGEngine:
                         self.state["files"][fid] = rec
                     rec["source_path"] = p
                     rec["last_seen_at"] = time.time()
-                    if size >= 0:
-                        rec["size"] = size
-                    if mtime >= 0:
-                        rec["mtime"] = mtime
 
                 if size < 0:
                     continue
-                if not should_index(p, fid):
-                    continue
+                rec = None
+                if isinstance(self.state, dict) and isinstance(self.state.get("files"), dict):
+                    rec = self.state["files"].get(fid)
+                if isinstance(rec, dict):
+                    do_index, new_hash, matched = should_index(rec, p, size, mtime)
+                    if not do_index:
+                        skipped += 1
+                        if matched and new_hash:
+                            rec["size"] = size
+                            rec["mtime"] = mtime
+                            rec["content_hash"] = new_hash
+                            rec["indexed_at"] = time.time()
+                            rec["status"] = "ok"
+                            rec.pop("error", None)
+                        continue
+                    if not new_hash:
+                        new_hash = content_hash_for_path(p, size=size)
+                else:
+                    do_index = True
+                    new_hash = content_hash_for_path(p, size=size)
 
                 self._set_last_error("")
                 raw_content = self._extract_content(p)
@@ -1217,6 +1241,8 @@ class RAGEngine:
                         rec["file_signature"] = file_state.get("file_signature", "")
                         rec["chunk_count"] = int(len(chunk_signatures))
                         rec["chunk_signatures"] = chunk_signatures
+                        if new_hash:
+                            rec["content_hash"] = new_hash
                         rec["size"] = size
                         rec["mtime"] = mtime
                         rec.pop("error", None)
@@ -1241,6 +1267,10 @@ class RAGEngine:
                             rec["error"] = str(e)
                     continue
 
+            if added <= 0 and skipped > 0 and not failures:
+                elapsed = time.perf_counter() - started_at
+                print(f"[perf] stage=rag_ingest_paths seconds={elapsed:.3f} files={len(file_paths)} chunks={added}")
+                return 0
             if added <= 0:
                 msg = "No content extracted from files."
                 if failures:
@@ -1344,7 +1374,7 @@ class RAGEngine:
 
         flush()
         print(f"[RAG] Found {seen} supported files in {folder_abs}")
-        return bool(added_total > 0)
+        return bool(seen > 0)
 
     # =========================================================================
     # QUERY / RETRIEVAL
