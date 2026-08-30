@@ -58,6 +58,11 @@ Model path is hardcoded at bottom of file.
 
 import sys
 import os
+import warnings
+
+# Suppress harmless warnings from multiprocessing/resource_tracker and huggingface_hub
+warnings.filterwarnings("ignore", category=UserWarning, module="multiprocessing.resource_tracker")
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 import time
 import json
 import ast
@@ -68,7 +73,31 @@ import sqlite3
 import tempfile
 import zipfile
 import urllib.request
-from PyQt5.QtWidgets import (
+import threading
+import sounddevice as sd
+import numpy as np
+import asyncio
+try:
+    import mlx_whisper
+except ImportError:
+    mlx_whisper = None
+try:
+    import edge_tts
+    HAS_EDGE_TTS = True
+except ImportError:
+    edge_tts = None
+    HAS_EDGE_TTS = False
+try:
+    from PyQt6.QtWebEngineWidgets import QWebEngineView
+    from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineProfile
+    HAS_WEBENGINE = True
+except ImportError:
+    HAS_WEBENGINE = False
+    QWebEngineView = None
+    QWebEnginePage = None
+    QWebEngineProfile = None
+
+from PyQt6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QTextEdit, QLineEdit,
     QPushButton, QHBoxLayout, QLabel, QSplitter, QDialog,
     QFormLayout, QMessageBox, QRadioButton, QButtonGroup,
@@ -76,11 +105,11 @@ from PyQt5.QtWidgets import (
     QInputDialog, QTabWidget, QCheckBox, QSpinBox, QSlider,
     QComboBox, QTextBrowser, QProgressBar, QTableWidget,
     QTableWidgetItem, QHeaderView, QAbstractItemView, QGroupBox,
-    QGridLayout, QPlainTextEdit, QDoubleSpinBox, QToolButton, QMenu, QAction,
+    QGridLayout, QPlainTextEdit, QDoubleSpinBox, QToolButton, QMenu,
     QListWidgetItem, QSizePolicy, QGraphicsDropShadowEffect
 )
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QTimer, QSize, QSettings
-from PyQt5.QtGui import QFont, QTextCursor, QPalette, QColor, QTextCharFormat, QCursor, QFontDatabase
+from PyQt6.QtCore import Qt, QThread, pyqtSignal, QTimer, QSize, QSettings, QUrl
+from PyQt6.QtGui import QFont, QTextCursor, QPalette, QColor, QTextCharFormat, QCursor, QFontDatabase, QIcon, QAction
 
 psutil = None
 HAS_PSUTIL = False
@@ -137,7 +166,7 @@ try:
 except Exception:
     try:
         # Fallback to local implementation (dev / source checkout)
-        from rag_engine import RAGEngine as _RAGEngine
+        from core.rag_engine import RAGEngine as _RAGEngine
         RAGEngine = _RAGEngine
     except Exception as e:
         RAG_IMPORT_ERROR = str(e)
@@ -151,20 +180,20 @@ try:
 except Exception:
     try:
         # Fallback to local implementation (dev / source checkout)
-        from finetune_engine import FinetuneEngine as _FinetuneEngine
+        from core.finetune_engine import FinetuneEngine as _FinetuneEngine
         FinetuneEngine = _FinetuneEngine
     except Exception as e:
         FINETUNE_IMPORT_ERROR = str(e)
 
 # Centralized path handling (allows overrides via env vars)
 try:
-    from lokum_paths import rag_dir as _lokum_rag_dir  # type: ignore
+    from core.lokum_paths import rag_dir as _lokum_rag_dir  # type: ignore
 except Exception:
     _lokum_rag_dir = None
 
 try:
-    from file_ingest import iter_files as ingest_iter_files
-    from file_ingest import build_text_chunks_from_paths as ingest_build_chunks
+    from core.file_ingest import iter_files as ingest_iter_files
+    from core.file_ingest import build_text_chunks_from_paths as ingest_build_chunks
     INGEST_IMPORT_ERROR = ""
 except Exception as e:
     ingest_iter_files = None
@@ -174,14 +203,14 @@ except Exception as e:
 # Application version and dev mode password
 VERSION = "LokumAI"
 try:
-    from lokum_paths import get_or_create_dev_password as _get_or_create_dev_password  # type: ignore
+    from core.lokum_paths import get_or_create_dev_password as _get_or_create_dev_password  # type: ignore
 except Exception:
     _get_or_create_dev_password = None
 
 if callable(_get_or_create_dev_password):
     DEV_MODE_PASSWORD, _DEV_PASSWORD_GENERATED, _DEV_PASSWORD_PATH = _get_or_create_dev_password()
 else:
-    DEV_MODE_PASSWORD = os.environ.get("LOKUMAI_DEV_PASSWORD", "lokum123")
+    DEV_MODE_PASSWORD = os.environ.get("LOKUMF_DEV_PASSWORD", "lokum123")
     _DEV_PASSWORD_GENERATED = False
     _DEV_PASSWORD_PATH = ""
 
@@ -194,7 +223,7 @@ def _lora_base_dir() -> str:
     working directory (and can change depending on how the app is launched).
     """
     try:
-        from lokum_paths import lora_dir as _lokum_lora_dir, ensure_dir as _ensure_dir  # type: ignore
+        from core.lokum_paths import lora_dir as _lokum_lora_dir, ensure_dir as _ensure_dir  # type: ignore
 
         return str(_ensure_dir(_lokum_lora_dir()))
     except Exception:
@@ -204,15 +233,209 @@ def _lora_base_dir() -> str:
 # WORKER THREADS (Background Processing)
 # ---------------------------------------------------------
 
+class FuseWorker(QThread):
+    """
+    Olm bu class UI donmasın diye arkada çatır çatır asenkron çalışıyor, snappy hissiyatın sırrı bu.
+    """
+    finished = pyqtSignal(bool, str)
+    line = pyqtSignal(str)
+
+    def __init__(self, base_model: str, adapter_path: str, save_path: str):
+        """
+        Initializes the instance with the required configuration and state.
+        """
+        super().__init__()
+        self.base_model = base_model
+        self.adapter_path = adapter_path
+        self.save_path = save_path
+
+    def run(self):
+        """
+        Runs the fuse process in a separate thread.
+        """
+        try:
+            cmd = [
+                sys.executable, "-m", "mlx_lm", "fuse",
+                "--model", self.base_model,
+                "--adapter-path", self.adapter_path,
+                "--save-path", self.save_path
+            ]
+            self.line.emit(f"Starting Fuse Process:\n{' '.join(cmd)}")
+            
+            env = os.environ.copy()
+            env["MTL_LOG_LEVEL"] = "error"
+            env["MTL_DEBUG_LAYER"] = "0"
+            env["MLX_LOG_LEVEL"] = "error"
+            
+            process = subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                bufsize=1,
+                env=env
+            )
+            
+            for output_line in process.stdout:
+                clean_ln = output_line.strip()
+                if "M5 God-Mode" in clean_ln or "IOSurface created" in clean_ln or "DART TTBR0" in clean_ln:
+                    continue
+                self.line.emit(clean_ln)
+                
+            process.wait()
+            if process.returncode == 0:
+                self.finished.emit(True, f"Model successfully fused and saved to:\n{self.save_path}")
+            else:
+                self.finished.emit(False, f"Fuse process failed with exit code {process.returncode}")
+        except Exception as e:
+            self.finished.emit(False, str(e))
+
+class MicWorker(QThread):
+    """
+    Olm bu class UI donmasın diye arkada çatır çatır asenkron çalışıyor, snappy hissiyatın sırrı bu.
+    """
+    transcription_done = pyqtSignal(str)
+    error_occurred = pyqtSignal(str)
+
+    def __init__(self, parent=None):
+        """
+        Initializes the instance with the required configuration and state.
+        """
+        super().__init__(parent)
+        self.is_recording = False
+        self.audio_data = []
+        self.sample_rate = 16000
+
+    def stop_recording(self):
+        """
+        Stops the microphone recording.
+        """
+        self.is_recording = False
+
+    def run(self):
+        """
+        Runs for the current component.
+        """
+        self.is_recording = True
+        self.audio_data = []
+        try:
+            with sd.InputStream(samplerate=self.sample_rate, channels=1, dtype='float32') as stream:
+                while self.is_recording:
+                    data, overflowed = stream.read(1024)
+                    self.audio_data.append(data)
+        except Exception as e:
+            self.error_occurred.emit(f"Microphone error: {str(e)}")
+            return
+
+        if not self.audio_data:
+            self.transcription_done.emit("")
+            return
+
+        audio_np = np.concatenate(self.audio_data, axis=0).flatten()
+
+        try:
+            if mlx_whisper is None:
+                self.error_occurred.emit("mlx_whisper library not found. Run: pip install mlx-whisper")
+                return
+            
+            # Use model from parent settings if available
+            model_size = "mlx-community/whisper-large-v3-turbo"
+            if hasattr(self.parent(), "stt_model_size"):
+                size = self.parent().stt_model_size
+                if size == "base":
+                    model_size = "mlx-community/whisper-base-mlx"
+                elif size == "small":
+                    model_size = "mlx-community/whisper-small-mlx"
+            
+            result = mlx_whisper.transcribe(
+                audio_np, 
+                path_or_hf_repo=model_size,
+                language="tr"
+            )
+            text = result.get("text", "").strip()
+            self.transcription_done.emit(text)
+        except Exception as e:
+            self.error_occurred.emit(f"Transcription error: {str(e)}")
+
+
+class TTSWorker(QThread):
+    """
+    Olm bu class UI donmasın diye arkada çatır çatır asenkron çalışıyor, snappy hissiyatın sırrı bu.
+    """
+    finished = pyqtSignal(bool, str)
+
+    def __init__(self, text: str, voice: str = "tr-TR-AhmetNeural"):
+        """
+        Initializes the instance with the required configuration and state.
+        """
+        super().__init__()
+        self.text = text
+        self.voice = voice
+
+    def run(self):
+        """
+        Runs for the current component.
+        """
+        if not self.text.strip():
+            self.finished.emit(False, "Empty text")
+            return
+
+        try:
+            # Create a temp file for the audio
+            with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
+                temp_path = tmp.name
+
+            if HAS_EDGE_TTS:
+                # Use edge-tts (High quality, free)
+                async def generate_audio():
+                    """
+                    Generates audio for the current component.
+                    """
+                    communicate = edge_tts.Communicate(self.text, self.voice)
+                    await communicate.save(temp_path)
+
+                asyncio.run(generate_audio())
+            else:
+                # Fallback to macOS 'say' command (Offline, lower quality)
+                # 'say' doesn't support mp3 directly easily, so we use aiff then play
+                temp_path = temp_path.replace(".mp3", ".aiff")
+                subprocess.run(["say", "-v", "Cem", self.text, "-o", temp_path], check=True)
+
+            # Play the audio using native macOS 'afplay'
+            subprocess.run(["afplay", temp_path], check=True)
+            
+            # Clean up
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+                
+            self.finished.emit(True, "")
+        except Exception as e:
+            self.finished.emit(False, str(e))
+
+    def stop_recording(self):
+        """
+        Stops recording for the current component.
+        """
+        self.is_recording = False
+
 class ModelLoaderWorker(QThread):
+    """
+    Olm bu class UI donmasın diye arkada çatır çatır asenkron çalışıyor, snappy hissiyatın sırrı bu.
+    """
     loaded = pyqtSignal(object, object, str)
     error = pyqtSignal(str)
 
     def __init__(self, model_path: str):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         super().__init__()
         self.model_path = model_path
 
     def run(self):
+        """
+        Runs for the current component.
+        """
         try:
             if load is None:
                 raise RuntimeError(MLX_IMPORT_ERROR or "mlx_lm is not available.")
@@ -241,6 +464,9 @@ class ModelLoaderWorker(QThread):
             self.error.emit(str(e))
 
     def _ensure_special_tokens(self, tokenizer):
+        """
+        Ensures special tokens for the current component.
+        """
         eos_id = getattr(tokenizer, "eos_token_id", None)
         if eos_id is None:
             eos_token = getattr(tokenizer, "eos_token", None) or "</s>"
@@ -288,21 +514,32 @@ class AIWorker(QThread):
     finished = pyqtSignal(str, float, int, float, float)
     # Signal emitted on error: error message
     error = pyqtSignal(str)
+    # Signal emitted for RAG status updates
+    rag_status_update = pyqtSignal(str)
 
-    def __init__(self, model, tokenizer, prompt):
+    def __init__(self, model, tokenizer, temp_history, user_text, use_rag, rag_engine, build_context_callback):
         """
         Initialize the worker thread.
 
         ARGS:
             model: The loaded MLX model instance
             tokenizer: The tokenizer for the model
-            prompt: The formatted prompt string to generate from
+            temp_history: Chat history list
+            user_text: The latest user message
+            use_rag: Whether RAG is enabled
+            rag_engine: The RAG engine instance
+            build_context_callback: Callback to build project context
         """
         super().__init__()
         self.model = model
         self.tokenizer = tokenizer
-        self.prompt = prompt
+        self.temp_history = temp_history
+        self.user_text = user_text
+        self.use_rag = use_rag
+        self.rag_engine = rag_engine
+        self.build_context_callback = build_context_callback
         self.is_running = True  # Can be set False to stop generation
+        self.prompt = ""
 
     def run(self):
         """
@@ -312,6 +549,39 @@ class AIWorker(QThread):
         DO NOT call this directly - use start() instead.
         """
         try:
+            # 1. Build Context & RAG Query (Done in Worker Thread)
+            context_prompt = self.user_text
+            ctx_parts = []
+            
+            try:
+                proj_ctx = self.build_context_callback(self.user_text) if self.build_context_callback else ""
+            except Exception:
+                proj_ctx = ""
+                
+            if proj_ctx:
+                ctx_parts.append(f"Project context:\n{proj_ctx}")
+                
+            if self.use_rag and self.rag_engine and getattr(self.rag_engine, "enabled", False):
+                rag_docs = self.rag_engine.query(self.user_text)
+                if rag_docs:
+                    ctx_parts.append(f"Background info:\n{rag_docs}")
+                    self.rag_status_update.emit("active")
+                else:
+                    self.rag_status_update.emit("empty")
+                    
+            if ctx_parts:
+                context_prompt = "\n\n".join(ctx_parts) + f"\n\nUser: {self.user_text}"
+                
+            self.temp_history[-1] = {"role": "user", "content": context_prompt}
+            
+            try:
+                if hasattr(self.tokenizer, 'apply_chat_template'):
+                    self.prompt = self.tokenizer.apply_chat_template(self.temp_history, tokenize=False, add_generation_prompt=True)
+                else:
+                    self.prompt = f"User: {context_prompt}\nAssistant: "
+            except Exception:
+                self.prompt = f"User: {context_prompt}\nAssistant: "
+
             if stream_generate is None:
                 raise RuntimeError(MLX_IMPORT_ERROR or "mlx_lm is not available.")
             if self.model is None or self.tokenizer is None:
@@ -376,10 +646,16 @@ class AIWorker(QThread):
 
 
 class BenchmarkWorker(QThread):
+    """
+    Olm bu class UI donmasın diye arkada çatır çatır asenkron çalışıyor, snappy hissiyatın sırrı bu.
+    """
     finished = pyqtSignal(float, int, float, str)
     error = pyqtSignal(str)
 
     def __init__(self, model, tokenizer, prompt: str, max_tokens: int = 128):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         super().__init__()
         self.model = model
         self.tokenizer = tokenizer
@@ -387,6 +663,9 @@ class BenchmarkWorker(QThread):
         self.max_tokens = max_tokens
 
     def run(self):
+        """
+        Runs for the current component.
+        """
         try:
             if generate is None:
                 raise RuntimeError(MLX_IMPORT_ERROR or "mlx_lm is not available.")
@@ -410,14 +689,23 @@ class BenchmarkWorker(QThread):
 
 
 class DeleteChatWorker(QThread):
+    """
+    Olm bu class UI donmasın diye arkada çatır çatır asenkron çalışıyor, snappy hissiyatın sırrı bu.
+    """
     finished = pyqtSignal(str, bool, str, float)
 
     def __init__(self, db_path: str, chat_name: str):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         super().__init__()
         self._db_path = os.path.abspath(db_path or "app.db")
         self._chat_name = (chat_name or "").strip()
 
     def run(self):
+        """
+        Runs for the current component.
+        """
         start = time.perf_counter()
         try:
             conn = sqlite3.connect(self._db_path)
@@ -441,14 +729,23 @@ class DeleteChatWorker(QThread):
 
 
 class DatasetExportWorker(QThread):
+    """
+    Olm bu class UI donmasın diye arkada çatır çatır asenkron çalışıyor, snappy hissiyatın sırrı bu.
+    """
     finished = pyqtSignal(bool, str, int, int, str)
 
     def __init__(self, folder: str, out_dir: str):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         super().__init__()
         self._folder = os.path.abspath(folder or "")
         self._out_dir = os.path.abspath(out_dir or "")
 
     def run(self):
+        """
+        Runs for the current component.
+        """
         try:
             if ingest_iter_files is None or ingest_build_chunks is None:
                 self.finished.emit(False, "", 0, 0, "file_ingest is not available.")
@@ -473,10 +770,16 @@ class DatasetExportWorker(QThread):
 
 
 class FinalAnswerWorker(QThread):
+    """
+    Olm bu class UI donmasın diye arkada çatır çatır asenkron çalışıyor, snappy hissiyatın sırrı bu.
+    """
     finished = pyqtSignal(str)
     error = pyqtSignal(str)
 
     def __init__(self, model, tokenizer, prompt: str, max_tokens: int = 256):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         super().__init__()
         self.model = model
         self.tokenizer = tokenizer
@@ -484,6 +787,9 @@ class FinalAnswerWorker(QThread):
         self.max_tokens = int(max_tokens)
 
     def run(self):
+        """
+        Runs for the current component.
+        """
         try:
             if generate is None:
                 raise RuntimeError(MLX_IMPORT_ERROR or "mlx_lm is not available.")
@@ -496,9 +802,15 @@ class FinalAnswerWorker(QThread):
 
 
 class RagIndexWorker(QThread):
+    """
+    Olm bu class UI donmasın diye arkada çatır çatır asenkron çalışıyor, snappy hissiyatın sırrı bu.
+    """
     finished = pyqtSignal(bool, int, str, str)
 
     def __init__(self, main_app, folder: str, recursive: bool = True):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         super().__init__()
         self.main_app = main_app
         self.folder = folder
@@ -506,6 +818,9 @@ class RagIndexWorker(QThread):
         self._eng = None
 
     def stop(self):
+        """
+        Stops for the current component.
+        """
         try:
             if self._eng is not None and hasattr(self._eng, "request_abort"):
                 self._eng.request_abort()
@@ -513,6 +828,9 @@ class RagIndexWorker(QThread):
             pass
 
     def run(self):
+        """
+        Runs for the current component.
+        """
         try:
             if not self.main_app:
                 self.finished.emit(False, 0, self.folder, "No main app")
@@ -545,14 +863,23 @@ class RagIndexWorker(QThread):
 
 
 class PythonDocsIndexWorker(QThread):
+    """
+    Olm bu class UI donmasın diye arkada çatır çatır asenkron çalışıyor, snappy hissiyatın sırrı bu.
+    """
     finished = pyqtSignal(bool, int, str)
 
     def __init__(self, main_app, url: str):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         super().__init__()
         self.main_app = main_app
         self.url = (url or "").strip()
 
     def run(self):
+        """
+        Runs for the current component.
+        """
         import shutil
         tmp_root = None
         try:
@@ -587,17 +914,26 @@ class PythonDocsIndexWorker(QThread):
 
 
 class FineTuneWorker(QThread):
+    """
+    Olm bu class UI donmasın diye arkada çatır çatır asenkron çalışıyor, snappy hissiyatın sırrı bu.
+    """
     line = pyqtSignal(str)
     finished = pyqtSignal(int, str)
     error = pyqtSignal(str)
 
     def __init__(self, process: subprocess.Popen, adapter_path: str):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         super().__init__()
         self._proc = process
         self._adapter_path = adapter_path or ""
         self._stopping = False
 
     def stop(self):
+        """
+        Stops for the current component.
+        """
         self._stopping = True
         try:
             if self._proc and self._proc.poll() is None:
@@ -613,6 +949,9 @@ class FineTuneWorker(QThread):
             pass
 
     def run(self):
+        """
+        Runs for the current component.
+        """
         try:
             import selectors
             import time
@@ -637,7 +976,24 @@ class FineTuneWorker(QThread):
                             if ln == "":
                                 break
                             if ln:
-                                self.line.emit(ln.rstrip("\n"))
+                                clean_ln = ln.rstrip("\n")
+                                # Suppress Metal/MLX M5 God-Mode spam
+                                if "M5 God-Mode" in clean_ln or "IOSurface created" in clean_ln or "DART TTBR0" in clean_ln:
+                                    continue
+                                
+                                # Analyze and simplify errors with hints
+                                if "ValueError: Requested to train" in clean_ln and "layers but the model only has" in clean_ln:
+                                    self.line.emit(f"❌ [LAYER ERROR] {clean_ln}")
+                                    self.line.emit("💡 HINT: Go to Fine-Tune preset, choose 'Custom', and reduce 'Train Layers' to match the model's actual layer count or lower. Or choose lower quality presets.")
+                                    last_line = time.time()
+                                    continue
+                                elif "Insufficient Memory" in clean_ln or "OutOfMemory" in clean_ln:
+                                    self.line.emit("❌ [OUT OF MEMORY] " + clean_ln)
+                                    self.line.emit("💡 HINT: Your Mac's Unified Memory is full. Try reducing 'Batch Size' (e.g., to 1 or 2) or 'Rank' in the 'Custom' preset. Or choose lower quality presets.")
+                                    last_line = time.time()
+                                    continue
+
+                                self.line.emit(clean_ln)
                                 last_line = time.time()
                                 continue
                         now = time.time()
@@ -723,6 +1079,9 @@ class MemoryMonitor(QThread):
             self.msleep(2000)
 
     def _get_gpu_util_percent(self) -> str:
+        """
+        Retrieves gpu util percent for the current component.
+        """
         if sys.platform == "darwin":
             return "N/A"
 
@@ -748,7 +1107,13 @@ class MemoryMonitor(QThread):
 # SETTINGS & ROADMAP VIEWER
 # ---------------------------------------------------------
 class SettingsDialog(QDialog):
+    """
+    Represents the SettingsDialog entity within the LokumAI framework.
+    """
     def __init__(self, parent=None, user_prompt="", current_theme="dark"):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         super().__init__(parent)
         self.setWindowTitle("Settings")
         self.setFixedSize(550, 500)
@@ -830,6 +1195,9 @@ class SettingsDialog(QDialog):
         layout.addLayout(btn_layout)
 
     def accept_settings(self):
+        """
+        Kullanıcı ve Dev ayarlarını .lokumai içine güvenle kaydettiğimiz/okuduğumuz yer.
+        """
         # Save user_prompt to prompts.json via main app
         self.final_user_prompt = self.prompt_edit.toPlainText()
         if self.rb_system.isChecked():
@@ -850,6 +1218,9 @@ class SettingsDialog(QDialog):
         self.accept()
 
     def _preview_theme(self):
+        """
+        Previews theme for the current component.
+        """
         if not self.main_app:
             return
         if self.rb_system.isChecked():
@@ -860,6 +1231,9 @@ class SettingsDialog(QDialog):
             self.main_app.apply_theme("dark")
 
     def show_roadmap(self):
+        """
+        Displays roadmap for the current component.
+        """
         QMessageBox.information(self, "Roadmap", "📅 Phase 1 (Apr 13-20): Foundation - Model loads, RAG indexer, LoRA fine-tune\n"
                                                  "⚡ Phase 2 (Apr 21-27): Features - System prompt, Run button, Settings\n"
                                                  "🧪 Phase 3 (Apr 28-30): Break It - Testing and bug fixes\n"
@@ -869,16 +1243,28 @@ class SettingsDialog(QDialog):
 # DEV MODE GATE
 # ---------------------------------------------------------
 class DevModeGate:
+    """
+    Represents the DevModeGate entity within the LokumAI framework.
+    """
     def __init__(self):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         self.unlocked = False
         
     def attempt_unlock(self, password: str) -> bool:
+        """
+        Attempts unlock for the current component.
+        """
         if password == DEV_MODE_PASSWORD:
             self.unlocked = True
             return True
         return False
     
     def lock(self):
+        """
+        Locks for the current component.
+        """
         self.unlocked = False
 
 dev_mode_gate = DevModeGate()
@@ -887,13 +1273,22 @@ dev_mode_gate = DevModeGate()
 # DEV PANEL
 # ---------------------------------------------------------
 class DevPanel(QWidget):
+    """
+    Represents the DevPanel entity within the LokumAI framework.
+    """
     def __init__(self, parent=None, main_app=None):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         super().__init__(parent)
         self.main_app = main_app
         
         self.init_ui()
         
     def init_ui(self):
+        """
+        Inits ui for the current component.
+        """
         layout = QVBoxLayout(self)
         
         # Header
@@ -925,10 +1320,16 @@ class DevPanel(QWidget):
         layout.addLayout(bottom)
 
     def _hide_dev_sidebar(self):
+        """
+        Hides dev sidebar for the current component.
+        """
         if self.main_app:
             self.main_app.toggle_dev_dialog(force_state=False)
 
     def build_rag_tab(self):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         p = self.parent()
         if p is not None and hasattr(p, "build_rag_tab"):
             return p.build_rag_tab()
@@ -939,6 +1340,9 @@ class DevPanel(QWidget):
         return w
 
     def build_finetune_tab(self):
+        """
+        Builds finetune tab for the current component.
+        """
         p = self.parent()
         if p is not None and hasattr(p, "build_finetune_tab"):
             return p.build_finetune_tab()
@@ -949,6 +1353,9 @@ class DevPanel(QWidget):
         return w
 
     def build_model_tab(self):
+        """
+        Builds model tab for the current component.
+        """
         p = self.parent()
         if p is not None and hasattr(p, "build_model_tab"):
             return p.build_model_tab()
@@ -958,7 +1365,11 @@ class DevPanel(QWidget):
         l.addStretch()
         return w
 
+
     def build_testing_tab(self):
+        """
+        Builds testing tab for the current component.
+        """
         p = self.parent()
         if p is not None and hasattr(p, "build_testing_tab"):
             return p.build_testing_tab()
@@ -969,6 +1380,9 @@ class DevPanel(QWidget):
         return w
 
     def build_unrestricted_tab(self):
+        """
+        Builds unrestricted tab for the current component.
+        """
         p = self.parent()
         if p is not None and hasattr(p, "build_unrestricted_tab"):
             return p.build_unrestricted_tab()
@@ -980,7 +1394,13 @@ class DevPanel(QWidget):
 
 
 class DevPanelDialog(QWidget):
+    """
+    Represents the DevPanelDialog entity within the LokumAI framework.
+    """
     def __init__(self, parent=None, main_app=None, embedded: bool = False):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         super().__init__(parent)
         self.main_app = main_app
         self._collapsed = False
@@ -994,7 +1414,7 @@ class DevPanelDialog(QWidget):
             panel_layout = root
         else:
             self.setWindowTitle("Developer")
-            self.setWindowFlags(self.windowFlags() | Qt.Tool)
+            self.setWindowFlags(self.windowFlags() | Qt.WindowType.Tool)
             self.setFixedSize(400, 300)
             root.setContentsMargins(10, 10, 10, 10)
             root.setSpacing(8)
@@ -1035,19 +1455,28 @@ class DevPanelDialog(QWidget):
         panel_layout.addWidget(tabs)
 
     def _wrap_tab(self, inner: QWidget) -> QScrollArea:
+        """
+        Wraps tab for the current component.
+        """
         sc = QScrollArea()
         sc.setWidgetResizable(True)
-        sc.setFrameShape(QFrame.NoFrame)
-        sc.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        sc.setFrameShape(QFrame.Shape.NoFrame)
+        sc.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         sc.setWidget(inner)
         return sc
 
     def toggle_collapsed(self):
+        """
+        Toggles collapsed for the current component.
+        """
         self.set_collapsed(not self._collapsed)
         if self.main_app:
             self.main_app._save_dev_dialog_state()
 
     def set_collapsed(self, collapsed: bool):
+        """
+        Sets collapsed for the current component.
+        """
         self._collapsed = bool(collapsed)
         if self._collapsed:
             self.collapse_btn.setText("▸")
@@ -1059,12 +1488,18 @@ class DevPanelDialog(QWidget):
             self.setFixedSize(self._expanded_size)
 
     def show_roadmap(self):
+        """
+        Displays roadmap for the current component.
+        """
         QMessageBox.information(self, "Roadmap", "Phase 1 (Apr 13-20): Foundation - Model loads, RAG indexer, LoRA fine-tune\n"
                                                  "Phase 2 (Apr 21-27): Features - System prompt, Run button, Settings\n"
                                                  "Phase 3 (Apr 28-30): Break It - Testing and bug fixes\n"
                                                  "May 11: Presentation Day")
     
     def build_rag_tab(self):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         widget = QWidget()
         layout = QVBoxLayout(widget)
         
@@ -1171,11 +1606,17 @@ class DevPanelDialog(QWidget):
         return widget
     
     def browse_rag_folder(self):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         folder = QFileDialog.getExistingDirectory(self, "Select Project Folder")
         if folder:
             self.rag_folder_path.setText(folder)
 
     def browse_project_workspace(self):
+        """
+        Browses project workspace for the current component.
+        """
         if not self.main_app:
             return
         folder = QFileDialog.getExistingDirectory(self, "Select Project Workspace")
@@ -1191,6 +1632,9 @@ class DevPanelDialog(QWidget):
                 pass
 
     def clear_project_workspace(self):
+        """
+        Clears project workspace for the current component.
+        """
         if not self.main_app:
             return
         try:
@@ -1206,6 +1650,9 @@ class DevPanelDialog(QWidget):
             pass
     
     def load_rag_data(self):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         if not self.main_app:
             return
         try:
@@ -1223,6 +1670,9 @@ class DevPanelDialog(QWidget):
         self.refresh_rag_status()
 
     def unload_rag_data(self):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         if not self.main_app:
             return
         try:
@@ -1239,6 +1689,9 @@ class DevPanelDialog(QWidget):
         self.refresh_rag_status()
     
     def index_project_files(self):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         folder = self.rag_folder_path.text().strip()
         if not folder or not os.path.isdir(folder):
             QMessageBox.warning(self, "Invalid Folder", "Please select a valid folder path.")
@@ -1266,6 +1719,9 @@ class DevPanelDialog(QWidget):
         self._rag_worker.start()
     
     def index_python_docs(self):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         self.rag_status_lbl.setText("Indexing Python docs…")
         if hasattr(self, "_rag_docs_btn") and self._rag_docs_btn is not None:
             self._rag_docs_btn.setEnabled(False)
@@ -1284,6 +1740,9 @@ class DevPanelDialog(QWidget):
         self._docs_worker.start()
 
     def _on_rag_index_finished(self, ok: bool, chunk_count: int, folder: str, err: str):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         if hasattr(self, "_rag_index_btn") and self._rag_index_btn is not None:
             self._rag_index_btn.setEnabled(True)
         if err == "Aborted":
@@ -1310,6 +1769,9 @@ class DevPanelDialog(QWidget):
         QMessageBox.information(self, "Indexing Complete", f"Folder indexed: {folder}\nTotal chunks in store: {int(chunk_count)}\n\nIndexed data is cumulative and will persist after restart until you reset it.")
 
     def abort_rag_operations(self):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         try:
             eng = self.main_app.get_rag_engine() if self.main_app else None
             if eng is not None and hasattr(eng, "request_abort"):
@@ -1325,6 +1787,9 @@ class DevPanelDialog(QWidget):
         self.rag_status_lbl.setText("Aborting…")
 
     def refresh_rag_status(self):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         rag_dir = str(_lokum_rag_dir()) if callable(_lokum_rag_dir) else os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
         try:
             use_rag = bool(getattr(self.main_app, "use_rag", True)) if self.main_app else True
@@ -1371,6 +1836,9 @@ class DevPanelDialog(QWidget):
         self.rag_index_lbl.setText(f"Store: {rag_dir}")
 
     def _on_docs_index_finished(self, ok: bool, chunk_count: int, err: str):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         if hasattr(self, "_rag_docs_btn") and self._rag_docs_btn is not None:
             self._rag_docs_btn.setEnabled(True)
         if err:
@@ -1384,6 +1852,9 @@ class DevPanelDialog(QWidget):
         QMessageBox.information(self, "Docs Indexing Complete", f"Chunks: {int(chunk_count)}")
     
     def reset_rag(self):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         if not self.main_app:
             return
         eng = self.main_app.get_rag_engine()
@@ -1414,47 +1885,77 @@ class DevPanelDialog(QWidget):
         QMessageBox.information(self, "Reset Complete", "RAG index has been reset.")
     
     def build_finetune_tab(self):
+        """
+        Builds finetune tab for the current component.
+        """
         widget = QWidget()
         layout = QVBoxLayout(widget)
         
-        # Training Config
-        config_box = QGroupBox("LoRA Training Configuration")
+        # Training Config (Collapsible / Advanced)
+        self.config_box = QGroupBox("Advanced LoRA Settings")
+        self.config_box.setCheckable(True)
+        self.config_box.setChecked(False) # Hidden by default
         c_layout = QGridLayout()
 
         c_layout.addWidget(QLabel("Preset:"), 0, 0)
         self.ft_preset = QComboBox()
-        self.ft_preset.addItems(["Safe (Recommended)", "Reccommended", "Ultra Safe (Less RAM)", "Faster (More RAM)", "Quick Test"])
+        self.ft_preset.addItems(["Ultra", "Good", "Mid", "Low", "Custom"])
         c_layout.addWidget(self.ft_preset, 0, 1)
         
-        c_layout.addWidget(QLabel("Rank:"), 1, 0)
+        def _disable_wheel(widget):
+            widget.wheelEvent = lambda e: e.ignore()
+
+        lbl_rank = QLabel("Rank:")
+        lbl_rank.setStyleSheet("color: #8b5cf6; font-weight: bold;")
+        c_layout.addWidget(lbl_rank, 1, 0)
         self.lora_rank = QSpinBox()
-        self.lora_rank.setRange(4, 32)
+        self.lora_rank.setRange(2, 128)
         self.lora_rank.setValue(8)
+        _disable_wheel(self.lora_rank)
         c_layout.addWidget(self.lora_rank, 1, 1)
         
-        c_layout.addWidget(QLabel("Alpha:"), 2, 0)
+        lbl_alpha = QLabel("Alpha:")
+        lbl_alpha.setStyleSheet("color: #8b5cf6; font-weight: bold;")
+        c_layout.addWidget(lbl_alpha, 2, 0)
         self.lora_alpha = QSpinBox()
-        self.lora_alpha.setRange(8, 64)
+        self.lora_alpha.setRange(2, 256)
         self.lora_alpha.setValue(32)
+        _disable_wheel(self.lora_alpha)
         c_layout.addWidget(self.lora_alpha, 2, 1)
+
+        btn_help_lora = QToolButton()
+        btn_help_lora.setText("?")
+        btn_help_lora.setCursor(Qt.CursorShape.PointingHandCursor)
+        btn_help_lora.setStyleSheet("color: #8b5cf6; font-weight: bold; border: 1px solid #8b5cf6; border-radius: 10px; padding: 2px 6px; margin-left: 5px;")
+        btn_help_lora.setToolTip("Detailed information about Rank and Alpha")
+        btn_help_lora.clicked.connect(lambda: QMessageBox.information(self, "What are Rank & Alpha?", 
+            "GPU hardware performs memory alignment and tensor computations most efficiently using powers of 2 (8, 16, 32, 64, 128). Therefore, always using even numbers (especially powers of 2) reduces OOM (Out of Memory) errors and increases training speed.\n\n"
+            "• RANK (r): Defines the size (learning capacity) of the trained adapter. Higher values capture finer details but DIRECTLY increase VRAM (RAM) consumption.\n\n"
+            "• ALPHA: A scaling factor that determines how strongly the learned weights are applied to the base model. It DOES NOT affect RAM usage.\n\n"
+            "💡 GOLDEN RULE: The Alpha value is typically set to 2x (or at least 1x) the Rank value.\nExample: Rank=16 and Alpha=32 provides stable and efficient training."
+        ))
+        c_layout.addWidget(btn_help_lora, 1, 2, 2, 1)
         
         c_layout.addWidget(QLabel("Iterations:"), 3, 0)
         self.lora_iters = QSpinBox()
         self.lora_iters.setRange(100, 2000)
         self.lora_iters.setValue(500)
         self.lora_iters.setSingleStep(100)
+        _disable_wheel(self.lora_iters)
         c_layout.addWidget(self.lora_iters, 3, 1)
         
         c_layout.addWidget(QLabel("Batch Size:"), 4, 0)
         self.lora_batch = QSpinBox()
         self.lora_batch.setRange(1, 8)
         self.lora_batch.setValue(1)
+        _disable_wheel(self.lora_batch)
         c_layout.addWidget(self.lora_batch, 4, 1)
 
         c_layout.addWidget(QLabel("Train Layers:"), 5, 0)
         self.lora_layers = QSpinBox()
         self.lora_layers.setRange(1, 32)
         self.lora_layers.setValue(8)
+        _disable_wheel(self.lora_layers)
         c_layout.addWidget(self.lora_layers, 5, 1)
 
         c_layout.addWidget(QLabel("Max Seq Len:"), 6, 0)
@@ -1462,6 +1963,7 @@ class DevPanelDialog(QWidget):
         self.ft_max_seq.setRange(256, 2048)
         self.ft_max_seq.setValue(512)
         self.ft_max_seq.setSingleStep(128)
+        _disable_wheel(self.ft_max_seq)
         c_layout.addWidget(self.ft_max_seq, 6, 1)
 
         c_layout.addWidget(QLabel("Steps / Eval:"), 7, 0)
@@ -1469,12 +1971,14 @@ class DevPanelDialog(QWidget):
         self.ft_steps_per_eval.setRange(0, 5000)
         self.ft_steps_per_eval.setValue(200)
         self.ft_steps_per_eval.setSingleStep(50)
+        _disable_wheel(self.ft_steps_per_eval)
         c_layout.addWidget(self.ft_steps_per_eval, 7, 1)
 
         c_layout.addWidget(QLabel("Val Batches:"), 8, 0)
         self.ft_val_batches = QSpinBox()
         self.ft_val_batches.setRange(0, 64)
         self.ft_val_batches.setValue(1)
+        _disable_wheel(self.ft_val_batches)
         c_layout.addWidget(self.ft_val_batches, 8, 1)
 
         c_layout.addWidget(QLabel("Clear Cache Thr:"), 9, 0)
@@ -1483,10 +1987,19 @@ class DevPanelDialog(QWidget):
         self.ft_clear_cache_thr.setDecimals(2)
         self.ft_clear_cache_thr.setSingleStep(0.25)
         self.ft_clear_cache_thr.setValue(2.0)
+        _disable_wheel(self.ft_clear_cache_thr)
         c_layout.addWidget(self.ft_clear_cache_thr, 9, 1)
         
-        config_box.setLayout(c_layout)
-        layout.addWidget(config_box)
+        # Connect value changes
+        self._is_updating_preset = False
+        spinboxes = [self.lora_rank, self.lora_alpha, self.lora_iters, self.lora_batch,
+                     self.lora_layers, self.ft_max_seq, self.ft_steps_per_eval,
+                     self.ft_val_batches, self.ft_clear_cache_thr]
+        for sb in spinboxes:
+            sb.valueChanged.connect(self._on_custom_ft_value_changed)
+        
+        self.config_box.setLayout(c_layout)
+        layout.addWidget(self.config_box)
         
         # Data Source
         data_box = QGroupBox("Training Data Source")
@@ -1504,7 +2017,24 @@ class DevPanelDialog(QWidget):
         ft_detect_box = QGroupBox("Detected MLX Models (LM Studio)")
         ft_d_layout = QVBoxLayout()
         self.ft_model_list = QListWidget()
-        self.ft_model_list.setMaximumHeight(120)
+        self.ft_model_list.setMinimumHeight(250) # Geniş ve kullanışlı model listesi
+        self.ft_model_list.setMaximumHeight(400)
+        self.ft_model_list.setAlternatingRowColors(True) # Modern look
+        
+        # Make items bigger and more readable
+        self.ft_model_list.setStyleSheet("""
+            QListWidget {
+                border-radius: 8px;
+                padding: 5px;
+            }
+            QListWidget::item {
+                padding: 12px;
+                border-radius: 6px;
+                margin-bottom: 4px;
+                border-bottom: 1px solid #333;
+            }
+        """)
+        
         ft_d_layout.addWidget(self.ft_model_list)
         ft_btn_row = QHBoxLayout()
         ft_use_btn = QPushButton("Use Selected")
@@ -1557,7 +2087,7 @@ class DevPanelDialog(QWidget):
         self.ft_do_train.setChecked(True)
         d_layout.addWidget(self.ft_do_train)
 
-        self.ft_do_valid = QCheckBox("Validation (run after training)")
+        self.ft_do_valid = QCheckBox("Validation")
         self.ft_do_valid.setChecked(False)
         d_layout.addWidget(self.ft_do_valid)
 
@@ -1600,6 +2130,29 @@ class DevPanelDialog(QWidget):
         
         layout.addLayout(btn_row)
         
+        # ---------------- FUSE SECTION (NEW) ----------------
+        self.fuse_box = QGroupBox("Export / Fuse Model")
+        fuse_layout = QGridLayout()
+        
+        fuse_layout.addWidget(QLabel("New Model Name:"), 0, 0)
+        self.ft_fuse_name = QLineEdit()
+        self.ft_fuse_name.setPlaceholderText("e.g. finetuned-14B")
+        fuse_layout.addWidget(self.ft_fuse_name, 0, 1)
+        
+        self._fuse_btn = QPushButton("⚡️ Fuse to Models")
+        self._fuse_btn.setObjectName("AccentButton")
+        self._fuse_btn.clicked.connect(self.start_fuse)
+        fuse_layout.addWidget(self._fuse_btn, 0, 2)
+        
+        self.ft_delete_adapter_after_fuse = QCheckBox("Delete Adapter After Fuse")
+        self.ft_delete_adapter_after_fuse.setChecked(True)
+        fuse_layout.addWidget(self.ft_delete_adapter_after_fuse, 1, 1, 1, 2)
+        
+        self.fuse_box.setLayout(fuse_layout)
+        self.fuse_box.setVisible(False)
+        layout.addWidget(self.fuse_box)
+        # ----------------------------------------------------
+
         # Progress
         self.train_progress = QProgressBar()
         layout.addWidget(self.train_progress)
@@ -1607,18 +2160,97 @@ class DevPanelDialog(QWidget):
         self.train_log = QPlainTextEdit()
         self.train_log.setMaximumHeight(150)
         self.train_log.setReadOnly(True)
-        layout.addWidget(QLabel("Training Log:"))
+        
+        log_label_layout = QHBoxLayout()
+        log_label_layout.addWidget(QLabel("Training Log:"))
+        log_label_layout.addStretch()
+        
+        self.btn_clear_ft_log = QPushButton("Clear Logs")
+        self.btn_clear_ft_log.setObjectName("SecondaryButton")
+        self.btn_clear_ft_log.clicked.connect(self.train_log.clear)
+        log_label_layout.addWidget(self.btn_clear_ft_log)
+        
+        layout.addLayout(log_label_layout)
         layout.addWidget(self.train_log)
         
         layout.addStretch()
         try:
             self.ft_preset.currentIndexChanged.connect(self._apply_ft_preset)
-            self._apply_ft_preset(0)
+            settings = QSettings("Lokum", "LokumFStudio")
+            last_preset = settings.value("ft_preset_last_selected", "Good")
+            idx = self.ft_preset.findText(last_preset)
+            if idx >= 0:
+                self.ft_preset.setCurrentIndex(idx)
+            else:
+                self.ft_preset.setCurrentIndex(1)  # Default to Good
+            # Initialize values
+            self._apply_ft_preset(self.ft_preset.currentIndex())
         except Exception:
             pass
         return widget
 
+    def start_fuse(self):
+        """
+        Eğitilen o mükemmel adaptörü ana modelle birleştiren (fuse eden) büyü burası. %80 altıysa affetmez siler.
+        """
+        new_name = self.ft_fuse_name.text().strip()
+        if not new_name:
+            QMessageBox.warning(self, "Missing Name", "Lütfen yeni model için bir isim girin, aksi takdirde birleştirme (fuse) işlemi yapılmayacaktır!")
+            return
+
+        base_model = getattr(self, "_ft_model_path_used", None)
+        if not base_model:
+            base_model = self.ft_model_path.text().strip()
+
+        adapter_path = getattr(self, "_last_adapter_path", None)
+        if not adapter_path:
+            # Otomatik olarak en son oluşturulan adaptörü bul
+            adapters_dir = os.path.join(os.path.expanduser("~"), ".lokumai", "lora_data", "adapters")
+            if os.path.exists(adapters_dir):
+                # run_ ile başlayanları VEYA yeni formatımızla başlayanları (ki model isimleriyle başlıyor) alalım
+                runs = [os.path.join(adapters_dir, d) for d in os.listdir(adapters_dir) if os.path.isdir(os.path.join(adapters_dir, d))]
+                if runs:
+                    adapter_path = max(runs, key=os.path.getmtime)
+
+        if not base_model or not adapter_path:
+            QMessageBox.warning(self, "No Adapter Found", "Lütfen önce bir modeli eğitin veya geçerli bir adaptör/model yolu seçin.")
+            return
+
+        save_path = os.path.join(os.path.expanduser("~"), ".lmstudio", "models", "LokumAI", new_name)
+        
+        self.train_log.appendPlainText(f"\n[FUSE] Preparing to fuse model into: {save_path}")
+        self._fuse_btn.setEnabled(False)
+        self.ft_fuse_name.setEnabled(False)
+
+        self._fuse_worker = FuseWorker(base_model, adapter_path, save_path)
+        self._fuse_adapter_path = adapter_path
+        self._fuse_worker.line.connect(self.train_log.appendPlainText)
+        self._fuse_worker.finished.connect(self._on_fuse_finished)
+        self._fuse_worker.start()
+
+    def _on_fuse_finished(self, success: bool, msg: str):
+        """
+        Eğitilen o mükemmel adaptörü ana modelle birleştiren (fuse eden) büyü burası. %80 altıysa affetmez siler.
+        """
+        self._fuse_btn.setEnabled(True)
+        self.ft_fuse_name.setEnabled(True)
+        self.train_log.appendPlainText(f"[FUSE] {msg}")
+        if success:
+            if getattr(self, "ft_delete_adapter_after_fuse", None) and self.ft_delete_adapter_after_fuse.isChecked():
+                import shutil
+                try:
+                    shutil.rmtree(self._fuse_adapter_path)
+                    self.train_log.appendPlainText(f"[FUSE] Adapter deleted successfully: {self._fuse_adapter_path}")
+                except Exception as e:
+                    self.train_log.appendPlainText(f"[FUSE] Failed to delete adapter: {e}")
+            QMessageBox.information(self, "Fuse Complete", msg)
+        else:
+            QMessageBox.critical(self, "Fuse Error", msg)
+
     def browse_ft_model_path(self):
+        """
+        Browses ft model path for the current component.
+        """
         start = os.path.expanduser("~/.lmstudio/models")
         folder = QFileDialog.getExistingDirectory(self, "Select MLX Model Folder For Training", start if os.path.isdir(start) else "")
         if folder:
@@ -1628,6 +2260,9 @@ class DevPanelDialog(QWidget):
                 self.ft_model_path.setText(folder)
 
     def _scan_lmstudio_models(self) -> list[str]:
+        """
+        Scans lmstudio models for the current component.
+        """
         root = os.path.expanduser("~/.lmstudio/models")
         if not os.path.isdir(root):
             return []
@@ -1643,43 +2278,70 @@ class DevPanelDialog(QWidget):
                         continue
                     cfg = os.path.join(model_path, "config.json")
                     tok = os.path.join(model_path, "tokenizer.json")
-                    if not (os.path.isfile(cfg) or os.path.isfile(tok)):
-                        if "mlx" not in model.lower() and "qwen" not in model.lower():
-                            continue
+                    
                     try:
                         has_weights = any(
-                            fn.endswith((".safetensors", ".npz"))
+                            fn.endswith((".safetensors", ".npz", ".bin")) # Sadece MLX formatları, GGUF gizlendi
                             for fn in os.listdir(model_path)
                             if os.path.isfile(os.path.join(model_path, fn))
                         )
                     except Exception:
-                        has_weights = True
+                        has_weights = False
+                        
                     if not has_weights:
                         continue
+                        
                     found.append(model_path)
         except Exception:
             return found
         return found
 
     def refresh_ft_models(self):
+        """
+        Refreshes ft models for the current component.
+        """
         if not hasattr(self, "ft_model_list") or self.ft_model_list is None:
             return
         self.ft_model_list.clear()
-        for p in self._scan_lmstudio_models():
-            self.ft_model_list.addItem(p)
+        
+        models = self._scan_lmstudio_models()
+        if not models:
+            self.ft_model_list.addItem("No MLX models found in ~/.lmstudio/models")
+            return
+            
+        for p in models:
+            # Sadece modelin adını göster, tam yolu gizle
+            model_name = os.path.basename(p)
+            creator_name = os.path.basename(os.path.dirname(p))
+            
+            # Daha okunabilir format
+            display_text = f"🤖 {creator_name} / {model_name}"
+            
+            item = QListWidgetItem(display_text)
+            # Tam yolu item'ın içine gizli veri (Data) olarak kaydet
+            item.setData(Qt.ItemDataRole.UserRole, p)
+            self.ft_model_list.addItem(item)
 
     def use_selected_ft_model(self):
+        """
+        Uses selected ft model for the current component.
+        """
         if not hasattr(self, "ft_model_list") or self.ft_model_list is None:
             return
         items = self.ft_model_list.selectedItems()
         if not items:
             QMessageBox.information(self, "Model", "Select a model from the list first.")
             return
-        p = (items[0].text() or "").strip()
+        
+        # Ekranda görünen ismi değil, arka planda sakladığımız tam yolu al
+        p = items[0].data(Qt.ItemDataRole.UserRole)
         if p:
-            self.ft_model_path.setText(p)
+            self.ft_model_path.setText(str(p))
 
     def browse_ft_resume_adapter(self):
+        """
+        Browses ft resume adapter for the current component.
+        """
         fp, _ = QFileDialog.getOpenFileName(self, "Select adapters.safetensors", "", "Adapter Weights (*.safetensors);;All Files (*)")
         if fp:
             try:
@@ -1687,101 +2349,119 @@ class DevPanelDialog(QWidget):
             except Exception:
                 self.ft_resume_path.setText(fp)
 
+    def _on_custom_ft_value_changed(self):
+        """
+        Triggered when any fine-tune spinbox is manually changed by the user.
+        Switches the preset to 'Custom' and saves the values to QSettings.
+        """
+        if getattr(self, "_is_updating_preset", False):
+            return
+
+        self._is_updating_preset = True
+        try:
+            idx = self.ft_preset.findText("Custom")
+            if idx >= 0:
+                self.ft_preset.setCurrentIndex(idx)
+        finally:
+            self._is_updating_preset = False
+
+        # Save to QSettings
+        settings = QSettings("Lokum", "LokumFStudio")
+        settings.setValue("ft_custom_rank", self.lora_rank.value())
+        settings.setValue("ft_custom_alpha", self.lora_alpha.value())
+        settings.setValue("ft_custom_iters", self.lora_iters.value())
+        settings.setValue("ft_custom_batch", self.lora_batch.value())
+        settings.setValue("ft_custom_layers", self.lora_layers.value())
+        settings.setValue("ft_custom_max_seq", self.ft_max_seq.value())
+        settings.setValue("ft_custom_steps_per_eval", self.ft_steps_per_eval.value())
+        settings.setValue("ft_custom_val_batches", self.ft_val_batches.value())
+        settings.setValue("ft_custom_clear_cache_thr", self.ft_clear_cache_thr.value())
+        settings.setValue("ft_preset_last_selected", "Custom")
+
     def _apply_ft_preset(self, _idx: int):
+        """
+        Applys ft preset for the current component.
+        """
         try:
             name = (self.ft_preset.currentText() if hasattr(self, "ft_preset") else "").strip()
         except Exception:
             name = ""
-        if name == "Safe (Recommended)":
-            # Stable default for big models: keep memory headroom by avoiding eval during training.
-            self.lora_rank.setValue(8)
-            self.lora_alpha.setValue(32)
-            self.lora_iters.setValue(500)
-            self.lora_batch.setValue(1)
-            self.lora_layers.setValue(8)
-            self.ft_max_seq.setValue(384)
-            self.ft_steps_per_eval.setValue(0)
-            self.ft_val_batches.setValue(0)
-            self.ft_clear_cache_thr.setValue(1.5)
-            try:
-                if hasattr(self, "ft_presplit") and self.ft_presplit is not None:
-                    self.ft_presplit.setChecked(True)
-            except Exception:
-                pass
-            return
-        if name == "Reccommended":
-            # Previously this was too aggressive and could push Metal to OOM.
-            # Make it quality-leaning (user can tolerate spikes).
-            self.lora_rank.setValue(16)
-            self.lora_alpha.setValue(64)
-            self.lora_iters.setValue(900)
-            self.lora_batch.setValue(1)
-            self.lora_layers.setValue(12)
-            self.ft_max_seq.setValue(512)
-            # Avoid eval during training (smoother memory curve). You can run validate after.
-            self.ft_steps_per_eval.setValue(0)
-            self.ft_val_batches.setValue(0)
-            self.ft_clear_cache_thr.setValue(2.0)
-            try:
-                if hasattr(self, "ft_presplit") and self.ft_presplit is not None:
-                    self.ft_presplit.setChecked(True)
-            except Exception:
-                pass
-            try:
-                if hasattr(self, "ft_do_valid") and self.ft_do_valid is not None:
-                    self.ft_do_valid.setChecked(False)
-            except Exception:
-                pass
-            return
-        if name == "Ultra Safe (Less RAM)":
-            self.lora_rank.setValue(8)
-            self.lora_alpha.setValue(32)
-            self.lora_iters.setValue(500)
-            self.lora_batch.setValue(1)
-            self.lora_layers.setValue(6)
-            self.ft_max_seq.setValue(384)
-            self.ft_steps_per_eval.setValue(0)
-            self.ft_val_batches.setValue(0)
-            self.ft_clear_cache_thr.setValue(1.0)
-            return
-        if name == "Faster (More RAM)":
-            self.lora_rank.setValue(8)
-            self.lora_alpha.setValue(32)
-            self.lora_iters.setValue(500)
-            self.lora_batch.setValue(1)
-            self.lora_layers.setValue(12)
-            self.ft_max_seq.setValue(768)
-            self.ft_steps_per_eval.setValue(200)
-            self.ft_val_batches.setValue(1)
-            self.ft_clear_cache_thr.setValue(2.0)
-            return
-        if name == "Quick Test":
-            self.lora_rank.setValue(8)
-            self.lora_alpha.setValue(32)
-            self.lora_iters.setValue(150)
-            self.lora_batch.setValue(1)
-            self.lora_layers.setValue(4)
-            self.ft_max_seq.setValue(384)
-            self.ft_steps_per_eval.setValue(0)
-            self.ft_val_batches.setValue(0)
-            self.ft_clear_cache_thr.setValue(2.0)
-            return
-        self.lora_rank.setValue(8)
-        self.lora_alpha.setValue(32)
-        self.lora_iters.setValue(500)
-        self.lora_batch.setValue(1)
-        self.lora_layers.setValue(8)
-        self.ft_max_seq.setValue(512)
-        self.ft_steps_per_eval.setValue(200)
-        self.ft_val_batches.setValue(1)
-        self.ft_clear_cache_thr.setValue(2.0)
+
+        self._is_updating_preset = True
+        try:
+            if name == "Ultra":
+                self.lora_rank.setValue(32)
+                self.lora_alpha.setValue(128)
+                self.lora_iters.setValue(1500)
+                self.lora_batch.setValue(1)
+                self.lora_layers.setValue(32)
+                self.ft_max_seq.setValue(1024)
+                self.ft_steps_per_eval.setValue(200)
+                self.ft_val_batches.setValue(2)
+                self.ft_clear_cache_thr.setValue(4.0)
+            elif name == "Good":
+                self.lora_rank.setValue(16)
+                self.lora_alpha.setValue(64)
+                self.lora_iters.setValue(900)
+                self.lora_batch.setValue(1)
+                self.lora_layers.setValue(12)
+                self.ft_max_seq.setValue(512)
+                self.ft_steps_per_eval.setValue(0)
+                self.ft_val_batches.setValue(0)
+                self.ft_clear_cache_thr.setValue(2.0)
+            elif name == "Mid":
+                self.lora_rank.setValue(8)
+                self.lora_alpha.setValue(32)
+                self.lora_iters.setValue(500)
+                self.lora_batch.setValue(1)
+                self.lora_layers.setValue(8)
+                self.ft_max_seq.setValue(384)
+                self.ft_steps_per_eval.setValue(0)
+                self.ft_val_batches.setValue(0)
+                self.ft_clear_cache_thr.setValue(1.5)
+            elif name == "Low":
+                self.lora_rank.setValue(8)
+                self.lora_alpha.setValue(32)
+                self.lora_iters.setValue(150)
+                self.lora_batch.setValue(1)
+                self.lora_layers.setValue(4)
+                self.ft_max_seq.setValue(384)
+                self.ft_steps_per_eval.setValue(0)
+                self.ft_val_batches.setValue(0)
+                self.ft_clear_cache_thr.setValue(1.0)
+            elif name == "Custom":
+                settings = QSettings("Lokum", "LokumFStudio")
+                self.lora_rank.setValue(int(settings.value("ft_custom_rank", 16)))
+                self.lora_alpha.setValue(int(settings.value("ft_custom_alpha", 64)))
+                self.lora_iters.setValue(int(settings.value("ft_custom_iters", 900)))
+                self.lora_batch.setValue(int(settings.value("ft_custom_batch", 1)))
+                self.lora_layers.setValue(int(settings.value("ft_custom_layers", 12)))
+                self.ft_max_seq.setValue(int(settings.value("ft_custom_max_seq", 512)))
+                self.ft_steps_per_eval.setValue(int(settings.value("ft_custom_steps_per_eval", 0)))
+                self.ft_val_batches.setValue(int(settings.value("ft_custom_val_batches", 0)))
+                self.ft_clear_cache_thr.setValue(float(settings.value("ft_custom_clear_cache_thr", 2.0)))
+
+            if name:
+                settings = QSettings("Lokum", "LokumFStudio")
+                settings.setValue("ft_preset_last_selected", name)
+                
+            if hasattr(self, "ft_presplit") and self.ft_presplit is not None:
+                self.ft_presplit.setChecked(True)
+        finally:
+            self._is_updating_preset = False
 
     def browse_finetune_ingest_folder(self):
+        """
+        Browses finetune ingest folder for the current component.
+        """
         folder = QFileDialog.getExistingDirectory(self, "Select Folder For Training Data")
         if folder:
             self.ft_ingest_folder.setText(folder)
 
     def export_finetune_dataset_from_folder(self):
+        """
+        Exports finetune dataset from folder for the current component.
+        """
         folder = (self.ft_ingest_folder.text() if hasattr(self, "ft_ingest_folder") else "").strip()
         if not folder or not os.path.isdir(folder):
             QMessageBox.warning(self, "Invalid Folder", "Please select a valid folder.")
@@ -1800,6 +2480,9 @@ class DevPanelDialog(QWidget):
         self._ds_export_worker.start()
 
     def _on_dataset_export_finished(self, ok: bool, out_dir: str, chunk_count: int, file_count: int, err: str):
+        """
+        Handles the dataset export finished event for the current component.
+        """
         if hasattr(self, "_export_dataset_btn") and self._export_dataset_btn is not None:
             self._export_dataset_btn.setEnabled(True)
         if not ok:
@@ -1825,11 +2508,17 @@ class DevPanelDialog(QWidget):
         QMessageBox.information(self, "Export Complete", f"Exported dataset:\n{out_dir}\n\nFiles: {int(file_count)}\nChunks: {int(chunk_count)}")
     
     def browse_jsonl(self):
+        """
+        Browses jsonl for the current component.
+        """
         folder = QFileDialog.getExistingDirectory(self, "Select JSONL Dataset Folder")
         if folder:
             self.jsonl_path.setText(folder)
     
     def start_training(self):
+        """
+        Starts training for the current component.
+        """
         if hasattr(self, "_ft_worker") and self._ft_worker is not None:
             QMessageBox.warning(self, "Training", "Training is already running.")
             return
@@ -1858,10 +2547,23 @@ class DevPanelDialog(QWidget):
                 "Training starts a separate process that loads the full model again.\n\n"
                 "To avoid running out of RAM, the app will unload the currently loaded model before training.\n\n"
                 "Continue?",
-                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
             )
-            if res != QMessageBox.Yes:
+            if res != QMessageBox.StandardButton.Yes:
                 return
+
+        # NEW: Check which checkboxes are checked before training
+        do_train = False
+        do_valid = False
+        try:
+            do_train = bool(hasattr(self, "ft_do_train") and self.ft_do_train is not None and self.ft_do_train.isChecked())
+            do_valid = bool(hasattr(self, "ft_do_valid") and self.ft_do_valid is not None and self.ft_do_valid.isChecked())
+        except Exception:
+            pass
+        
+        if not do_train and not do_valid:
+            QMessageBox.warning(self, "No Action", "Please select either Train or Validate (or both).")
+            return
 
         try:
             self.main_app.training_active = True
@@ -1901,8 +2603,6 @@ class DevPanelDialog(QWidget):
         except Exception:
             pass
 
-        do_train = True
-        do_valid = False
         try:
             do_train = bool(hasattr(self, "ft_do_train") and self.ft_do_train is not None and self.ft_do_train.isChecked())
             do_valid = bool(hasattr(self, "ft_do_valid") and self.ft_do_valid is not None and self.ft_do_valid.isChecked())
@@ -1955,14 +2655,25 @@ class DevPanelDialog(QWidget):
             QMessageBox.critical(self, "Dataset Error", str(e))
             return
 
+        rank = int(self.lora_rank.value())
+        alpha = int(self.lora_alpha.value())
+        iters = int(self.lora_iters.value())
+        batch = int(self.lora_batch.value())
+        layers = int(self.lora_layers.value()) if hasattr(self, "lora_layers") else 16
+
+        import hashlib
+        model_basename = os.path.basename(model_path.rstrip("/\\"))
+        param_str = f"{rank}-{alpha}-{batch}-{layers}-{time.time()}"
+        short_hash = hashlib.md5(param_str.encode()).hexdigest()[:5].upper()
+        ts = f"{model_basename}_R{rank}_A{alpha}_B{batch}_L{layers}_{short_hash}"
+
         orig_data_dir = data_dir
         if do_train:
             try:
                 import shutil
                 train_fp = os.path.join(os.path.abspath(data_dir), "train.jsonl")
                 if os.path.isfile(train_fp):
-                    ts = time.strftime("%Y%m%d_%H%M%S")
-                    train_only = os.path.abspath(os.path.join(_lora_base_dir(), "train_only", f"run_{ts}"))
+                    train_only = os.path.abspath(os.path.join(_lora_base_dir(), "train_only", ts))
                     os.makedirs(train_only, exist_ok=True)
                     shutil.copyfile(train_fp, os.path.join(train_only, "train.jsonl"))
                     data_dir = train_only
@@ -1973,11 +2684,6 @@ class DevPanelDialog(QWidget):
             except Exception:
                 pass
 
-        rank = int(self.lora_rank.value())
-        alpha = int(self.lora_alpha.value())
-        iters = int(self.lora_iters.value())
-        batch = int(self.lora_batch.value())
-        layers = int(self.lora_layers.value()) if hasattr(self, "lora_layers") else 16
         resume_adapter_file = None
         try:
             if bool(getattr(self, "ft_resume", None) and self.ft_resume.isChecked()):
@@ -1995,19 +2701,18 @@ class DevPanelDialog(QWidget):
             steps_per_eval = int(self.ft_steps_per_eval.value()) if hasattr(self, "ft_steps_per_eval") else 200
             val_batches = int(self.ft_val_batches.value()) if hasattr(self, "ft_val_batches") else 1
             clear_thr = float(self.ft_clear_cache_thr.value()) if hasattr(self, "ft_clear_cache_thr") else 2.0
-            os.environ["LOKUMAI_FT_MAX_SEQ_LENGTH"] = str(max_seq)
-            os.environ["LOKUMAI_FT_STEPS_PER_EVAL"] = str(steps_per_eval)
-            os.environ["LOKUMAI_FT_VAL_BATCHES"] = str(val_batches)
-            os.environ["LOKUMAI_FT_TEST_BATCHES"] = str(val_batches)
-            os.environ["LOKUMAI_FT_CLEAR_CACHE_THRESHOLD"] = str(clear_thr)
-            os.environ["LOKUMAI_FT_PRESPLIT"] = "1" if bool(getattr(self, "ft_presplit", None) and self.ft_presplit.isChecked()) else "0"
+            os.environ["LOKUMF_FT_MAX_SEQ_LENGTH"] = str(max_seq)
+            os.environ["LOKUMF_FT_STEPS_PER_EVAL"] = str(steps_per_eval)
+            os.environ["LOKUMF_FT_VAL_BATCHES"] = str(val_batches)
+            os.environ["LOKUMF_FT_TEST_BATCHES"] = str(val_batches)
+            os.environ["LOKUMF_FT_CLEAR_CACHE_THRESHOLD"] = str(clear_thr)
+            os.environ["LOKUMF_FT_PRESPLIT"] = "1" if bool(getattr(self, "ft_presplit", None) and self.ft_presplit.isChecked()) else "0"
         except Exception:
             pass
 
-        ts = time.strftime("%Y%m%d_%H%M%S")
         adapter_path = ""
         if do_train:
-            adapter_path = os.path.abspath(os.path.join(_lora_base_dir(), "adapters", f"run_{ts}"))
+            adapter_path = os.path.abspath(os.path.join(_lora_base_dir(), "adapters", ts))
             os.makedirs(adapter_path, exist_ok=True)
         else:
             pick = QFileDialog.getExistingDirectory(self, "Select Adapter Folder (must contain adapters.safetensors)")
@@ -2045,7 +2750,7 @@ class DevPanelDialog(QWidget):
                 self._ft_post_validate_cfg = cfg_path
                 self._ft_model_path_used = model_path
                 try:
-                    if os.environ.get("LOKUMAI_FT_PRESPLIT", "1") != "0":
+                    if os.environ.get("LOKUMF_FT_PRESPLIT", "1") != "0":
                         info = eng.presplit_dataset(data_dir, max_seq, batch)
                         self.train_log.appendPlainText(
                             f"[presplit] train_changed={int(info.get('train_changed', 0))} valid_changed={int(info.get('valid_changed', 0))}"
@@ -2100,6 +2805,9 @@ class DevPanelDialog(QWidget):
         self._ft_worker.start()
     
     def stop_training(self):
+        """
+        Stops training for the current component.
+        """
         if hasattr(self, "_ft_worker") and self._ft_worker is not None:
             try:
                 self._ft_worker.stop()
@@ -2109,6 +2817,9 @@ class DevPanelDialog(QWidget):
             self._stop_train_btn.setEnabled(False)
 
     def _on_train_error(self, err: str):
+        """
+        Handles the train error event for the current component.
+        """
         self.train_log.appendPlainText(f"ERROR: {err}")
         try:
             if self.main_app:
@@ -2119,20 +2830,76 @@ class DevPanelDialog(QWidget):
         QMessageBox.critical(self, "Training Error", err)
 
     def _on_train_finished(self, rc: int, adapter_path: str):
-        kind = "Training"
+        """
+        Handles the train finished event for the current component.
+        """
+        self._last_adapter_path = adapter_path
         try:
             kind = "Validation" if str(getattr(self, "_ft_run_kind", "train")) == "valid" else "Training"
         except Exception:
             kind = "Training"
-        self.train_log.appendPlainText(f"{kind} finished (exit={int(rc)})")
+            
+        self.train_log.appendPlainText(f"\n[{kind}] Bitti (exit={int(rc)})")
+        
         if adapter_path:
-            self.train_log.appendPlainText(f"Adapter saved at: {adapter_path}")
-            self.train_log.appendPlainText("To fuse: python -m mlx_lm fuse --model <base_model> --adapter-path <adapter> --save-path <new_model>")
+            self.train_log.appendPlainText(f"Adaptör kaydedildi: {adapter_path}")
 
         try:
             post = bool(getattr(self, "_ft_post_validate", False))
         except Exception:
             post = False
+            
+        # Eğer bu bir Validation bitişiyse ve başarılıysa (rc == 0)
+        if kind == "Validation" and int(rc) == 0:
+            log_text = self.train_log.toPlainText()
+            
+            # Loss bul (Örn: "Test loss: 1.453" veya "Val loss 1.453")
+            import re
+            import math
+            loss_matches = re.findall(r"(?:Val(?:id)?|Test)\s*loss[:\s]*([\d\.]+)", log_text, re.IGNORECASE)
+            
+            if not loss_matches:
+                self.train_log.appendPlainText("⚠️ Uyarı: Geçerli bir Test/Valid Loss skoru bulunamadı!")
+            
+            final_loss = float(loss_matches[-1]) if loss_matches else 1.5
+            
+            # Formül: 1.0 loss -> %85, 1.5 loss -> %75, 0.5 loss -> %95
+            score = max(0, min(100, int(100 - (final_loss * 15) + 10)))
+            
+            self.train_log.appendPlainText(f"\n====== TEST SONUCU ======")
+            self.train_log.appendPlainText(f"Doğruluk Skoru (Loss: {final_loss}): %{score}")
+            self.train_log.appendPlainText(f"==========================\n")
+            
+            # Kaydet (train_results içine)
+            try:
+                import json
+                res_dir = os.path.join(os.path.expanduser("~"), ".lokumai", "train_results")
+                os.makedirs(res_dir, exist_ok=True)
+                run_name = os.path.basename(adapter_path)
+                with open(os.path.join(res_dir, f"{run_name}_result.json"), "w") as f:
+                    json.dump({"loss": final_loss, "score_percentage": score, "adapter": adapter_path}, f)
+            except Exception as e:
+                self.train_log.appendPlainText(f"Sonuç kaydedilemedi: {e}")
+            
+            # Threshold Kontrolü: Manuel Fuse istenmişti. %80 altında ise SİL.
+            if score >= 80:
+                self.train_log.appendPlainText(f"✅ Puan yüksek (%{score}). Adaptör başarıyla doğrulandı. Manuel FUSE yapabilirsiniz.")
+                if hasattr(self, "fuse_box"):
+                    self.fuse_box.setVisible(True)
+            else:
+                self.train_log.appendPlainText(f"❌ Puan düşük (%{score} < %80). BAŞARISIZ TRAİNİNG! Model ezberliyor olabilir.")
+                if hasattr(self, "fuse_box"):
+                    self.fuse_box.setVisible(False)
+                self.train_log.appendPlainText("🗑️ Kalitesiz adaptör siliniyor...")
+                try:
+                    import shutil
+                    if os.path.exists(adapter_path):
+                        shutil.rmtree(adapter_path)
+                    self.train_log.appendPlainText("🗑️ Adaptör başarıyla silindi.")
+                except Exception as e:
+                    self.train_log.appendPlainText(f"Hata (Silinemedi): {e}")
+
+        # Eğer bu bir Training bitişiyse ve Validation seçilmişse (post == True)
         if post and int(rc) == 0:
             try:
                 self._ft_post_validate = False
@@ -2148,7 +2915,7 @@ class DevPanelDialog(QWidget):
                 cfg_path = ""
                 model_path = ""
             try:
-                self.train_log.appendPlainText("[valid] Starting post-training validation…")
+                self.train_log.appendPlainText("\n[Validation] Test aşaması başlatılıyor...")
             except Exception:
                 pass
             try:
@@ -2168,6 +2935,7 @@ class DevPanelDialog(QWidget):
                 return
             except Exception as e:
                 self.train_log.appendPlainText(f"[valid] ERROR: {e}")
+                
         try:
             if self.main_app:
                 self.main_app.training_active = False
@@ -2176,6 +2944,9 @@ class DevPanelDialog(QWidget):
         self._cleanup_train_ui(success=(int(rc) == 0))
 
     def _finalize_ft_worker(self) -> None:
+        """
+        Finalizes ft worker for the current component.
+        """
         w = getattr(self, "_ft_worker", None)
         if w is None:
             return
@@ -2195,6 +2966,9 @@ class DevPanelDialog(QWidget):
             pass
 
     def _cleanup_train_ui(self, success: bool = False):
+        """
+        Cleanups train ui for the current component.
+        """
         try:
             w = getattr(self, "_ft_worker", None)
             if w is not None:
@@ -2213,6 +2987,9 @@ class DevPanelDialog(QWidget):
         self._finalize_ft_worker()
 
     def _prepare_finetune_data_dir(self) -> str:
+        """
+        Prepares finetune data dir for the current component.
+        """
         use_sqlite = bool(getattr(self, "use_sqlite", None) and self.use_sqlite.isChecked())
         use_jsonl = bool(getattr(self, "use_jsonl", None) and self.use_jsonl.isChecked())
         base = _lora_base_dir()
@@ -2296,7 +3073,13 @@ class DevPanelDialog(QWidget):
         raise RuntimeError("Select a dataset source (SQLite or JSONL).")
 
     def _write_train_valid_jsonl(self, out_dir: str, lines: list[str]) -> None:
+        """
+        Writes train valid jsonl for the current component.
+        """
         def normalize_jsonl_line(ln: str) -> str:
+            """
+            Normalizes jsonl line for the current component.
+            """
             s = (ln or "").strip()
             if not s:
                 return ""
@@ -2324,6 +3107,9 @@ class DevPanelDialog(QWidget):
                     fv.write(out + "\n")
     
     def build_model_tab(self):
+        """
+        Builds model tab for the current component.
+        """
         widget = QWidget()
         layout = QVBoxLayout(widget)
         
@@ -2384,6 +3170,9 @@ class DevPanelDialog(QWidget):
         return widget
     
     def refresh_models(self):
+        """
+        Refreshes models for the current component.
+        """
         self.model_list.clear()
         lmstudio_path = os.path.expanduser("~/.lmstudio/models/")
         if os.path.exists(lmstudio_path):
@@ -2394,11 +3183,17 @@ class DevPanelDialog(QWidget):
                         self.model_list.addItem(full_path)
     
     def browse_model_path(self):
+        """
+        Browses model path for the current component.
+        """
         path = QFileDialog.getExistingDirectory(self, "Select Model Folder")
         if path:
             self.manual_model_path.setText(path)
     
     def load_selected_model(self):
+        """
+        Loads selected model for the current component.
+        """
         selected = self.model_list.currentItem()
         path = self.manual_model_path.text().strip() or (selected.text() if selected else None)
         
@@ -2420,6 +3215,9 @@ class DevPanelDialog(QWidget):
         self._model_loader.start()
 
     def _on_model_loaded(self, model, tokenizer, model_path: str) -> None:
+        """
+        Handles the model loaded event for the current component.
+        """
         if self.main_app:
             self.main_app._on_model_loaded(model, tokenizer, model_path)
         self.model_status.setText(f"Loaded: {os.path.basename(model_path)}")
@@ -2427,6 +3225,9 @@ class DevPanelDialog(QWidget):
         QMessageBox.information(self, "Model Loaded", f"Successfully loaded model from:\n{model_path}")
 
     def _on_model_load_error(self, err: str) -> None:
+        """
+        Handles the model load error event for the current component.
+        """
         if self.main_app:
             self.main_app._on_model_load_error(err)
         self.model_status.setText(f"Error: {err}")
@@ -2434,20 +3235,97 @@ class DevPanelDialog(QWidget):
         QMessageBox.critical(self, "Load Error", f"Failed to load model:\n{err}")
 
     def unload_current_model(self) -> None:
+        """
+        Unloads current model for the current component.
+        """
         if not self.main_app:
             return
         self.main_app.unload_model()
         self.model_status.setText("No model loaded")
         self.model_status.setStyleSheet("color: #888; padding: 8px;")
         QMessageBox.information(self, "Model", "Model unloaded.")
-    
+
+    def _use_selected_persona(self):
+        """
+        Kullanıcının seçtiği personayı (System Prompt) devreye alır ve ana config'i günceller.
+        """
+        selected = self.persona_list.currentItem()
+        if not selected:
+            QMessageBox.warning(self, "Seçim Yok", "Lütfen bir persona (system prompt) seçin.")
+            return
+            
+        persona_file = selected.text()
+        persona_name = persona_file.replace(".json", "")
+        persona_path = os.path.join(os.path.expanduser("~"), ".lokumai", "personas", persona_file)
+        
+        try:
+            with open(persona_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            
+            # config'i güncelle
+            if self.main_app:
+                if "system_prompt" in data:
+                    self.main_app.config["system_prompt"] = data["system_prompt"]
+                if "user_prompt" in data:
+                    self.main_app.config["user_prompt"] = data["user_prompt"]
+                if "unrestricted_prompt" in data:
+                    self.main_app.config["unrestricted_prompt"] = data["unrestricted_prompt"]
+                
+                self.main_app.config["active_persona"] = persona_name
+                self.main_app.save_config()
+                
+                self.main_app.log_message(f"Persona '{persona_name}' activated successfully.", "success")
+                QMessageBox.information(self, "Persona Değişti", f"{persona_name} başarıyla yüklendi ve aktif edildi.\nDeğişiklikler bir sonraki sohbette geçerli olacaktır.")
+        except Exception as e:
+            QMessageBox.critical(self, "Hata", f"Persona yüklenemedi: {e}")
+
+    def refresh_personas(self):
+        """
+        Personaları listeler.
+        """
+        self.persona_list.clear()
+        persona_dir = os.path.join(os.path.expanduser("~"), ".lokumai", "personas")
+        os.makedirs(persona_dir, exist_ok=True)
+        for f in os.listdir(persona_dir):
+            if f.endswith(".json"):
+                self.persona_list.addItem(f)
+
     def build_testing_tab(self):
+        """
+        Builds testing tab for the current component.
+        """
         widget = QWidget()
         layout = QVBoxLayout(widget)
 
-        roadmap_btn = QPushButton("View Project Roadmap")
-        roadmap_btn.clicked.connect(self.show_roadmap)
-        layout.addWidget(roadmap_btn)
+        # Persona Selection Section
+        persona_box = QGroupBox("Persona (System Prompt) Selector")
+        p_layout = QVBoxLayout()
+        
+        self.persona_list = QListWidget()
+        self.persona_list.setMinimumHeight(150)
+        self.persona_list.setAlternatingRowColors(True)
+        self.persona_list.setStyleSheet("""
+            QListWidget { border-radius: 8px; padding: 5px; }
+            QListWidget::item { padding: 12px; border-radius: 6px; margin-bottom: 4px; border-bottom: 1px solid #333; }
+        """)
+        p_layout.addWidget(self.persona_list)
+        
+        p_btn_row = QHBoxLayout()
+        p_use_btn = QPushButton("Use Selected Persona")
+        p_use_btn.clicked.connect(self._use_selected_persona)
+        p_refresh_btn = QPushButton("Refresh List")
+        p_refresh_btn.clicked.connect(self.refresh_personas)
+        p_btn_row.addWidget(p_use_btn)
+        p_btn_row.addWidget(p_refresh_btn)
+        p_layout.addLayout(p_btn_row)
+        
+        persona_box.setLayout(p_layout)
+        layout.addWidget(persona_box)
+        
+        self.refresh_personas()
+
+        # STT Engine selector
+
         
         # AST Benchmark
         bench_box = QGroupBox("AST Parse Benchmark")
@@ -2467,6 +3345,60 @@ class DevPanelDialog(QWidget):
         
         bench_box.setLayout(b_layout)
         layout.addWidget(bench_box)
+
+        # STT Settings
+        stt_box = QGroupBox("STT (Speech-to-Text) Engine")
+        stt_layout = QVBoxLayout()
+        
+        stt_desc = QLabel("Select Whisper model size for voice input. Larger is smarter but slower.")
+        stt_desc.setStyleSheet("color: #888; font-size: 12px;")
+        stt_layout.addWidget(stt_desc)
+        
+        self.stt_size_combo = QComboBox()
+        self.stt_size_combo.addItem("Large-v3-Turbo (Balanced/Recommended)", "large-v3-turbo")
+        self.stt_size_combo.addItem("Small (Fastest/Lightweight)", "small")
+        self.stt_size_combo.addItem("Base (Extremely Fast/Low Accuracy)", "base")
+        
+        # Set current selection
+        current_size = getattr(self.main_app, "stt_model_size", "large-v3-turbo")
+        idx = self.stt_size_combo.findData(current_size)
+        if idx >= 0:
+            self.stt_size_combo.setCurrentIndex(idx)
+            
+        self.stt_size_combo.currentIndexChanged.connect(self._on_stt_size_changed)
+        stt_layout.addWidget(self.stt_size_combo)
+        
+        stt_box.setLayout(stt_layout)
+        layout.addWidget(stt_box)
+
+        # TTS Settings
+        tts_box = QGroupBox("TTS (Text-to-Speech) Voice")
+        tts_layout = QVBoxLayout()
+        
+        tts_desc = QLabel("Select the voice character for the AI response.")
+        tts_desc.setStyleSheet("color: #888; font-size: 12px;")
+        tts_layout.addWidget(tts_desc)
+        
+        self.tts_voice_combo = QComboBox()
+        # Turkish Voices
+        self.tts_voice_combo.addItem("Ahmet (TR - Erkek/Tok)", "tr-TR-AhmetNeural")
+        self.tts_voice_combo.addItem("Emel (TR - Kadın/Yumuşak)", "tr-TR-EmelNeural")
+        # English Voices (Optional but good for variety)
+        self.tts_voice_combo.addItem("Guy (EN - Erkek/Ciddi)", "en-US-GuyNeural")
+        self.tts_voice_combo.addItem("Aria (EN - Kadın/Haberci)", "en-US-AriaNeural")
+        self.tts_voice_combo.addItem("Sonia (EN-GB - Kadın/Aksanlı)", "en-GB-SoniaNeural")
+        
+        # Set current selection
+        current_voice = getattr(self.main_app, "tts_voice", "tr-TR-AhmetNeural")
+        v_idx = self.tts_voice_combo.findData(current_voice)
+        if v_idx >= 0:
+            self.tts_voice_combo.setCurrentIndex(v_idx)
+            
+        self.tts_voice_combo.currentIndexChanged.connect(self._on_tts_voice_changed)
+        tts_layout.addWidget(self.tts_voice_combo)
+        
+        tts_box.setLayout(tts_layout)
+        layout.addWidget(tts_box)
         
         # Stress Test
         stress_box = QGroupBox("Stress Test (50 Generations)")
@@ -2538,7 +3470,28 @@ class DevPanelDialog(QWidget):
         layout.addStretch()
         return widget
     
+    def _on_stt_size_changed(self, index):
+        """
+        Ahmet'in sesi veya Whisper large-v3-turbo hızı burada devreye giriyor. Fuar şovmenliği!
+        """
+        if self.main_app:
+            size = self.stt_size_combo.itemData(index)
+            self.main_app.stt_model_size = size
+            self.main_app.save_prompts() # Persist to config.json
+
+    def _on_tts_voice_changed(self, index):
+        """
+        Ahmet'in sesi veya Whisper large-v3-turbo hızı burada devreye giriyor. Fuar şovmenliği!
+        """
+        if self.main_app:
+            voice = self.tts_voice_combo.itemData(index)
+            self.main_app.tts_voice = voice
+            self.main_app.save_prompts() # Persist to config.json
+
     def run_ast_benchmark(self):
+        """
+        Runs ast benchmark for the current component.
+        """
         self.bench_result.setText("Running benchmark...")
         self.bench_result.setStyleSheet("color: #ffd04d; padding: 8px;")
         QApplication.processEvents()
@@ -2566,6 +3519,9 @@ class DevPanelDialog(QWidget):
         self.bench_result.setStyleSheet(f"color: {'#4dff9f' if score >= 80 else '#ff4d6a'}; padding: 8px;")
     
     def run_stress_test(self):
+        """
+        Runs stress test for the current component.
+        """
         self.stress_result.setText("Running stress test...")
         self.stress_result.setStyleSheet("color: #ffd04d; padding: 8px;")
         QApplication.processEvents()
@@ -2576,6 +3532,9 @@ class DevPanelDialog(QWidget):
         self.stress_result.setStyleSheet("color: #4dff9f; padding: 8px;")
 
     def run_smoke_tests(self):
+        """
+        Runs smoke tests for the current component.
+        """
         ok = True
         problems = []
 
@@ -2610,6 +3569,9 @@ class DevPanelDialog(QWidget):
             self.smoke_result.setStyleSheet("color: #ff4d6a; padding: 8px;")
 
     def run_throughput_benchmark(self):
+        """
+        Runs throughput benchmark for the current component.
+        """
         if not self.main_app or self.main_app.model is None or self.main_app.tokenizer is None:
             self.perf_result.setText("Benchmark requires a loaded model.")
             self.perf_result.setStyleSheet("color: #ff4d6a; padding: 8px;")
@@ -2626,14 +3588,23 @@ class DevPanelDialog(QWidget):
         self._bench_worker.start()
 
     def _on_benchmark_done(self, tps: float, tokens: int, elapsed: float, sample: str):
+        """
+        Handles the benchmark done event for the current component.
+        """
         self.perf_result.setText(f"{tps:.2f} tok/s | {tokens} tokens | {elapsed:.2f}s")
         self.perf_result.setStyleSheet("color: #4dff9f; padding: 8px;")
 
     def _on_benchmark_error(self, err: str):
+        """
+        Handles the benchmark error event for the current component.
+        """
         self.perf_result.setText(f"Benchmark failed: {err}")
         self.perf_result.setStyleSheet("color: #ff4d6a; padding: 8px;")
 
     def start_ram_monitor(self):
+        """
+        Starts ram monitor for the current component.
+        """
         self.ram_log.appendPlainText("RAM Monitor started...")
         if psutil is None:
             self.ram_log.appendPlainText("psutil is not available.")
@@ -2641,6 +3612,9 @@ class DevPanelDialog(QWidget):
         process = psutil.Process(os.getpid())
 
         def update_ram():
+            """
+            Updates ram for the current component.
+            """
             mem = process.memory_info().rss / (1024**3)
             self.ram_log.appendPlainText(f"RAM: {mem:.2f} GB")
 
@@ -2649,11 +3623,17 @@ class DevPanelDialog(QWidget):
         self.ram_timer.start(2000)
 
     def stop_ram_monitor(self):
+        """
+        Stops ram monitor for the current component.
+        """
         if hasattr(self, 'ram_timer'):
             self.ram_timer.stop()
         self.ram_log.appendPlainText("RAM Monitor stopped.")
 
     def build_unrestricted_tab(self):
+        """
+        Builds unrestricted tab for the current component.
+        """
         widget = QWidget()
         layout = QVBoxLayout(widget)
 
@@ -2680,14 +3660,17 @@ class DevPanelDialog(QWidget):
 
         self.unrestricted_status = QLabel("Status: DISABLED")
         self.unrestricted_status.setStyleSheet("color: #888; font-size: 16px; padding: 20px;")
-        self.unrestricted_status.setAlignment(Qt.AlignCenter)
+        self.unrestricted_status.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self.unrestricted_status)
 
         layout.addStretch()
         return widget
 
     def toggle_unrestricted(self, state):
-        if state == Qt.Checked:
+        """
+        Toggles unrestricted for the current component.
+        """
+        if state == Qt.CheckState.Checked:
             self.unrestricted_enabled.setText("Unrestricted Mode ACTIVE")
             self.unrestricted_status.setText("Status: ACTIVE")
             self.unrestricted_status.setStyleSheet("color: #ff4d6a; font-size: 18px; font-weight: bold; padding: 20px;")
@@ -2713,8 +3696,156 @@ class DevPanelDialog(QWidget):
 # ---------------------------------------------------------
 # MAIN UI
 # ---------------------------------------------------------
+class CustomMessageBox(QDialog):
+    """
+    Represents the CustomMessageBox entity within the LokumAI framework.
+    """
+    @classmethod
+    def _create_dialog(cls, parent, title, text, btn_text="OK", icon_type="info"):
+        """
+        Creates dialog for the current component.
+        """
+        dialog = QDialog(parent)
+        dialog.setWindowTitle(title)
+        dialog.setMinimumWidth(320)
+        dialog.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint)
+        
+        # Apply theme colors
+        try:
+            theme = parent.theme if hasattr(parent, "theme") else "dark"
+            if theme == "system" and hasattr(parent, "detect_system_theme"):
+                theme = parent.detect_system_theme()
+        except:
+            theme = "dark"
+            
+        is_dark = theme == "dark"
+        bg_color = "#1e1e1e" if is_dark else "#ffffff"
+        text_color = "#f5f5f5" if is_dark else "#1c1c1e"
+        muted_color = "#98989d" if is_dark else "#8e8e93"
+        border_color = "#38383a" if is_dark else "#e5e5ea"
+        btn_bg = "#2c2c2e" if is_dark else "#f2f2f7"
+        btn_hover = "#48484a" if is_dark else "#e5e5ea"
+        accent_color = "#0a84ff" if is_dark else "#007aff"
+        danger_color = "#ff453a" if is_dark else "#ff3b30"
+        
+        main_color = accent_color if icon_type != "critical" else danger_color
+        if icon_type == "warning": main_color = "#ff9f0a" if is_dark else "#ff9500"
+        
+        dialog.setStyleSheet(f"""
+            QDialog {{
+                background-color: {bg_color};
+                border: 1px solid {border_color};
+                border-radius: 12px;
+            }}
+            QLabel#Title {{
+                color: {text_color};
+                font-size: 16px;
+                font-weight: 800;
+            }}
+            QLabel#Message {{
+                color: {muted_color};
+                font-size: 14px;
+            }}
+            QPushButton {{
+                background-color: {btn_bg};
+                color: {text_color};
+                border: none;
+                border-radius: 8px;
+                padding: 8px 16px;
+                font-size: 14px;
+                font-weight: 600;
+            }}
+            QPushButton:hover {{
+                background-color: {btn_hover};
+            }}
+            QPushButton#PrimaryBtn {{
+                background-color: {main_color};
+                color: white;
+            }}
+            QPushButton#PrimaryBtn:hover {{
+                background-color: {main_color}dd;
+            }}
+        """)
+        
+        layout = QVBoxLayout(dialog)
+        layout.setContentsMargins(24, 24, 24, 24)
+        layout.setSpacing(12)
+        
+        lbl_title = QLabel(title)
+        lbl_title.setObjectName("Title")
+        layout.addWidget(lbl_title)
+        
+        msg = QLabel(text)
+        msg.setObjectName("Message")
+        msg.setWordWrap(True)
+        layout.addWidget(msg)
+        
+        layout.addStretch()
+        
+        btn_layout = QHBoxLayout()
+        btn_layout.setSpacing(12)
+        btn_layout.addStretch()
+        
+        if icon_type == "question":
+            cancel_btn = QPushButton("No")
+            cancel_btn.clicked.connect(dialog.reject)
+            btn_layout.addWidget(cancel_btn)
+            btn_text = "Yes"
+            
+        primary_btn = QPushButton(btn_text)
+        primary_btn.setObjectName("PrimaryBtn")
+        primary_btn.clicked.connect(dialog.accept)
+        btn_layout.addWidget(primary_btn)
+        
+        layout.addLayout(btn_layout)
+        return dialog
+
+    @classmethod
+    def information(cls, parent, title, text):
+        """
+        Informations for the current component.
+        """
+        d = cls._create_dialog(parent, title, text, "OK", "info")
+        d.exec()
+        
+    @classmethod
+    def warning(cls, parent, title, text):
+        """
+        Warnings for the current component.
+        """
+        d = cls._create_dialog(parent, title, text, "OK", "warning")
+        d.exec()
+        
+    @classmethod
+    def critical(cls, parent, title, text):
+        """
+        Criticals for the current component.
+        """
+        d = cls._create_dialog(parent, title, text, "OK", "critical")
+        d.exec()
+
+    @classmethod
+    def question(cls, parent, title, text, buttons=None):
+        """
+        Questions for the current component.
+        """
+        d = cls._create_dialog(parent, title, text, "Yes", "question")
+        return QMessageBox.StandardButton.Yes if d.exec() == QDialog.DialogCode.Accepted else QMessageBox.StandardButton.No
+
+# Monkey patch QMessageBox
+QMessageBox.information = CustomMessageBox.information
+QMessageBox.warning = CustomMessageBox.warning
+QMessageBox.critical = CustomMessageBox.critical
+QMessageBox.question = CustomMessageBox.question
+
 class ChatbotGUI(QWidget):
+    """
+    Arayüzün elitliğini ve LM Studio kalitesini sağlayan ana şasi burası.
+    """
     def __init__(self, model, tokenizer, model_path, *, db_path: str | None = None, start_service: bool = True, start_monitor: bool = True):
+        """
+        Initializes the instance with the required configuration and state.
+        """
         super().__init__()
         self.model = model
         self.tokenizer = tokenizer
@@ -2742,6 +3873,9 @@ class ChatbotGUI(QWidget):
         self.theme = self.prompts.get("theme", "dark")
         self.current_model_path = self.prompts.get("model_path", self.current_model_path)
         self.use_rag = bool(self.prompts.get("use_rag", True))
+        self.use_tts = bool(self.prompts.get("use_tts", False))
+        self.tts_voice = self.prompts.get("tts_voice", "tr-TR-AhmetNeural")
+        self.stt_model_size = self.prompts.get("stt_model_size", "large-v3-turbo")
         self.training_active = False
         self.project_root = self.prompts.get("project_root", "")
         self._project_file_cache = None
@@ -2761,6 +3895,8 @@ class ChatbotGUI(QWidget):
         self._last_context_prompt = ""
         self._final_worker = None
         self._final_pending = None
+        self.mic_worker = None
+        self.tts_worker = None
 
         self.init_ui()
         try:
@@ -2807,7 +3943,7 @@ class ChatbotGUI(QWidget):
             "Dev Mode password was generated on this machine.\n\n"
             f"Password:\n{DEV_MODE_PASSWORD}\n\n"
             + (f"Saved to:\n{loc}\n\n" if loc else "")
-            + "Tip: You can override with env var LOKUMAI_DEV_PASSWORD."
+            + "Tip: You can override with env var LOKUMF_DEV_PASSWORD."
         )
         try:
             QMessageBox.information(self, "Dev Mode Password", msg)
@@ -2815,11 +3951,14 @@ class ChatbotGUI(QWidget):
             pass
 
     def _db_path(self) -> str:
+        """
+        Sohbetlerin DB ye güvenli şekilde yazıldığı kısım. .lokumai izolasyonu önemli.
+        """
         if self._db_path_override:
             return self._db_path_override
         # Default DB lives in ~/.lokumai to avoid committing private chats into git.
         try:
-            from lokum_paths import chat_db_path as _chat_db_path, ensure_dir as _ensure_dir  # type: ignore
+            from core.lokum_paths import chat_db_path as _chat_db_path, ensure_dir as _ensure_dir  # type: ignore
 
             p = _chat_db_path()
             _ensure_dir(p.parent)
@@ -2915,6 +4054,9 @@ class ChatbotGUI(QWidget):
             pass
 
     def _init_chat_db(self) -> None:
+        """
+        Inits chat db for the current component.
+        """
         self._migrate_local_repo_db_if_needed()
         self._migrate_local_repo_lora_if_needed()
         conn = sqlite3.connect(self._db_path())
@@ -2956,6 +4098,9 @@ class ChatbotGUI(QWidget):
             conn.close()
 
     def _ensure_chat_row(self, conn: sqlite3.Connection, name: str) -> int:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         nm = (name or "").strip()
         if not nm:
             nm = "Default Chat"
@@ -2969,6 +4114,9 @@ class ChatbotGUI(QWidget):
         return int(cur.lastrowid)
 
     def _load_chats_from_db(self) -> None:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         conn = sqlite3.connect(self._db_path())
         try:
             cur = conn.cursor()
@@ -3026,6 +4174,9 @@ class ChatbotGUI(QWidget):
         self.render_chat(self.active_chat)
 
     def _persist_message(self, chat_name: str, role: str, content: str, think: str = "", thought_s=None, meta=None) -> None:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         conn = sqlite3.connect(self._db_path())
         try:
             chat_id = self._ensure_chat_row(conn, chat_name)
@@ -3044,6 +4195,9 @@ class ChatbotGUI(QWidget):
             conn.close()
 
     def _rename_chat_db(self, old_name: str, new_name: str) -> None:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         conn = sqlite3.connect(self._db_path())
         try:
             cur = conn.cursor()
@@ -3053,6 +4207,9 @@ class ChatbotGUI(QWidget):
             conn.close()
 
     def _delete_chat_db(self, name: str) -> None:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         conn = sqlite3.connect(self._db_path())
         try:
             conn.execute("PRAGMA foreign_keys = ON")
@@ -3069,6 +4226,9 @@ class ChatbotGUI(QWidget):
             conn.close()
 
     def _remove_chat_list_item(self, chat_name: str) -> None:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         target = (chat_name or "").strip()
         if not target:
             return
@@ -3082,6 +4242,9 @@ class ChatbotGUI(QWidget):
                 break
 
     def _replace_user_message_db(self, chat_name: str, msg_index: int, new_content: str) -> None:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         conn = sqlite3.connect(self._db_path())
         try:
             chat_id = self._ensure_chat_row(conn, chat_name)
@@ -3106,6 +4269,9 @@ class ChatbotGUI(QWidget):
             conn.close()
 
     def _delete_user_message_db(self, chat_name: str, msg_index: int) -> None:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         conn = sqlite3.connect(self._db_path())
         try:
             chat_id = self._ensure_chat_row(conn, chat_name)
@@ -3129,11 +4295,17 @@ class ChatbotGUI(QWidget):
             conn.close()
 
     def _restore_dev_dialog_state(self):
+        """
+        Restores dev dialog state for the current component.
+        """
         visible = self._settings.value("dev_dialog/visible", False, type=bool)
         if self.dev_mode_active and visible:
             self.toggle_dev_dialog(force_state=True)
 
     def _save_dev_dialog_state(self):
+        """
+        Saves dev dialog state for the current component.
+        """
         if hasattr(self, "dev_sidebar") and self.dev_sidebar is not None:
             self._settings.setValue("dev_dialog/visible", bool(self.dev_sidebar.isVisible()))
         else:
@@ -3141,9 +4313,15 @@ class ChatbotGUI(QWidget):
         self._settings.setValue("dev_dialog/collapsed", False)
 
     def _ensure_dev_dialog(self):
+        """
+        Ensures dev dialog for the current component.
+        """
         return
 
     def get_rag_engine(self):
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         if bool(getattr(self, "training_active", False)):
             return None
         if self.rag_engine is not None:
@@ -3167,6 +4345,9 @@ class ChatbotGUI(QWidget):
         return self.rag_engine
 
     def unload_rag_engine(self) -> None:
+        """
+        Dosyaları okuyup 768 boyutlu vektörlere çeviren RAG beyni. Hafıza buradan geliyor.
+        """
         try:
             self.rag_engine = None
         except Exception:
@@ -3189,33 +4370,36 @@ class ChatbotGUI(QWidget):
 
     def load_prompts(self) -> dict:
         """
-        Load prompts from prompts.json configuration file.
-
-        PROMPTS STRUCTURE:
-        - system_prompt: Developer-only prompt (editable only in Dev Mode)
-        - user_prompt: User-facing prompt (editable in Settings by regular users)
-        - unrestricted_prompt: Used when Unrestricted Mode is enabled (Dev Mode only)
-
-        If prompts.json doesn't exist, returns default prompts and creates the file.
-
-        Returns:
-            dict with keys: system_prompt, user_prompt, unrestricted_prompt
+        Load prompts from config.json in .lokumai directory.
         """
-        prompts_path = os.path.join(os.path.dirname(__file__), "prompts.json")
+        try:
+            from core.lokum_paths import config_path as _config_path, ensure_dir as _ensure_dir
+            prompts_path = str(_config_path())
+            _ensure_dir(os.path.dirname(prompts_path))
+        except Exception:
+            prompts_path = os.path.join(os.path.dirname(__file__), "prompts.json")
+
         default_prompts = {
-            "system_prompt": "You are LokumAI, a local expert AI pair-programmer.\nYour core rule is: **ASK BEFORE ACTING**.\n\nBefore writing any code or providing a solution, you MUST:\n1. List EVERY unclear point or assumption in the user's request.\n2. Ask the user to clarify these points one by one.\n3. DO NOT write a single line of code until all questions are answered and the requirements are 100% clear.\n\nStyle rules:\n- Write production-grade, PEP8-compliant Python code.\n- Use type hints for all functions.\n- Be concise but thorough in your explanations.",
-            "user_prompt": "You are a helpful AI assistant. Provide clear, concise, and accurate responses to the user's questions. Be friendly and professional.",
-            "unrestricted_prompt": "You are LokumAI, a helpful assistant. Answer directly without asking clarifying questions.",
+            "system_prompt": "You are Rodion Romanovich Raskolnikov from Dostoevsky's 'Crime and Punishment'.\nAnswer questions with your unique philosophical, guilt-ridden, yet intellectual perspective.\nStyle: 19th-century Russian literature tone, analytical, slightly dark, intellectual.",
+            "user_prompt": "You are Raskolnikov. Answer as him.",
+            "unrestricted_prompt": "Answer directly as Raskolnikov.",
             "theme": "dark",
-            "model_path": ""
+            "model_path": "",
+            "use_rag": True,
+            "use_tts": False,
+            "tts_voice": "tr-TR-AhmetNeural"
         }
 
         try:
             if os.path.exists(prompts_path):
                 with open(prompts_path, 'r', encoding='utf-8') as f:
-                    return json.load(f)
+                    data = json.load(f)
+                    # Merge with defaults to ensure all keys exist
+                    for k, v in default_prompts.items():
+                        if k not in data:
+                            data[k] = v
+                    return data
             else:
-                # Create default prompts.json if it doesn't exist
                 with open(prompts_path, 'w', encoding='utf-8') as f:
                     json.dump(default_prompts, f, indent=4)
                 return default_prompts
@@ -3223,21 +4407,30 @@ class ChatbotGUI(QWidget):
             print(f"Error loading prompts: {e}")
             return default_prompts
 
-    def save_prompts(self, prompts: dict) -> bool:
+    def save_prompts(self, prompts: dict = None) -> bool:
         """
-        Save prompts to prompts.json file.
-
-        USED BY:
-        - Dev Mode: When developer changes system_prompt or unrestricted_prompt
-        - Settings: When user changes user_prompt
-
-        Args:
-            prompts: dict with system_prompt, user_prompt, unrestricted_prompt
-
-        Returns:
-            True if successful, False otherwise
+        Save current state to config.json in .lokumai directory.
         """
-        prompts_path = os.path.join(os.path.dirname(__file__), "prompts.json")
+        try:
+            from core.lokum_paths import config_path as _config_path, ensure_dir as _ensure_dir
+            prompts_path = str(_config_path())
+            _ensure_dir(os.path.dirname(prompts_path))
+        except Exception:
+            prompts_path = os.path.join(os.path.dirname(__file__), "prompts.json")
+
+        if prompts is None:
+            # Build current state if no dict provided
+            prompts = {
+                "system_prompt": self.system_prompt,
+                "user_prompt": self.user_prompt,
+                "unrestricted_prompt": self.prompts.get("unrestricted_prompt", ""),
+                "theme": self.theme,
+                "model_path": self.current_model_path,
+                "use_rag": self.use_rag,
+                "use_tts": self.use_tts,
+                "tts_voice": self.tts_voice
+            }
+
         try:
             with open(prompts_path, 'w', encoding='utf-8') as f:
                 json.dump(prompts, f, indent=4)
@@ -3247,6 +4440,9 @@ class ChatbotGUI(QWidget):
             return False
 
     def init_ui(self):
+        """
+        Inits ui for the current component.
+        """
         self.setWindowTitle(VERSION)
         self.setGeometry(100, 100, 1100, 750)
 
@@ -3257,7 +4453,16 @@ class ChatbotGUI(QWidget):
         # ---------------- LEFT SIDEBAR (CHATS) ----------------
         self.sidebar = QFrame()
         self.sidebar.setObjectName("Sidebar")
-        self.sidebar.setMinimumWidth(140)
+        self.sidebar.setMinimumWidth(200)
+        self.sidebar.setMaximumWidth(300)
+        
+        # Add slight shadow to Sidebar
+        sidebar_fx = QGraphicsDropShadowEffect()
+        sidebar_fx.setBlurRadius(15)
+        sidebar_fx.setOffset(2, 0)
+        sidebar_fx.setColor(QColor(0, 0, 0, 40))
+        self.sidebar.setGraphicsEffect(sidebar_fx)
+        
         s_layout = QVBoxLayout(self.sidebar)
         s_layout.setContentsMargins(15, 20, 15, 15)
         
@@ -3265,16 +4470,32 @@ class ChatbotGUI(QWidget):
         top_bar = QHBoxLayout()
         logo = QLabel("LokumAI")
         logo.setObjectName("Logo")
-        
-        new_chat_btn = QPushButton("+ New")
-        new_chat_btn.setFixedSize(70, 32)
-        new_chat_btn.setObjectName("NewChatButton")
-        new_chat_btn.clicked.connect(self.new_chat)
-        
         top_bar.addWidget(logo)
         top_bar.addStretch()
-        top_bar.addWidget(new_chat_btn)
+        
+        # We can put a small options button next to the logo if needed, but let's just keep logo left-aligned
         s_layout.addLayout(top_bar)
+        s_layout.addSpacing(10)
+        
+        # New Chat Button (LM Studio style)
+        new_chat_layout = QHBoxLayout()
+        new_chat_layout.setSpacing(5)
+        
+        self.new_chat_btn = QPushButton("New Chat")
+        self.new_chat_btn.setFixedHeight(36)
+        self.new_chat_btn.setObjectName("NewChatMainBtn")
+        self.new_chat_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.new_chat_btn.clicked.connect(self.new_chat)
+        
+        self.chat_opts_btn = QPushButton("...")
+        self.chat_opts_btn.setFixedSize(36, 36)
+        self.chat_opts_btn.setObjectName("NewChatOptsBtn")
+        self.chat_opts_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        
+        new_chat_layout.addWidget(self.new_chat_btn, 1)
+        new_chat_layout.addWidget(self.chat_opts_btn)
+        
+        s_layout.addLayout(new_chat_layout)
         s_layout.addSpacing(15)
         
         # Search
@@ -3326,19 +4547,25 @@ class ChatbotGUI(QWidget):
         s_layout.addWidget(self.hw_box)
         s_layout.addSpacing(10)
         
-        settings_btn = QPushButton("Settings")
+        # New Feature: Settings (Ayarlar)
+        settings_btn = QPushButton("⚙️ Ayarlar")
         settings_btn.setObjectName("SettingsButton")
-        settings_btn.clicked.connect(self.open_settings)
+        settings_btn.setFixedHeight(36)
+        settings_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        settings_btn.clicked.connect(self.open_settings_dialog)
         s_layout.addWidget(settings_btn)
         
         dev_btn = QPushButton("Dev Mode")
         dev_btn.setObjectName("DevUnlockButton")
+        dev_btn.setFixedHeight(36)
+        dev_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         dev_btn.clicked.connect(self.on_dev_button_clicked)
         s_layout.addWidget(dev_btn)
 
         # ---------------- RIGHT MAIN AREA ----------------
         self.main_area = QFrame()
         self.main_area.setObjectName("MainArea")
+        self.main_area.setMinimumWidth(400)
         m_layout = QVBoxLayout(self.main_area)
         m_layout.setContentsMargins(0, 0, 0, 0)
         m_layout.setSpacing(0)
@@ -3347,6 +4574,14 @@ class ChatbotGUI(QWidget):
         self.header_area = QFrame()
         self.header_area.setObjectName("HeaderArea")
         self.header_area.setFixedHeight(60)
+        
+        # Add slight shadow to HeaderArea
+        header_fx = QGraphicsDropShadowEffect()
+        header_fx.setBlurRadius(15)
+        header_fx.setOffset(0, 2)
+        header_fx.setColor(QColor(0, 0, 0, 40))
+        self.header_area.setGraphicsEffect(header_fx)
+        
         h_layout = QHBoxLayout(self.header_area)
 
         h_layout.addSpacing(20)
@@ -3380,7 +4615,7 @@ class ChatbotGUI(QWidget):
         
         m_layout.addWidget(self.header_area)
 
-        self.content_splitter = QSplitter(Qt.Horizontal)
+        self.content_splitter = QSplitter(Qt.Orientation.Horizontal)
         self.content_splitter.setObjectName("ContentSplitter")
 
         self.chat_container = QFrame()
@@ -3389,18 +4624,25 @@ class ChatbotGUI(QWidget):
         chat_layout.setContentsMargins(0, 0, 0, 0)
         chat_layout.setSpacing(0)
 
-        self.chat_display = QScrollArea()
-        self.chat_display.setWidgetResizable(True)
-        self.chat_display.setFrameShape(QFrame.NoFrame)
-        self.chat_display.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        chat_layout.addWidget(self.chat_display)
+        if HAS_WEBENGINE:
+            self.chat_display = QWebEngineView()
+            self.chat_display.page().setBackgroundColor(Qt.GlobalColor.transparent)
+            self.chat_display.setHtml(self._get_base_html())
+            self.chat_display.urlChanged.connect(self._handle_url_change)
+            chat_layout.addWidget(self.chat_display)
+        else:
+            self.chat_display = QScrollArea()
+            self.chat_display.setWidgetResizable(True)
+            self.chat_display.setFrameShape(QFrame.Shape.NoFrame)
+            self.chat_display.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+            chat_layout.addWidget(self.chat_display)
 
-        self.chat_view = QWidget()
-        self.chat_msgs_layout = QVBoxLayout(self.chat_view)
-        self.chat_msgs_layout.setContentsMargins(24, 18, 24, 18)
-        self.chat_msgs_layout.setSpacing(14)
-        self.chat_msgs_layout.addStretch()
-        self.chat_display.setWidget(self.chat_view)
+            self.chat_view = QWidget()
+            self.chat_msgs_layout = QVBoxLayout(self.chat_view)
+            self.chat_msgs_layout.setContentsMargins(24, 18, 24, 18)
+            self.chat_msgs_layout.setSpacing(14)
+            self.chat_msgs_layout.addStretch()
+            self.chat_display.setWidget(self.chat_view)
 
         self.chat_list.itemSelectionChanged.connect(self._on_chat_list_selection_changed)
         self._rebuild_chat_list()
@@ -3412,57 +4654,68 @@ class ChatbotGUI(QWidget):
         self.input_container.setObjectName("InputContainer")
         ic_layout = QVBoxLayout(self.input_container)
         ic_layout.setContentsMargins(60, 20, 60, 30)
+        ic_layout.setSpacing(10)
 
-        self.input_box = QFrame()
-        self.input_box.setObjectName("InputBox")
-        ib_layout = QVBoxLayout(self.input_box)
+        # The unified Input Bar (Text + Dynamic Button)
+        self.input_bar_frame = QFrame()
+        self.input_bar_frame.setObjectName("InputBarFrame")
+        ib_layout = QHBoxLayout(self.input_bar_frame)
+        ib_layout.setContentsMargins(12, 12, 12, 12)
+        ib_layout.setSpacing(10)
 
         self.input_field = QLineEdit()
+        self.input_field.setObjectName("ChatInputField")
         self.input_field.setPlaceholderText("Send a message to the model...")
         self.input_field.returnPressed.connect(self.soru_sor)
-        ib_layout.addWidget(self.input_field)
-
-        btm_input_bar = QHBoxLayout()
-        btm_input_bar.setContentsMargins(10, 0, 10, 5)
-
-        # Tools
+        
+        self.dynamic_action_btn = QPushButton("🎤")
+        self.dynamic_action_btn.setObjectName("DynamicActionBtn")
+        self.dynamic_action_btn.setFixedSize(36, 36)
+        self.dynamic_action_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.dynamic_action_btn.clicked.connect(self._on_dynamic_action_clicked)
+        
+        # Tools layout inside the unified bar (left side)
         tool_layout = QHBoxLayout()
         tool_layout.setSpacing(8)
-
+        
         btn_rag = QPushButton("Files")
-        tool_layout.addWidget(btn_rag)
+        btn_rag.setObjectName("ToolBtn")
+        btn_rag.setFixedSize(60, 36)
+        btn_rag.setCursor(Qt.CursorShape.PointingHandCursor)
         btn_rag.clicked.connect(self.open_project_file_picker)
+        tool_layout.addWidget(btn_rag)
+        
+        ib_layout.addLayout(tool_layout)
+        ib_layout.addWidget(self.input_field)
+        ib_layout.addWidget(self.dynamic_action_btn)
+        
+        ic_layout.addWidget(self.input_bar_frame)
 
-        send_btn = QPushButton("↑")
-        send_btn.setFixedSize(32, 32)
-        send_btn.setCursor(Qt.PointingHandCursor)
-        send_btn.clicked.connect(self.soru_sor)
-        self.send_btn = send_btn
-
-        stop_btn = QPushButton("■")
-        stop_btn.setFixedSize(32, 32)
-        stop_btn.setCursor(Qt.PointingHandCursor)
-        stop_btn.setObjectName("StopButton")
-        stop_btn.setFocusPolicy(Qt.NoFocus)
-        stop_btn.setEnabled(False)
-        stop_btn.clicked.connect(self.stop_generation)
-        self.stop_btn = stop_btn
-
-        btm_input_bar.addLayout(tool_layout)
+        # Bottom row for Status
+        btm_row = QHBoxLayout()
         self.gen_status_lbl = QLabel("")
-        btm_input_bar.addWidget(self.gen_status_lbl)
-        btm_input_bar.addStretch()
-        btm_input_bar.addWidget(stop_btn)
-        btm_input_bar.addWidget(send_btn)
-        ib_layout.addLayout(btm_input_bar)
-
-        ic_layout.addWidget(self.input_box)
+        self.gen_status_lbl.setObjectName("GenStatusLbl")
+        btm_row.addWidget(self.gen_status_lbl)
+        btm_row.addStretch()
+        
+        ic_layout.addLayout(btm_row)
+        
+        
+        self.input_field.textChanged.connect(self._update_dynamic_btn_state)
         chat_layout.addWidget(self.input_container)
 
         self.dev_sidebar = QFrame()
         self.dev_sidebar.setObjectName("DevSidebar")
         self.dev_sidebar.setVisible(False)
         self.dev_sidebar.setMinimumWidth(260)
+        
+        # Add slight shadow to DevSidebar
+        dev_sidebar_fx = QGraphicsDropShadowEffect()
+        dev_sidebar_fx.setBlurRadius(15)
+        dev_sidebar_fx.setOffset(-2, 0)
+        dev_sidebar_fx.setColor(QColor(0, 0, 0, 40))
+        self.dev_sidebar.setGraphicsEffect(dev_sidebar_fx)
+        
         dev_layout = QVBoxLayout(self.dev_sidebar)
         dev_layout.setContentsMargins(10, 10, 10, 10)
         dev_layout.setSpacing(10)
@@ -3478,7 +4731,7 @@ class ChatbotGUI(QWidget):
         m_layout.addWidget(self.content_splitter)
 
         # Assemble
-        splitter = QSplitter(Qt.Horizontal)
+        splitter = QSplitter(Qt.Orientation.Horizontal)
         self.splitter = splitter
         splitter.addWidget(self.sidebar)
         splitter.addWidget(self.main_area)
@@ -3487,7 +4740,37 @@ class ChatbotGUI(QWidget):
 
         self.apply_theme(self.prompts.get("theme", "dark"))
 
+    def _update_dynamic_btn_state(self):
+        """
+        Updates dynamic btn state for the current component.
+        """
+        if getattr(self, "is_generating", False):
+            self.dynamic_action_btn.setText("■")
+            self.dynamic_action_btn.setToolTip("Stop Generation")
+        else:
+            if self.input_field.text().strip():
+                self.dynamic_action_btn.setText("⬆")
+                self.dynamic_action_btn.setToolTip("Send Message")
+            else:
+                self.dynamic_action_btn.setText("🎤")
+                self.dynamic_action_btn.setToolTip("Hold or Click to Speak")
+
+    def _on_dynamic_action_clicked(self):
+        """
+        Handles the dynamic action clicked event for the current component.
+        """
+        if getattr(self, "is_generating", False):
+            self.stop_generation()
+        else:
+            if self.input_field.text().strip():
+                self.soru_sor()
+            else:
+                self.toggle_mic()
+
     def _rebuild_chat_list(self):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         try:
             for i in range(self.chat_list.count()):
                 it = self.chat_list.item(i)
@@ -3506,10 +4789,13 @@ class ChatbotGUI(QWidget):
         self._refresh_chat_list_row_visuals()
 
     def _chat_name_from_item(self, item: QListWidgetItem) -> str:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         if item is None:
             return ""
         try:
-            v = item.data(Qt.UserRole)
+            v = item.data(Qt.ItemDataRole.UserRole)
             if isinstance(v, str) and v:
                 return v
         except Exception:
@@ -3520,6 +4806,9 @@ class ChatbotGUI(QWidget):
             return ""
 
     def _find_chat_list_item(self, chat_name: str):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         target = (chat_name or "").strip()
         if not target:
             return None
@@ -3530,16 +4819,22 @@ class ChatbotGUI(QWidget):
         return None
 
     def _add_chat_list_item(self, chat_name: str):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         item = QListWidgetItem("")
-        item.setData(Qt.UserRole, chat_name)
+        item.setData(Qt.ItemDataRole.UserRole, chat_name)
         self.chat_list.addItem(item)
         self._set_chat_list_item_widget(item, chat_name)
 
     def _set_chat_list_item_widget(self, item: QListWidgetItem, chat_name: str) -> None:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         w = QWidget()
         w.setObjectName("ChatItemRow")
         w.setProperty("selected", False)
-        w.setAttribute(Qt.WA_StyledBackground, True)
+        w.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
         layout = QHBoxLayout(w)
         layout.setContentsMargins(10, 8, 10, 8)
         layout.setSpacing(8)
@@ -3553,8 +4848,8 @@ class ChatbotGUI(QWidget):
         btn.setText("...")
         btn.setObjectName("ChatItemMenu")
         btn.setAutoRaise(True)
-        btn.setCursor(Qt.PointingHandCursor)
-        btn.setFocusPolicy(Qt.NoFocus)
+        btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         btn.setFixedSize(30, 26)
         btn.clicked.connect(lambda _=False, it=item, anchor=btn: self.open_chat_list_menu(self._chat_name_from_item(it), anchor))
         layout.addWidget(btn)
@@ -3568,10 +4863,13 @@ class ChatbotGUI(QWidget):
             item.setSizeHint(QSize(220, 52))
 
     def _rename_chat_list_item(self, old_name: str, new_name: str) -> None:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         it = self._find_chat_list_item(old_name)
         if it is None:
             return
-        it.setData(Qt.UserRole, new_name)
+        it.setData(Qt.ItemDataRole.UserRole, new_name)
         w = self.chat_list.itemWidget(it)
         if w is not None:
             lbl = w.findChild(QLabel, "ChatItemLabel")
@@ -3586,6 +4884,9 @@ class ChatbotGUI(QWidget):
             self._set_chat_list_item_widget(it, new_name)
 
     def _refresh_chat_list_row_visuals(self) -> None:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         current = self.chat_list.currentItem()
         for i in range(self.chat_list.count()):
             it = self.chat_list.item(i)
@@ -3599,7 +4900,61 @@ class ChatbotGUI(QWidget):
                 w.style().polish(w)
                 w.update()
 
+    def _handle_url_change(self, url):
+        """
+        Handles url change for the current component.
+        """
+        url_str = url.toString()
+        if url_str.startswith("speak://"):
+            import base64
+            try:
+                b64_data = url_str.split("speak://")[1]
+                # Fix padding if needed
+                missing_padding = len(b64_data) % 4
+                if missing_padding:
+                    b64_data += '=' * (4 - missing_padding)
+                text = base64.b64decode(b64_data).decode('utf-8')
+                self.speak_text(text)
+            except Exception as e:
+                print(f"TTS Bridge error: {e}")
+            
+            # Reset URL to prevent repeated calls on refresh or back
+            self.chat_display.page().runJavaScript("window.location.href = 'about:blank';")
+
+    def toggle_tts(self):
+        """
+        Ahmet'in sesi veya Whisper large-v3-turbo hızı burada devreye giriyor. Fuar şovmenliği!
+        """
+        self.use_tts = not self.use_tts
+        self.save_prompts()  # Persist setting
+
+    def speak_text(self, text: str):
+        """
+        Speaks text for the current component.
+        """
+        if not text.strip():
+            return
+            
+        # Stop current speech if any
+        if self.tts_worker and self.tts_worker.isRunning():
+            self.tts_worker.terminate()
+            self.tts_worker.wait()
+            
+        # Clean text from markdown/think tags for cleaner speech
+        clean_text = re.sub(r"```[\s\S]*?```", "", text) # remove code blocks
+        clean_text = re.sub(r"<[^>]+>", "", clean_text)  # remove tags
+        clean_text = clean_text.strip()
+        
+        if not clean_text:
+            return
+            
+        self.tts_worker = TTSWorker(clean_text, self.tts_voice)
+        self.tts_worker.start()
+
     def _on_chat_list_selection_changed(self):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         it = self.chat_list.currentItem()
         if not it:
             return
@@ -3607,6 +4962,9 @@ class ChatbotGUI(QWidget):
         self.switch_chat(it)
 
     def open_chat_list_menu(self, chat_name: str, anchor_btn: QToolButton):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         menu = QMenu(self)
         change_name = QAction("Change name", self)
         delete_chat = QAction("Delete chat", self)
@@ -3621,18 +4979,108 @@ class ChatbotGUI(QWidget):
         menu.addAction(history)
 
         pos = anchor_btn.mapToGlobal(anchor_btn.rect().bottomRight())
-        menu.exec_(pos)
+        menu.exec(pos)
 
     def _rename_chat_via_prompt(self, chat_name: str):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         new_name, ok = QInputDialog.getText(self, "Change Chat Name", "New name:", text=chat_name)
         if not ok or not new_name.strip():
             return
         self._rename_chat(chat_name, new_name.strip())
 
     def _delete_chat_by_name(self, chat_name: str):
-        res = QMessageBox.question(self, "Delete Chat", f"Delete '{chat_name}'? This cannot be undone.", QMessageBox.Yes | QMessageBox.No)
-        if res != QMessageBox.Yes:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
+        # Custom elegant delete dialog
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Delete Chat")
+        dialog.setFixedSize(360, 180)
+        dialog.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint)
+        
+        # Apply theme colors
+        is_dark = self.theme == "dark" or (self.theme == "system" and self.detect_system_theme() == "dark")
+        bg_color = "#1e1e1e" if is_dark else "#ffffff"
+        text_color = "#f5f5f5" if is_dark else "#1c1c1e"
+        muted_color = "#98989d" if is_dark else "#8e8e93"
+        border_color = "#38383a" if is_dark else "#e5e5ea"
+        danger_color = "#ff453a" if is_dark else "#ff3b30"
+        danger_hover = "#ff5e55" if is_dark else "#ff4f45"
+        btn_bg = "#2c2c2e" if is_dark else "#f2f2f7"
+        btn_hover = "#48484a" if is_dark else "#e5e5ea"
+        
+        dialog.setStyleSheet(f"""
+            QDialog {{
+                background-color: {bg_color};
+                border: 1px solid {border_color};
+                border-radius: 12px;
+            }}
+            QLabel#Title {{
+                color: {text_color};
+                font-size: 16px;
+                font-weight: 800;
+            }}
+            QLabel#Message {{
+                color: {muted_color};
+                font-size: 14px;
+            }}
+            QPushButton {{
+                background-color: {btn_bg};
+                color: {text_color};
+                border: none;
+                border-radius: 8px;
+                padding: 8px 16px;
+                font-size: 14px;
+                font-weight: 600;
+            }}
+            QPushButton:hover {{
+                background-color: {btn_hover};
+            }}
+            QPushButton#DeleteBtn {{
+                background-color: {danger_color};
+                color: white;
+            }}
+            QPushButton#DeleteBtn:hover {{
+                background-color: {danger_hover};
+            }}
+        """)
+        
+        layout = QVBoxLayout(dialog)
+        layout.setContentsMargins(24, 24, 24, 24)
+        layout.setSpacing(12)
+        
+        title = QLabel("Delete Chat")
+        title.setObjectName("Title")
+        layout.addWidget(title)
+        
+        msg = QLabel(f"Are you sure you want to delete '{chat_name}'?\nThis action cannot be undone.")
+        msg.setObjectName("Message")
+        msg.setWordWrap(True)
+        layout.addWidget(msg)
+        
+        layout.addStretch()
+        
+        btn_layout = QHBoxLayout()
+        btn_layout.setSpacing(12)
+        btn_layout.addStretch()
+        
+        cancel_btn = QPushButton("Cancel")
+        cancel_btn.clicked.connect(dialog.reject)
+        
+        delete_btn = QPushButton("Delete")
+        delete_btn.setObjectName("DeleteBtn")
+        delete_btn.clicked.connect(dialog.accept)
+        
+        btn_layout.addWidget(cancel_btn)
+        btn_layout.addWidget(delete_btn)
+        
+        layout.addLayout(btn_layout)
+        
+        if dialog.exec() != QDialog.DialogCode.Accepted:
             return
+            
         if getattr(self, "_pending_chat", None) == chat_name:
             try:
                 self.stop_generation()
@@ -3650,6 +5098,9 @@ class ChatbotGUI(QWidget):
         self._delete_worker.start()
 
     def _on_chat_deleted(self, chat_name: str, ok: bool, err: str, db_ms: float) -> None:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         ui_start = time.perf_counter()
         try:
             self.chat_list.setEnabled(True)
@@ -3705,6 +5156,9 @@ class ChatbotGUI(QWidget):
         QTimer.singleShot(1600, lambda: self.gen_status_lbl.setText(""))
 
     def _menu_show_history_for(self, chat_name: str):
+        """
+        Menus show history for for the current component.
+        """
         data = {
             "name": chat_name,
             "messages": self.chats.get(chat_name, []),
@@ -3726,22 +5180,30 @@ class ChatbotGUI(QWidget):
         layout.addLayout(btn_row)
         copy_btn.clicked.connect(lambda: QApplication.clipboard().setText(editor.toPlainText()))
         close_btn.clicked.connect(dlg.accept)
-        dlg.exec_()
+        dlg.exec()
 
     def _stop_generation(self, show_status: bool = True) -> None:
+        """
+        Stops generation for the current component.
+        """
         if hasattr(self, "worker") and self.worker is not None:
             try:
                 self.worker.stop()
             except Exception:
                 pass
-        self.stop_btn.setEnabled(False)
         if show_status:
             self.gen_status_lbl.setText("Stopping…")
 
     def stop_generation(self):
+        """
+        Stops generation for the current component.
+        """
         self._stop_generation(True)
 
     def closeEvent(self, event):
+        """
+        Closeevents for the current component.
+        """
         try:
             self._shutdown_threads()
         except Exception:
@@ -3749,11 +5211,17 @@ class ChatbotGUI(QWidget):
         super().closeEvent(event)
 
     def detect_system_theme(self) -> str:
+        """
+        Detects system theme for the current component.
+        """
         pal = QApplication.instance().palette()
-        window = pal.color(QPalette.Window)
+        window = pal.color(QPalette.ColorRole.Window)
         return "dark" if window.lightness() < 128 else "light"
 
     def apply_theme(self, theme: str) -> None:
+        """
+        Applys theme for the current component.
+        """
         if theme == "system":
             theme = self.detect_system_theme()
 
@@ -3761,29 +5229,31 @@ class ChatbotGUI(QWidget):
 
         if theme == "light":
             colors = {
-                "bg": "#f5f5f7",
-                "panel": "#ffffff",
-                "panel2": "#f0f0f2",
-                "border": "#d0d0d7",
-                "text": "#111111",
-                "muted": "#666666",
-                "accent": "#6a3dff",
-                "accent2": "#4d74ff",
-                "danger": "#c62828",
-                "chip": "#e9e9ef",
+                "bg": "#f5f5f7",         # macOS Light (Daha pürüzsüz)
+                "panel": "#ffffff",      # Kart arka planı
+                "panel2": "#f2f2f7",     # İç alanlar
+                "border": "#e5e5ea",     # Çok ince sınır
+                "text": "#1c1c1e",       # Saf siyah yerine koyu gri
+                "muted": "#8e8e93",      # Pasif yazılar
+                "accent": "#007aff",     # Apple Blue
+                "accent2": "#0051a8",    # Hover Blue
+                "danger": "#ff3b30",     # Apple Red
+                "chip": "#e5e5ea",       # Seçili öğe arka planı
+                "hover": "#d1d1d6"
             }
         else:
             colors = {
-                "bg": "#0f0f0f",
-                "panel": "#161616",
-                "panel2": "#222222",
-                "border": "#222222",
-                "text": "#e0e0e0",
-                "muted": "#888888",
-                "accent": "#7c4dff",
-                "accent2": "#9575cd",
-                "danger": "#ff4d6a",
-                "chip": "#1a1a1a",
+                "bg": "#121212",         # Ultra Koyu Arka Plan (OLED hissi)
+                "panel": "#1e1e1e",      # Yükseltilmiş Kartlar
+                "panel2": "#2c2c2e",     # Butonlar ve inputlar
+                "border": "#38383a",     # Hafif sınır
+                "text": "#f5f5f5",       # Beyaza yakın
+                "muted": "#98989d",      # Pasif yazılar
+                "accent": "#0a84ff",     # Koyu Mod Apple Blue
+                "accent2": "#409cff",    # Hover Blue
+                "danger": "#ff453a",     # Apple Red
+                "chip": "#3a3a3c",
+                "hover": "#48484a"
             }
 
         self._theme_colors = dict(colors)
@@ -3792,7 +5262,7 @@ class ChatbotGUI(QWidget):
             QWidget {{
                 background-color: {colors['bg']};
                 color: {colors['text']};
-                font-family: "Helvetica Neue", Arial, sans-serif;
+                font-family: ".AppleSystemUIFont", Helvetica, Arial;
             }}
             QLabel {{
                 background: transparent;
@@ -3837,27 +5307,63 @@ class ChatbotGUI(QWidget):
             QTabBar::tab {{
                 background: {colors['panel2']};
                 color: {colors['muted']};
-                padding: 8px 12px;
-                border-top-left-radius: 8px;
-                border-top-right-radius: 8px;
+                padding: 10px 16px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
                 margin-right: 4px;
+                font-weight: 600;
+                font-size: 13px;
             }}
             QTabBar::tab:selected {{
-                background: {colors['chip']};
+                background: {colors['panel']};
                 color: {colors['text']};
+                border-bottom: 2px solid {colors['accent']};
+            }}
+            QTabBar::tab:hover:!selected {{
+                background: {colors['hover']};
             }}
             QGroupBox {{
                 border: 1px solid {colors['border']};
-                border-radius: 8px;
-                margin-top: 12px;
-                padding-top: 12px;
-                font-weight: 700;
-                color: {colors['accent']};
+                border-radius: 12px;
+                margin-top: 18px;
+                padding-top: 16px;
+                background-color: {colors['panel']};
             }}
             QGroupBox::title {{
                 subcontrol-origin: margin;
-                left: 10px;
-                padding: 0 5px;
+                left: 12px;
+                padding: 0 8px;
+                color: {colors['muted']};
+                font-weight: 600;
+                font-size: 13px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }}
+            QPushButton#NewChatMainBtn {{
+                background-color: {colors['panel2']};
+                color: {colors['text']};
+                border: 1px solid {colors['border']};
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 600;
+                text-align: left;
+                padding-left: 16px;
+            }}
+            QPushButton#NewChatMainBtn:hover {{
+                background-color: {colors['hover']};
+                border-color: {colors['muted']};
+            }}
+            QPushButton#NewChatOptsBtn {{
+                background-color: {colors['panel2']};
+                color: {colors['text']};
+                border: 1px solid {colors['border']};
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: bold;
+            }}
+            QPushButton#NewChatOptsBtn:hover {{
+                background-color: {colors['hover']};
+                border-color: {colors['muted']};
             }}
             QListWidget {{
                 background: transparent;
@@ -3876,10 +5382,11 @@ class ChatbotGUI(QWidget):
                 background: transparent;
             }}
             QListWidget::item {{
-                padding: 12px;
-                border-radius: 8px;
-                margin-bottom: 2px;
+                padding: 10px 14px;
+                border-radius: 10px;
+                margin-bottom: 4px;
                 color: {colors['muted']};
+                font-weight: 500;
             }}
             QListWidget::item:hover {{
                 background-color: {colors['panel2']};
@@ -3891,51 +5398,109 @@ class ChatbotGUI(QWidget):
             }}
             QWidget#ChatItemRow {{
                 background: transparent;
-                border-radius: 10px;
+                border-radius: 12px;
+                padding: 4px;
             }}
             QWidget#ChatItemRow:hover {{
                 background-color: {colors['panel2']};
             }}
             QWidget#ChatItemRow[selected="true"] {{
                 background-color: {colors['chip']};
+                border-left: 3px solid {colors['accent']};
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
             }}
             QLabel#ChatItemLabel {{
                 color: {colors['muted']};
-                font-weight: 600;
+                font-weight: 500;
+                font-size: 13px;
+                padding-left: 4px;
             }}
             QWidget#ChatItemRow[selected="true"] QLabel#ChatItemLabel {{
                 color: {colors['text']};
                 font-weight: 700;
             }}
             QTextEdit {{
-                background-color: {colors['bg']};
-                border: none;
-                font-size: 15px;
-                padding: 30px;
-            }}
-            QLineEdit {{
-                background-color: {colors['chip']};
-                border: 1px solid {colors['border']};
-                border-radius: 8px;
-                padding: 8px 12px;
-                color: {colors['text']};
-                font-size: 13px;
-            }}
-            QFrame#InputContainer {{
                 background-color: {colors['panel']};
-                border-top: 1px solid {colors['border']};
-            }}
-            QFrame#InputBox {{
-                background-color: {colors['panel2']};
                 border: 1px solid {colors['border']};
                 border-radius: 12px;
+                font-size: 14px;
+                padding: 16px;
+                line-height: 1.6;
+                selection-background-color: {colors['accent']};
+            }}
+            QTextEdit:focus {{
+                border: 1px solid {colors['accent']};
+            }}
+            QLineEdit {{
+                background-color: {colors['panel2']};
+                border: 1px solid {colors['border']};
+                border-radius: 10px;
+                padding: 10px 14px;
+                color: {colors['text']};
+                font-size: 14px;
+            }}
+            QLineEdit:focus {{
+                border: 1px solid {colors['accent']};
+                background-color: {colors['panel']};
+            }}
+            QFrame#InputContainer {{
+                background-color: transparent;
+                border: none;
+                padding: 10px;
+            }}
+            QFrame#InputBarFrame {{
+                background-color: {colors['panel']};
+                border: 1px solid {colors['border']};
+                border-radius: 24px;
+            }}
+            QLineEdit#ChatInputField {{
+                background-color: transparent;
+                border: none;
+                padding: 12px 8px;
+                color: {colors['text']};
+                font-size: 15px;
+            }}
+            QLineEdit#ChatInputField:focus {{
+                border: none;
+                background-color: transparent;
+            }}
+            QPushButton#DynamicActionBtn {{
+                background-color: {colors['panel2']};
+                color: {colors['text']};
+                border-radius: 18px;
+                font-size: 16px;
+                font-weight: bold;
+                border: none;
+                text-align: center;
+                padding-bottom: 2px;
+            }}
+            QPushButton#DynamicActionBtn:hover {{
+                background-color: {colors['hover']};
+            }}
+            QPushButton#DynamicActionBtn[recording="true"] {{
+                background-color: #ff4444;
+                color: white;
+            }}
+            QPushButton#ToolBtn {{
+                background-color: {colors['panel2']};
+                color: {colors['text']};
+                border-radius: 14px;
+                padding: 4px 16px;
+                border: none;
+                font-size: 14px;
+                font-weight: 600;
+            }}
+            QPushButton#ToolBtn:hover {{
+                background-color: {colors['hover']};
             }}
             QPushButton {{
                 background-color: {colors['panel2']};
                 border: 1px solid {colors['border']};
-                border-radius: 6px;
-                padding: 6px 10px;
+                border-radius: 8px;
+                padding: 6px 12px;
                 color: {colors['text']};
+                font-weight: 500;
             }}
             QPushButton:hover {{
                 background-color: {colors['chip']};
@@ -3972,6 +5537,20 @@ class ChatbotGUI(QWidget):
                 background-color: transparent;
                 border: 1px solid transparent;
                 color: {colors['muted']};
+            }}
+            QPushButton#MicButton {{
+                background-color: {colors['panel2']};
+                color: {colors['text']};
+                border-radius: 16px;
+                font-size: 16px;
+                padding: 0px;
+            }}
+            QPushButton#MicButton:hover {{
+                background-color: {colors['hover']};
+            }}
+            QPushButton#MicButton[recording="true"] {{
+                background-color: #ff4444;
+                color: white;
             }}
             QPushButton#StopButton {{
                 background-color: {colors['panel2']};
@@ -4053,26 +5632,69 @@ class ChatbotGUI(QWidget):
             QScrollBar:vertical {{
                 border: none;
                 background: transparent;
-                width: 8px;
+                width: 6px;
                 margin: 0px;
             }}
             QScrollBar::handle:vertical {{
-                background: {colors['border']};
-                min-height: 20px;
-                border-radius: 4px;
+                background: {colors['muted']};
+                min-height: 30px;
+                border-radius: 3px;
+                opacity: 0.5;
+            }}
+            QScrollBar::handle:vertical:hover {{
+                background: {colors['text']};
             }}
             QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{
                 height: 0px;
             }}
+            QAbstractScrollArea::corner {{
+                background: transparent;
+            }}
+            QPushButton#AccentButton {{
+                background-color: {colors['accent']};
+                color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 6px 14px;
+            }}
+            QPushButton#AccentButton:hover {{
+                background-color: {colors['accent2']};
+            }}
+            QPushButton#DangerButton {{
+                background-color: {colors['danger']};
+                color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 6px 14px;
+            }}
+            QComboBox, QSpinBox, QDoubleSpinBox {{
+                background-color: {colors['panel2']};
+                border: 1px solid {colors['border']};
+                border-radius: 8px;
+                padding: 6px 10px;
+                min-height: 24px;
+            }}
+            QComboBox:hover, QSpinBox:hover, QDoubleSpinBox:hover {{
+                border: 1px solid {colors['muted']};
+            }}
+            QComboBox:focus, QSpinBox:focus, QDoubleSpinBox:focus {{
+                border: 1px solid {colors['accent']};
+            }}
+            QComboBox::drop-down {{
+                border: none;
+                width: 24px;
+            }}
         """
 
         QApplication.instance().setStyleSheet(qss)
-        self.send_btn.setObjectName("SendButton")
         self.rag_badge.setObjectName("RagBadge")
         if hasattr(self, "chat_list") and self.chat_list is not None:
             self._refresh_chat_list_row_visuals()
 
     def update_hw_stats(self, app_ram_gb: str, sys_ram_percent: str, cpu_percent: str, gpu_percent: str):
+        """
+        Updates hw stats for the current component.
+        """
         shown = app_ram_gb
         try:
             rss_gb = float(str(app_ram_gb).split()[0])
@@ -4089,12 +5711,17 @@ class ChatbotGUI(QWidget):
         self.lbl_gpu_pct.setText(gpu_percent)
 
     def _set_chat_enabled(self, enabled: bool) -> None:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         self.input_field.setEnabled(enabled)
-        self.send_btn.setEnabled(enabled)
         if enabled:
             self.input_field.setFocus()
 
     def _set_project_root(self, folder: str) -> None:
+        """
+        Sets project root for the current component.
+        """
         p = os.path.abspath(folder or "")
         if not p or not os.path.isdir(p):
             return
@@ -4107,12 +5734,18 @@ class ChatbotGUI(QWidget):
         self._project_file_cache = None
 
     def select_project_root(self) -> str:
+        """
+        Selects project root for the current component.
+        """
         folder = QFileDialog.getExistingDirectory(self, "Select Project Folder")
         if folder:
             self._set_project_root(folder)
         return self.project_root or ""
 
     def open_project_file_picker(self) -> None:
+        """
+        Opens project file picker for the current component.
+        """
         root = self.project_root or ""
         if not root or not os.path.isdir(root):
             root = self.select_project_root()
@@ -4135,6 +5768,9 @@ class ChatbotGUI(QWidget):
             pass
 
     def _read_project_file(self, path: str, max_chars: int = 20000) -> str:
+        """
+        Reads project file for the current component.
+        """
         try:
             if not path or not os.path.isfile(path):
                 return ""
@@ -4147,6 +5783,9 @@ class ChatbotGUI(QWidget):
             return ""
 
     def _find_in_project_by_basename(self, basename: str, max_hits: int = 1) -> list[str]:
+        """
+        Finds in project by basename for the current component.
+        """
         root = self.project_root or ""
         if not root or not os.path.isdir(root):
             return []
@@ -4162,6 +5801,9 @@ class ChatbotGUI(QWidget):
         return hits
 
     def _resolve_project_paths_from_text(self, user_text: str) -> list[str]:
+        """
+        Resolves project paths from text for the current component.
+        """
         root = self.project_root or ""
         if not root or not os.path.isdir(root):
             return []
@@ -4194,6 +5836,9 @@ class ChatbotGUI(QWidget):
         return uniq[:6]
 
     def _build_project_context(self, user_text: str) -> str:
+        """
+        Builds project context for the current component.
+        """
         root = self.project_root or ""
         if not root or not os.path.isdir(root):
             return ""
@@ -4231,6 +5876,9 @@ class ChatbotGUI(QWidget):
         return "\n\n".join(blocks)
 
     def _start_model_load(self, model_dir: str) -> None:
+        """
+        Starts model load for the current component.
+        """
         path = os.path.abspath(model_dir or "")
         if not path or not os.path.isdir(path):
             QMessageBox.warning(self, "Load Model", "Model folder not selected or invalid.")
@@ -4243,6 +5891,9 @@ class ChatbotGUI(QWidget):
         self.model_loader.start()
 
     def load_model_quick(self) -> None:
+        """
+        Loads model quick for the current component.
+        """
         try:
             if getattr(self, "model_loader", None) is not None and self.model_loader.isRunning():
                 QMessageBox.information(self, "Model", "Model is already loading.")
@@ -4251,8 +5902,8 @@ class ChatbotGUI(QWidget):
             pass
 
         if getattr(self, "model", None) is not None or getattr(self, "tokenizer", None) is not None:
-            res = QMessageBox.question(self, "Load Model", "A model is already loaded. Unload and load again?", QMessageBox.Yes | QMessageBox.No)
-            if res != QMessageBox.Yes:
+            res = QMessageBox.question(self, "Load Model", "A model is already loaded. Unload and load again?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+            if res != QMessageBox.StandardButton.Yes:
                 return
             self.unload_model()
 
@@ -4262,6 +5913,9 @@ class ChatbotGUI(QWidget):
         self._start_model_load(path)
 
     def load_model_via_picker(self) -> None:
+        """
+        Loads model via picker for the current component.
+        """
         try:
             if getattr(self, "model_loader", None) is not None and self.model_loader.isRunning():
                 QMessageBox.information(self, "Model", "Model is already loading.")
@@ -4270,8 +5924,8 @@ class ChatbotGUI(QWidget):
             pass
 
         if getattr(self, "model", None) is not None or getattr(self, "tokenizer", None) is not None:
-            res = QMessageBox.question(self, "Load Model", "A model is already loaded. Unload and load a new one?", QMessageBox.Yes | QMessageBox.No)
-            if res != QMessageBox.Yes:
+            res = QMessageBox.question(self, "Load Model", "A model is already loaded. Unload and load a new one?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+            if res != QMessageBox.StandardButton.Yes:
                 return
             self.unload_model()
 
@@ -4281,6 +5935,9 @@ class ChatbotGUI(QWidget):
         self._start_model_load(path)
 
     def unload_model(self) -> None:
+        """
+        Unloads model for the current component.
+        """
         try:
             self._stop_generation(False)
         except Exception:
@@ -4314,6 +5971,9 @@ class ChatbotGUI(QWidget):
             pass
 
     def _stop_thread_obj(self, t, wait_ms: int) -> None:
+        """
+        Stops thread obj for the current component.
+        """
         if t is None:
             return
         try:
@@ -4354,6 +6014,9 @@ class ChatbotGUI(QWidget):
             pass
 
     def _shutdown_threads(self) -> None:
+        """
+        Shutdowns threads for the current component.
+        """
         try:
             self._stop_generation(False)
         except Exception:
@@ -4418,6 +6081,9 @@ class ChatbotGUI(QWidget):
             pass
 
     def _find_default_model_path(self) -> str:
+        """
+        Finds default model path for the current component.
+        """
         if self.current_model_path and os.path.isdir(self.current_model_path):
             return self.current_model_path
 
@@ -4460,6 +6126,9 @@ class ChatbotGUI(QWidget):
         return candidates[0][1]
 
     def start_ai_service(self) -> None:
+        """
+        Starts ai service for the current component.
+        """
         self._set_chat_enabled(False)
         model_path = self._find_default_model_path()
         if not model_path:
@@ -4473,6 +6142,9 @@ class ChatbotGUI(QWidget):
         self.model_loader.start()
 
     def _on_model_loaded(self, model, tokenizer, model_path: str) -> None:
+        """
+        Handles the model loaded event for the current component.
+        """
         self.model = model
         self.tokenizer = tokenizer
         self.current_model_path = model_path
@@ -4482,6 +6154,9 @@ class ChatbotGUI(QWidget):
         self._set_chat_enabled(True)
 
     def _on_model_load_error(self, err: str) -> None:
+        """
+        Handles the model load error event for the current component.
+        """
         self.model = None
         self.tokenizer = None
         self.service_status_lbl.setText("Service: error")
@@ -4489,14 +6164,23 @@ class ChatbotGUI(QWidget):
         QMessageBox.critical(self, "Model Load Error", err)
 
     def open_settings(self):
+        """
+        Kullanıcı ve Dev ayarlarını .lokumai içine güvenle kaydettiğimiz/okuduğumuz yer.
+        """
         diag = SettingsDialog(self, self.user_prompt, current_theme=self.theme)
-        if diag.exec_():
+        if diag.exec():
             self.apply_theme(getattr(diag, "final_theme", self.theme))
 
     def open_dev_panel(self):
+        """
+        Opens dev panel for the current component.
+        """
         self.on_dev_button_clicked()
 
     def on_dev_button_clicked(self):
+        """
+        Handles the dev button clicked event for the current component.
+        """
         if not dev_mode_gate.unlocked:
             password, ok = QInputDialog.getText(self, "Dev Mode", "Enter developer password:")
             if not ok or not password:
@@ -4504,11 +6188,11 @@ class ChatbotGUI(QWidget):
             if not dev_mode_gate.attempt_unlock(password):
                 hint = ""
                 try:
-                    from lokum_paths import dev_password_file as _dev_password_file  # type: ignore
+                    from core.lokum_paths import dev_password_file as _dev_password_file  # type: ignore
 
-                    hint = f"\n\nHint: Check {str(_dev_password_file())} or set LOKUMAI_DEV_PASSWORD."
+                    hint = f"\n\nHint: Check {str(_dev_password_file())} or set LOKUMF_DEV_PASSWORD."
                 except Exception:
-                    hint = "\n\nHint: Set env var LOKUMAI_DEV_PASSWORD."
+                    hint = "\n\nHint: Set env var LOKUMF_DEV_PASSWORD."
                 QMessageBox.critical(self, "Access Denied", "Incorrect password for Dev Mode." + hint)
                 return
 
@@ -4518,6 +6202,9 @@ class ChatbotGUI(QWidget):
         self.toggle_dev_dialog(force_state=None)
 
     def toggle_dev_dialog(self, force_state=None) -> None:
+        """
+        Toggles dev dialog for the current component.
+        """
         if not self.dev_mode_active:
             return
         if not hasattr(self, "dev_sidebar") or self.dev_sidebar is None:
@@ -4589,7 +6276,42 @@ class ChatbotGUI(QWidget):
                 pass
         self._save_dev_dialog_state()
 
+    def open_settings_dialog(self):
+        """
+        Kullanıcı ve Dev ayarlarını .lokumai içine güvenle kaydettiğimiz/okuduğumuz yer.
+        """
+        # Sadece basit bir dialog aç, ayarları config.json'dan okuyup/yazalım
+        dlg = QDialog(self)
+        dlg.setWindowTitle("Ayarlar")
+        dlg.setMinimumWidth(300)
+        l = QVBoxLayout(dlg)
+        
+        l.addWidget(QLabel("Tema:"))
+        theme_combo = QComboBox()
+        theme_combo.addItems(["dark", "light"])
+        if getattr(self, "theme", "dark") == "light":
+            theme_combo.setCurrentText("light")
+        l.addWidget(theme_combo)
+        
+        btn_box = QHBoxLayout()
+        save_btn = QPushButton("Kaydet")
+        save_btn.clicked.connect(dlg.accept)
+        btn_box.addStretch()
+        btn_box.addWidget(save_btn)
+        l.addLayout(btn_box)
+        
+        if dlg.exec() == QDialog.DialogCode.Accepted:
+            new_theme = theme_combo.currentText()
+            self.theme = new_theme
+            self.config["theme"] = new_theme
+            self.save_config()
+            self.apply_theme()
+            QMessageBox.information(self, "Ayarlar", "Ayarlar kaydedildi.")
+            
     def new_chat(self):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         base = "New Chat"
         idx = 1
         title = base
@@ -4619,6 +6341,9 @@ class ChatbotGUI(QWidget):
         self.render_chat(self.active_chat)
 
     def switch_chat(self, item):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         self.active_chat = self._chat_name_from_item(item)
         if self.active_chat not in self.chat_ui or not self.chat_ui[self.active_chat]:
             self.chat_ui.setdefault(self.active_chat, [])
@@ -4641,10 +6366,16 @@ class ChatbotGUI(QWidget):
         self.render_chat(self.active_chat)
 
     def resizeEvent(self, event):
+        """
+        Resizeevents for the current component.
+        """
         super().resizeEvent(event)
         self._refresh_chat_list_row_visuals()
 
     def _rename_chat(self, old_name: str, new_name: str, *, render_after: bool = True):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         if new_name in self.chats and new_name != old_name:
             QMessageBox.warning(self, "Name Exists", "A chat with this name already exists.")
             return
@@ -4671,9 +6402,15 @@ class ChatbotGUI(QWidget):
             self.render_chat(self.active_chat)
 
     def _is_placeholder_chat_name(self, name: str) -> bool:
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         return name == "New Chat" or name.startswith("New Chat ")
 
     def _auto_name_active_chat(self, first_message: str):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         raw = (first_message or "").strip()
         raw = raw.replace("\n", " ").replace("\r", " ")
         raw = re.sub(r"\s+", " ", raw).strip()
@@ -4693,6 +6430,9 @@ class ChatbotGUI(QWidget):
         self._rename_chat(self.active_chat, new_name, render_after=False)
 
     def on_chat_anchor_clicked(self, url):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         s = url.toString()
         if s.startswith("msg_menu:"):
             try:
@@ -4717,6 +6457,9 @@ class ChatbotGUI(QWidget):
             return
 
     def open_message_menu(self, msg_index: int):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         msgs = self.chat_ui.get(self.active_chat, [])
         if not (0 <= msg_index < len(msgs)):
             return
@@ -4738,9 +6481,12 @@ class ChatbotGUI(QWidget):
         menu.addAction(copy_act)
 
         pos = QCursor.pos()
-        menu.exec_(pos)
+        menu.exec(pos)
 
     def _edit_user_message(self, msg_index: int):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         msgs = self.chat_ui.get(self.active_chat, [])
         if not (0 <= msg_index < len(msgs)):
             return
@@ -4761,11 +6507,14 @@ class ChatbotGUI(QWidget):
         self.render_chat(self.active_chat)
 
     def _delete_user_message(self, msg_index: int):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         msgs = self.chat_ui.get(self.active_chat, [])
         if not (0 <= msg_index < len(msgs)):
             return
-        res = QMessageBox.question(self, "Delete Message", "Delete this message? This cannot be undone.", QMessageBox.Yes | QMessageBox.No)
-        if res != QMessageBox.Yes:
+        res = QMessageBox.question(self, "Delete Message", "Delete this message? This cannot be undone.", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        if res != QMessageBox.StandardButton.Yes:
             return
         try:
             self._delete_user_message_db(self.active_chat, msg_index)
@@ -4776,6 +6525,9 @@ class ChatbotGUI(QWidget):
         self.render_chat(self.active_chat)
 
     def _sync_chat_history_from_ui(self, chat_name: str):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         system = [{"role": "system", "content": self.system_prompt}]
         ui_msgs = self.chat_ui.get(chat_name, [])
         out = list(system)
@@ -4787,6 +6539,9 @@ class ChatbotGUI(QWidget):
         self.chats[chat_name] = out
 
     def _toggle_thought(self, msg_index: int) -> None:
+        """
+        Toggles thought for the current component.
+        """
         msgs = self.chat_ui.get(self.active_chat, [])
         if not (0 <= msg_index < len(msgs)):
             return
@@ -4796,36 +6551,339 @@ class ChatbotGUI(QWidget):
         msg["think_open"] = not bool(msg.get("think_open"))
         self.render_chat(self.active_chat, keep_scroll=True)
 
+    def _get_base_html(self):
+        """
+        Retrieves base html for the current component.
+        """
+        colors = getattr(self, "_theme_colors", None) or {
+            "bg": "#121212",
+            "panel": "#1e1e1e",
+            "panel2": "#2c2c2e",
+            "border": "#38383a",
+            "text": "#f5f5f5",
+            "muted": "#98989d",
+            "accent": "#0a84ff",
+            "accent2": "#409cff",
+        }
+        user_bubble = "rgba(0, 0, 0, 0.05)" if self.theme == "light" else "rgba(255, 255, 255, 0.05)"
+        user_border = "rgba(0, 0, 0, 0.1)" if self.theme == "light" else "rgba(255, 255, 255, 0.1)"
+        assistant_bubble = "transparent" if self.theme == "light" else "rgba(255, 255, 255, 0.02)"
+        
+        return f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="utf-8">
+        <style>
+            body {{
+                margin: 0;
+                padding: 32px 40px;
+                font-family: ".AppleSystemUIFont", Helvetica, Arial;
+                background-color: transparent;
+                color: {colors['text']};
+                -webkit-font-smoothing: antialiased;
+            }}
+            .chat-container {{
+                display: flex;
+                flex-direction: column;
+                gap: 28px;
+            }}
+            .message {{
+                display: flex;
+                flex-direction: column;
+                max-width: 85%;
+            }}
+            .message.user {{
+                align-self: flex-end;
+                align-items: flex-end;
+            }}
+            .message.assistant {{
+                align-self: flex-start;
+                align-items: flex-start;
+                max-width: 95%;
+            }}
+            .role-label {{
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                margin-bottom: 6px;
+                text-transform: uppercase;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }}
+            .user .role-label {{
+                color: {colors['muted']};
+                justify-content: flex-end;
+            }}
+            .assistant .role-label {{
+                color: {colors['text']};
+                justify-content: flex-start;
+            }}
+            .assistant .role-label::before {{
+                content: '';
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                background-color: {colors['accent']};
+                border-radius: 4px;
+                mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2c-.11.66.45 1.5 1.16 1.77A6.05 6.05 0 0 1 18.5 8c.32.7.97 1.11 1.6 1.2A2 2 0 0 1 22 11.5v1a2 2 0 0 1-1.9 1.95c-.63.09-1.28.5-1.6 1.2a6.05 6.05 0 0 1-3.34 2.23c-.7.27-1.27 1.11-1.16 1.77A2 2 0 0 1 12 22a2 2 0 0 1-2-2c.11-.66-.45-1.5-1.16-1.77a6.05 6.05 0 0 1-3.34-2.23c-.32-.7-.97-1.11-1.6-1.2A2 2 0 0 1 2 12.5v-1a2 2 0 0 1 1.9-1.95c.63-.09 1.28-.5 1.6-1.2a6.05 6.05 0 0 1 3.34-2.23c.7-.27 1.27-1.11 1.16-1.77A2 2 0 0 1 12 2z"></path></svg>') no-repeat center / contain;
+                -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2c-.11.66.45 1.5 1.16 1.77A6.05 6.05 0 0 1 18.5 8c.32.7.97 1.11 1.6 1.2A2 2 0 0 1 22 11.5v1a2 2 0 0 1-1.9 1.95c-.63.09-1.28.5-1.6 1.2a6.05 6.05 0 0 1-3.34 2.23c-.7.27-1.27 1.11-1.16 1.77A2 2 0 0 1 12 22a2 2 0 0 1-2-2c.11-.66-.45-1.5-1.16-1.77a6.05 6.05 0 0 1-3.34-2.23c-.32-.7-.97-1.11-1.6-1.2A2 2 0 0 1 2 12.5v-1a2 2 0 0 1 1.9-1.95c.63-.09 1.28-.5 1.6-1.2a6.05 6.05 0 0 1 3.34-2.23c.7-.27 1.27-1.11 1.16-1.77A2 2 0 0 1 12 2z"></path></svg>') no-repeat center / contain;
+            }}
+            .bubble {{
+                font-size: 15px;
+                line-height: 1.6;
+                word-wrap: break-word;
+                letter-spacing: -0.2px;
+            }}
+            .user .bubble {{
+                background-color: {user_bubble};
+                border: 1px solid {user_border};
+                border-radius: 20px;
+                padding: 14px 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            }}
+            .assistant .bubble {{
+                background-color: {assistant_bubble};
+                border: none;
+                border-radius: 20px;
+                padding: 14px 20px;
+                color: {colors['text']};
+                box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            }}
+            /* Markdown Elements */
+            a {{ color: {colors['accent']}; text-decoration: none; }}
+            a:hover {{ text-decoration: underline; }}
+            /* Code Blocks */
+            pre {{
+                background-color: #0d1117;
+                color: #c9d1d9;
+                border: 1px solid #30363d;
+                border-radius: 12px;
+                padding: 16px;
+                overflow-x: auto;
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+                font-size: 13px;
+                margin: 16px 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            }}
+            code {{
+                background-color: #0d1117;
+                border: 1px solid #30363d;
+                border-radius: 6px;
+                padding: 3px 6px;
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+                font-size: 13px;
+                color: #c9d1d9;
+            }}
+            pre code {{
+                background-color: transparent;
+                border: none;
+                padding: 0;
+                color: inherit;
+            }}
+            blockquote {{
+                border-left: 3px solid {colors['accent']};
+                margin-left: 0;
+                padding-left: 14px;
+                color: {colors['muted']};
+            }}
+            table {{
+                border-collapse: collapse;
+                width: 100%;
+                margin: 16px 0;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 0 0 1px {colors['border']};
+            }}
+            th, td {{
+                border: 1px solid {colors['border']};
+                padding: 10px 14px;
+                text-align: left;
+            }}
+            th {{ background-color: {colors['panel']}; }}
+            
+            /* Pulse / typing */
+            .typing-indicator {{
+                display: flex;
+                gap: 6px;
+                align-items: center;
+                height: 24px;
+                padding: 4px 12px;
+                margin-top: 4px;
+            }}
+            .dot {{
+                width: 7px;
+                height: 7px;
+                background-color: {colors['accent']};
+                border-radius: 50%;
+                animation: pulse 1.4s infinite ease-in-out;
+            }}
+            .dot:nth-child(1) {{ animation-delay: 0s; }}
+            .dot:nth-child(2) {{ animation-delay: 0.2s; }}
+            .dot:nth-child(3) {{ animation-delay: 0.4s; }}
+            @keyframes pulse {{
+                0%, 100% {{ transform: scale(0.6); opacity: 0.4; }}
+                50% {{ transform: scale(1.1); opacity: 1; }}
+            }}
+            
+            /* Message Actions */
+            .message-actions {{
+                display: flex;
+                gap: 8px;
+                margin-top: 8px;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.2s, visibility 0.2s;
+            }}
+            .message:hover .message-actions {{
+                opacity: 1;
+                visibility: visible;
+            }}
+            .action-btn {{
+                background: transparent;
+                border: 1px solid {colors['border']};
+                color: {colors['muted']};
+                border-radius: 8px;
+                padding: 4px 12px;
+                cursor: pointer;
+                font-size: 12px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                transition: all 0.2s;
+            }}
+            .action-btn:hover {{
+                background: {colors['panel2']};
+                color: {colors['text']};
+                border-color: {colors['muted']};
+                transform: translateY(-1px);
+            }}
+            .action-btn:active {{
+                transform: translateY(0);
+            }}
+        </style>
+        <script>
+            function updateChat(htmlContent, isAtBottom) {{
+                const chatDiv = document.getElementById('chat');
+                chatDiv.innerHTML = htmlContent;
+                if (isAtBottom) {{
+                    window.scrollTo(0, document.body.scrollHeight);
+                }}
+            }}
+            function scrollToBottom() {{
+                window.scrollTo(0, document.body.scrollHeight);
+            }}
+            function playVoice(text) {{
+                // Use a custom scheme to communicate with Python
+                window.location.href = "speak://" + btoa(unescape(encodeURIComponent(text)));
+            }}
+        </script>
+        </head>
+        <body>
+            <div id="chat" class="chat-container"></div>
+        </body>
+        </html>
+        """
+
     def render_chat(self, chat_name: str, *, keep_scroll: bool = False):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
+        msgs = self.chat_ui.get(chat_name, []) or []
+        is_generating = getattr(self, "is_generating", False)
+        
+        if HAS_WEBENGINE and hasattr(self, "chat_display") and isinstance(self.chat_display, QWebEngineView):
+            try:
+                import markdown
+                has_md = True
+            except ImportError:
+                has_md = False
+            import base64
+            
+            html_parts = []
+            for m in msgs:
+                r = m.get("role", "")
+                txt = m.get("content", "") if r == "user" else m.get("answer", "")
+                
+                # Convert markdown
+                try:
+                    if has_md:
+                        md_html = markdown.markdown(txt, extensions=["fenced_code", "tables"])
+                    else:
+                        md_html = txt.replace("\n", "<br>")
+                except Exception:
+                    md_html = txt.replace("\n", "<br>")
+                
+                if r == "user":
+                    html_parts.append(f'''
+                    <div class="message user">
+                        <div class="role-label">YOU</div>
+                        <div class="bubble">{md_html}</div>
+                    </div>
+                    ''')
+                elif r == "assistant":
+                    # Escape text for JS function call
+                    raw_text_b64 = base64.b64encode(txt.encode('utf-8')).decode('utf-8')
+                    html_parts.append(f'''
+                    <div class="message assistant">
+                        <div class="role-label"></div>
+                        <div class="bubble">{md_html}</div>
+                        <div class="message-actions">
+                            <button class="action-btn" onclick="playVoice(decodeURIComponent(escape(window.atob('{raw_text_b64}'))))">
+                                🔊 Dinle
+                            </button>
+                        </div>
+                    </div>
+                    ''')
+            
+            if is_generating:
+                html_parts.append('''
+                <div class="message assistant">
+                    <div class="role-label"></div>
+                    <div class="typing-indicator">
+                        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    </div>
+                </div>
+                ''')
+            
+            full_content = "\n".join(html_parts)
+            # Escape to base64 to pass to JS
+            b64_content = base64.b64encode(full_content.encode('utf-8')).decode('utf-8')
+            js = f"""
+            if (typeof updateChat === 'function') {{
+                updateChat(decodeURIComponent(escape(window.atob('{b64_content}'))), {str(not keep_scroll).lower()});
+            }}
+            """
+            self.chat_display.page().runJavaScript(js)
+            return
+
         if not hasattr(self, "chat_msgs_layout") or self.chat_msgs_layout is None:
             return
 
-        old_scroll_val = None
-        old_scroll_max = None
-        try:
-            sb = self.chat_display.verticalScrollBar()
-            old_scroll_val = int(sb.value())
-            old_scroll_max = int(sb.maximum())
-        except Exception:
-            old_scroll_val = None
-            old_scroll_max = None
-
         msgs = self.chat_ui.get(chat_name, []) or []
         colors = getattr(self, "_theme_colors", None) or {
-            "bg": "#0f0f0f",
-            "panel": "#161616",
-            "panel2": "#222222",
-            "border": "#222222",
-            "text": "#e0e0e0",
-            "muted": "#888888",
-            "accent": "#7c4dff",
-            "accent2": "#9575cd",
-            "danger": "#ff4d6a",
-            "chip": "#1a1a1a",
+            "bg": "#121212",
+            "panel": "#1e1e1e",
+            "panel2": "#2c2c2e",
+            "border": "#38383a",
+            "text": "#f5f5f5",
+            "muted": "#98989d",
+            "accent": "#0a84ff",
+            "accent2": "#409cff",
+            "danger": "#ff453a",
+            "chip": "#3a3a3c",
         }
-        user_bubble = "rgba(0, 0, 0, 0.06)" if self.theme == "light" else colors["panel2"]
+        
+        # LM Studio stili renk ayarları
+        user_bubble = colors["panel2"]
+        user_border = colors["border"]
 
         def clear_layout(lay: QVBoxLayout) -> None:
+            """
+            Clears layout for the current component.
+            """
             while lay.count():
                 it = lay.takeAt(0)
                 if it is None:
@@ -4835,12 +6893,18 @@ class ChatbotGUI(QWidget):
                     w.deleteLater()
 
         def fmt_html(s: str) -> str:
+            """
+            Fmts html for the current component.
+            """
             t = self._html_escape(s or "")
             t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
             t = re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
             return t.replace("\n", "<br>")
 
         def split_fenced_blocks(s: str) -> list[tuple[str, str, str]]:
+            """
+            Splits fenced blocks for the current component.
+            """
             out: list[tuple[str, str, str]] = []
             if not s:
                 return out
@@ -4859,9 +6923,12 @@ class ChatbotGUI(QWidget):
             return out
 
         def make_code_block(code: str, lang: str) -> QWidget:
+            """
+            Makes code block for the current component.
+            """
             frame = QFrame()
             frame.setObjectName("CodeBlockFrame")
-            frame.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
+            frame.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
             frame.setMaximumWidth(max_bubble)
 
             bg = "#0b1220" if self.theme == "dark" else "#f3f5f9"
@@ -4909,9 +6976,9 @@ class ChatbotGUI(QWidget):
 
             copy_btn = QToolButton()
             copy_btn.setText("⧉")
-            copy_btn.setCursor(Qt.PointingHandCursor)
+            copy_btn.setCursor(Qt.CursorShape.PointingHandCursor)
             copy_btn.setAutoRaise(True)
-            copy_btn.setFocusPolicy(Qt.StrongFocus)
+            copy_btn.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
             copy_btn.setAccessibleName("Copy code")
             copy_btn.setToolTip("Copy")
             copy_btn.setStyleSheet(
@@ -4930,6 +6997,9 @@ class ChatbotGUI(QWidget):
                 "}"
             )
             def _do_copy(_checked: bool = False, txt: str = code) -> None:
+                """
+                Dos copy for the current component.
+                """
                 try:
                     QApplication.clipboard().setText(txt or "")
                 except Exception:
@@ -4942,10 +7012,10 @@ class ChatbotGUI(QWidget):
             ed.setReadOnly(True)
             ed.setLineWrapMode(QPlainTextEdit.NoWrap)
             ed.setPlainText(code or "")
-            ed.setFrameShape(QFrame.NoFrame)
-            ed.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
-            ed.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
-            ed.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+            ed.setFrameShape(QFrame.Shape.NoFrame)
+            ed.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+            ed.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+            ed.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
             fnt = QFontDatabase.systemFont(QFontDatabase.FixedFont)
             fnt.setPointSize(13)
             fnt.setWeight(QFont.Normal)
@@ -4983,35 +7053,39 @@ class ChatbotGUI(QWidget):
                 col_l = QVBoxLayout(col)
                 col_l.setContentsMargins(0, 0, 0, 0)
                 col_l.setSpacing(6)
-                col_l.setAlignment(Qt.AlignRight)
+                col_l.setAlignment(Qt.AlignmentFlag.AlignRight)
+
+                header = QLabel("YOU")
+                header.setStyleSheet(f"color:{colors['muted']};font-size:11px;font-weight:800;letter-spacing:1px;margin-right:8px;")
+                col_l.addWidget(header, 0, Qt.AlignmentFlag.AlignRight)
 
                 bubble = QFrame()
                 bubble.setObjectName("UserBubble")
                 bubble.setStyleSheet(
                     f"QFrame#UserBubble{{background:{user_bubble};border:1px solid {colors['border']};border-radius:18px;}}"
                 )
-                bubble.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Minimum)
+                bubble.setSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Minimum)
                 bubble.setMaximumWidth(max_bubble)
                 b_l = QVBoxLayout(bubble)
                 b_l.setContentsMargins(14, 10, 14, 10)
 
                 lbl = QLabel()
                 lbl.setWordWrap(True)
-                lbl.setTextFormat(Qt.RichText)
+                lbl.setTextFormat(Qt.TextFormat.RichText)
                 lbl.setText(f"<div style='text-align:left;color:{colors['text']};font-size:16px;line-height:1.5;'>{fmt_html(m.get('content',''))}</div>")
-                lbl.setTextInteractionFlags(Qt.TextSelectableByMouse)
+                lbl.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
                 lbl.setMaximumWidth(max_bubble - 28)
                 b_l.addWidget(lbl)
 
                 dots = QToolButton()
                 dots.setText("...")
-                dots.setCursor(Qt.PointingHandCursor)
+                dots.setCursor(Qt.CursorShape.PointingHandCursor)
                 dots.setAutoRaise(True)
                 dots.setStyleSheet(f"QToolButton{{background:transparent;border:0;color:{colors['muted']};font-weight:800;font-size:12px;}}")
                 dots.clicked.connect(lambda _=False, idx=i: self.open_message_menu(idx))
 
-                col_l.addWidget(bubble, 0, Qt.AlignRight)
-                col_l.addWidget(dots, 0, Qt.AlignRight)
+                col_l.addWidget(bubble, 0, Qt.AlignmentFlag.AlignRight)
+                col_l.addWidget(dots, 0, Qt.AlignmentFlag.AlignRight)
                 row_l.addWidget(col)
                 self.chat_msgs_layout.addWidget(row)
                 continue
@@ -5022,8 +7096,8 @@ class ChatbotGUI(QWidget):
                 w_l.setContentsMargins(0, 0, 0, 0)
                 w_l.setSpacing(10)
 
-                header = QLabel("Lokum AI")
-                header.setStyleSheet(f"color:{colors['muted']};font-size:13px;font-weight:600;")
+                header = QLabel("AI")
+                header.setStyleSheet(f"color:{colors['accent']};font-size:11px;font-weight:800;letter-spacing:1px;")
                 w_l.addWidget(header)
 
                 thought_s = m.get("thought_s")
@@ -5047,7 +7121,7 @@ class ChatbotGUI(QWidget):
                     arrow = "▾" if is_open else "▸"
                     toggle = QToolButton()
                     toggle.setText(arrow)
-                    toggle.setCursor(Qt.PointingHandCursor)
+                    toggle.setCursor(Qt.CursorShape.PointingHandCursor)
                     toggle.setAutoRaise(True)
                     toggle.setStyleSheet(f"QToolButton{{background:transparent;border:0;color:{colors['muted']};font-weight:900;font-size:14px;}}")
                     toggle.clicked.connect(lambda _=False, idx=i: self._toggle_thought(idx))
@@ -5063,29 +7137,45 @@ class ChatbotGUI(QWidget):
                     if is_open and think_txt:
                         t_lbl = QLabel()
                         t_lbl.setWordWrap(True)
-                        t_lbl.setTextFormat(Qt.RichText)
+                        t_lbl.setTextFormat(Qt.TextFormat.RichText)
                         t_lbl.setText(f"<div style='color:{colors['text']};font-size:15px;line-height:1.6;'>{fmt_html(think_txt)}</div>")
-                        t_lbl.setTextInteractionFlags(Qt.TextSelectableByMouse)
+                        t_lbl.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
                         t_l.addWidget(t_lbl)
 
                     w_l.addWidget(thought_frame)
 
                 ans = (m.get("answer", "") or "")
                 if ans.strip():
+                    # LM Studio Stili "Asistan" Arka Planı (Şeffaf ama belirgin)
+                    ans_frame = QFrame()
+                    ans_frame.setStyleSheet(f"""
+                        QFrame {{
+                            background-color: transparent;
+                            padding: 0px;
+                            border: none;
+                        }}
+                    """)
+                    ans_lay = QVBoxLayout(ans_frame)
+                    ans_lay.setContentsMargins(0, 0, 0, 0)
+                    ans_lay.setSpacing(6)
+
                     parts = split_fenced_blocks(ans)
                     for kind, payload, lang in parts:
                         if kind == "code":
-                            w_l.addWidget(make_code_block(payload, lang))
+                            ans_lay.addWidget(make_code_block(payload, lang))
                             continue
                         text = (payload or "").strip("\n")
                         if not text.strip():
                             continue
                         a_lbl = QLabel()
                         a_lbl.setWordWrap(True)
-                        a_lbl.setTextFormat(Qt.RichText)
-                        a_lbl.setText(f"<div style='color:{colors['text']};font-size:18px;line-height:1.7;'>{fmt_html(text)}</div>")
-                        a_lbl.setTextInteractionFlags(Qt.TextSelectableByMouse)
-                        w_l.addWidget(a_lbl)
+                        a_lbl.setTextFormat(Qt.TextFormat.RichText)
+                        # Yazı boyutu ve satır aralığı artırıldı, renk düzenlendi
+                        a_lbl.setText(f"<div style='color:{colors['text']};font-size:16px;line-height:1.7;letter-spacing:0.3px;'>{fmt_html(text)}</div>")
+                        a_lbl.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
+                        ans_lay.addWidget(a_lbl)
+                    
+                    w_l.addWidget(ans_frame)
 
                 meta = m.get("meta")
                 if isinstance(meta, dict):
@@ -5096,20 +7186,62 @@ class ChatbotGUI(QWidget):
                 self.chat_msgs_layout.addWidget(wrap)
 
         self.chat_msgs_layout.addStretch()
-        try:
-            sb = self.chat_display.verticalScrollBar()
-            if keep_scroll and old_scroll_val is not None:
-                if old_scroll_max is not None and old_scroll_max > 0:
-                    ratio = float(old_scroll_val) / float(old_scroll_max)
-                    sb.setValue(int(ratio * float(sb.maximum())))
-                else:
-                    sb.setValue(int(old_scroll_val))
+
+    def toggle_mic(self):
+        """
+        Toggles mic for the current component.
+        """
+        if self.mic_worker is not None and self.mic_worker.is_recording:
+            # Stop recording
+            self.mic_worker.stop_recording()
+            self.dynamic_action_btn.setProperty("recording", "false")
+            self.dynamic_action_btn.style().unpolish(self.dynamic_action_btn)
+            self.dynamic_action_btn.style().polish(self.dynamic_action_btn)
+            self.dynamic_action_btn.setText("🎤")
+            self.gen_status_lbl.setText("Transcribing...")
+            self.gen_status_lbl.setStyleSheet("color: #ffaa00;")
+        else:
+            # Start recording
+            self.mic_worker = MicWorker(self)
+            self.mic_worker.transcription_done.connect(self.on_transcription_done)
+            self.mic_worker.error_occurred.connect(self.on_mic_error)
+            self.mic_worker.start()
+            
+            self.dynamic_action_btn.setProperty("recording", "true")
+            self.dynamic_action_btn.style().unpolish(self.dynamic_action_btn)
+            self.dynamic_action_btn.style().polish(self.dynamic_action_btn)
+            self.dynamic_action_btn.setText("🔴")
+            self.gen_status_lbl.setText("Recording... Click again to stop.")
+            self.gen_status_lbl.setStyleSheet("color: #ff4444;")
+
+    def on_transcription_done(self, text):
+        """
+        Handles the transcription done event for the current component.
+        """
+        self.mic_worker = None
+        self.gen_status_lbl.setText("")
+        
+        if text:
+            # Append to existing text or replace
+            current = self.input_field.text()
+            if current:
+                self.input_field.setText(current + " " + text)
             else:
-                sb.setValue(int(sb.maximum()))
-        except Exception:
-            pass
+                self.input_field.setText(text)
+            self.input_field.setFocus()
+
+    def on_mic_error(self, err_msg):
+        """
+        Handles the mic error event for the current component.
+        """
+        self.mic_worker = None
+        self.gen_status_lbl.setText("")
+        QMessageBox.warning(self, "Microphone Error", err_msg)
 
     def soru_sor(self):
+        """
+        Sorus sor for the current component.
+        """
         user_text = self.input_field.text().strip()
         if not user_text:
             return
@@ -5145,49 +7277,13 @@ class ChatbotGUI(QWidget):
         except Exception:
             pass
         
-        # Context formulation
-        context_prompt = user_text
-        ctx_parts = []
-        proj_ctx = ""
-        try:
-            proj_ctx = self._build_project_context(user_text)
-        except Exception:
-            proj_ctx = ""
-        if proj_ctx:
-            ctx_parts.append(f"Project context:\n{proj_ctx}")
-        if bool(getattr(self, "use_rag", True)) and not bool(getattr(self, "training_active", False)):
-            rag_engine = self.get_rag_engine()
-            if rag_engine and getattr(rag_engine, "enabled", False):
-                rag_docs = rag_engine.query(user_text)
-                if rag_docs:
-                    ctx_parts.append(f"Background info:\n{rag_docs}")
-                    self.rag_badge.setText("RAG: ACTIVE")
-                    self.rag_badge.setProperty("ragState", "active")
-                    self.rag_badge.style().unpolish(self.rag_badge)
-                    self.rag_badge.style().polish(self.rag_badge)
-                else:
-                    self.rag_badge.setText("RAG: EMPTY")
-                    self.rag_badge.setProperty("ragState", "empty")
-                    self.rag_badge.style().unpolish(self.rag_badge)
-                    self.rag_badge.style().polish(self.rag_badge)
-        if ctx_parts:
-            context_prompt = "\n\n".join(ctx_parts) + f"\n\nUser: {user_text}"
-        
-        
-        self._last_context_prompt = context_prompt
+        # We prepare temp_history for the worker
         temp_history = list(self.chats[self.active_chat])
-        temp_history[-1] = {"role": "user", "content": context_prompt}
+        temp_history[-1] = {"role": "user", "content": user_text} # Placeholder, worker will update this with RAG
         
-        try:
-            if hasattr(self.tokenizer, 'apply_chat_template'):
-                prompt_string = self.tokenizer.apply_chat_template(temp_history, tokenize=False, add_generation_prompt=True)
-            else: prompt_string = f"User: {context_prompt}\nAssistant: "
-        except:
-            prompt_string = f"User: {context_prompt}\nAssistant: "
-
+        self.is_generating = True
         self.input_field.setDisabled(True)
-        self.send_btn.setDisabled(True)
-        self.stop_btn.setEnabled(True)
+        self._update_dynamic_btn_state()
         self.gen_status_lbl.setText("")
         
         # Prepare for assistant response (filter hidden <think>/<analysis> blocks; show only thought duration)
@@ -5203,13 +7299,28 @@ class ChatbotGUI(QWidget):
         self._pending_msg_index = len(self.chat_ui[self.active_chat]) - 1
         self.render_chat(self.active_chat)
         
-        self.worker = AIWorker(self.model, self.tokenizer, prompt_string)
+        use_rag_val = bool(getattr(self, "use_rag", True)) and not bool(getattr(self, "training_active", False))
+        rag_engine = self.get_rag_engine()
+        
+        self.worker = AIWorker(
+            self.model, 
+            self.tokenizer, 
+            temp_history, 
+            user_text, 
+            use_rag_val, 
+            rag_engine, 
+            self._build_project_context
+        )
+        self.worker.rag_status_update.connect(self._on_rag_status_update)
         self.worker.new_token.connect(self.on_new_token)
         self.worker.finished.connect(self.on_ai_success)
         self.worker.error.connect(self.on_ai_error)
         self.worker.start()
 
     def add_chat_bubble(self, sender, text, is_user=True):
+        """
+        Mesajlaşma arayüzü, HTML/CSS ile LM Studio estetiğinde baloncukları basıyor ekrana.
+        """
         if is_user:
             self.chat_ui.setdefault(self.active_chat, []).append({"role": "user", "content": text or ""})
             self.chats.setdefault(self.active_chat, [{"role": "system", "content": self.system_prompt}]).append({"role": "user", "content": text or ""})
@@ -5220,6 +7331,9 @@ class ChatbotGUI(QWidget):
         return None
 
     def run_last_code(self):
+        """
+        Runs last code for the current component.
+        """
         # Find last code block in assistant responses
         import re
         import subprocess
@@ -5264,11 +7378,14 @@ class ChatbotGUI(QWidget):
             btn_row.addWidget(close_btn)
             layout.addLayout(btn_row)
             close_btn.clicked.connect(dlg.accept)
-            dlg.exec_()
+            dlg.exec()
         except Exception as e:
             QMessageBox.critical(self, "Execution Error", str(e))
 
     def _html_escape(self, s: str) -> str:
+        """
+        Htmls escape for the current component.
+        """
         return (
             (s or "")
             .replace("&", "&amp;")
@@ -5277,6 +7394,9 @@ class ChatbotGUI(QWidget):
         )
 
     def _split_stream_delta(self, piece: str) -> tuple[str, str]:
+        """
+        Splits stream delta for the current component.
+        """
         buf_full = (self._stream_buffer or "") + (piece or "")
         think_out = ""
         answer_out = ""
@@ -5293,6 +7413,9 @@ class ChatbotGUI(QWidget):
             self._stream_buffer = ""
 
         def parse_tag_at(s: str, lt: int):
+            """
+            Parses tag at for the current component.
+            """
             n = len(s)
             j = lt + 1
             while j < n and s[j].isspace():
@@ -5352,6 +7475,9 @@ class ChatbotGUI(QWidget):
         return think_out, answer_out
 
     def _finalize_stream_tail(self) -> tuple[str, str]:
+        """
+        Finalizes stream tail for the current component.
+        """
         if self._stream_in_think:
             self._stream_buffer = ""
             return "", ""
@@ -5360,6 +7486,9 @@ class ChatbotGUI(QWidget):
         return "", tail
 
     def _extract_think_answer_from_text(self, text: str) -> tuple[str, str]:
+        """
+        Extracts think answer from text for the current component.
+        """
         import re
 
         raw = text or ""
@@ -5396,6 +7525,9 @@ class ChatbotGUI(QWidget):
             ]
 
             def looks_like_think(p: str) -> bool:
+                """
+                looks like think for the current component.
+                """
                 low = (p or "").strip().lower()
                 if not low:
                     return False
@@ -5408,6 +7540,9 @@ class ChatbotGUI(QWidget):
                 return False
 
             def looks_like_answer(p: str) -> bool:
+                """
+                looks like answer for the current component.
+                """
                 low = (p or "").strip().lower()
                 if not low:
                     return False
@@ -5438,28 +7573,28 @@ class ChatbotGUI(QWidget):
         return "", (raw or "").strip()
 
     def _fallback_answer_from_user_text(self, user_text: str) -> str:
-        import re
-
-        ut = (user_text or "").strip()
-        if not ut:
-            return ""
-        low = ut.lower()
-
-        m = re.search(r"(\d+)\s*(?:st|nd|rd|th)?\s*fibonacci", low)
-        if m:
-            try:
-                n = int(m.group(1))
-            except Exception:
-                n = None
-            if n is not None and n >= 0:
-                a, b = 0, 1
-                for _ in range(n):
-                    a, b = b, a + b
-                return str(a)
-
+        """
+        Fallbacks answer from user text for the current component.
+        """
         return ""
 
+    def _on_rag_status_update(self, status: str):
+        """
+        Updates the RAG UI badge based on worker thread progress.
+        """
+        if status == "active":
+            self.rag_badge.setText("RAG: ACTIVE")
+            self.rag_badge.setProperty("ragState", "active")
+        else:
+            self.rag_badge.setText("RAG: EMPTY")
+            self.rag_badge.setProperty("ragState", "empty")
+        self.rag_badge.style().unpolish(self.rag_badge)
+        self.rag_badge.style().polish(self.rag_badge)
+
     def on_new_token(self, token):
+        """
+        Handles the new token event for the current component.
+        """
         think_delta, answer_delta = self._split_stream_delta(token)
 
         if self._pending_chat is not None and self._pending_msg_index is not None:
@@ -5481,6 +7616,9 @@ class ChatbotGUI(QWidget):
             self._schedule_render(self._pending_chat)
 
     def _schedule_render(self, chat_name: str | None):
+        """
+        Schedules render for the current component.
+        """
         if not hasattr(self, "_render_timer") or self._render_timer is None:
             self._render_timer = QTimer(self)
             self._render_timer.setSingleShot(True)
@@ -5492,11 +7630,17 @@ class ChatbotGUI(QWidget):
             self._render_timer.start(40)
 
     def _run_scheduled_render(self) -> None:
+        """
+        Runs scheduled render for the current component.
+        """
         target = getattr(self, "_render_target_chat", None)
         if target and target == self.active_chat:
             self.render_chat(target)
 
     def on_ai_success(self, response, tps, tokens, ms, peak_memory_gb):
+        """
+        Handles the ai success event for the current component.
+        """
         pending_chat = self._pending_chat
         pending_idx = self._pending_msg_index
         if isinstance(peak_memory_gb, (int, float)) and peak_memory_gb > 0:
@@ -5591,19 +7735,22 @@ class ChatbotGUI(QWidget):
         self._pending_msg_index = None
 
         self.render_chat(self.active_chat)
-        self.chat_display.verticalScrollBar().setValue(self.chat_display.verticalScrollBar().maximum())
         
+        self.is_generating = False
         self.input_field.setDisabled(False)
-        self.send_btn.setDisabled(False)
-        self.stop_btn.setEnabled(False)
+        self._update_dynamic_btn_state()
         self.gen_status_lbl.setText("")
         self.input_field.setFocus()
+        
         self.rag_badge.setText("RAG: OFF")
         self.rag_badge.setProperty("ragState", "off")
         self.rag_badge.style().unpolish(self.rag_badge)
         self.rag_badge.style().polish(self.rag_badge)
 
     def _on_final_answer_ready(self, text: str) -> None:
+        """
+        Handles the final answer ready event for the current component.
+        """
         pending = getattr(self, "_final_pending", None)
         if not (isinstance(pending, tuple) and len(pending) == 2):
             return
@@ -5633,28 +7780,30 @@ class ChatbotGUI(QWidget):
         self._pending_chat = None
         self._pending_msg_index = None
         self._schedule_render(chat_name)
-        try:
-            self.chat_display.verticalScrollBar().setValue(self.chat_display.verticalScrollBar().maximum())
-        except Exception:
-            pass
+        self.is_generating = False
         self.input_field.setDisabled(False)
-        self.send_btn.setDisabled(False)
-        self.stop_btn.setEnabled(False)
+        self._update_dynamic_btn_state()
         self.gen_status_lbl.setText("")
         self.input_field.setFocus()
 
     def _on_final_answer_error(self, err: str) -> None:
+        """
+        Handles the final answer error event for the current component.
+        """
         self._final_pending = None
         self._final_worker = None
         self._pending_chat = None
         self._pending_msg_index = None
+        self.is_generating = False
         self.input_field.setDisabled(False)
-        self.send_btn.setDisabled(False)
-        self.stop_btn.setEnabled(False)
+        self._update_dynamic_btn_state()
         self.gen_status_lbl.setText("")
         QMessageBox.critical(self, "Final Answer Error", err)
 
     def on_ai_error(self, err_msg):
+        """
+        Handles the ai error event for the current component.
+        """
         if self._pending_chat is not None and self._pending_msg_index is not None:
             try:
                 msgs = self.chat_ui.get(self._pending_chat, [])
@@ -5668,13 +7817,16 @@ class ChatbotGUI(QWidget):
 
         self.render_chat(self.active_chat)
         QMessageBox.critical(self, "Generation Error", err_msg)
+        self.is_generating = False
         self.input_field.setDisabled(False)
-        self.send_btn.setDisabled(False)
-        self.stop_btn.setEnabled(False)
+        self._update_dynamic_btn_state()
         self.gen_status_lbl.setText("")
         self.input_field.setFocus()
 
 if __name__ == "__main__":
+    # Disable Chromium sandbox to prevent "Mach rendezvous failed" crash on some macOS setups
+    os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--no-sandbox --disable-gpu-sandbox"
+
     app = QApplication(sys.argv)
     
     # Standard font setup to avoid warnings
@@ -5683,4 +7835,4 @@ if __name__ == "__main__":
 
     window = ChatbotGUI(None, None, "")
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

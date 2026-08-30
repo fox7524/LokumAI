@@ -51,13 +51,13 @@ Phase 2 (optional): **signed + notarized**
 
 ## 2) Storage conventions (privacy + git hygiene)
 
-Default base folder: `~/.lokumai` (override: `LOKUMAI_HOME`)
+Default base folder: `~/.lokumai` (override: `LOKUMF_HOME`)
 
 ### Paths
-- Chats DB: `~/.lokumai/app.db` (override: `LOKUMAI_CHAT_DB`)
-- RAG store: `~/.lokumai/rag` (override: `LOKUMAI_RAG_DIR`)
-- LoRA artifacts: `~/.lokumai/lora_data` (override: `LOKUMAI_LORA_DIR`)
-- Models: `~/.lokumai/models` (new; override: `LOKUMAI_MODELS_DIR`)
+- Chats DB: `~/.lokumai/app.db` (override: `LOKUMF_CHAT_DB`)
+- RAG store: `~/.lokumai/rag` (override: `LOKUMF_RAG_DIR`)
+- LoRA artifacts: `~/.lokumai/lora_data` (override: `LOKUMF_LORA_DIR`)
+- Models: `~/.lokumai/models` (new; override: `LOKUMF_MODELS_DIR`)
 
 ### Migration rules (one-time)
 On app start:
@@ -142,7 +142,7 @@ Manual smoke test:
 
 # Rollout checklist
 
-- [ ] Add `LOKUMAI_MODELS_DIR` support in `lokum_paths.py`
+- [ ] Add `LOKUMF_MODELS_DIR` support in `lokum_paths.py`
 - [ ] Add Settings UI: HF downloader + LM Studio symlink buttons
 - [ ] Add packaging scripts: PyInstaller spec + DMG creation script
 - [ ] Document first-run + Gatekeeper instructions

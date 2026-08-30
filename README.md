@@ -1,189 +1,47 @@
-# LokumAI — Local AI Chat Studio
+# LokumAI (Lokum Fine-Tuning & RAG Studio)
 
-<p align="center">
-  <strong>A commercial-grade, local-first AI desktop app for macOS.</strong><br/>
-  PyQt UI • MLX inference • Persistent RAG • Optional LoRA fine-tuning
-</p>
+LokumAI is an advanced, standalone desktop application built for Apple Silicon (M-Series) Macs. It provides a comprehensive GUI for local Large Language Model (LLM) fine-tuning, Retrieval-Augmented Generation (RAG) indexing, and model evaluation—all leveraging the native power of the Apple MLX framework.
 
-<p align="center">
-  <a href="#quickstart"><img alt="Quickstart" src="https://img.shields.io/badge/Quickstart-Ready-2ea44f"></a>
-  <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-blue"></a>
-  <img alt="Platform" src="https://img.shields.io/badge/Platform-macOS-black">
-  <img alt="Local First" src="https://img.shields.io/badge/Privacy-Local%20First-6f42c1">
-</p>
+## 🚀 Key Features
 
----
+*   **Local LoRA Fine-Tuning (MLX):** Effortlessly train and adapt large language models entirely on-device using Apple's MLX architecture. Configure advanced parameters (Rank, Alpha, Batch Size, Layers) via an intuitive UI without writing any CLI commands.
+*   **Intelligent Adapter Management:** Automatically tracks and organizes fine-tuned adapters with deterministic hashing (`R16_A32_B1_L16_A7B2C`) for pristine developer experience (DX).
+*   **One-Click Model Fusion:** Merge your trained LoRA adapters into base models seamlessly with a single click. Includes auto-cleanup to delete heavy adapter artifacts post-fusion, saving valuable disk space.
+*   **Smart RAG Engine (FAISS):** Build robust contextual memories for your models. The engine supports dynamic re-indexing, chunk compaction, and active garbage collection to prevent index bloat and ensure fast retrieval.
+*   **Developer-Friendly Diagnostics:** Real-time MLX log parsing that filters out Apple Metal API spam ("God-Mode" limits) and provides actionable, clear hints for common hardware errors (e.g., Layer mismatch, Out-Of-Memory exceptions).
+*   **Speech-to-Text Integration:** Built-in `mlx-whisper` integration for instant audio transcription directly within the chat interface.
 
-## Overview
+## 🧠 Core Architecture
 
-LokumAI is a **desktop-first AI chat studio** that runs fully on your machine:
-- A polished **chat UI** with streaming responses
-- **RAG** (Retrieval-Augmented Generation) over your local files with persistent storage
-- Optional **MLX LoRA** fine-tuning with a safe dataset pipeline (including ChatML-aware presplitting)
+*   **Apple Silicon Native:** Fully optimized for M-series unified memory architecture.
+*   **PyQt6 GUI:** A modern, responsive desktop interface with built-in presets (Ultra, Good, Mid, Low, Custom) scaling to your available VRAM.
+*   **Vector Database:** FAISS-based fast semantic search using optimized embeddings.
 
-> Designed for developers who want a fast local workflow without sacrificing reliability, persistence, or UX.
+## 🛠 Installation & Usage
 
----
+1. **Create a virtual environment:**
+   ```bash
+   python3 -m venv .venv
+   ```
+2. **Activate the environment:**
+   ```bash
+   source .venv/bin/activate
+   ```
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt mlx-whisper sounddevice scipy numpy
+   ```
+4. **Run the application:**
+   ```bash
+   python3 main.py
+   ```
 
-## Features
+## ⚙️ Advanced Fine-Tuning Guidelines
 
-### 🧠 Chat UX
-- Streaming tokens + Stop button
-- Chat history persisted in SQLite
-- Dev Mode tools embedded as a right sidebar (no separate window)
-
-### 📚 RAG (Persistent Knowledge)
-- Index local folders (code + docs) and retrieve relevant context at chat time
-- Vector search with **FAISS** + **sentence-transformers**
-- Store survives restarts and is designed to be commit-safe
-
-Supported inputs:
-- Text/code: `.py .js .ts .md .txt .json .yaml ...`
-- Documents: `.pdf` (PyMuPDF), `.docx` (python-docx)
-- Archives: `.zim` (libzim / python-zim)
-- Images (optional): OCR via `pillow + pytesseract + tesseract`
-
-### 🧩 Fine-tuning (MLX LoRA)
-- One-click training runner via `python -m mlx_lm lora ...`
-- Live logs + graceful stop
-- Dataset helpers: JSONL (ChatML) + SQLite
+When using the "Custom" preset, remember the Golden Rule for Apple Silicon memory stability:
+*   **Rank (r):** Defines the learning capacity. Keep it an even power of 2 (8, 16, 32).
+*   **Alpha:** The scaling factor. Should be `2 * Rank` or at least equal to Rank.
+*   **Train Layers:** Do not exceed your model's physical layer count. Reducing this (e.g., to 16 or 8) drastically reduces VRAM consumption.
 
 ---
-
-## Quickstart
-
-### 1) Create + activate a virtualenv
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-### 2) Install dependencies
-```bash
-pip install -r requirements.txt
-```
-
-Optional OCR dependency (images):
-```bash
-brew install tesseract
-```
-
-### 3) Run
-```bash
-python3 -u main.py
-```
-
-Wait until the UI shows: `Service: ready`.
-
----
-
-## Configuration
-
-### `prompts.json`
-`prompts.json` controls:
-- system prompt / user prompt
-- theme
-- `model_path` (MLX model directory)
-- `use_rag` (enable/disable RAG)
-
-### Environment variables (advanced)
-
-#### Storage (local-first)
-- `LOKUMAI_HOME` — base app data folder (default: `~/.lokumai`)
-- `LOKUMAI_RAG_DIR` — RAG store directory (default: `~/.lokumai/rag`)
-- `LOKUMAI_LORA_DIR` — LoRA artifacts directory (default: `~/.lokumai/lora_data`)
-- `LOKUMAI_CHAT_DB` — chat history DB path (default: `~/.lokumai/app.db`)
-
-#### Dev Mode password (no leaks)
-- `LOKUMAI_DEV_PASSWORD` — set your own password
-- otherwise the app stores/uses `~/.lokumai/dev_password.txt`
-
-#### Fine-tune memory shaping
-- `LOKUMAI_FT_PRESPLIT=1` — enable presplitting (recommended)
-- `LOKUMAI_FT_PRESPLIT_CHARS_PER_TOKEN` (default `4.0`) — lower = more aggressive split
-- `LOKUMAI_FT_CLEAR_CACHE_THRESHOLD` — lower = more frequent cache clears
-
----
-
-## RAG: persistent knowledge
-
-RAG stores a cumulative index under your configured RAG directory.
-
-Typical files:
-- `faiss_index.bin` — vector index
-- `docs_metadata.npy` — aligned chunk texts
-- `chunks_meta.npy` — per-chunk metadata
-- `rag_state.json` — per-file indexing state
-- `rag_meta.json` — convenience metadata
-
-Reliability note:
-- If loading fails, LokumAI **quarantines** the store files (renames with `.corrupt.<timestamp>`) instead of silently appearing empty.
-
----
-
-## LoRA fine-tuning
-
-Recommended baseline for large models (e.g. 27B 6-bit on Apple Silicon):
-- `batch_size = 1`
-- `max_seq_len = 384` (then try 512)
-- run validation **after** training (training-time eval can spike memory)
-
-Why training can OOM even with “free RAM”:
-Apple Metal memory can fail due to peak allocations + fragmentation, even if system monitors show headroom.
-
----
-
-## Dataset generation
-
-### Build a multi-turn dataset from `prompts.json`
-This repo includes a generator that produces a **multi-turn** ChatML dataset that:
-- asks questions only for **blocking unclear spots**
-- continues immediately after the user answers
-- avoids invalid samples (ChatML tags are never sliced during presplitting)
-
-```bash
-python3 tools/build_prompt_dataset.py
-```
-
-Outputs (default):
-- `~/.lokumai/lora_data/train.jsonl`
-- `~/.lokumai/lora_data/valid.jsonl`
-
-Change dataset size:
-```bash
-LOKUMAI_PROMPT_DATASET_SIZE=20000 python3 tools/build_prompt_dataset.py
-```
-
----
-
-## Project layout
-
-Core modules:
-- `main.py` — UI, streaming, persistence, Dev tools
-- `rag_engine.py` — ingestion + indexing + retrieval
-- `file_ingest.py` — extraction + chunking (PDF/DOCX/ZIM/OCR)
-- `finetune_engine.py` — MLX LoRA runner + ChatML-aware presplit
-- `lokum_paths.py` — centralized path & secrets management
-
----
-
-## Security & privacy
-
-- The app is **local-first**: chats, RAG, and LoRA artifacts are stored under `~/.lokumai/` by default.
-- Repo `.gitignore` is configured to ignore sensitive/large artifacts (DBs, datasets, adapters, binaries).
-- See internal notes: [`INTERNAL_SECURITY.md`](./INTERNAL_SECURITY.md)
-
----
-
-## Troubleshooting
-
-### Model path not found
-- Set `model_path` in `prompts.json` to a valid MLX model folder.
-
-### RAG engine not available
-- Install requirements and ensure:
-  - `sentence-transformers`
-  - `faiss-cpu`
-
-### OCR returns empty text
-- `brew install tesseract`
+*Built for local AI development on macOS.*

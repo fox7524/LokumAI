@@ -337,8 +337,8 @@ def main() -> None:
     system_prompt = _load_system_prompt(repo_root)
 
     # "big big" defaults (override via env if you want)
-    seed = int(os.environ.get("LOKUMAI_PROMPT_DATASET_SEED", "1337"))
-    target = int(os.environ.get("LOKUMAI_PROMPT_DATASET_SIZE", "5500"))
+    seed = int(os.environ.get("LOKUMF_PROMPT_DATASET_SEED", "1337"))
+    target = int(os.environ.get("LOKUMF_PROMPT_DATASET_SIZE", "5500"))
 
     train, valid = build_dataset(system_prompt, seed=seed, target_examples=target)
     # Default output should be local-only (avoid committing huge datasets).

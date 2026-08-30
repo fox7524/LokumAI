@@ -1,0 +1,28 @@
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+
+app.db
+memory.db
+dataset.db
+
+# Large local ML artifacts / outputs
+*.safetensors
+*.npz
+*.bin
+*.npy
+
+# Local-only training outputs (moved to ~/.lokumai by default)
+lora_data/
+_tmp_*/
+
+# Local internal secrets/docs (never commit)
+internal/
+INTERNAL_*_PASSWORD*
+
+# Python packaging artifacts (lokum-engine)
+lokum-engine/dist/
+lokum-engine/build/
+lokum-engine/*.egg-info/
+lokum-engine/src/*.egg-info/
