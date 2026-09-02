@@ -6,32 +6,14 @@ tags:
 
 # Memory Leak Fingerprinting
 
-**Memory_Leak_Fingerprinting** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar.
+Bu sinir ağı düğümü, Memory_Leak_Fingerprinting süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler. Deep Q-Networks ile eğitilmiştir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Attention_Head_1]]
-- [[Attention_Head_2]]
-- [[Attention_Head_3]]
-- [[Attention_Head_4]]
-- [[Multi_Head_Attention_Pool]]
-- [[Spatial_Pattern_Recognition]]
-- [[Temporal_Pattern_Recognition]]
 - [[Sequence_Alignment]]
-- [[Cross_Correlation_Matrix]]
-- [[Dimensionality_Reduction_PCA]]
-- [[Manifold_Learning_tSNE]]
-- [[Autoencoder_Latent_Space]]
 - [[Clustering_KMeans]]
-- [[Density_Based_Clustering]]
-- [[Markov_Chain_Transitions]]
-- [[Hidden_Markov_Models]]
 - [[Bayesian_Network_Inference]]
-- [[Fuzzy_Logic_Gates]]
-- [[Probabilistic_Graphical_Models]]
-- [[Causal_Inference_Engine]]
-- [[Counterfactual_Analysis]]
 - [[Graph_Neural_Network_Embeddings]]
-- [[Node2Vec_Mapping]]
+- [[Cross_Correlation_Matrix]]
+- [[Temporal_Pattern_Recognition]]
 - [[Edge_Weight_Optimization]]
-- [[Topology_Analysis]]

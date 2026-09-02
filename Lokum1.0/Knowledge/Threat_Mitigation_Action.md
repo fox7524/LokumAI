@@ -6,7 +6,7 @@ tags:
 
 # Threat Mitigation Action
 
-Bu modül, P2P şifreleme ve ZKP (Zero-Knowledge Proof) protokolleriyle entegre edilmiştir. Threat_Mitigation_Action vektör uzayında yüksek boyutlu veri analizi yapar.
+**Threat_Mitigation_Action** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar. Mixture of Experts (MoE) kapılarından gelen verileri sentezler.
 
 ## İleri Besleme (Feed-Forward Synapses)
 

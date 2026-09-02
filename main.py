@@ -1339,6 +1339,19 @@ class DevPanel(QWidget):
         l.addStretch()
         return w
 
+    def build_graphify_tab(self):
+        """
+        Graphify 3D Web UI Tab.
+        """
+        p = self.parent()
+        if p is not None and hasattr(p, "build_graphify_tab"):
+            return p.build_graphify_tab()
+        w = QWidget()
+        l = QVBoxLayout(w)
+        l.addWidget(QLabel("Graphify tab is unavailable."))
+        l.addStretch()
+        return w
+
     def build_finetune_tab(self):
         """
         Builds finetune tab for the current component.
@@ -1448,6 +1461,7 @@ class DevPanelDialog(QWidget):
 
         tabs = QTabWidget()
         tabs.addTab(self._wrap_tab(self.build_rag_tab()), "RAG Indexer")
+        tabs.addTab(self._wrap_tab(self.build_graphify_tab()), "Graphify 3D")
         tabs.addTab(self._wrap_tab(self.build_finetune_tab()), "Fine-tune")
         tabs.addTab(self._wrap_tab(self.build_model_tab()), "Model")
         tabs.addTab(self._wrap_tab(self.build_testing_tab()), "Testing")
@@ -1883,6 +1897,51 @@ class DevPanelDialog(QWidget):
         rag_dir = str(_lokum_rag_dir()) if callable(_lokum_rag_dir) else os.path.join(os.path.expanduser("~"), ".lokumai", "rag")
         self.rag_index_lbl.setText(f"Store: {rag_dir}")
         QMessageBox.information(self, "Reset Complete", "RAG index has been reset.")
+
+    def build_graphify_tab(self):
+        """
+        Graphify 3D Live Server Controls
+        """
+        widget = QWidget()
+        layout = QVBoxLayout(widget)
+        
+        box = QGroupBox("Graphify 3D Web UI")
+        vbox = QVBoxLayout()
+        
+        info = QLabel("LokumAI'nin Bilişsel Ağını 3D olarak görselleştirir.\nArka planda bir web sunucusu başlatarak canlı veriyi çeker.")
+        info.setWordWrap(True)
+        vbox.addWidget(info)
+        
+        self.graphify_status_lbl = QLabel("Status: Stopped")
+        self.graphify_status_lbl.setStyleSheet("color: #94a3b8;")
+        vbox.addWidget(self.graphify_status_lbl)
+        
+        start_btn = QPushButton("Start Graphify Server")
+        start_btn.clicked.connect(self.start_graphify_server)
+        vbox.addWidget(start_btn)
+        
+        open_btn = QPushButton("Open in Browser")
+        open_btn.clicked.connect(lambda: __import__('webbrowser').open('http://localhost:8000'))
+        vbox.addWidget(open_btn)
+        
+        box.setLayout(vbox)
+        layout.addWidget(box)
+        layout.addStretch()
+        return widget
+        
+    def start_graphify_server(self):
+        """Graphify web server başlatıcı (Background process)"""
+        import subprocess
+        import threading
+        
+        def run_server():
+            subprocess.run(["/Users/fox/Documents/PROJECTS/LokumAI/.venv/bin/python", "generate_graph_data.py"], cwd="/Users/fox/Documents/PROJECTS/LokumAI/web_ui")
+            subprocess.Popen(["/Users/fox/Documents/PROJECTS/LokumAI/.venv/bin/python", "web_server.py"], cwd="/Users/fox/Documents/PROJECTS/LokumAI/web_ui")
+            
+        t = threading.Thread(target=run_server, daemon=True)
+        t.start()
+        self.graphify_status_lbl.setText("Status: Running on http://localhost:8000")
+        self.graphify_status_lbl.setStyleSheet("color: #4ade80; font-weight: bold;")
     
     def build_finetune_tab(self):
         """

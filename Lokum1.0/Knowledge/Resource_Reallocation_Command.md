@@ -6,7 +6,7 @@ tags:
 
 # Resource Reallocation Command
 
-**Resource_Reallocation_Command** modülü, Apple Silicon (M5 Pro) UMA mimarisi üzerinde sıfır-kopya (zero-copy) prensibiyle çalışır. Temel amacı veri akışını nanosaniye gecikmeyle optimize etmektir.
+Bu sinir ağı düğümü, Resource_Reallocation_Command süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler. Deep Q-Networks ile eğitilmiştir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 

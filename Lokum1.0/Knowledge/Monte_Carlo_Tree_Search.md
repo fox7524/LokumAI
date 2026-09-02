@@ -6,22 +6,10 @@ tags:
 
 # Monte Carlo Tree Search
 
-**Monte_Carlo_Tree_Search** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar.
+Bu sinir ağı düğümü, Monte_Carlo_Tree_Search süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler. Deep Q-Networks ile eğitilmiştir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Metal_Shader_Dispatcher]]
-- [[Kernel_Panic_Trigger]]
-- [[System_Halt_Interrupt]]
-- [[Network_Firewall_Rule_Gen]]
-- [[ESP32_Firmware_Flasher]]
-- [[Auto_Remediation_Script]]
-- [[Cognitive_Response_Generator]]
-- [[Code_Refactoring_Output]]
-- [[Threat_Mitigation_Action]]
-- [[Resource_Reallocation_Command]]
-- [[Power_State_Adjustment]]
-- [[Cooling_Fan_Override]]
-- [[Process_Kill_Signal]]
-- [[Memory_Deallocation_Force]]
-- [[Alert_Notification_Broadcaster]]
+- [[Differential_Privacy_Filter]]
+- [[Neuromorphic_Hardware_Mapping]]
+- [[Zero_Trust_Architecture_Eval]]

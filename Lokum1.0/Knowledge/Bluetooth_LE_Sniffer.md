@@ -6,32 +6,14 @@ tags:
 
 # Bluetooth LE Sniffer
 
-Bu sinir ağı düğümü, Bluetooth_LE_Sniffer süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler.
+**Bluetooth_LE_Sniffer** modülü, Apple Silicon (M5 Pro) UMA mimarisi üzerinde sıfır-kopya (zero-copy) prensibiyle çalışır. Temel amacı veri akışını nanosaniye gecikmeyle optimize etmektir. Kriptografik işlemler ve donanım seviyesi memory safety için kritik öneme sahiptir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Signal_Denoising]]
 - [[Anomaly_Feature_Extraction]]
-- [[Token_Embedding_Generator]]
-- [[Time_Series_Smoothing]]
-- [[Packet_Header_Parsing]]
-- [[Memory_Leak_Fingerprinting]]
-- [[Cryptographic_Entropy_Analysis]]
-- [[Malware_Signature_Extraction]]
-- [[Behavioral_Feature_Mapping]]
-- [[Zero_Copy_Buffer_Analysis]]
-- [[Pointer_Authentication_Check]]
-- [[Stack_Smash_Detection]]
-- [[Heap_Overflow_Heuristics]]
-- [[Instruction_Fetch_Analysis]]
-- [[Branch_Prediction_Modeling]]
-- [[Data_Prefetch_Evaluation]]
-- [[TLB_Miss_Analysis]]
-- [[L1_Cache_Hit_Ratio]]
 - [[L2_Cache_Hit_Ratio]]
-- [[DRAM_Bandwidth_Utilization]]
-- [[PCIe_Bus_Traffic]]
-- [[NVMe_IOPS_Monitor]]
-- [[USB_Endpoint_Analysis]]
 - [[Thunderbolt_Controller_Metrics]]
-- [[DisplayPort_Bandwidth]]
+- [[Cryptographic_Entropy_Analysis]]
+- [[DRAM_Bandwidth_Utilization]]
+- [[Pointer_Authentication_Check]]
+- [[Packet_Header_Parsing]]

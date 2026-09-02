@@ -1,0 +1,4417 @@
+{
+  "knowledge_dir": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge",
+  "layer_order": [
+    "raw",
+    "hidden_3",
+    "hidden_4",
+    "hidden_5",
+    "hidden_6",
+    "hidden_7",
+    "hidden_8",
+    "hidden_9",
+    "hidden_10",
+    "hidden_11",
+    "index"
+  ],
+  "layer_counts": {
+    "raw": 64,
+    "hidden_3": 4,
+    "hidden_4": 6,
+    "hidden_5": 4,
+    "hidden_6": 4,
+    "hidden_7": 4,
+    "hidden_8": 4,
+    "hidden_9": 4,
+    "hidden_10": 4,
+    "hidden_11": 4,
+    "index": 5
+  },
+  "layers": {
+    "raw": [
+      {
+        "id": "RAG_Memory_Cell_01_MLX_Unified_Memory_Model",
+        "title": "MLX Unified Memory Model",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_01_MLX_Unified_Memory_Model.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "DRAM_Bandwidth_Utilization",
+          "Data_Prefetch_Evaluation",
+          "Zero_Copy_Buffer_Analysis"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_01_MLX_Unified_Memory_Model",
+        "layer_column": 0,
+        "slot_index": 0,
+        "x": 0,
+        "y": -5040,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_02_MLX_Zero_Copy_DLPack_and_Buffer_Reusage",
+        "title": "MLX Zero Copy DLPack and Buffer Reusage",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_02_MLX_Zero_Copy_DLPack_and_Buffer_Reusage.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "Cross_Correlation_Matrix",
+          "Token_Embedding_Generator",
+          "Zero_Copy_Buffer_Analysis"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_02_MLX_Zero_Copy_DLPack_and_Buffer_Reusage",
+        "layer_column": 0,
+        "slot_index": 1,
+        "x": 0,
+        "y": -4880,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_03_Metal_Shared_vs_Private_StorageMode",
+        "title": "Metal Shared vs Private StorageMode",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_03_Metal_Shared_vs_Private_StorageMode.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "L1_Cache_Hit_Ratio",
+          "L2_Cache_Hit_Ratio",
+          "Zero_Copy_Buffer_Analysis"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_03_Metal_Shared_vs_Private_StorageMode",
+        "layer_column": 0,
+        "slot_index": 2,
+        "x": 0,
+        "y": -4720,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_13_MLX_Lazy_Evaluation_And_Stream_Dependency_Barriers",
+        "title": "MLX Lazy Evaluation and Stream Dependency Barriers",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_13_MLX_Lazy_Evaluation_And_Stream_Dependency_Barriers.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "DRAM_Bandwidth_Utilization",
+          "Data_Prefetch_Evaluation",
+          "L1_Cache_Hit_Ratio",
+          "Zero_Copy_Buffer_Analysis"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_13_MLX_Lazy_Evaluation_And_Stream_Dependency_Barriers",
+        "layer_column": 0,
+        "slot_index": 3,
+        "x": 0,
+        "y": -4560,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_14_Metal_Heap_Residency_And_Buffer_Alias_Reuse",
+        "title": "Metal Heap Residency and Buffer Alias Reuse",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_14_Metal_Heap_Residency_And_Buffer_Alias_Reuse.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "DRAM_Bandwidth_Utilization",
+          "Data_Prefetch_Evaluation",
+          "L1_Cache_Hit_Ratio",
+          "L2_Cache_Hit_Ratio"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_14_Metal_Heap_Residency_And_Buffer_Alias_Reuse",
+        "layer_column": 0,
+        "slot_index": 4,
+        "x": 0,
+        "y": -4400,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_15_Apple_Silicon_UMA_Pressure_And_Page_Migration_Signals",
+        "title": "Apple Silicon UMA Pressure and Page Migration Signals",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_15_Apple_Silicon_UMA_Pressure_And_Page_Migration_Signals.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "Data_Prefetch_Evaluation",
+          "GPU_Performance_Counters",
+          "L1_Cache_Hit_Ratio",
+          "L2_Cache_Hit_Ratio"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_15_Apple_Silicon_UMA_Pressure_And_Page_Migration_Signals",
+        "layer_column": 0,
+        "slot_index": 5,
+        "x": 0,
+        "y": -4240,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_16_MLX_Graph_Capture_And_Kernel_Fusion_Boundaries",
+        "title": "MLX Graph Capture and Kernel Fusion Boundaries",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_16_MLX_Graph_Capture_And_Kernel_Fusion_Boundaries.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "Cache_Miss_Detector",
+          "GPU_Performance_Counters",
+          "L1_Cache_Hit_Ratio",
+          "L2_Cache_Hit_Ratio"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_16_MLX_Graph_Capture_And_Kernel_Fusion_Boundaries",
+        "layer_column": 0,
+        "slot_index": 6,
+        "x": 0,
+        "y": -4080,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_17_Metal_Argument_Buffers_For_Batched_Dispatch_Coordination",
+        "title": "Metal Argument Buffers for Batched Dispatch Coordination",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_17_Metal_Argument_Buffers_For_Batched_Dispatch_Coordination.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "Cache_Miss_Detector",
+          "Context_Switch_Monitor",
+          "GPU_Performance_Counters",
+          "L2_Cache_Hit_Ratio"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_17_Metal_Argument_Buffers_For_Batched_Dispatch_Coordination",
+        "layer_column": 0,
+        "slot_index": 7,
+        "x": 0,
+        "y": -3920,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_18_MPS_Versus_MLX_Execution_Surface_Selection",
+        "title": "MPS versus MLX Execution Surface Selection",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_18_MPS_Versus_MLX_Execution_Surface_Selection.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "Cache_Miss_Detector",
+          "Context_Switch_Monitor",
+          "GPU_Performance_Counters",
+          "Zero_Copy_Buffer_Analysis"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_18_MPS_Versus_MLX_Execution_Surface_Selection",
+        "layer_column": 0,
+        "slot_index": 8,
+        "x": 0,
+        "y": -3760,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_19_AMX_Neural_Engine_And_GPU_Scheduling_Tradeoffs",
+        "title": "AMX Neural Engine and GPU Scheduling Tradeoffs",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_19_AMX_Neural_Engine_And_GPU_Scheduling_Tradeoffs.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "Cache_Miss_Detector",
+          "Context_Switch_Monitor",
+          "DRAM_Bandwidth_Utilization",
+          "Zero_Copy_Buffer_Analysis"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_19_AMX_Neural_Engine_And_GPU_Scheduling_Tradeoffs",
+        "layer_column": 0,
+        "slot_index": 9,
+        "x": 0,
+        "y": -3600,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_20_Metal_Command_Buffer_Commit_Latency_And_Queue_Depth",
+        "title": "Metal Command Buffer Commit Latency and Queue Depth",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_20_Metal_Command_Buffer_Commit_Latency_And_Queue_Depth.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "Context_Switch_Monitor",
+          "DRAM_Bandwidth_Utilization",
+          "Data_Prefetch_Evaluation",
+          "Zero_Copy_Buffer_Analysis"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_20_Metal_Command_Buffer_Commit_Latency_And_Queue_Depth",
+        "layer_column": 0,
+        "slot_index": 10,
+        "x": 0,
+        "y": -3440,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_21_Unified_Memory_Backpressure_In_Token_Streaming_Pipelines",
+        "title": "Unified Memory Backpressure in Token Streaming Pipelines",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_21_Unified_Memory_Backpressure_In_Token_Streaming_Pipelines.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "DRAM_Bandwidth_Utilization",
+          "Data_Prefetch_Evaluation",
+          "L1_Cache_Hit_Ratio",
+          "Zero_Copy_Buffer_Analysis"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_21_Unified_Memory_Backpressure_In_Token_Streaming_Pipelines",
+        "layer_column": 0,
+        "slot_index": 11,
+        "x": 0,
+        "y": -3280,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_22_Zero_Copy_Tensor_Interop_Between_MLX_And_Pytorch",
+        "title": "Zero Copy Tensor Interop between MLX and PyTorch",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_22_Zero_Copy_Tensor_Interop_Between_MLX_And_Pytorch.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "DRAM_Bandwidth_Utilization",
+          "Data_Prefetch_Evaluation",
+          "L1_Cache_Hit_Ratio",
+          "L2_Cache_Hit_Ratio"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_22_Zero_Copy_Tensor_Interop_Between_MLX_And_Pytorch",
+        "layer_column": 0,
+        "slot_index": 12,
+        "x": 0,
+        "y": -3120,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_23_Sparse_Attention_On_Apple_Silicon_Memory_Budget",
+        "title": "Sparse Attention on Apple Silicon Memory Budget",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_23_Sparse_Attention_On_Apple_Silicon_Memory_Budget.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "Data_Prefetch_Evaluation",
+          "GPU_Performance_Counters",
+          "L1_Cache_Hit_Ratio",
+          "L2_Cache_Hit_Ratio"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_23_Sparse_Attention_On_Apple_Silicon_Memory_Budget",
+        "layer_column": 0,
+        "slot_index": 13,
+        "x": 0,
+        "y": -2960,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_24_Quantized_KV_Cache_Placement_On_UMA",
+        "title": "Quantized KV Cache Placement on UMA",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_24_Quantized_KV_Cache_Placement_On_UMA.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "Cache_Miss_Detector",
+          "GPU_Performance_Counters",
+          "L1_Cache_Hit_Ratio",
+          "L2_Cache_Hit_Ratio"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_24_Quantized_KV_Cache_Placement_On_UMA",
+        "layer_column": 0,
+        "slot_index": 14,
+        "x": 0,
+        "y": -2800,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_25_Metal_Resource_Hazard_Tracking_And_Explicit_Fencing",
+        "title": "Metal Resource Hazard Tracking and Explicit Fencing",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_25_Metal_Resource_Hazard_Tracking_And_Explicit_Fencing.md",
+        "layer": "raw",
+        "domain": "hardware/apple_mlx",
+        "direct_links": [
+          "Cache_Miss_Detector",
+          "Context_Switch_Monitor",
+          "GPU_Performance_Counters",
+          "L2_Cache_Hit_Ratio"
+        ],
+        "layout_sort_key": "hardware/apple_mlx::RAG_Memory_Cell_25_Metal_Resource_Hazard_Tracking_And_Explicit_Fencing",
+        "layer_column": 0,
+        "slot_index": 15,
+        "x": 0,
+        "y": -2640,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_04_ESP32_FreeRTOS_SMP_Core_Affinity",
+        "title": "ESP32 FreeRTOS SMP Core Affinity",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_04_ESP32_FreeRTOS_SMP_Core_Affinity.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Behavioral_Feature_Mapping",
+          "Cross_Correlation_Matrix",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_04_ESP32_FreeRTOS_SMP_Core_Affinity",
+        "layer_column": 0,
+        "slot_index": 16,
+        "x": 0,
+        "y": -2480,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_05_ESP32_Interrupt_Allocation_and_Shared_ISR",
+        "title": "ESP32 Interrupt Allocation and Shared ISR",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_05_ESP32_Interrupt_Allocation_and_Shared_ISR.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Branch_Prediction_Modeling",
+          "Instruction_Fetch_Analysis",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_05_ESP32_Interrupt_Allocation_and_Shared_ISR",
+        "layer_column": 0,
+        "slot_index": 17,
+        "x": 0,
+        "y": -2320,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_06_ESP32_DMA_Capable_Memory_and_ISR_Preallocation",
+        "title": "ESP32 DMA Capable Memory and ISR Preallocation",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_06_ESP32_DMA_Capable_Memory_and_ISR_Preallocation.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "DRAM_Bandwidth_Utilization",
+          "Memory_Leak_Fingerprinting",
+          "Packet_Header_Parsing"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_06_ESP32_DMA_Capable_Memory_and_ISR_Preallocation",
+        "layer_column": 0,
+        "slot_index": 18,
+        "x": 0,
+        "y": -2160,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_26_ESP32_IRAM_Safe_ISR_Latency_Budgets",
+        "title": "ESP32 IRAM Safe ISR Latency Budgets",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_26_ESP32_IRAM_Safe_ISR_Latency_Budgets.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Behavioral_Feature_Mapping",
+          "Instruction_Fetch_Analysis",
+          "Memory_Leak_Fingerprinting",
+          "Packet_Header_Parsing"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_26_ESP32_IRAM_Safe_ISR_Latency_Budgets",
+        "layer_column": 0,
+        "slot_index": 19,
+        "x": 0,
+        "y": -2000,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_27_ESP32_Task_Watchdog_And_Core_Starvation_Patterns",
+        "title": "ESP32 Task Watchdog and Core Starvation Patterns",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_27_ESP32_Task_Watchdog_And_Core_Starvation_Patterns.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Context_Switch_Monitor",
+          "Instruction_Fetch_Analysis",
+          "Memory_Leak_Fingerprinting",
+          "Packet_Header_Parsing"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_27_ESP32_Task_Watchdog_And_Core_Starvation_Patterns",
+        "layer_column": 0,
+        "slot_index": 20,
+        "x": 0,
+        "y": -1840,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_28_Freertos_Queue_Sets_Versus_Direct_Task_Notifications",
+        "title": "FreeRTOS Queue Sets versus Direct Task Notifications",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_28_Freertos_Queue_Sets_Versus_Direct_Task_Notifications.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Context_Switch_Monitor",
+          "Memory_Leak_Fingerprinting",
+          "Packet_Header_Parsing",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_28_Freertos_Queue_Sets_Versus_Direct_Task_Notifications",
+        "layer_column": 0,
+        "slot_index": 21,
+        "x": 0,
+        "y": -1680,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_29_ESP32_Flash_Cache_Disable_Windows_And_Critical_Paths",
+        "title": "ESP32 Flash Cache Disable Windows and Critical Paths",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_29_ESP32_Flash_Cache_Disable_Windows_And_Critical_Paths.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Context_Switch_Monitor",
+          "Cross_Correlation_Matrix",
+          "Memory_Leak_Fingerprinting",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_29_ESP32_Flash_Cache_Disable_Windows_And_Critical_Paths",
+        "layer_column": 0,
+        "slot_index": 22,
+        "x": 0,
+        "y": -1520,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_30_GPIO_Matrix_Interrupt_Fan_In_And_Signal_Jitter",
+        "title": "GPIO Matrix Interrupt Fan In and Signal Jitter",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_30_GPIO_Matrix_Interrupt_Fan_In_And_Signal_Jitter.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Context_Switch_Monitor",
+          "Cross_Correlation_Matrix",
+          "DRAM_Bandwidth_Utilization",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_30_GPIO_Matrix_Interrupt_Fan_In_And_Signal_Jitter",
+        "layer_column": 0,
+        "slot_index": 23,
+        "x": 0,
+        "y": -1360,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_31_RMT_Peripheral_Timing_Determinism_Under_System_Load",
+        "title": "RMT Peripheral Timing Determinism under System Load",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_31_RMT_Peripheral_Timing_Determinism_Under_System_Load.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Behavioral_Feature_Mapping",
+          "Cross_Correlation_Matrix",
+          "DRAM_Bandwidth_Utilization",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_31_RMT_Peripheral_Timing_Determinism_Under_System_Load",
+        "layer_column": 0,
+        "slot_index": 24,
+        "x": 0,
+        "y": -1200,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_32_I2S_DMA_Descriptor_Rings_On_ESP32",
+        "title": "I2S DMA Descriptor Rings on ESP32",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_32_I2S_DMA_Descriptor_Rings_On_ESP32.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Behavioral_Feature_Mapping",
+          "Cross_Correlation_Matrix",
+          "DRAM_Bandwidth_Utilization",
+          "Instruction_Fetch_Analysis"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_32_I2S_DMA_Descriptor_Rings_On_ESP32",
+        "layer_column": 0,
+        "slot_index": 25,
+        "x": 0,
+        "y": -1040,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_33_SPI_DMA_Burst_Alignment_And_Cache_Coherency",
+        "title": "SPI DMA Burst Alignment and Cache Coherency",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_33_SPI_DMA_Burst_Alignment_And_Cache_Coherency.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Behavioral_Feature_Mapping",
+          "DRAM_Bandwidth_Utilization",
+          "Instruction_Fetch_Analysis",
+          "Packet_Header_Parsing"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_33_SPI_DMA_Burst_Alignment_And_Cache_Coherency",
+        "layer_column": 0,
+        "slot_index": 26,
+        "x": 0,
+        "y": -880,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_34_UART_ISR_Backpressure_And_Ring_Buffer_Design",
+        "title": "UART ISR Backpressure and Ring Buffer Design",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_34_UART_ISR_Backpressure_And_Ring_Buffer_Design.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Behavioral_Feature_Mapping",
+          "Instruction_Fetch_Analysis",
+          "Memory_Leak_Fingerprinting",
+          "Packet_Header_Parsing"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_34_UART_ISR_Backpressure_And_Ring_Buffer_Design",
+        "layer_column": 0,
+        "slot_index": 27,
+        "x": 0,
+        "y": -720,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_35_Freertos_Event_Groups_Versus_Semaphores_For_Driver_States",
+        "title": "FreeRTOS Event Groups versus Semaphores for Driver States",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_35_Freertos_Event_Groups_Versus_Semaphores_For_Driver_States.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Context_Switch_Monitor",
+          "Instruction_Fetch_Analysis",
+          "Memory_Leak_Fingerprinting",
+          "Packet_Header_Parsing"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_35_Freertos_Event_Groups_Versus_Semaphores_For_Driver_States",
+        "layer_column": 0,
+        "slot_index": 28,
+        "x": 0,
+        "y": -560,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_36_PSRAM_Access_Penalties_In_Real_Time_Paths",
+        "title": "PSRAM Access Penalties in Real Time Paths",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_36_PSRAM_Access_Penalties_In_Real_Time_Paths.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Context_Switch_Monitor",
+          "Memory_Leak_Fingerprinting",
+          "Packet_Header_Parsing",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_36_PSRAM_Access_Penalties_In_Real_Time_Paths",
+        "layer_column": 0,
+        "slot_index": 29,
+        "x": 0,
+        "y": -400,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_37_Multi_Core_Critical_Sections_And_Spinlock_Contention",
+        "title": "Multi Core Critical Sections and Spinlock Contention",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_37_Multi_Core_Critical_Sections_And_Spinlock_Contention.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Context_Switch_Monitor",
+          "Cross_Correlation_Matrix",
+          "Memory_Leak_Fingerprinting",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_37_Multi_Core_Critical_Sections_And_Spinlock_Contention",
+        "layer_column": 0,
+        "slot_index": 30,
+        "x": 0,
+        "y": -240,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_38_Tickless_Idle_And_Wake_Latency_On_ESP32",
+        "title": "Tickless Idle and Wake Latency on ESP32",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_38_Tickless_Idle_And_Wake_Latency_On_ESP32.md",
+        "layer": "raw",
+        "domain": "hardware/esp32",
+        "direct_links": [
+          "Context_Switch_Monitor",
+          "Cross_Correlation_Matrix",
+          "DRAM_Bandwidth_Utilization",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "hardware/esp32::RAG_Memory_Cell_38_Tickless_Idle_And_Wake_Latency_On_ESP32",
+        "layer_column": 0,
+        "slot_index": 31,
+        "x": 0,
+        "y": -80,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_10_GNN_Message_Passing_for_Graph_Retrieval",
+        "title": "GNN Message Passing for Graph Retrieval",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_10_GNN_Message_Passing_for_Graph_Retrieval.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Graph_Neural_Network_Embeddings",
+          "Node2Vec_Mapping",
+          "Topology_Analysis"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_10_GNN_Message_Passing_for_Graph_Retrieval",
+        "layer_column": 0,
+        "slot_index": 32,
+        "x": 0,
+        "y": 80,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_11_GLM_RAG_Semantic_Graph_Fusion",
+        "title": "GLM RAG Semantic Graph Fusion",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_11_GLM_RAG_Semantic_Graph_Fusion.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Graph_Neural_Network_Embeddings",
+          "Probabilistic_Graphical_Models",
+          "Topology_Analysis"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_11_GLM_RAG_Semantic_Graph_Fusion",
+        "layer_column": 0,
+        "slot_index": 33,
+        "x": 0,
+        "y": 240,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_12_Cognitive_RAG_SingleHop_vs_MultiHop_Routing",
+        "title": "Cognitive RAG SingleHop vs MultiHop Routing",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_12_Cognitive_RAG_SingleHop_vs_MultiHop_Routing.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Sequence_Alignment",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_12_Cognitive_RAG_SingleHop_vs_MultiHop_Routing",
+        "layer_column": 0,
+        "slot_index": 34,
+        "x": 0,
+        "y": 400,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_52_Hybrid_Sparse_Dense_Graph_Retrieval",
+        "title": "Hybrid Sparse Dense Graph Retrieval",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_52_Hybrid_Sparse_Dense_Graph_Retrieval.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Graph_Neural_Network_Embeddings",
+          "Node2Vec_Mapping",
+          "Temporal_Pattern_Recognition",
+          "Topology_Analysis"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_52_Hybrid_Sparse_Dense_Graph_Retrieval",
+        "layer_column": 0,
+        "slot_index": 35,
+        "x": 0,
+        "y": 560,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_53_Graph_Expansion_Budgeting_And_Beam_Search",
+        "title": "Graph Expansion Budgeting and Beam Search",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_53_Graph_Expansion_Budgeting_And_Beam_Search.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Cross_Correlation_Matrix",
+          "Node2Vec_Mapping",
+          "Temporal_Pattern_Recognition",
+          "Topology_Analysis"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_53_Graph_Expansion_Budgeting_And_Beam_Search",
+        "layer_column": 0,
+        "slot_index": 36,
+        "x": 0,
+        "y": 720,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_54_Query_Decomposition_For_Multi_Hop_Retrieval",
+        "title": "Query Decomposition for Multi Hop Retrieval",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_54_Query_Decomposition_For_Multi_Hop_Retrieval.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Cross_Correlation_Matrix",
+          "Temporal_Pattern_Recognition",
+          "Topology_Analysis"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_54_Query_Decomposition_For_Multi_Hop_Retrieval",
+        "layer_column": 0,
+        "slot_index": 37,
+        "x": 0,
+        "y": 880,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_55_Edge_Reweighting_From_Retriever_Feedback",
+        "title": "Edge Reweighting from Retriever Feedback",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_55_Edge_Reweighting_From_Retriever_Feedback.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Cross_Correlation_Matrix",
+          "Probabilistic_Graphical_Models",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_55_Edge_Reweighting_From_Retriever_Feedback",
+        "layer_column": 0,
+        "slot_index": 38,
+        "x": 0,
+        "y": 1040,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_56_Temporal_Edges_In_Episodic_Memory_Graphs",
+        "title": "Temporal Edges in Episodic Memory Graphs",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_56_Temporal_Edges_In_Episodic_Memory_Graphs.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Cross_Correlation_Matrix",
+          "Probabilistic_Graphical_Models",
+          "Sequence_Alignment"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_56_Temporal_Edges_In_Episodic_Memory_Graphs",
+        "layer_column": 0,
+        "slot_index": 39,
+        "x": 0,
+        "y": 1200,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_57_Entity_Resolution_As_Graph_Construction_Discipline",
+        "title": "Entity Resolution as Graph Construction Discipline",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_57_Entity_Resolution_As_Graph_Construction_Discipline.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Graph_Neural_Network_Embeddings",
+          "Probabilistic_Graphical_Models",
+          "Sequence_Alignment"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_57_Entity_Resolution_As_Graph_Construction_Discipline",
+        "layer_column": 0,
+        "slot_index": 40,
+        "x": 0,
+        "y": 1360,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_58_Cross_Encoder_Reranking_After_Graph_Traversal",
+        "title": "Cross Encoder Reranking after Graph Traversal",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_58_Cross_Encoder_Reranking_After_Graph_Traversal.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Graph_Neural_Network_Embeddings",
+          "Node2Vec_Mapping",
+          "Probabilistic_Graphical_Models",
+          "Sequence_Alignment"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_58_Cross_Encoder_Reranking_After_Graph_Traversal",
+        "layer_column": 0,
+        "slot_index": 41,
+        "x": 0,
+        "y": 1520,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_59_Subgraph_Packing_For_Context_Window_Control",
+        "title": "Subgraph Packing for Context Window Control",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_59_Subgraph_Packing_For_Context_Window_Control.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Graph_Neural_Network_Embeddings",
+          "Node2Vec_Mapping",
+          "Sequence_Alignment",
+          "Topology_Analysis"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_59_Subgraph_Packing_For_Context_Window_Control",
+        "layer_column": 0,
+        "slot_index": 42,
+        "x": 0,
+        "y": 1680,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_60_Semantic_Drift_Detection_In_Graph_RAG",
+        "title": "Semantic Drift Detection in Graph RAG",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_60_Semantic_Drift_Detection_In_Graph_RAG.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Graph_Neural_Network_Embeddings",
+          "Node2Vec_Mapping",
+          "Temporal_Pattern_Recognition",
+          "Topology_Analysis"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_60_Semantic_Drift_Detection_In_Graph_RAG",
+        "layer_column": 0,
+        "slot_index": 43,
+        "x": 0,
+        "y": 1840,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_61_Negative_Sampling_For_Relation_Aware_Embeddings",
+        "title": "Negative Sampling for Relation Aware Embeddings",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_61_Negative_Sampling_For_Relation_Aware_Embeddings.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Cross_Correlation_Matrix",
+          "Node2Vec_Mapping",
+          "Temporal_Pattern_Recognition",
+          "Topology_Analysis"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_61_Negative_Sampling_For_Relation_Aware_Embeddings",
+        "layer_column": 0,
+        "slot_index": 44,
+        "x": 0,
+        "y": 2000,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_62_Graph_Neighborhood_Pruning_Under_Token_Budgets",
+        "title": "Graph Neighborhood Pruning under Token Budgets",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_62_Graph_Neighborhood_Pruning_Under_Token_Budgets.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Cross_Correlation_Matrix",
+          "Temporal_Pattern_Recognition",
+          "Topology_Analysis"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_62_Graph_Neighborhood_Pruning_Under_Token_Budgets",
+        "layer_column": 0,
+        "slot_index": 45,
+        "x": 0,
+        "y": 2160,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_63_Tool_Augmented_Retrieval_Routing_Policies",
+        "title": "Tool Augmented Retrieval Routing Policies",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_63_Tool_Augmented_Retrieval_Routing_Policies.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Cross_Correlation_Matrix",
+          "Probabilistic_Graphical_Models",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_63_Tool_Augmented_Retrieval_Routing_Policies",
+        "layer_column": 0,
+        "slot_index": 46,
+        "x": 0,
+        "y": 2320,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_64_Citation_Grounding_Across_Multi_Source_Reasoning",
+        "title": "Citation Grounding across Multi Source Reasoning",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_64_Citation_Grounding_Across_Multi_Source_Reasoning.md",
+        "layer": "raw",
+        "domain": "raw",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Cross_Correlation_Matrix",
+          "Probabilistic_Graphical_Models",
+          "Sequence_Alignment"
+        ],
+        "layout_sort_key": "raw::RAG_Memory_Cell_64_Citation_Grounding_Across_Multi_Source_Reasoning",
+        "layer_column": 0,
+        "slot_index": 47,
+        "x": 0,
+        "y": 2480,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_07_P2P_Encryption_and_ZKP_Constraint_Surface",
+        "title": "P2P Encryption and ZKP Constraint Surface",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_07_P2P_Encryption_and_ZKP_Constraint_Surface.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Cryptographic_Entropy_Analysis",
+          "Probabilistic_Graphical_Models"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_07_P2P_Encryption_and_ZKP_Constraint_Surface",
+        "layer_column": 0,
+        "slot_index": 48,
+        "x": 0,
+        "y": 2640,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_08_Apple_PAC_Runtime_Integrity",
+        "title": "Apple PAC Runtime Integrity",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_08_Apple_PAC_Runtime_Integrity.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Heap_Overflow_Heuristics",
+          "Pointer_Authentication_Check",
+          "Stack_Smash_Detection"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_08_Apple_PAC_Runtime_Integrity",
+        "layer_column": 0,
+        "slot_index": 49,
+        "x": 0,
+        "y": 2800,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_09_Memory_Safety_Primitives_and_Failure_Signatures",
+        "title": "Memory Safety Primitives and Failure Signatures",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_09_Memory_Safety_Primitives_and_Failure_Signatures.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Heap_Overflow_Heuristics",
+          "Instruction_Fetch_Analysis",
+          "Pointer_Authentication_Check"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_09_Memory_Safety_Primitives_and_Failure_Signatures",
+        "layer_column": 0,
+        "slot_index": 50,
+        "x": 0,
+        "y": 2960,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_39_Pointer_Authentication_Key_Domains_And_Signing_Contexts",
+        "title": "Pointer Authentication Key Domains and Signing Contexts",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_39_Pointer_Authentication_Key_Domains_And_Signing_Contexts.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Cryptographic_Entropy_Analysis",
+          "Heap_Overflow_Heuristics",
+          "Pointer_Authentication_Check",
+          "Stack_Smash_Detection"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_39_Pointer_Authentication_Key_Domains_And_Signing_Contexts",
+        "layer_column": 0,
+        "slot_index": 51,
+        "x": 0,
+        "y": 3120,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_40_Control_Flow_Integrity_And_PAC_Complementarity",
+        "title": "Control Flow Integrity and PAC Complementarity",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_40_Control_Flow_Integrity_And_PAC_Complementarity.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Cryptographic_Entropy_Analysis",
+          "Heap_Overflow_Heuristics",
+          "Instruction_Fetch_Analysis",
+          "Stack_Smash_Detection"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_40_Control_Flow_Integrity_And_PAC_Complementarity",
+        "layer_column": 0,
+        "slot_index": 52,
+        "x": 0,
+        "y": 3280,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_41_Use_After_Free_Telemetry_And_Crash_Clustering",
+        "title": "Use After Free Telemetry and Crash Clustering",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_41_Use_After_Free_Telemetry_And_Crash_Clustering.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Cryptographic_Entropy_Analysis",
+          "Heap_Overflow_Heuristics",
+          "Instruction_Fetch_Analysis"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_41_Use_After_Free_Telemetry_And_Crash_Clustering",
+        "layer_column": 0,
+        "slot_index": 53,
+        "x": 0,
+        "y": 3440,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_42_Heap_Metadata_Corruption_Signatures",
+        "title": "Heap Metadata Corruption Signatures",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_42_Heap_Metadata_Corruption_Signatures.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Cryptographic_Entropy_Analysis",
+          "Instruction_Fetch_Analysis",
+          "Probabilistic_Graphical_Models"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_42_Heap_Metadata_Corruption_Signatures",
+        "layer_column": 0,
+        "slot_index": 54,
+        "x": 0,
+        "y": 3600,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_43_Stack_Canary_Failure_Telemetry_And_Triage",
+        "title": "Stack Canary Failure Telemetry and Triage",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_43_Stack_Canary_Failure_Telemetry_And_Triage.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Instruction_Fetch_Analysis",
+          "Probabilistic_Graphical_Models",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_43_Stack_Canary_Failure_Telemetry_And_Triage",
+        "layer_column": 0,
+        "slot_index": 55,
+        "x": 0,
+        "y": 3760,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_44_Secure_Enclave_Boundaries_And_Key_Ladder_Separation",
+        "title": "Secure Enclave Boundaries and Key Ladder Separation",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_44_Secure_Enclave_Boundaries_And_Key_Ladder_Separation.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Pointer_Authentication_Check",
+          "Probabilistic_Graphical_Models",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_44_Secure_Enclave_Boundaries_And_Key_Ladder_Separation",
+        "layer_column": 0,
+        "slot_index": 56,
+        "x": 0,
+        "y": 3920,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_45_AEAD_Nonce_Reuse_Failure_Modes",
+        "title": "AEAD Nonce Reuse Failure Modes",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_45_AEAD_Nonce_Reuse_Failure_Modes.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Pointer_Authentication_Check",
+          "Probabilistic_Graphical_Models",
+          "Stack_Smash_Detection",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_45_AEAD_Nonce_Reuse_Failure_Modes",
+        "layer_column": 0,
+        "slot_index": 57,
+        "x": 0,
+        "y": 4080,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_46_Zero_Knowledge_Proof_Witness_Exposure_Surfaces",
+        "title": "Zero Knowledge Proof Witness Exposure Surfaces",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_46_Zero_Knowledge_Proof_Witness_Exposure_Surfaces.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Heap_Overflow_Heuristics",
+          "Pointer_Authentication_Check",
+          "Stack_Smash_Detection",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_46_Zero_Knowledge_Proof_Witness_Exposure_Surfaces",
+        "layer_column": 0,
+        "slot_index": 58,
+        "x": 0,
+        "y": 4240,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_47_Merkle_Commitments_For_Retrieval_Integrity",
+        "title": "Merkle Commitments for Retrieval Integrity",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_47_Merkle_Commitments_For_Retrieval_Integrity.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Cryptographic_Entropy_Analysis",
+          "Heap_Overflow_Heuristics",
+          "Pointer_Authentication_Check",
+          "Stack_Smash_Detection"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_47_Merkle_Commitments_For_Retrieval_Integrity",
+        "layer_column": 0,
+        "slot_index": 59,
+        "x": 0,
+        "y": 4400,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_48_Forward_Secrecy_In_Peer_To_Peer_Session_Rotation",
+        "title": "Forward Secrecy in Peer to Peer Session Rotation",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_48_Forward_Secrecy_In_Peer_To_Peer_Session_Rotation.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Cryptographic_Entropy_Analysis",
+          "Heap_Overflow_Heuristics",
+          "Instruction_Fetch_Analysis",
+          "Stack_Smash_Detection"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_48_Forward_Secrecy_In_Peer_To_Peer_Session_Rotation",
+        "layer_column": 0,
+        "slot_index": 60,
+        "x": 0,
+        "y": 4560,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "RAG_Memory_Cell_49_Remote_Attestation_Signals_For_Edge_Nodes",
+        "title": "Remote Attestation Signals for Edge Nodes",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_49_Remote_Attestation_Signals_For_Edge_Nodes.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Cryptographic_Entropy_Analysis",
+          "Heap_Overflow_Heuristics",
+          "Instruction_Fetch_Analysis"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_49_Remote_Attestation_Signals_For_Edge_Nodes",
+        "layer_column": 0,
+        "slot_index": 61,
+        "x": 0,
+        "y": 4720,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_50_Memory_Disclosure_Versus_Code_Reuse_Attack_Paths",
+        "title": "Memory Disclosure versus Code Reuse Attack Paths",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_50_Memory_Disclosure_Versus_Code_Reuse_Attack_Paths.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Cryptographic_Entropy_Analysis",
+          "Instruction_Fetch_Analysis",
+          "Probabilistic_Graphical_Models"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_50_Memory_Disclosure_Versus_Code_Reuse_Attack_Paths",
+        "layer_column": 0,
+        "slot_index": 62,
+        "x": 0,
+        "y": 4880,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "RAG_Memory_Cell_51_Crash_Triage_For_Memory_Safety_Regressions",
+        "title": "Crash Triage for Memory Safety Regressions",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_51_Crash_Triage_For_Memory_Safety_Regressions.md",
+        "layer": "raw",
+        "domain": "system/crypto",
+        "direct_links": [
+          "Causal_Inference_Engine",
+          "Instruction_Fetch_Analysis",
+          "Probabilistic_Graphical_Models",
+          "Temporal_Pattern_Recognition"
+        ],
+        "layout_sort_key": "system/crypto::RAG_Memory_Cell_51_Crash_Triage_For_Memory_Safety_Regressions",
+        "layer_column": 0,
+        "slot_index": 63,
+        "x": 0,
+        "y": 5040,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      }
+    ],
+    "hidden_3": [
+      {
+        "id": "H3_Apple_Silicon_Memory_Execution_Synthesis",
+        "title": "Apple Silicon Memory Execution Synthesis",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Apple_Silicon_Memory_Execution_Synthesis.md",
+        "layer": "hidden_3",
+        "domain": "domain/apple_silicon_mlx",
+        "direct_links": [
+          "Evolutionary_Strategies",
+          "H4_Resource_Execution_Prioritization",
+          "Monte_Carlo_Tree_Search"
+        ],
+        "layout_sort_key": "domain/apple_silicon_mlx::H3_Apple_Silicon_Memory_Execution_Synthesis",
+        "layer_column": 1,
+        "slot_index": 0,
+        "x": 240,
+        "y": -240,
+        "tracked_links": [
+          "H4_Resource_Execution_Prioritization"
+        ],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 3
+      },
+      {
+        "id": "H3_Cognitive_Graph_RAG_Routing_Synthesis",
+        "title": "Cognitive Graph RAG Routing Synthesis",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Cognitive_Graph_RAG_Routing_Synthesis.md",
+        "layer": "hidden_3",
+        "domain": "domain/cognitive_graph_rag_routing",
+        "direct_links": [
+          "Deterministic_Policy_Gradient",
+          "H4_Edge_Device_Response_Strategy",
+          "Trust_Region_Policy_Optimization"
+        ],
+        "layout_sort_key": "domain/cognitive_graph_rag_routing::H3_Cognitive_Graph_RAG_Routing_Synthesis",
+        "layer_column": 1,
+        "slot_index": 1,
+        "x": 240,
+        "y": -80,
+        "tracked_links": [
+          "H4_Edge_Device_Response_Strategy"
+        ],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 3
+      },
+      {
+        "id": "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis",
+        "title": "Cryptographic Integrity and Memory Safety Synthesis",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md",
+        "layer": "hidden_3",
+        "domain": "domain/cryptographic_integrity_memory_safety",
+        "direct_links": [
+          "Ant_Colony_Optimization",
+          "Continuous_Action_Space_Actor",
+          "H4_Resource_Execution_Prioritization",
+          "Proximal_Policy_Optimization",
+          "Soft_Actor_Critic"
+        ],
+        "layout_sort_key": "domain/cryptographic_integrity_memory_safety::H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis",
+        "layer_column": 1,
+        "slot_index": 2,
+        "x": 240,
+        "y": 80,
+        "tracked_links": [
+          "H4_Resource_Execution_Prioritization"
+        ],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 3
+      },
+      {
+        "id": "H3_Embedded_Interrupt_DMA_Synthesis",
+        "title": "Embedded Interrupt DMA Synthesis",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Embedded_Interrupt_DMA_Synthesis.md",
+        "layer": "hidden_3",
+        "domain": "domain/embedded_interrupt_dma",
+        "direct_links": [
+          "Actor_Critic_Method",
+          "Alpha_Beta_Pruning",
+          "Deep_Deterministic_Policy_Grad",
+          "H4_Performance_Bottleneck_Disambiguation",
+          "H4_Security_Failure_Mode_Arbitration"
+        ],
+        "layout_sort_key": "domain/embedded_interrupt_dma::H3_Embedded_Interrupt_DMA_Synthesis",
+        "layer_column": 1,
+        "slot_index": 3,
+        "x": 240,
+        "y": 240,
+        "tracked_links": [
+          "H4_Performance_Bottleneck_Disambiguation",
+          "H4_Security_Failure_Mode_Arbitration"
+        ],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 4
+      }
+    ],
+    "hidden_4": [
+      {
+        "id": "H4_Cognitive_Retrieval_Policy_Selection",
+        "title": "Cognitive Retrieval Policy Selection",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Cognitive_Retrieval_Policy_Selection.md",
+        "layer": "hidden_4",
+        "domain": "domain/cognitive_graph_rag",
+        "direct_links": [
+          "Semantic_Graph_Weaver"
+        ],
+        "layout_sort_key": "domain/cognitive_graph_rag::H4_Cognitive_Retrieval_Policy_Selection",
+        "layer_column": 2,
+        "slot_index": 0,
+        "x": 480,
+        "y": -400,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H4_Edge_Device_Response_Strategy",
+        "title": "Edge Device Response Strategy",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Edge_Device_Response_Strategy.md",
+        "layer": "hidden_4",
+        "domain": "domain/edge_systems",
+        "direct_links": [
+          "Federated_Learning_Aggregator",
+          "Hardware_Root_Of_Trust"
+        ],
+        "layout_sort_key": "domain/edge_systems::H4_Edge_Device_Response_Strategy",
+        "layer_column": 2,
+        "slot_index": 1,
+        "x": 480,
+        "y": -240,
+        "tracked_links": [],
+        "incoming_edge_count": 1,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H4_Cross_Domain_Causal_Alignment",
+        "title": "Cross Domain Causal Alignment",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Cross_Domain_Causal_Alignment.md",
+        "layer": "hidden_4",
+        "domain": "domain/multi_domain",
+        "direct_links": [
+          "Blind_Signature_Validator",
+          "GAN_Discriminator_Node",
+          "H5_Risk_Performance_Tradeoff_Control",
+          "Lattice_Based_Crypto",
+          "Post_Quantum_Cryptography"
+        ],
+        "layout_sort_key": "domain/multi_domain::H4_Cross_Domain_Causal_Alignment",
+        "layer_column": 2,
+        "slot_index": 2,
+        "x": 480,
+        "y": -80,
+        "tracked_links": [
+          "H5_Risk_Performance_Tradeoff_Control"
+        ],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "H4_Performance_Bottleneck_Disambiguation",
+        "title": "Performance Bottleneck Disambiguation",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Performance_Bottleneck_Disambiguation.md",
+        "layer": "hidden_4",
+        "domain": "domain/multi_domain",
+        "direct_links": [
+          "M5_Pro_Tensor_Dispatch",
+          "Semantic_Graph_Weaver"
+        ],
+        "layout_sort_key": "domain/multi_domain::H4_Performance_Bottleneck_Disambiguation",
+        "layer_column": 2,
+        "slot_index": 3,
+        "x": 480,
+        "y": 80,
+        "tracked_links": [],
+        "incoming_edge_count": 1,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H4_Resource_Execution_Prioritization",
+        "title": "Resource Execution Prioritization",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Resource_Execution_Prioritization.md",
+        "layer": "hidden_4",
+        "domain": "domain/multi_domain",
+        "direct_links": [
+          "Federated_Learning_Aggregator",
+          "H5_Metacognitive_Policy_Arbitration",
+          "Secure_Enclave_Processor"
+        ],
+        "layout_sort_key": "domain/multi_domain::H4_Resource_Execution_Prioritization",
+        "layer_column": 2,
+        "slot_index": 4,
+        "x": 480,
+        "y": 240,
+        "tracked_links": [
+          "H5_Metacognitive_Policy_Arbitration"
+        ],
+        "incoming_edge_count": 2,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "H4_Security_Failure_Mode_Arbitration",
+        "title": "Security Failure Mode Arbitration",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Security_Failure_Mode_Arbitration.md",
+        "layer": "hidden_4",
+        "domain": "domain/security_memory",
+        "direct_links": [
+          "Hardware_Root_Of_Trust"
+        ],
+        "layout_sort_key": "domain/security_memory::H4_Security_Failure_Mode_Arbitration",
+        "layer_column": 2,
+        "slot_index": 5,
+        "x": 480,
+        "y": 400,
+        "tracked_links": [],
+        "incoming_edge_count": 1,
+        "outgoing_edge_count": 0
+      }
+    ],
+    "hidden_5": [
+      {
+        "id": "H5_Retrieval_Depth_Governance",
+        "title": "Retrieval Depth Governance",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Retrieval_Depth_Governance.md",
+        "layer": "hidden_5",
+        "domain": "domain/cognitive_graph_rag",
+        "direct_links": [
+          "Attention_Routing_Metacontroller",
+          "Hallucination_Detection_Filter",
+          "Semantic_Drift_Detector"
+        ],
+        "layout_sort_key": "domain/cognitive_graph_rag::H5_Retrieval_Depth_Governance",
+        "layer_column": 3,
+        "slot_index": 0,
+        "x": 720,
+        "y": -240,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H5_Global_Escalation_Gate",
+        "title": "Global Escalation Gate",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Global_Escalation_Gate.md",
+        "layer": "hidden_5",
+        "domain": "domain/edge_security_operations",
+        "direct_links": [
+          "Algorithmic_Bias_Evaluator",
+          "Semantic_Drift_Detector",
+          "Semantic_Memory_Indexing"
+        ],
+        "layout_sort_key": "domain/edge_security_operations::H5_Global_Escalation_Gate",
+        "layer_column": 3,
+        "slot_index": 1,
+        "x": 720,
+        "y": -80,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H5_Metacognitive_Policy_Arbitration",
+        "title": "Metacognitive Policy Arbitration",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Metacognitive_Policy_Arbitration.md",
+        "layer": "hidden_5",
+        "domain": "domain/multi_domain",
+        "direct_links": [
+          "Attention_Routing_Metacontroller",
+          "Epistemological_Uncertainty_Calc",
+          "Metacognitive_Reflection_Core"
+        ],
+        "layout_sort_key": "domain/multi_domain::H5_Metacognitive_Policy_Arbitration",
+        "layer_column": 3,
+        "slot_index": 2,
+        "x": 720,
+        "y": 80,
+        "tracked_links": [],
+        "incoming_edge_count": 1,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H5_Risk_Performance_Tradeoff_Control",
+        "title": "Risk Performance Tradeoff Control",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Risk_Performance_Tradeoff_Control.md",
+        "layer": "hidden_5",
+        "domain": "domain/security_execution",
+        "direct_links": [
+          "Metacognitive_Reflection_Core"
+        ],
+        "layout_sort_key": "domain/security_execution::H5_Risk_Performance_Tradeoff_Control",
+        "layer_column": 3,
+        "slot_index": 3,
+        "x": 720,
+        "y": 240,
+        "tracked_links": [],
+        "incoming_edge_count": 1,
+        "outgoing_edge_count": 0
+      }
+    ],
+    "hidden_6": [
+      {
+        "id": "H6_Retrieval_Action_Coordination",
+        "title": "Retrieval Action Coordination",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Retrieval_Action_Coordination.md",
+        "layer": "hidden_6",
+        "domain": "domain/cognitive_graph_rag",
+        "direct_links": [
+          "Automated_Vulnerability_Discovery",
+          "Global_Risk_Assessment",
+          "Nash_Equilibrium_Enforcer",
+          "Resource_Lifecycle_Manager",
+          "Strategic_Resource_Allocator"
+        ],
+        "layout_sort_key": "domain/cognitive_graph_rag::H6_Retrieval_Action_Coordination",
+        "layer_column": 4,
+        "slot_index": 0,
+        "x": 960,
+        "y": -240,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H6_Global_Response_Orchestration",
+        "title": "Global Response Orchestration",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Global_Response_Orchestration.md",
+        "layer": "hidden_6",
+        "domain": "domain/edge_security_operations",
+        "direct_links": [
+          "Long_Term_Strategic_Planner",
+          "Resource_Lifecycle_Manager"
+        ],
+        "layout_sort_key": "domain/edge_security_operations::H6_Global_Response_Orchestration",
+        "layer_column": 4,
+        "slot_index": 1,
+        "x": 960,
+        "y": -80,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H6_Executive_Priority_Orchestration",
+        "title": "Executive Priority Orchestration",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Executive_Priority_Orchestration.md",
+        "layer": "hidden_6",
+        "domain": "domain/multi_domain",
+        "direct_links": [
+          "Long_Term_Strategic_Planner",
+          "Strategic_Resource_Allocator"
+        ],
+        "layout_sort_key": "domain/multi_domain::H6_Executive_Priority_Orchestration",
+        "layer_column": 4,
+        "slot_index": 2,
+        "x": 960,
+        "y": 80,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H6_Recovery_Execution_Sequencing",
+        "title": "Recovery Execution Sequencing",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Recovery_Execution_Sequencing.md",
+        "layer": "hidden_6",
+        "domain": "domain/resilience_operations",
+        "direct_links": [
+          "Resource_Lifecycle_Manager"
+        ],
+        "layout_sort_key": "domain/resilience_operations::H6_Recovery_Execution_Sequencing",
+        "layer_column": 4,
+        "slot_index": 3,
+        "x": 960,
+        "y": 240,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      }
+    ],
+    "hidden_7": [
+      {
+        "id": "H7_Episodic_Timeline_Alignment",
+        "title": "Episodic Timeline Alignment",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Episodic_Timeline_Alignment.md",
+        "layer": "hidden_7",
+        "domain": "reasoning/temporal",
+        "direct_links": [
+          "Final_Execution_Gate",
+          "H8_Decision_Commitment_Gate",
+          "Moral_Turing_Test",
+          "Reality_Anchor_Validator"
+        ],
+        "layout_sort_key": "reasoning/temporal::H7_Episodic_Timeline_Alignment",
+        "layer_column": 5,
+        "slot_index": 0,
+        "x": 1200,
+        "y": -240,
+        "tracked_links": [
+          "H8_Decision_Commitment_Gate"
+        ],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "H7_Event_Entity_Binding",
+        "title": "Event Entity Binding",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Event_Entity_Binding.md",
+        "layer": "hidden_7",
+        "domain": "reasoning/temporal",
+        "direct_links": [
+          "Global_State_Consensus",
+          "God_Mode_Overrides",
+          "God_Mode_Telemetry_Broadcast",
+          "H8_Dominant_Thoughtseed_Selection"
+        ],
+        "layout_sort_key": "reasoning/temporal::H7_Event_Entity_Binding",
+        "layer_column": 5,
+        "slot_index": 1,
+        "x": 1200,
+        "y": -80,
+        "tracked_links": [
+          "H8_Dominant_Thoughtseed_Selection"
+        ],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "H7_Recency_Drift_Governance",
+        "title": "Recency Drift Governance",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Recency_Drift_Governance.md",
+        "layer": "hidden_7",
+        "domain": "reasoning/temporal",
+        "direct_links": [
+          "Global_State_Consensus"
+        ],
+        "layout_sort_key": "reasoning/temporal::H7_Recency_Drift_Governance",
+        "layer_column": 5,
+        "slot_index": 2,
+        "x": 1200,
+        "y": 80,
+        "tracked_links": [],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H7_Temporal_Causal_Recall",
+        "title": "Temporal Causal Recall",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Temporal_Causal_Recall.md",
+        "layer": "hidden_7",
+        "domain": "reasoning/temporal",
+        "direct_links": [
+          "Autonomous_Weapon_System_Auth",
+          "Failsafe_Condition_Check",
+          "Global_State_Consensus",
+          "H8_Dominant_Thoughtseed_Selection",
+          "Systemic_Collapse_Failsafe"
+        ],
+        "layout_sort_key": "reasoning/temporal::H7_Temporal_Causal_Recall",
+        "layer_column": 5,
+        "slot_index": 3,
+        "x": 1200,
+        "y": 240,
+        "tracked_links": [
+          "H8_Dominant_Thoughtseed_Selection"
+        ],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 1
+      }
+    ],
+    "hidden_8": [
+      {
+        "id": "H8_Decision_Commitment_Gate",
+        "title": "Decision Commitment Gate",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Decision_Commitment_Gate.md",
+        "layer": "hidden_8",
+        "domain": "hidden_8",
+        "direct_links": [
+          "H9_Commit_Ready_Delivery_Check",
+          "H9_Execution_Surface_Binding",
+          "H9_Response_Payload_Composition"
+        ],
+        "layout_sort_key": "hidden_8::H8_Decision_Commitment_Gate",
+        "layer_column": 6,
+        "slot_index": 0,
+        "x": 1440,
+        "y": -240,
+        "tracked_links": [
+          "H9_Commit_Ready_Delivery_Check",
+          "H9_Execution_Surface_Binding",
+          "H9_Response_Payload_Composition"
+        ],
+        "incoming_edge_count": 1,
+        "outgoing_edge_count": 3
+      },
+      {
+        "id": "H8_Dominant_Thoughtseed_Selection",
+        "title": "Dominant Thoughtseed Selection",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Dominant_Thoughtseed_Selection.md",
+        "layer": "hidden_8",
+        "domain": "hidden_8",
+        "direct_links": [
+          "H9_Commit_Ready_Delivery_Check",
+          "H9_Execution_Surface_Binding",
+          "H9_Response_Payload_Composition"
+        ],
+        "layout_sort_key": "hidden_8::H8_Dominant_Thoughtseed_Selection",
+        "layer_column": 6,
+        "slot_index": 1,
+        "x": 1440,
+        "y": -80,
+        "tracked_links": [
+          "H9_Commit_Ready_Delivery_Check",
+          "H9_Execution_Surface_Binding",
+          "H9_Response_Payload_Composition"
+        ],
+        "incoming_edge_count": 2,
+        "outgoing_edge_count": 3
+      },
+      {
+        "id": "H8_Exception_Override_Arbitration",
+        "title": "Exception Override Arbitration",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Exception_Override_Arbitration.md",
+        "layer": "hidden_8",
+        "domain": "hidden_8",
+        "direct_links": [
+          "H9_Commit_Ready_Delivery_Check",
+          "H9_Execution_Surface_Binding",
+          "H9_Failsafe_Action_Packaging"
+        ],
+        "layout_sort_key": "hidden_8::H8_Exception_Override_Arbitration",
+        "layer_column": 6,
+        "slot_index": 2,
+        "x": 1440,
+        "y": 80,
+        "tracked_links": [
+          "H9_Commit_Ready_Delivery_Check",
+          "H9_Execution_Surface_Binding",
+          "H9_Failsafe_Action_Packaging"
+        ],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 3
+      },
+      {
+        "id": "H8_Global_Policy_Broadcast",
+        "title": "Global Policy Broadcast",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Global_Policy_Broadcast.md",
+        "layer": "hidden_8",
+        "domain": "hidden_8",
+        "direct_links": [
+          "H9_Commit_Ready_Delivery_Check",
+          "H9_Execution_Surface_Binding",
+          "H9_Response_Payload_Composition"
+        ],
+        "layout_sort_key": "hidden_8::H8_Global_Policy_Broadcast",
+        "layer_column": 6,
+        "slot_index": 3,
+        "x": 1440,
+        "y": 240,
+        "tracked_links": [
+          "H9_Commit_Ready_Delivery_Check",
+          "H9_Execution_Surface_Binding",
+          "H9_Response_Payload_Composition"
+        ],
+        "incoming_edge_count": 0,
+        "outgoing_edge_count": 3
+      }
+    ],
+    "hidden_9": [
+      {
+        "id": "H9_Commit_Ready_Delivery_Check",
+        "title": "Commit Ready Delivery Check",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Commit_Ready_Delivery_Check.md",
+        "layer": "hidden_9",
+        "domain": "hidden_9",
+        "direct_links": [
+          "H10_Global_Supervision_Arbitration",
+          "H10_Long_Horizon_Outcome_Review",
+          "H10_Rollback_Escalation_Governance"
+        ],
+        "layout_sort_key": "hidden_9::H9_Commit_Ready_Delivery_Check",
+        "layer_column": 7,
+        "slot_index": 0,
+        "x": 1680,
+        "y": -240,
+        "tracked_links": [
+          "H10_Global_Supervision_Arbitration",
+          "H10_Long_Horizon_Outcome_Review",
+          "H10_Rollback_Escalation_Governance"
+        ],
+        "incoming_edge_count": 4,
+        "outgoing_edge_count": 3
+      },
+      {
+        "id": "H9_Execution_Surface_Binding",
+        "title": "Execution Surface Binding",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Execution_Surface_Binding.md",
+        "layer": "hidden_9",
+        "domain": "hidden_9",
+        "direct_links": [
+          "H10_Global_Supervision_Arbitration",
+          "H10_Rollback_Escalation_Governance",
+          "H10_Strategic_Resource_Oversight"
+        ],
+        "layout_sort_key": "hidden_9::H9_Execution_Surface_Binding",
+        "layer_column": 7,
+        "slot_index": 1,
+        "x": 1680,
+        "y": -80,
+        "tracked_links": [
+          "H10_Global_Supervision_Arbitration",
+          "H10_Rollback_Escalation_Governance",
+          "H10_Strategic_Resource_Oversight"
+        ],
+        "incoming_edge_count": 4,
+        "outgoing_edge_count": 3
+      },
+      {
+        "id": "H9_Failsafe_Action_Packaging",
+        "title": "Failsafe Action Packaging",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Failsafe_Action_Packaging.md",
+        "layer": "hidden_9",
+        "domain": "hidden_9",
+        "direct_links": [
+          "H10_Global_Supervision_Arbitration",
+          "H10_Long_Horizon_Outcome_Review",
+          "H10_Strategic_Resource_Oversight"
+        ],
+        "layout_sort_key": "hidden_9::H9_Failsafe_Action_Packaging",
+        "layer_column": 7,
+        "slot_index": 2,
+        "x": 1680,
+        "y": 80,
+        "tracked_links": [
+          "H10_Global_Supervision_Arbitration",
+          "H10_Long_Horizon_Outcome_Review",
+          "H10_Strategic_Resource_Oversight"
+        ],
+        "incoming_edge_count": 1,
+        "outgoing_edge_count": 3
+      },
+      {
+        "id": "H9_Response_Payload_Composition",
+        "title": "Response Payload Composition",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Response_Payload_Composition.md",
+        "layer": "hidden_9",
+        "domain": "hidden_9",
+        "direct_links": [
+          "H10_Global_Supervision_Arbitration",
+          "H10_Rollback_Escalation_Governance",
+          "H10_Strategic_Resource_Oversight"
+        ],
+        "layout_sort_key": "hidden_9::H9_Response_Payload_Composition",
+        "layer_column": 7,
+        "slot_index": 3,
+        "x": 1680,
+        "y": 240,
+        "tracked_links": [
+          "H10_Global_Supervision_Arbitration",
+          "H10_Rollback_Escalation_Governance",
+          "H10_Strategic_Resource_Oversight"
+        ],
+        "incoming_edge_count": 3,
+        "outgoing_edge_count": 3
+      }
+    ],
+    "hidden_10": [
+      {
+        "id": "H10_Global_Supervision_Arbitration",
+        "title": "Global Supervision Arbitration",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Global_Supervision_Arbitration.md",
+        "layer": "hidden_10",
+        "domain": "hidden_10",
+        "direct_links": [
+          "ESP32_Firmware_Flasher",
+          "Kernel_Panic_Trigger",
+          "Power_State_Adjustment"
+        ],
+        "layout_sort_key": "hidden_10::H10_Global_Supervision_Arbitration",
+        "layer_column": 8,
+        "slot_index": 0,
+        "x": 1920,
+        "y": -240,
+        "tracked_links": [],
+        "incoming_edge_count": 4,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "H10_Long_Horizon_Outcome_Review",
+        "title": "Long Horizon Outcome Review",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Long_Horizon_Outcome_Review.md",
+        "layer": "hidden_10",
+        "domain": "hidden_10",
+        "direct_links": [
+          "Auto_Remediation_Script",
+          "Code_Refactoring_Output",
+          "Process_Kill_Signal"
+        ],
+        "layout_sort_key": "hidden_10::H10_Long_Horizon_Outcome_Review",
+        "layer_column": 8,
+        "slot_index": 1,
+        "x": 1920,
+        "y": -80,
+        "tracked_links": [],
+        "incoming_edge_count": 2,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "H10_Rollback_Escalation_Governance",
+        "title": "Rollback Escalation Governance",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Rollback_Escalation_Governance.md",
+        "layer": "hidden_10",
+        "domain": "hidden_10",
+        "direct_links": [
+          "Alert_Notification_Broadcaster",
+          "Power_State_Adjustment",
+          "Threat_Mitigation_Action"
+        ],
+        "layout_sort_key": "hidden_10::H10_Rollback_Escalation_Governance",
+        "layer_column": 8,
+        "slot_index": 2,
+        "x": 1920,
+        "y": 80,
+        "tracked_links": [],
+        "incoming_edge_count": 3,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "H10_Strategic_Resource_Oversight",
+        "title": "Strategic Resource Oversight",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Strategic_Resource_Oversight.md",
+        "layer": "hidden_10",
+        "domain": "hidden_10",
+        "direct_links": [
+          "Cognitive_Response_Generator",
+          "Metal_Shader_Dispatcher",
+          "System_Halt_Interrupt"
+        ],
+        "layout_sort_key": "hidden_10::H10_Strategic_Resource_Oversight",
+        "layer_column": 8,
+        "slot_index": 3,
+        "x": 1920,
+        "y": 240,
+        "tracked_links": [],
+        "incoming_edge_count": 3,
+        "outgoing_edge_count": 1
+      }
+    ],
+    "hidden_11": [
+      {
+        "id": "H11_Failsafe_Cost_Accounting",
+        "title": "Failsafe Cost Accounting",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H11_Failsafe_Cost_Accounting.md",
+        "layer": "hidden_11",
+        "domain": "hidden_11",
+        "direct_links": [
+          "Cooling_Fan_Override",
+          "H10_Strategic_Resource_Oversight",
+          "Memory_Deallocation_Force",
+          "System_Halt_Interrupt"
+        ],
+        "layout_sort_key": "hidden_11::H11_Failsafe_Cost_Accounting",
+        "layer_column": 9,
+        "slot_index": 0,
+        "x": 2160,
+        "y": -240,
+        "tracked_links": [
+          "H10_Strategic_Resource_Oversight"
+        ],
+        "incoming_edge_count": 1,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H11_Outcome_Regression_Postmortem",
+        "title": "Outcome Regression Postmortem",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H11_Outcome_Regression_Postmortem.md",
+        "layer": "hidden_11",
+        "domain": "hidden_11",
+        "direct_links": [
+          "Alert_Notification_Broadcaster",
+          "Auto_Remediation_Script",
+          "H10_Long_Horizon_Outcome_Review",
+          "Metacognitive_Reflection_Core"
+        ],
+        "layout_sort_key": "hidden_11::H11_Outcome_Regression_Postmortem",
+        "layer_column": 9,
+        "slot_index": 1,
+        "x": 2160,
+        "y": -80,
+        "tracked_links": [
+          "H10_Long_Horizon_Outcome_Review"
+        ],
+        "incoming_edge_count": 1,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H11_Rollback_Decision_Audit",
+        "title": "Rollback Decision Audit",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H11_Rollback_Decision_Audit.md",
+        "layer": "hidden_11",
+        "domain": "hidden_11",
+        "direct_links": [
+          "H10_Rollback_Escalation_Governance",
+          "Kernel_Panic_Trigger",
+          "Power_State_Adjustment",
+          "Process_Kill_Signal"
+        ],
+        "layout_sort_key": "hidden_11::H11_Rollback_Decision_Audit",
+        "layer_column": 9,
+        "slot_index": 2,
+        "x": 2160,
+        "y": 80,
+        "tracked_links": [
+          "H10_Rollback_Escalation_Governance"
+        ],
+        "incoming_edge_count": 1,
+        "outgoing_edge_count": 0
+      },
+      {
+        "id": "H11_Trace_Provenance_Attestation",
+        "title": "Trace Provenance Attestation",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H11_Trace_Provenance_Attestation.md",
+        "layer": "hidden_11",
+        "domain": "hidden_11",
+        "direct_links": [
+          "Cognitive_Dissonance_Resolver",
+          "Global_Risk_Assessment",
+          "H10_Global_Supervision_Arbitration",
+          "Hallucination_Detection_Filter"
+        ],
+        "layout_sort_key": "hidden_11::H11_Trace_Provenance_Attestation",
+        "layer_column": 9,
+        "slot_index": 3,
+        "x": 2160,
+        "y": 240,
+        "tracked_links": [
+          "H10_Global_Supervision_Arbitration"
+        ],
+        "incoming_edge_count": 1,
+        "outgoing_edge_count": 0
+      }
+    ],
+    "index": [
+      {
+        "id": "Index_Apple_Silicon_and_MLX",
+        "title": "Apple Silicon and MLX Index",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Index_Apple_Silicon_and_MLX.md",
+        "layer": "index",
+        "domain": "domain/apple_silicon_mlx",
+        "direct_links": [
+          "Brain_Growth_Index",
+          "H3_Apple_Silicon_Memory_Execution_Synthesis",
+          "RAG_Memory_Cell_01_MLX_Unified_Memory_Model",
+          "RAG_Memory_Cell_02_MLX_Zero_Copy_DLPack_and_Buffer_Reusage",
+          "RAG_Memory_Cell_03_Metal_Shared_vs_Private_StorageMode",
+          "RAG_Memory_Cell_17_Metal_Argument_Buffers_For_Batched_Dispatch_Coordination",
+          "RAG_Memory_Cell_18_MPS_Versus_MLX_Execution_Surface_Selection",
+          "RAG_Memory_Cell_23_Sparse_Attention_On_Apple_Silicon_Memory_Budget",
+          "RAG_Memory_Cell_24_Quantized_KV_Cache_Placement_On_UMA",
+          "RAG_Memory_Cell_25_Metal_Resource_Hazard_Tracking_And_Explicit_Fencing"
+        ],
+        "layout_sort_key": "domain/apple_silicon_mlx::Index_Apple_Silicon_and_MLX",
+        "layer_column": 10,
+        "slot_index": 0,
+        "x": 2400,
+        "y": -320,
+        "tracked_links": [
+          "Brain_Growth_Index",
+          "H3_Apple_Silicon_Memory_Execution_Synthesis",
+          "RAG_Memory_Cell_01_MLX_Unified_Memory_Model",
+          "RAG_Memory_Cell_02_MLX_Zero_Copy_DLPack_and_Buffer_Reusage",
+          "RAG_Memory_Cell_03_Metal_Shared_vs_Private_StorageMode",
+          "RAG_Memory_Cell_17_Metal_Argument_Buffers_For_Batched_Dispatch_Coordination",
+          "RAG_Memory_Cell_18_MPS_Versus_MLX_Execution_Surface_Selection",
+          "RAG_Memory_Cell_23_Sparse_Attention_On_Apple_Silicon_Memory_Budget",
+          "RAG_Memory_Cell_24_Quantized_KV_Cache_Placement_On_UMA",
+          "RAG_Memory_Cell_25_Metal_Resource_Hazard_Tracking_And_Explicit_Fencing"
+        ],
+        "incoming_edge_count": 10,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "Index_Cognitive_Graph_RAG",
+        "title": "Cognitive Graph RAG Index",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Index_Cognitive_Graph_RAG.md",
+        "layer": "index",
+        "domain": "domain/cognitive_graph_rag_routing",
+        "direct_links": [
+          "Brain_Growth_Index",
+          "H3_Cognitive_Graph_RAG_Routing_Synthesis",
+          "RAG_Memory_Cell_10_GNN_Message_Passing_for_Graph_Retrieval",
+          "RAG_Memory_Cell_11_GLM_RAG_Semantic_Graph_Fusion",
+          "RAG_Memory_Cell_12_Cognitive_RAG_SingleHop_vs_MultiHop_Routing",
+          "RAG_Memory_Cell_56_Temporal_Edges_In_Episodic_Memory_Graphs",
+          "RAG_Memory_Cell_57_Entity_Resolution_As_Graph_Construction_Discipline",
+          "RAG_Memory_Cell_62_Graph_Neighborhood_Pruning_Under_Token_Budgets",
+          "RAG_Memory_Cell_63_Tool_Augmented_Retrieval_Routing_Policies",
+          "RAG_Memory_Cell_64_Citation_Grounding_Across_Multi_Source_Reasoning"
+        ],
+        "layout_sort_key": "domain/cognitive_graph_rag_routing::Index_Cognitive_Graph_RAG",
+        "layer_column": 10,
+        "slot_index": 1,
+        "x": 2400,
+        "y": -160,
+        "tracked_links": [
+          "Brain_Growth_Index",
+          "H3_Cognitive_Graph_RAG_Routing_Synthesis",
+          "RAG_Memory_Cell_10_GNN_Message_Passing_for_Graph_Retrieval",
+          "RAG_Memory_Cell_11_GLM_RAG_Semantic_Graph_Fusion",
+          "RAG_Memory_Cell_12_Cognitive_RAG_SingleHop_vs_MultiHop_Routing",
+          "RAG_Memory_Cell_56_Temporal_Edges_In_Episodic_Memory_Graphs",
+          "RAG_Memory_Cell_57_Entity_Resolution_As_Graph_Construction_Discipline",
+          "RAG_Memory_Cell_62_Graph_Neighborhood_Pruning_Under_Token_Budgets",
+          "RAG_Memory_Cell_63_Tool_Augmented_Retrieval_Routing_Policies",
+          "RAG_Memory_Cell_64_Citation_Grounding_Across_Multi_Source_Reasoning"
+        ],
+        "incoming_edge_count": 10,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "Index_Cryptography_and_Memory_Safety",
+        "title": "Cryptography and Memory Safety Index",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Index_Cryptography_and_Memory_Safety.md",
+        "layer": "index",
+        "domain": "domain/cryptographic_integrity_memory_safety",
+        "direct_links": [
+          "Brain_Growth_Index",
+          "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis",
+          "RAG_Memory_Cell_07_P2P_Encryption_and_ZKP_Constraint_Surface",
+          "RAG_Memory_Cell_08_Apple_PAC_Runtime_Integrity",
+          "RAG_Memory_Cell_09_Memory_Safety_Primitives_and_Failure_Signatures",
+          "RAG_Memory_Cell_43_Stack_Canary_Failure_Telemetry_And_Triage",
+          "RAG_Memory_Cell_44_Secure_Enclave_Boundaries_And_Key_Ladder_Separation",
+          "RAG_Memory_Cell_49_Remote_Attestation_Signals_For_Edge_Nodes",
+          "RAG_Memory_Cell_50_Memory_Disclosure_Versus_Code_Reuse_Attack_Paths",
+          "RAG_Memory_Cell_51_Crash_Triage_For_Memory_Safety_Regressions"
+        ],
+        "layout_sort_key": "domain/cryptographic_integrity_memory_safety::Index_Cryptography_and_Memory_Safety",
+        "layer_column": 10,
+        "slot_index": 2,
+        "x": 2400,
+        "y": 0,
+        "tracked_links": [
+          "Brain_Growth_Index",
+          "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis",
+          "RAG_Memory_Cell_07_P2P_Encryption_and_ZKP_Constraint_Surface",
+          "RAG_Memory_Cell_08_Apple_PAC_Runtime_Integrity",
+          "RAG_Memory_Cell_09_Memory_Safety_Primitives_and_Failure_Signatures",
+          "RAG_Memory_Cell_43_Stack_Canary_Failure_Telemetry_And_Triage",
+          "RAG_Memory_Cell_44_Secure_Enclave_Boundaries_And_Key_Ladder_Separation",
+          "RAG_Memory_Cell_49_Remote_Attestation_Signals_For_Edge_Nodes",
+          "RAG_Memory_Cell_50_Memory_Disclosure_Versus_Code_Reuse_Attack_Paths",
+          "RAG_Memory_Cell_51_Crash_Triage_For_Memory_Safety_Regressions"
+        ],
+        "incoming_edge_count": 10,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "Index_Embedded_and_ESP32",
+        "title": "Embedded and ESP32 Index",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Index_Embedded_and_ESP32.md",
+        "layer": "index",
+        "domain": "domain/embedded_interrupt_dma",
+        "direct_links": [
+          "Brain_Growth_Index",
+          "H3_Embedded_Interrupt_DMA_Synthesis",
+          "RAG_Memory_Cell_04_ESP32_FreeRTOS_SMP_Core_Affinity",
+          "RAG_Memory_Cell_05_ESP32_Interrupt_Allocation_and_Shared_ISR",
+          "RAG_Memory_Cell_06_ESP32_DMA_Capable_Memory_and_ISR_Preallocation",
+          "RAG_Memory_Cell_30_GPIO_Matrix_Interrupt_Fan_In_And_Signal_Jitter",
+          "RAG_Memory_Cell_31_RMT_Peripheral_Timing_Determinism_Under_System_Load",
+          "RAG_Memory_Cell_36_PSRAM_Access_Penalties_In_Real_Time_Paths",
+          "RAG_Memory_Cell_37_Multi_Core_Critical_Sections_And_Spinlock_Contention",
+          "RAG_Memory_Cell_38_Tickless_Idle_And_Wake_Latency_On_ESP32"
+        ],
+        "layout_sort_key": "domain/embedded_interrupt_dma::Index_Embedded_and_ESP32",
+        "layer_column": 10,
+        "slot_index": 3,
+        "x": 2400,
+        "y": 160,
+        "tracked_links": [
+          "Brain_Growth_Index",
+          "H3_Embedded_Interrupt_DMA_Synthesis",
+          "RAG_Memory_Cell_04_ESP32_FreeRTOS_SMP_Core_Affinity",
+          "RAG_Memory_Cell_05_ESP32_Interrupt_Allocation_and_Shared_ISR",
+          "RAG_Memory_Cell_06_ESP32_DMA_Capable_Memory_and_ISR_Preallocation",
+          "RAG_Memory_Cell_30_GPIO_Matrix_Interrupt_Fan_In_And_Signal_Jitter",
+          "RAG_Memory_Cell_31_RMT_Peripheral_Timing_Determinism_Under_System_Load",
+          "RAG_Memory_Cell_36_PSRAM_Access_Penalties_In_Real_Time_Paths",
+          "RAG_Memory_Cell_37_Multi_Core_Critical_Sections_And_Spinlock_Contention",
+          "RAG_Memory_Cell_38_Tickless_Idle_And_Wake_Latency_On_ESP32"
+        ],
+        "incoming_edge_count": 10,
+        "outgoing_edge_count": 1
+      },
+      {
+        "id": "Brain_Growth_Index",
+        "title": "Brain Growth Index",
+        "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Brain_Growth_Index.md",
+        "layer": "index",
+        "domain": "navigation/domain_entry",
+        "direct_links": [
+          "H3_Apple_Silicon_Memory_Execution_Synthesis",
+          "H3_Cognitive_Graph_RAG_Routing_Synthesis",
+          "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis",
+          "H3_Embedded_Interrupt_DMA_Synthesis",
+          "Index_Apple_Silicon_and_MLX",
+          "Index_Cognitive_Graph_RAG",
+          "Index_Cryptography_and_Memory_Safety",
+          "Index_Embedded_and_ESP32"
+        ],
+        "layout_sort_key": "navigation/domain_entry::Brain_Growth_Index",
+        "layer_column": 10,
+        "slot_index": 4,
+        "x": 2400,
+        "y": 320,
+        "tracked_links": [
+          "H3_Apple_Silicon_Memory_Execution_Synthesis",
+          "H3_Cognitive_Graph_RAG_Routing_Synthesis",
+          "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis",
+          "H3_Embedded_Interrupt_DMA_Synthesis",
+          "Index_Apple_Silicon_and_MLX",
+          "Index_Cognitive_Graph_RAG",
+          "Index_Cryptography_and_Memory_Safety",
+          "Index_Embedded_and_ESP32"
+        ],
+        "incoming_edge_count": 8,
+        "outgoing_edge_count": 4
+      }
+    ]
+  },
+  "domain_clusters": {
+    "domain/apple_silicon_mlx": {
+      "node_count": 2,
+      "layers": {
+        "hidden_3": 1,
+        "index": 1
+      },
+      "internal_edge_count": 1,
+      "external_edge_count": 12,
+      "nodes": [
+        "H3_Apple_Silicon_Memory_Execution_Synthesis",
+        "Index_Apple_Silicon_and_MLX"
+      ]
+    },
+    "domain/cognitive_graph_rag": {
+      "node_count": 3,
+      "layers": {
+        "hidden_4": 1,
+        "hidden_5": 1,
+        "hidden_6": 1
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 0,
+      "nodes": [
+        "H4_Cognitive_Retrieval_Policy_Selection",
+        "H5_Retrieval_Depth_Governance",
+        "H6_Retrieval_Action_Coordination"
+      ]
+    },
+    "domain/cognitive_graph_rag_routing": {
+      "node_count": 2,
+      "layers": {
+        "hidden_3": 1,
+        "index": 1
+      },
+      "internal_edge_count": 1,
+      "external_edge_count": 12,
+      "nodes": [
+        "H3_Cognitive_Graph_RAG_Routing_Synthesis",
+        "Index_Cognitive_Graph_RAG"
+      ]
+    },
+    "domain/cryptographic_integrity_memory_safety": {
+      "node_count": 2,
+      "layers": {
+        "hidden_3": 1,
+        "index": 1
+      },
+      "internal_edge_count": 1,
+      "external_edge_count": 12,
+      "nodes": [
+        "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis",
+        "Index_Cryptography_and_Memory_Safety"
+      ]
+    },
+    "domain/edge_security_operations": {
+      "node_count": 2,
+      "layers": {
+        "hidden_5": 1,
+        "hidden_6": 1
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 0,
+      "nodes": [
+        "H5_Global_Escalation_Gate",
+        "H6_Global_Response_Orchestration"
+      ]
+    },
+    "domain/edge_systems": {
+      "node_count": 1,
+      "layers": {
+        "hidden_4": 1
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 1,
+      "nodes": [
+        "H4_Edge_Device_Response_Strategy"
+      ]
+    },
+    "domain/embedded_interrupt_dma": {
+      "node_count": 2,
+      "layers": {
+        "hidden_3": 1,
+        "index": 1
+      },
+      "internal_edge_count": 1,
+      "external_edge_count": 13,
+      "nodes": [
+        "H3_Embedded_Interrupt_DMA_Synthesis",
+        "Index_Embedded_and_ESP32"
+      ]
+    },
+    "domain/multi_domain": {
+      "node_count": 5,
+      "layers": {
+        "hidden_4": 3,
+        "hidden_5": 1,
+        "hidden_6": 1
+      },
+      "internal_edge_count": 1,
+      "external_edge_count": 4,
+      "nodes": [
+        "H4_Cross_Domain_Causal_Alignment",
+        "H4_Performance_Bottleneck_Disambiguation",
+        "H4_Resource_Execution_Prioritization",
+        "H5_Metacognitive_Policy_Arbitration",
+        "H6_Executive_Priority_Orchestration"
+      ]
+    },
+    "domain/resilience_operations": {
+      "node_count": 1,
+      "layers": {
+        "hidden_6": 1
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 0,
+      "nodes": [
+        "H6_Recovery_Execution_Sequencing"
+      ]
+    },
+    "domain/security_execution": {
+      "node_count": 1,
+      "layers": {
+        "hidden_5": 1
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 1,
+      "nodes": [
+        "H5_Risk_Performance_Tradeoff_Control"
+      ]
+    },
+    "domain/security_memory": {
+      "node_count": 1,
+      "layers": {
+        "hidden_4": 1
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 1,
+      "nodes": [
+        "H4_Security_Failure_Mode_Arbitration"
+      ]
+    },
+    "hardware/apple_mlx": {
+      "node_count": 16,
+      "layers": {
+        "raw": 16
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 8,
+      "nodes": [
+        "RAG_Memory_Cell_01_MLX_Unified_Memory_Model",
+        "RAG_Memory_Cell_02_MLX_Zero_Copy_DLPack_and_Buffer_Reusage",
+        "RAG_Memory_Cell_03_Metal_Shared_vs_Private_StorageMode",
+        "RAG_Memory_Cell_13_MLX_Lazy_Evaluation_And_Stream_Dependency_Barriers",
+        "RAG_Memory_Cell_14_Metal_Heap_Residency_And_Buffer_Alias_Reuse",
+        "RAG_Memory_Cell_15_Apple_Silicon_UMA_Pressure_And_Page_Migration_Signals",
+        "RAG_Memory_Cell_16_MLX_Graph_Capture_And_Kernel_Fusion_Boundaries",
+        "RAG_Memory_Cell_17_Metal_Argument_Buffers_For_Batched_Dispatch_Coordination",
+        "RAG_Memory_Cell_18_MPS_Versus_MLX_Execution_Surface_Selection",
+        "RAG_Memory_Cell_19_AMX_Neural_Engine_And_GPU_Scheduling_Tradeoffs",
+        "RAG_Memory_Cell_20_Metal_Command_Buffer_Commit_Latency_And_Queue_Depth",
+        "RAG_Memory_Cell_21_Unified_Memory_Backpressure_In_Token_Streaming_Pipelines",
+        "RAG_Memory_Cell_22_Zero_Copy_Tensor_Interop_Between_MLX_And_Pytorch",
+        "RAG_Memory_Cell_23_Sparse_Attention_On_Apple_Silicon_Memory_Budget",
+        "RAG_Memory_Cell_24_Quantized_KV_Cache_Placement_On_UMA",
+        "RAG_Memory_Cell_25_Metal_Resource_Hazard_Tracking_And_Explicit_Fencing"
+      ]
+    },
+    "hardware/esp32": {
+      "node_count": 16,
+      "layers": {
+        "raw": 16
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 8,
+      "nodes": [
+        "RAG_Memory_Cell_04_ESP32_FreeRTOS_SMP_Core_Affinity",
+        "RAG_Memory_Cell_05_ESP32_Interrupt_Allocation_and_Shared_ISR",
+        "RAG_Memory_Cell_06_ESP32_DMA_Capable_Memory_and_ISR_Preallocation",
+        "RAG_Memory_Cell_26_ESP32_IRAM_Safe_ISR_Latency_Budgets",
+        "RAG_Memory_Cell_27_ESP32_Task_Watchdog_And_Core_Starvation_Patterns",
+        "RAG_Memory_Cell_28_Freertos_Queue_Sets_Versus_Direct_Task_Notifications",
+        "RAG_Memory_Cell_29_ESP32_Flash_Cache_Disable_Windows_And_Critical_Paths",
+        "RAG_Memory_Cell_30_GPIO_Matrix_Interrupt_Fan_In_And_Signal_Jitter",
+        "RAG_Memory_Cell_31_RMT_Peripheral_Timing_Determinism_Under_System_Load",
+        "RAG_Memory_Cell_32_I2S_DMA_Descriptor_Rings_On_ESP32",
+        "RAG_Memory_Cell_33_SPI_DMA_Burst_Alignment_And_Cache_Coherency",
+        "RAG_Memory_Cell_34_UART_ISR_Backpressure_And_Ring_Buffer_Design",
+        "RAG_Memory_Cell_35_Freertos_Event_Groups_Versus_Semaphores_For_Driver_States",
+        "RAG_Memory_Cell_36_PSRAM_Access_Penalties_In_Real_Time_Paths",
+        "RAG_Memory_Cell_37_Multi_Core_Critical_Sections_And_Spinlock_Contention",
+        "RAG_Memory_Cell_38_Tickless_Idle_And_Wake_Latency_On_ESP32"
+      ]
+    },
+    "hidden_10": {
+      "node_count": 4,
+      "layers": {
+        "hidden_10": 4
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 16,
+      "nodes": [
+        "H10_Global_Supervision_Arbitration",
+        "H10_Long_Horizon_Outcome_Review",
+        "H10_Rollback_Escalation_Governance",
+        "H10_Strategic_Resource_Oversight"
+      ]
+    },
+    "hidden_11": {
+      "node_count": 4,
+      "layers": {
+        "hidden_11": 4
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 4,
+      "nodes": [
+        "H11_Failsafe_Cost_Accounting",
+        "H11_Outcome_Regression_Postmortem",
+        "H11_Rollback_Decision_Audit",
+        "H11_Trace_Provenance_Attestation"
+      ]
+    },
+    "hidden_8": {
+      "node_count": 4,
+      "layers": {
+        "hidden_8": 4
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 15,
+      "nodes": [
+        "H8_Decision_Commitment_Gate",
+        "H8_Dominant_Thoughtseed_Selection",
+        "H8_Exception_Override_Arbitration",
+        "H8_Global_Policy_Broadcast"
+      ]
+    },
+    "hidden_9": {
+      "node_count": 4,
+      "layers": {
+        "hidden_9": 4
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 24,
+      "nodes": [
+        "H9_Commit_Ready_Delivery_Check",
+        "H9_Execution_Surface_Binding",
+        "H9_Failsafe_Action_Packaging",
+        "H9_Response_Payload_Composition"
+      ]
+    },
+    "navigation/domain_entry": {
+      "node_count": 1,
+      "layers": {
+        "index": 1
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 12,
+      "nodes": [
+        "Brain_Growth_Index"
+      ]
+    },
+    "raw": {
+      "node_count": 16,
+      "layers": {
+        "raw": 16
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 8,
+      "nodes": [
+        "RAG_Memory_Cell_10_GNN_Message_Passing_for_Graph_Retrieval",
+        "RAG_Memory_Cell_11_GLM_RAG_Semantic_Graph_Fusion",
+        "RAG_Memory_Cell_12_Cognitive_RAG_SingleHop_vs_MultiHop_Routing",
+        "RAG_Memory_Cell_52_Hybrid_Sparse_Dense_Graph_Retrieval",
+        "RAG_Memory_Cell_53_Graph_Expansion_Budgeting_And_Beam_Search",
+        "RAG_Memory_Cell_54_Query_Decomposition_For_Multi_Hop_Retrieval",
+        "RAG_Memory_Cell_55_Edge_Reweighting_From_Retriever_Feedback",
+        "RAG_Memory_Cell_56_Temporal_Edges_In_Episodic_Memory_Graphs",
+        "RAG_Memory_Cell_57_Entity_Resolution_As_Graph_Construction_Discipline",
+        "RAG_Memory_Cell_58_Cross_Encoder_Reranking_After_Graph_Traversal",
+        "RAG_Memory_Cell_59_Subgraph_Packing_For_Context_Window_Control",
+        "RAG_Memory_Cell_60_Semantic_Drift_Detection_In_Graph_RAG",
+        "RAG_Memory_Cell_61_Negative_Sampling_For_Relation_Aware_Embeddings",
+        "RAG_Memory_Cell_62_Graph_Neighborhood_Pruning_Under_Token_Budgets",
+        "RAG_Memory_Cell_63_Tool_Augmented_Retrieval_Routing_Policies",
+        "RAG_Memory_Cell_64_Citation_Grounding_Across_Multi_Source_Reasoning"
+      ]
+    },
+    "reasoning/temporal": {
+      "node_count": 4,
+      "layers": {
+        "hidden_7": 4
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 3,
+      "nodes": [
+        "H7_Episodic_Timeline_Alignment",
+        "H7_Event_Entity_Binding",
+        "H7_Recency_Drift_Governance",
+        "H7_Temporal_Causal_Recall"
+      ]
+    },
+    "system/crypto": {
+      "node_count": 16,
+      "layers": {
+        "raw": 16
+      },
+      "internal_edge_count": 0,
+      "external_edge_count": 8,
+      "nodes": [
+        "RAG_Memory_Cell_07_P2P_Encryption_and_ZKP_Constraint_Surface",
+        "RAG_Memory_Cell_08_Apple_PAC_Runtime_Integrity",
+        "RAG_Memory_Cell_09_Memory_Safety_Primitives_and_Failure_Signatures",
+        "RAG_Memory_Cell_39_Pointer_Authentication_Key_Domains_And_Signing_Contexts",
+        "RAG_Memory_Cell_40_Control_Flow_Integrity_And_PAC_Complementarity",
+        "RAG_Memory_Cell_41_Use_After_Free_Telemetry_And_Crash_Clustering",
+        "RAG_Memory_Cell_42_Heap_Metadata_Corruption_Signatures",
+        "RAG_Memory_Cell_43_Stack_Canary_Failure_Telemetry_And_Triage",
+        "RAG_Memory_Cell_44_Secure_Enclave_Boundaries_And_Key_Ladder_Separation",
+        "RAG_Memory_Cell_45_AEAD_Nonce_Reuse_Failure_Modes",
+        "RAG_Memory_Cell_46_Zero_Knowledge_Proof_Witness_Exposure_Surfaces",
+        "RAG_Memory_Cell_47_Merkle_Commitments_For_Retrieval_Integrity",
+        "RAG_Memory_Cell_48_Forward_Secrecy_In_Peer_To_Peer_Session_Rotation",
+        "RAG_Memory_Cell_49_Remote_Attestation_Signals_For_Edge_Nodes",
+        "RAG_Memory_Cell_50_Memory_Disclosure_Versus_Code_Reuse_Attack_Paths",
+        "RAG_Memory_Cell_51_Crash_Triage_For_Memory_Safety_Regressions"
+      ]
+    }
+  },
+  "cluster_spread_by_layer": {
+    "raw": {
+      "total_nodes": 64,
+      "cluster_count": 4,
+      "dominant_cluster": "hardware/apple_mlx",
+      "dominant_cluster_share": 0.25,
+      "clusters": {
+        "hardware/apple_mlx": 16,
+        "hardware/esp32": 16,
+        "raw": 16,
+        "system/crypto": 16
+      }
+    },
+    "hidden_3": {
+      "total_nodes": 4,
+      "cluster_count": 4,
+      "dominant_cluster": "domain/apple_silicon_mlx",
+      "dominant_cluster_share": 0.25,
+      "clusters": {
+        "domain/apple_silicon_mlx": 1,
+        "domain/cognitive_graph_rag_routing": 1,
+        "domain/cryptographic_integrity_memory_safety": 1,
+        "domain/embedded_interrupt_dma": 1
+      }
+    },
+    "hidden_4": {
+      "total_nodes": 6,
+      "cluster_count": 4,
+      "dominant_cluster": "domain/multi_domain",
+      "dominant_cluster_share": 0.5,
+      "clusters": {
+        "domain/cognitive_graph_rag": 1,
+        "domain/edge_systems": 1,
+        "domain/multi_domain": 3,
+        "domain/security_memory": 1
+      }
+    },
+    "hidden_5": {
+      "total_nodes": 4,
+      "cluster_count": 4,
+      "dominant_cluster": "domain/cognitive_graph_rag",
+      "dominant_cluster_share": 0.25,
+      "clusters": {
+        "domain/cognitive_graph_rag": 1,
+        "domain/edge_security_operations": 1,
+        "domain/multi_domain": 1,
+        "domain/security_execution": 1
+      }
+    },
+    "hidden_6": {
+      "total_nodes": 4,
+      "cluster_count": 4,
+      "dominant_cluster": "domain/cognitive_graph_rag",
+      "dominant_cluster_share": 0.25,
+      "clusters": {
+        "domain/cognitive_graph_rag": 1,
+        "domain/edge_security_operations": 1,
+        "domain/multi_domain": 1,
+        "domain/resilience_operations": 1
+      }
+    },
+    "hidden_7": {
+      "total_nodes": 4,
+      "cluster_count": 1,
+      "dominant_cluster": "reasoning/temporal",
+      "dominant_cluster_share": 1.0,
+      "clusters": {
+        "reasoning/temporal": 4
+      }
+    },
+    "hidden_8": {
+      "total_nodes": 4,
+      "cluster_count": 1,
+      "dominant_cluster": "hidden_8",
+      "dominant_cluster_share": 1.0,
+      "clusters": {
+        "hidden_8": 4
+      }
+    },
+    "hidden_9": {
+      "total_nodes": 4,
+      "cluster_count": 1,
+      "dominant_cluster": "hidden_9",
+      "dominant_cluster_share": 1.0,
+      "clusters": {
+        "hidden_9": 4
+      }
+    },
+    "hidden_10": {
+      "total_nodes": 4,
+      "cluster_count": 1,
+      "dominant_cluster": "hidden_10",
+      "dominant_cluster_share": 1.0,
+      "clusters": {
+        "hidden_10": 4
+      }
+    },
+    "hidden_11": {
+      "total_nodes": 4,
+      "cluster_count": 1,
+      "dominant_cluster": "hidden_11",
+      "dominant_cluster_share": 1.0,
+      "clusters": {
+        "hidden_11": 4
+      }
+    },
+    "index": {
+      "total_nodes": 5,
+      "cluster_count": 5,
+      "dominant_cluster": "domain/apple_silicon_mlx",
+      "dominant_cluster_share": 0.2,
+      "clusters": {
+        "domain/apple_silicon_mlx": 1,
+        "domain/cognitive_graph_rag_routing": 1,
+        "domain/cryptographic_integrity_memory_safety": 1,
+        "domain/embedded_interrupt_dma": 1,
+        "navigation/domain_entry": 1
+      }
+    }
+  },
+  "layout_quality": {
+    "balance": 0.06,
+    "density": 0.02,
+    "cross_cluster_pressure": 0.94,
+    "readability": 0.37
+  },
+  "transition_counts": {
+    "raw_to_index": 32,
+    "hidden_3_to_hidden_4": 5,
+    "hidden_3_to_index": 8,
+    "hidden_4_to_hidden_5": 2,
+    "hidden_7_to_hidden_8": 3,
+    "hidden_8_to_hidden_9": 12,
+    "hidden_9_to_hidden_10": 12,
+    "hidden_10_to_hidden_11": 4,
+    "index_to_index": 8
+  },
+  "temporal_dual_graph": {
+    "entity_nodes": [
+      {
+        "id": "entity:consensus_snapshot",
+        "label": "consensus_snapshot",
+        "episodes": [
+          "H7_Recency_Drift_Governance"
+        ]
+      },
+      {
+        "id": "entity:consensus_state",
+        "label": "consensus_state",
+        "episodes": [
+          "H7_Event_Entity_Binding"
+        ]
+      },
+      {
+        "id": "entity:executive_queue",
+        "label": "executive_queue",
+        "episodes": [
+          "H7_Episodic_Timeline_Alignment"
+        ]
+      },
+      {
+        "id": "entity:recovery_window",
+        "label": "recovery_window",
+        "episodes": [
+          "H7_Temporal_Causal_Recall"
+        ]
+      },
+      {
+        "id": "entity:response_branch",
+        "label": "response_branch",
+        "episodes": [
+          "H7_Temporal_Causal_Recall"
+        ]
+      },
+      {
+        "id": "entity:response_plan",
+        "label": "response_plan",
+        "episodes": [
+          "H7_Episodic_Timeline_Alignment"
+        ]
+      },
+      {
+        "id": "entity:retrieval_budget",
+        "label": "retrieval_budget",
+        "episodes": [
+          "H7_Episodic_Timeline_Alignment"
+        ]
+      },
+      {
+        "id": "entity:retrieval_path",
+        "label": "retrieval_path",
+        "episodes": [
+          "H7_Event_Entity_Binding"
+        ]
+      },
+      {
+        "id": "entity:stabilized_memory",
+        "label": "stabilized_memory",
+        "episodes": [
+          "H7_Recency_Drift_Governance"
+        ]
+      },
+      {
+        "id": "entity:strategic_plan",
+        "label": "strategic_plan",
+        "episodes": [
+          "H7_Temporal_Causal_Recall"
+        ]
+      },
+      {
+        "id": "entity:threat_surface",
+        "label": "threat_surface",
+        "episodes": [
+          "H7_Event_Entity_Binding"
+        ]
+      },
+      {
+        "id": "entity:working_context",
+        "label": "working_context",
+        "episodes": [
+          "H7_Recency_Drift_Governance"
+        ]
+      }
+    ],
+    "event_nodes": [
+      {
+        "id": "event:consensus_commit",
+        "label": "consensus_commit",
+        "episodes": [
+          "H7_Event_Entity_Binding"
+        ]
+      },
+      {
+        "id": "event:consensus_update",
+        "label": "consensus_update",
+        "episodes": [
+          "H7_Recency_Drift_Governance"
+        ]
+      },
+      {
+        "id": "event:context_flush",
+        "label": "context_flush",
+        "episodes": [
+          "H7_Recency_Drift_Governance"
+        ]
+      },
+      {
+        "id": "event:evidence_lock",
+        "label": "evidence_lock",
+        "episodes": [
+          "H7_Episodic_Timeline_Alignment"
+        ]
+      },
+      {
+        "id": "event:execution_release",
+        "label": "execution_release",
+        "episodes": [
+          "H7_Episodic_Timeline_Alignment"
+        ]
+      },
+      {
+        "id": "event:graph_expansion",
+        "label": "graph_expansion",
+        "episodes": [
+          "H7_Event_Entity_Binding"
+        ]
+      },
+      {
+        "id": "event:incident_escalation",
+        "label": "incident_escalation",
+        "episodes": [
+          "H7_Temporal_Causal_Recall"
+        ]
+      },
+      {
+        "id": "event:mitigation_decision",
+        "label": "mitigation_decision",
+        "episodes": [
+          "H7_Event_Entity_Binding"
+        ]
+      },
+      {
+        "id": "event:plan_revision",
+        "label": "plan_revision",
+        "episodes": [
+          "H7_Temporal_Causal_Recall"
+        ]
+      },
+      {
+        "id": "event:priority_shift",
+        "label": "priority_shift",
+        "episodes": [
+          "H7_Episodic_Timeline_Alignment"
+        ]
+      },
+      {
+        "id": "event:recall_refresh",
+        "label": "recall_refresh",
+        "episodes": [
+          "H7_Recency_Drift_Governance"
+        ]
+      },
+      {
+        "id": "event:recovery_gate_open",
+        "label": "recovery_gate_open",
+        "episodes": [
+          "H7_Temporal_Causal_Recall"
+        ]
+      }
+    ],
+    "temporal_edges": [
+      {
+        "source": "event:priority_shift",
+        "target": "event:evidence_lock",
+        "relation": "before",
+        "episode": "H7_Episodic_Timeline_Alignment",
+        "episode_mode": "ordered_episode_reconstruction"
+      },
+      {
+        "source": "event:evidence_lock",
+        "target": "event:execution_release",
+        "relation": "after",
+        "episode": "H7_Episodic_Timeline_Alignment",
+        "episode_mode": "ordered_episode_reconstruction"
+      },
+      {
+        "source": "event:graph_expansion",
+        "target": "event:mitigation_decision",
+        "relation": "triggers",
+        "episode": "H7_Event_Entity_Binding",
+        "episode_mode": "entity_event_binding"
+      },
+      {
+        "source": "event:mitigation_decision",
+        "target": "event:consensus_commit",
+        "relation": "participates_in",
+        "episode": "H7_Event_Entity_Binding",
+        "episode_mode": "entity_event_binding"
+      },
+      {
+        "source": "event:recall_refresh",
+        "target": "event:context_flush",
+        "relation": "decays_after",
+        "episode": "H7_Recency_Drift_Governance",
+        "episode_mode": "recency_bias_control"
+      },
+      {
+        "source": "event:context_flush",
+        "target": "event:consensus_update",
+        "relation": "reinforced_by",
+        "episode": "H7_Recency_Drift_Governance",
+        "episode_mode": "recency_bias_control"
+      },
+      {
+        "source": "event:incident_escalation",
+        "target": "event:recovery_gate_open",
+        "relation": "causes",
+        "episode": "H7_Temporal_Causal_Recall",
+        "episode_mode": "causal_episode_recall"
+      },
+      {
+        "source": "event:recovery_gate_open",
+        "target": "event:plan_revision",
+        "relation": "preceded_by",
+        "episode": "H7_Temporal_Causal_Recall",
+        "episode_mode": "causal_episode_recall"
+      }
+    ]
+  },
+  "workspace_broadcast_graph": {
+    "thoughtseed_nodes": [
+      {
+        "id": "thoughtseed:causal_commitment_lock",
+        "label": "causal_commitment_lock",
+        "episodes": [
+          "H8_Decision_Commitment_Gate"
+        ]
+      },
+      {
+        "id": "thoughtseed:failsafe_priority_override",
+        "label": "failsafe_priority_override",
+        "episodes": [
+          "H8_Exception_Override_Arbitration"
+        ]
+      },
+      {
+        "id": "thoughtseed:global_execution_alignment",
+        "label": "global_execution_alignment",
+        "episodes": [
+          "H8_Global_Policy_Broadcast"
+        ]
+      },
+      {
+        "id": "thoughtseed:recovery_first_consensus",
+        "label": "recovery_first_consensus",
+        "episodes": [
+          "H8_Dominant_Thoughtseed_Selection"
+        ]
+      }
+    ],
+    "policy_nodes": [
+      {
+        "id": "policy:align_execution_with_temporal_recall",
+        "label": "align_execution_with_temporal_recall",
+        "episodes": [
+          "H8_Global_Policy_Broadcast"
+        ]
+      },
+      {
+        "id": "policy:block_execution_on_partial_recall",
+        "label": "block_execution_on_partial_recall",
+        "episodes": [
+          "H8_Decision_Commitment_Gate"
+        ]
+      },
+      {
+        "id": "policy:commit_when_causal_chain_closed",
+        "label": "commit_when_causal_chain_closed",
+        "episodes": [
+          "H8_Decision_Commitment_Gate"
+        ]
+      },
+      {
+        "id": "policy:defer_action_until_consensus_stable",
+        "label": "defer_action_until_consensus_stable",
+        "episodes": [
+          "H8_Global_Policy_Broadcast"
+        ]
+      },
+      {
+        "id": "policy:minimize_regret_under_risk",
+        "label": "minimize_regret_under_risk",
+        "episodes": [
+          "H8_Dominant_Thoughtseed_Selection"
+        ]
+      },
+      {
+        "id": "policy:override_on_high_risk_regression",
+        "label": "override_on_high_risk_regression",
+        "episodes": [
+          "H8_Exception_Override_Arbitration"
+        ]
+      },
+      {
+        "id": "policy:preserve_stable_memory_over_hot_context",
+        "label": "preserve_stable_memory_over_hot_context",
+        "episodes": [
+          "H8_Exception_Override_Arbitration"
+        ]
+      },
+      {
+        "id": "policy:stabilize_consensus_before_execution",
+        "label": "stabilize_consensus_before_execution",
+        "episodes": [
+          "H8_Dominant_Thoughtseed_Selection"
+        ]
+      }
+    ],
+    "selection_edges": [
+      {
+        "source": "thoughtseed:causal_commitment_lock",
+        "target": "policy:commit_when_causal_chain_closed",
+        "relation": "selects",
+        "episode": "H8_Decision_Commitment_Gate",
+        "workspace_mode": "commitment_gate_selection"
+      },
+      {
+        "source": "thoughtseed:causal_commitment_lock",
+        "target": "policy:block_execution_on_partial_recall",
+        "relation": "selects",
+        "episode": "H8_Decision_Commitment_Gate",
+        "workspace_mode": "commitment_gate_selection"
+      },
+      {
+        "source": "thoughtseed:recovery_first_consensus",
+        "target": "policy:stabilize_consensus_before_execution",
+        "relation": "selects",
+        "episode": "H8_Dominant_Thoughtseed_Selection",
+        "workspace_mode": "dominant_policy_broadcast"
+      },
+      {
+        "source": "thoughtseed:recovery_first_consensus",
+        "target": "policy:minimize_regret_under_risk",
+        "relation": "selects",
+        "episode": "H8_Dominant_Thoughtseed_Selection",
+        "workspace_mode": "dominant_policy_broadcast"
+      },
+      {
+        "source": "thoughtseed:failsafe_priority_override",
+        "target": "policy:override_on_high_risk_regression",
+        "relation": "selects",
+        "episode": "H8_Exception_Override_Arbitration",
+        "workspace_mode": "override_exception_arbitration"
+      },
+      {
+        "source": "thoughtseed:failsafe_priority_override",
+        "target": "policy:preserve_stable_memory_over_hot_context",
+        "relation": "selects",
+        "episode": "H8_Exception_Override_Arbitration",
+        "workspace_mode": "override_exception_arbitration"
+      },
+      {
+        "source": "thoughtseed:global_execution_alignment",
+        "target": "policy:align_execution_with_temporal_recall",
+        "relation": "selects",
+        "episode": "H8_Global_Policy_Broadcast",
+        "workspace_mode": "dominant_policy_broadcast"
+      },
+      {
+        "source": "thoughtseed:global_execution_alignment",
+        "target": "policy:defer_action_until_consensus_stable",
+        "relation": "selects",
+        "episode": "H8_Global_Policy_Broadcast",
+        "workspace_mode": "dominant_policy_broadcast"
+      }
+    ],
+    "broadcast_edges": [
+      {
+        "source": "policy:commit_when_causal_chain_closed",
+        "target": "target:Final_Execution_Gate",
+        "relation": "broadcasts_to",
+        "episode": "H8_Decision_Commitment_Gate"
+      },
+      {
+        "source": "policy:commit_when_causal_chain_closed",
+        "target": "target:Cognitive_Response_Generator",
+        "relation": "broadcasts_to",
+        "episode": "H8_Decision_Commitment_Gate"
+      },
+      {
+        "source": "policy:stabilize_consensus_before_execution",
+        "target": "target:Executive_Action_Formatter",
+        "relation": "broadcasts_to",
+        "episode": "H8_Dominant_Thoughtseed_Selection"
+      },
+      {
+        "source": "policy:stabilize_consensus_before_execution",
+        "target": "target:Final_Execution_Gate",
+        "relation": "broadcasts_to",
+        "episode": "H8_Dominant_Thoughtseed_Selection"
+      },
+      {
+        "source": "policy:override_on_high_risk_regression",
+        "target": "target:Working_Memory_Flush",
+        "relation": "broadcasts_to",
+        "episode": "H8_Exception_Override_Arbitration"
+      },
+      {
+        "source": "policy:override_on_high_risk_regression",
+        "target": "target:Final_Execution_Gate",
+        "relation": "broadcasts_to",
+        "episode": "H8_Exception_Override_Arbitration"
+      },
+      {
+        "source": "policy:align_execution_with_temporal_recall",
+        "target": "target:Executive_Action_Formatter",
+        "relation": "broadcasts_to",
+        "episode": "H8_Global_Policy_Broadcast"
+      },
+      {
+        "source": "policy:align_execution_with_temporal_recall",
+        "target": "target:Global_State_Consensus",
+        "relation": "broadcasts_to",
+        "episode": "H8_Global_Policy_Broadcast"
+      }
+    ]
+  },
+  "execution_package_graph": {
+    "policy_nodes": [
+      {
+        "id": "source_policy:causal_commitment_delivery_gate",
+        "label": "causal_commitment_delivery_gate",
+        "packages": [
+          "H9_Commit_Ready_Delivery_Check"
+        ]
+      },
+      {
+        "id": "source_policy:dominant_policy_surface_binding",
+        "label": "dominant_policy_surface_binding",
+        "packages": [
+          "H9_Execution_Surface_Binding"
+        ]
+      },
+      {
+        "id": "source_policy:global_policy_payload_alignment",
+        "label": "global_policy_payload_alignment",
+        "packages": [
+          "H9_Response_Payload_Composition"
+        ]
+      },
+      {
+        "id": "source_policy:override_failsafe_delivery_alignment",
+        "label": "override_failsafe_delivery_alignment",
+        "packages": [
+          "H9_Failsafe_Action_Packaging"
+        ]
+      }
+    ],
+    "package_nodes": [
+      {
+        "id": "package:H9_Commit_Ready_Delivery_Check",
+        "label": "H9_Commit_Ready_Delivery_Check",
+        "package_mode": "commit_ready_gate_delivery",
+        "contracts": [
+          "causal_release_contract",
+          "commit_readiness_manifest"
+        ]
+      },
+      {
+        "id": "package:H9_Execution_Surface_Binding",
+        "label": "H9_Execution_Surface_Binding",
+        "package_mode": "surface_bound_policy_delivery",
+        "contracts": [
+          "policy_binding_envelope",
+          "surface_route_manifest"
+        ]
+      },
+      {
+        "id": "package:H9_Failsafe_Action_Packaging",
+        "label": "H9_Failsafe_Action_Packaging",
+        "package_mode": "failsafe_override_packaging",
+        "contracts": [
+          "failsafe_action_bundle",
+          "override_release_contract"
+        ]
+      },
+      {
+        "id": "package:H9_Response_Payload_Composition",
+        "label": "H9_Response_Payload_Composition",
+        "package_mode": "broadcast_payload_composition",
+        "contracts": [
+          "broadcast_delivery_manifest",
+          "payload_shape_contract"
+        ]
+      }
+    ],
+    "surface_nodes": [
+      {
+        "id": "surface:Cognitive_Response_Generator",
+        "label": "Cognitive_Response_Generator",
+        "packages": [
+          "H9_Commit_Ready_Delivery_Check"
+        ]
+      },
+      {
+        "id": "surface:Executive_Action_Formatter",
+        "label": "Executive_Action_Formatter",
+        "packages": [
+          "H9_Execution_Surface_Binding",
+          "H9_Response_Payload_Composition"
+        ]
+      },
+      {
+        "id": "surface:Final_Execution_Gate",
+        "label": "Final_Execution_Gate",
+        "packages": [
+          "H9_Commit_Ready_Delivery_Check",
+          "H9_Execution_Surface_Binding",
+          "H9_Failsafe_Action_Packaging"
+        ]
+      },
+      {
+        "id": "surface:Global_State_Consensus",
+        "label": "Global_State_Consensus",
+        "packages": [
+          "H9_Response_Payload_Composition"
+        ]
+      },
+      {
+        "id": "surface:Working_Memory_Flush",
+        "label": "Working_Memory_Flush",
+        "packages": [
+          "H9_Failsafe_Action_Packaging"
+        ]
+      }
+    ],
+    "binding_edges": [
+      {
+        "source": "source_policy:causal_commitment_delivery_gate",
+        "target": "package:H9_Commit_Ready_Delivery_Check",
+        "relation": "binds",
+        "package_mode": "commit_ready_gate_delivery"
+      },
+      {
+        "source": "source_policy:dominant_policy_surface_binding",
+        "target": "package:H9_Execution_Surface_Binding",
+        "relation": "binds",
+        "package_mode": "surface_bound_policy_delivery"
+      },
+      {
+        "source": "source_policy:override_failsafe_delivery_alignment",
+        "target": "package:H9_Failsafe_Action_Packaging",
+        "relation": "binds",
+        "package_mode": "failsafe_override_packaging"
+      },
+      {
+        "source": "source_policy:global_policy_payload_alignment",
+        "target": "package:H9_Response_Payload_Composition",
+        "relation": "binds",
+        "package_mode": "broadcast_payload_composition"
+      }
+    ],
+    "delivery_edges": [
+      {
+        "source": "package:H9_Commit_Ready_Delivery_Check",
+        "target": "surface:Final_Execution_Gate",
+        "relation": "delivers_to"
+      },
+      {
+        "source": "package:H9_Commit_Ready_Delivery_Check",
+        "target": "surface:Cognitive_Response_Generator",
+        "relation": "delivers_to"
+      },
+      {
+        "source": "package:H9_Execution_Surface_Binding",
+        "target": "surface:Executive_Action_Formatter",
+        "relation": "delivers_to"
+      },
+      {
+        "source": "package:H9_Execution_Surface_Binding",
+        "target": "surface:Final_Execution_Gate",
+        "relation": "delivers_to"
+      },
+      {
+        "source": "package:H9_Failsafe_Action_Packaging",
+        "target": "surface:Working_Memory_Flush",
+        "relation": "delivers_to"
+      },
+      {
+        "source": "package:H9_Failsafe_Action_Packaging",
+        "target": "surface:Final_Execution_Gate",
+        "relation": "delivers_to"
+      },
+      {
+        "source": "package:H9_Response_Payload_Composition",
+        "target": "surface:Global_State_Consensus",
+        "relation": "delivers_to"
+      },
+      {
+        "source": "package:H9_Response_Payload_Composition",
+        "target": "surface:Executive_Action_Formatter",
+        "relation": "delivers_to"
+      }
+    ]
+  },
+  "strategic_supervision_graph": {
+    "signal_nodes": [
+      {
+        "id": "signal:commit_readiness_escalation",
+        "label": "commit_readiness_escalation",
+        "supervision_notes": [
+          "H10_Rollback_Escalation_Governance"
+        ]
+      },
+      {
+        "id": "signal:failsafe_resource_governance",
+        "label": "failsafe_resource_governance",
+        "supervision_notes": [
+          "H10_Strategic_Resource_Oversight"
+        ]
+      },
+      {
+        "id": "signal:payload_persistence_review",
+        "label": "payload_persistence_review",
+        "supervision_notes": [
+          "H10_Long_Horizon_Outcome_Review"
+        ]
+      },
+      {
+        "id": "signal:surface_alignment_supervision",
+        "label": "surface_alignment_supervision",
+        "supervision_notes": [
+          "H10_Global_Supervision_Arbitration"
+        ]
+      }
+    ],
+    "supervision_nodes": [
+      {
+        "id": "supervision:H10_Global_Supervision_Arbitration",
+        "label": "H10_Global_Supervision_Arbitration",
+        "supervision_mode": "global_supervision_arbitration",
+        "contracts": [
+          "strategic_alignment_contract",
+          "supervision_route_manifest"
+        ]
+      },
+      {
+        "id": "supervision:H10_Long_Horizon_Outcome_Review",
+        "label": "H10_Long_Horizon_Outcome_Review",
+        "supervision_mode": "long_horizon_outcome_review",
+        "contracts": [
+          "outcome_review_manifest",
+          "payload_persistence_contract"
+        ]
+      },
+      {
+        "id": "supervision:H10_Rollback_Escalation_Governance",
+        "label": "H10_Rollback_Escalation_Governance",
+        "supervision_mode": "rollback_escalation_governance",
+        "contracts": [
+          "escalation_decision_manifest",
+          "rollback_readiness_contract"
+        ]
+      },
+      {
+        "id": "supervision:H10_Strategic_Resource_Oversight",
+        "label": "H10_Strategic_Resource_Oversight",
+        "supervision_mode": "strategic_resource_oversight",
+        "contracts": [
+          "failsafe_capacity_contract",
+          "resource_escalation_bundle"
+        ]
+      }
+    ],
+    "oversight_nodes": [
+      {
+        "id": "oversight:Final_Execution_Gate",
+        "label": "Final_Execution_Gate",
+        "supervision_notes": [
+          "H10_Rollback_Escalation_Governance"
+        ]
+      },
+      {
+        "id": "oversight:Global_Risk_Assessment",
+        "label": "Global_Risk_Assessment",
+        "supervision_notes": [
+          "H10_Rollback_Escalation_Governance"
+        ]
+      },
+      {
+        "id": "oversight:Global_State_Consensus",
+        "label": "Global_State_Consensus",
+        "supervision_notes": [
+          "H10_Global_Supervision_Arbitration",
+          "H10_Long_Horizon_Outcome_Review"
+        ]
+      },
+      {
+        "id": "oversight:Long_Term_Strategic_Planner",
+        "label": "Long_Term_Strategic_Planner",
+        "supervision_notes": [
+          "H10_Global_Supervision_Arbitration",
+          "H10_Long_Horizon_Outcome_Review"
+        ]
+      },
+      {
+        "id": "oversight:Resource_Lifecycle_Manager",
+        "label": "Resource_Lifecycle_Manager",
+        "supervision_notes": [
+          "H10_Strategic_Resource_Oversight"
+        ]
+      },
+      {
+        "id": "oversight:Strategic_Resource_Allocator",
+        "label": "Strategic_Resource_Allocator",
+        "supervision_notes": [
+          "H10_Strategic_Resource_Oversight"
+        ]
+      }
+    ],
+    "governance_edges": [
+      {
+        "source": "signal:surface_alignment_supervision",
+        "target": "supervision:H10_Global_Supervision_Arbitration",
+        "relation": "governs",
+        "supervision_mode": "global_supervision_arbitration"
+      },
+      {
+        "source": "signal:payload_persistence_review",
+        "target": "supervision:H10_Long_Horizon_Outcome_Review",
+        "relation": "governs",
+        "supervision_mode": "long_horizon_outcome_review"
+      },
+      {
+        "source": "signal:commit_readiness_escalation",
+        "target": "supervision:H10_Rollback_Escalation_Governance",
+        "relation": "governs",
+        "supervision_mode": "rollback_escalation_governance"
+      },
+      {
+        "source": "signal:failsafe_resource_governance",
+        "target": "supervision:H10_Strategic_Resource_Oversight",
+        "relation": "governs",
+        "supervision_mode": "strategic_resource_oversight"
+      }
+    ],
+    "oversight_edges": [
+      {
+        "source": "supervision:H10_Global_Supervision_Arbitration",
+        "target": "oversight:Global_State_Consensus",
+        "relation": "oversees"
+      },
+      {
+        "source": "supervision:H10_Global_Supervision_Arbitration",
+        "target": "oversight:Long_Term_Strategic_Planner",
+        "relation": "oversees"
+      },
+      {
+        "source": "supervision:H10_Long_Horizon_Outcome_Review",
+        "target": "oversight:Long_Term_Strategic_Planner",
+        "relation": "oversees"
+      },
+      {
+        "source": "supervision:H10_Long_Horizon_Outcome_Review",
+        "target": "oversight:Global_State_Consensus",
+        "relation": "oversees"
+      },
+      {
+        "source": "supervision:H10_Rollback_Escalation_Governance",
+        "target": "oversight:Final_Execution_Gate",
+        "relation": "oversees"
+      },
+      {
+        "source": "supervision:H10_Rollback_Escalation_Governance",
+        "target": "oversight:Global_Risk_Assessment",
+        "relation": "oversees"
+      },
+      {
+        "source": "supervision:H10_Strategic_Resource_Oversight",
+        "target": "oversight:Strategic_Resource_Allocator",
+        "relation": "oversees"
+      },
+      {
+        "source": "supervision:H10_Strategic_Resource_Oversight",
+        "target": "oversight:Resource_Lifecycle_Manager",
+        "relation": "oversees"
+      }
+    ]
+  },
+  "reflection_audit_graph": {
+    "signal_nodes": [
+      {
+        "id": "signal:failsafe_cost_ledger_signal",
+        "label": "failsafe_cost_ledger_signal",
+        "audit_notes": [
+          "H11_Failsafe_Cost_Accounting"
+        ]
+      },
+      {
+        "id": "signal:long_horizon_regression_signal",
+        "label": "long_horizon_regression_signal",
+        "audit_notes": [
+          "H11_Outcome_Regression_Postmortem"
+        ]
+      },
+      {
+        "id": "signal:rollback_escalation_attestation",
+        "label": "rollback_escalation_attestation",
+        "audit_notes": [
+          "H11_Rollback_Decision_Audit"
+        ]
+      },
+      {
+        "id": "signal:supervision_trace_digest",
+        "label": "supervision_trace_digest",
+        "audit_notes": [
+          "H11_Trace_Provenance_Attestation"
+        ]
+      }
+    ],
+    "audit_nodes": [
+      {
+        "id": "audit:H11_Failsafe_Cost_Accounting",
+        "label": "H11_Failsafe_Cost_Accounting",
+        "reflection_mode": "failsafe_cost_accounting",
+        "contracts": [
+          "lifecycle_cleanup_receipt",
+          "resource_cost_ledger"
+        ]
+      },
+      {
+        "id": "audit:H11_Outcome_Regression_Postmortem",
+        "label": "H11_Outcome_Regression_Postmortem",
+        "reflection_mode": "outcome_regression_postmortem",
+        "contracts": [
+          "outcome_regression_report",
+          "payload_drift_proof"
+        ]
+      },
+      {
+        "id": "audit:H11_Rollback_Decision_Audit",
+        "label": "H11_Rollback_Decision_Audit",
+        "reflection_mode": "rollback_decision_audit",
+        "contracts": [
+          "escalation_provenance_bundle",
+          "rollback_decision_log"
+        ]
+      },
+      {
+        "id": "audit:H11_Trace_Provenance_Attestation",
+        "label": "H11_Trace_Provenance_Attestation",
+        "reflection_mode": "trace_provenance_attestation",
+        "contracts": [
+          "provenance_trace_manifest",
+          "surface_route_attestation"
+        ]
+      }
+    ],
+    "surface_nodes": [
+      {
+        "id": "surface:Final_Execution_Gate",
+        "label": "Final_Execution_Gate",
+        "audit_notes": [
+          "H11_Rollback_Decision_Audit"
+        ]
+      },
+      {
+        "id": "surface:Global_Risk_Assessment",
+        "label": "Global_Risk_Assessment",
+        "audit_notes": [
+          "H11_Outcome_Regression_Postmortem",
+          "H11_Rollback_Decision_Audit"
+        ]
+      },
+      {
+        "id": "surface:Global_State_Consensus",
+        "label": "Global_State_Consensus",
+        "audit_notes": [
+          "H11_Trace_Provenance_Attestation"
+        ]
+      },
+      {
+        "id": "surface:Long_Term_Strategic_Planner",
+        "label": "Long_Term_Strategic_Planner",
+        "audit_notes": [
+          "H11_Outcome_Regression_Postmortem"
+        ]
+      },
+      {
+        "id": "surface:Metacognitive_Reflection_Core",
+        "label": "Metacognitive_Reflection_Core",
+        "audit_notes": [
+          "H11_Trace_Provenance_Attestation"
+        ]
+      },
+      {
+        "id": "surface:Resource_Lifecycle_Manager",
+        "label": "Resource_Lifecycle_Manager",
+        "audit_notes": [
+          "H11_Failsafe_Cost_Accounting"
+        ]
+      },
+      {
+        "id": "surface:Strategic_Resource_Allocator",
+        "label": "Strategic_Resource_Allocator",
+        "audit_notes": [
+          "H11_Failsafe_Cost_Accounting"
+        ]
+      }
+    ],
+    "signal_edges": [
+      {
+        "source": "signal:failsafe_cost_ledger_signal",
+        "target": "audit:H11_Failsafe_Cost_Accounting",
+        "relation": "attests",
+        "reflection_mode": "failsafe_cost_accounting"
+      },
+      {
+        "source": "signal:long_horizon_regression_signal",
+        "target": "audit:H11_Outcome_Regression_Postmortem",
+        "relation": "attests",
+        "reflection_mode": "outcome_regression_postmortem"
+      },
+      {
+        "source": "signal:rollback_escalation_attestation",
+        "target": "audit:H11_Rollback_Decision_Audit",
+        "relation": "attests",
+        "reflection_mode": "rollback_decision_audit"
+      },
+      {
+        "source": "signal:supervision_trace_digest",
+        "target": "audit:H11_Trace_Provenance_Attestation",
+        "relation": "attests",
+        "reflection_mode": "trace_provenance_attestation"
+      }
+    ],
+    "surface_edges": [
+      {
+        "source": "audit:H11_Failsafe_Cost_Accounting",
+        "target": "surface:Strategic_Resource_Allocator",
+        "relation": "audits"
+      },
+      {
+        "source": "audit:H11_Failsafe_Cost_Accounting",
+        "target": "surface:Resource_Lifecycle_Manager",
+        "relation": "audits"
+      },
+      {
+        "source": "audit:H11_Outcome_Regression_Postmortem",
+        "target": "surface:Long_Term_Strategic_Planner",
+        "relation": "audits"
+      },
+      {
+        "source": "audit:H11_Outcome_Regression_Postmortem",
+        "target": "surface:Global_Risk_Assessment",
+        "relation": "audits"
+      },
+      {
+        "source": "audit:H11_Rollback_Decision_Audit",
+        "target": "surface:Final_Execution_Gate",
+        "relation": "audits"
+      },
+      {
+        "source": "audit:H11_Rollback_Decision_Audit",
+        "target": "surface:Global_Risk_Assessment",
+        "relation": "audits"
+      },
+      {
+        "source": "audit:H11_Trace_Provenance_Attestation",
+        "target": "surface:Metacognitive_Reflection_Core",
+        "relation": "audits"
+      },
+      {
+        "source": "audit:H11_Trace_Provenance_Attestation",
+        "target": "surface:Global_State_Consensus",
+        "relation": "audits"
+      }
+    ]
+  },
+  "rag_binding_graph": {
+    "trace_nodes": [
+      {
+        "id": "rag_trace:RAG_Trace_sample_ui_export_001",
+        "label": "RAG Trace sample_ui_export_001",
+        "query": "Execution surface binding nasıl çalışıyor?",
+        "rag_links": [
+          "H11_Trace_Provenance_Attestation",
+          "H8_Global_Policy_Broadcast",
+          "H9_Execution_Surface_Binding"
+        ]
+      }
+    ],
+    "target_nodes": [
+      {
+        "id": "target:H11_Trace_Provenance_Attestation",
+        "label": "H11_Trace_Provenance_Attestation",
+        "trace_notes": [
+          "RAG_Trace_sample_ui_export_001"
+        ]
+      },
+      {
+        "id": "target:H8_Global_Policy_Broadcast",
+        "label": "H8_Global_Policy_Broadcast",
+        "trace_notes": [
+          "RAG_Trace_sample_ui_export_001"
+        ]
+      },
+      {
+        "id": "target:H9_Execution_Surface_Binding",
+        "label": "H9_Execution_Surface_Binding",
+        "trace_notes": [
+          "RAG_Trace_sample_ui_export_001"
+        ]
+      }
+    ],
+    "rag_edges": [
+      {
+        "source": "rag_trace:RAG_Trace_sample_ui_export_001",
+        "target": "target:H11_Trace_Provenance_Attestation",
+        "relation": "retrieved"
+      },
+      {
+        "source": "rag_trace:RAG_Trace_sample_ui_export_001",
+        "target": "target:H8_Global_Policy_Broadcast",
+        "relation": "retrieved"
+      },
+      {
+        "source": "rag_trace:RAG_Trace_sample_ui_export_001",
+        "target": "target:H9_Execution_Surface_Binding",
+        "relation": "retrieved"
+      }
+    ]
+  },
+  "edges": [
+    {
+      "source": "RAG_Memory_Cell_01_MLX_Unified_Memory_Model",
+      "target": "Index_Apple_Silicon_and_MLX",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_02_MLX_Zero_Copy_DLPack_and_Buffer_Reusage",
+      "target": "Index_Apple_Silicon_and_MLX",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_03_Metal_Shared_vs_Private_StorageMode",
+      "target": "Index_Apple_Silicon_and_MLX",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_04_ESP32_FreeRTOS_SMP_Core_Affinity",
+      "target": "Index_Embedded_and_ESP32",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_05_ESP32_Interrupt_Allocation_and_Shared_ISR",
+      "target": "Index_Embedded_and_ESP32",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_06_ESP32_DMA_Capable_Memory_and_ISR_Preallocation",
+      "target": "Index_Embedded_and_ESP32",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_07_P2P_Encryption_and_ZKP_Constraint_Surface",
+      "target": "Index_Cryptography_and_Memory_Safety",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_08_Apple_PAC_Runtime_Integrity",
+      "target": "Index_Cryptography_and_Memory_Safety",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_09_Memory_Safety_Primitives_and_Failure_Signatures",
+      "target": "Index_Cryptography_and_Memory_Safety",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_10_GNN_Message_Passing_for_Graph_Retrieval",
+      "target": "Index_Cognitive_Graph_RAG",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_11_GLM_RAG_Semantic_Graph_Fusion",
+      "target": "Index_Cognitive_Graph_RAG",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_12_Cognitive_RAG_SingleHop_vs_MultiHop_Routing",
+      "target": "Index_Cognitive_Graph_RAG",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_17_Metal_Argument_Buffers_For_Batched_Dispatch_Coordination",
+      "target": "Index_Apple_Silicon_and_MLX",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_18_MPS_Versus_MLX_Execution_Surface_Selection",
+      "target": "Index_Apple_Silicon_and_MLX",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_23_Sparse_Attention_On_Apple_Silicon_Memory_Budget",
+      "target": "Index_Apple_Silicon_and_MLX",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_24_Quantized_KV_Cache_Placement_On_UMA",
+      "target": "Index_Apple_Silicon_and_MLX",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_25_Metal_Resource_Hazard_Tracking_And_Explicit_Fencing",
+      "target": "Index_Apple_Silicon_and_MLX",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_30_GPIO_Matrix_Interrupt_Fan_In_And_Signal_Jitter",
+      "target": "Index_Embedded_and_ESP32",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_31_RMT_Peripheral_Timing_Determinism_Under_System_Load",
+      "target": "Index_Embedded_and_ESP32",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_36_PSRAM_Access_Penalties_In_Real_Time_Paths",
+      "target": "Index_Embedded_and_ESP32",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_37_Multi_Core_Critical_Sections_And_Spinlock_Contention",
+      "target": "Index_Embedded_and_ESP32",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_38_Tickless_Idle_And_Wake_Latency_On_ESP32",
+      "target": "Index_Embedded_and_ESP32",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_43_Stack_Canary_Failure_Telemetry_And_Triage",
+      "target": "Index_Cryptography_and_Memory_Safety",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_44_Secure_Enclave_Boundaries_And_Key_Ladder_Separation",
+      "target": "Index_Cryptography_and_Memory_Safety",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_49_Remote_Attestation_Signals_For_Edge_Nodes",
+      "target": "Index_Cryptography_and_Memory_Safety",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_50_Memory_Disclosure_Versus_Code_Reuse_Attack_Paths",
+      "target": "Index_Cryptography_and_Memory_Safety",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_51_Crash_Triage_For_Memory_Safety_Regressions",
+      "target": "Index_Cryptography_and_Memory_Safety",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_56_Temporal_Edges_In_Episodic_Memory_Graphs",
+      "target": "Index_Cognitive_Graph_RAG",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_57_Entity_Resolution_As_Graph_Construction_Discipline",
+      "target": "Index_Cognitive_Graph_RAG",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_62_Graph_Neighborhood_Pruning_Under_Token_Budgets",
+      "target": "Index_Cognitive_Graph_RAG",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_63_Tool_Augmented_Retrieval_Routing_Policies",
+      "target": "Index_Cognitive_Graph_RAG",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "RAG_Memory_Cell_64_Citation_Grounding_Across_Multi_Source_Reasoning",
+      "target": "Index_Cognitive_Graph_RAG",
+      "source_layer": "raw",
+      "target_layer": "index"
+    },
+    {
+      "source": "H3_Apple_Silicon_Memory_Execution_Synthesis",
+      "target": "H4_Resource_Execution_Prioritization",
+      "source_layer": "hidden_3",
+      "target_layer": "hidden_4"
+    },
+    {
+      "source": "H3_Cognitive_Graph_RAG_Routing_Synthesis",
+      "target": "H4_Edge_Device_Response_Strategy",
+      "source_layer": "hidden_3",
+      "target_layer": "hidden_4"
+    },
+    {
+      "source": "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis",
+      "target": "H4_Resource_Execution_Prioritization",
+      "source_layer": "hidden_3",
+      "target_layer": "hidden_4"
+    },
+    {
+      "source": "H3_Embedded_Interrupt_DMA_Synthesis",
+      "target": "H4_Performance_Bottleneck_Disambiguation",
+      "source_layer": "hidden_3",
+      "target_layer": "hidden_4"
+    },
+    {
+      "source": "H3_Embedded_Interrupt_DMA_Synthesis",
+      "target": "H4_Security_Failure_Mode_Arbitration",
+      "source_layer": "hidden_3",
+      "target_layer": "hidden_4"
+    },
+    {
+      "source": "H3_Apple_Silicon_Memory_Execution_Synthesis",
+      "target": "Brain_Growth_Index",
+      "source_layer": "hidden_3",
+      "target_layer": "index"
+    },
+    {
+      "source": "H3_Apple_Silicon_Memory_Execution_Synthesis",
+      "target": "Index_Apple_Silicon_and_MLX",
+      "source_layer": "hidden_3",
+      "target_layer": "index"
+    },
+    {
+      "source": "H3_Cognitive_Graph_RAG_Routing_Synthesis",
+      "target": "Brain_Growth_Index",
+      "source_layer": "hidden_3",
+      "target_layer": "index"
+    },
+    {
+      "source": "H3_Cognitive_Graph_RAG_Routing_Synthesis",
+      "target": "Index_Cognitive_Graph_RAG",
+      "source_layer": "hidden_3",
+      "target_layer": "index"
+    },
+    {
+      "source": "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis",
+      "target": "Brain_Growth_Index",
+      "source_layer": "hidden_3",
+      "target_layer": "index"
+    },
+    {
+      "source": "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis",
+      "target": "Index_Cryptography_and_Memory_Safety",
+      "source_layer": "hidden_3",
+      "target_layer": "index"
+    },
+    {
+      "source": "H3_Embedded_Interrupt_DMA_Synthesis",
+      "target": "Brain_Growth_Index",
+      "source_layer": "hidden_3",
+      "target_layer": "index"
+    },
+    {
+      "source": "H3_Embedded_Interrupt_DMA_Synthesis",
+      "target": "Index_Embedded_and_ESP32",
+      "source_layer": "hidden_3",
+      "target_layer": "index"
+    },
+    {
+      "source": "H4_Cross_Domain_Causal_Alignment",
+      "target": "H5_Risk_Performance_Tradeoff_Control",
+      "source_layer": "hidden_4",
+      "target_layer": "hidden_5"
+    },
+    {
+      "source": "H4_Resource_Execution_Prioritization",
+      "target": "H5_Metacognitive_Policy_Arbitration",
+      "source_layer": "hidden_4",
+      "target_layer": "hidden_5"
+    },
+    {
+      "source": "H7_Episodic_Timeline_Alignment",
+      "target": "H8_Decision_Commitment_Gate",
+      "source_layer": "hidden_7",
+      "target_layer": "hidden_8"
+    },
+    {
+      "source": "H7_Event_Entity_Binding",
+      "target": "H8_Dominant_Thoughtseed_Selection",
+      "source_layer": "hidden_7",
+      "target_layer": "hidden_8"
+    },
+    {
+      "source": "H7_Temporal_Causal_Recall",
+      "target": "H8_Dominant_Thoughtseed_Selection",
+      "source_layer": "hidden_7",
+      "target_layer": "hidden_8"
+    },
+    {
+      "source": "H8_Decision_Commitment_Gate",
+      "target": "H9_Commit_Ready_Delivery_Check",
+      "source_layer": "hidden_8",
+      "target_layer": "hidden_9"
+    },
+    {
+      "source": "H8_Decision_Commitment_Gate",
+      "target": "H9_Execution_Surface_Binding",
+      "source_layer": "hidden_8",
+      "target_layer": "hidden_9"
+    },
+    {
+      "source": "H8_Decision_Commitment_Gate",
+      "target": "H9_Response_Payload_Composition",
+      "source_layer": "hidden_8",
+      "target_layer": "hidden_9"
+    },
+    {
+      "source": "H8_Dominant_Thoughtseed_Selection",
+      "target": "H9_Commit_Ready_Delivery_Check",
+      "source_layer": "hidden_8",
+      "target_layer": "hidden_9"
+    },
+    {
+      "source": "H8_Dominant_Thoughtseed_Selection",
+      "target": "H9_Execution_Surface_Binding",
+      "source_layer": "hidden_8",
+      "target_layer": "hidden_9"
+    },
+    {
+      "source": "H8_Dominant_Thoughtseed_Selection",
+      "target": "H9_Response_Payload_Composition",
+      "source_layer": "hidden_8",
+      "target_layer": "hidden_9"
+    },
+    {
+      "source": "H8_Exception_Override_Arbitration",
+      "target": "H9_Commit_Ready_Delivery_Check",
+      "source_layer": "hidden_8",
+      "target_layer": "hidden_9"
+    },
+    {
+      "source": "H8_Exception_Override_Arbitration",
+      "target": "H9_Execution_Surface_Binding",
+      "source_layer": "hidden_8",
+      "target_layer": "hidden_9"
+    },
+    {
+      "source": "H8_Exception_Override_Arbitration",
+      "target": "H9_Failsafe_Action_Packaging",
+      "source_layer": "hidden_8",
+      "target_layer": "hidden_9"
+    },
+    {
+      "source": "H8_Global_Policy_Broadcast",
+      "target": "H9_Commit_Ready_Delivery_Check",
+      "source_layer": "hidden_8",
+      "target_layer": "hidden_9"
+    },
+    {
+      "source": "H8_Global_Policy_Broadcast",
+      "target": "H9_Execution_Surface_Binding",
+      "source_layer": "hidden_8",
+      "target_layer": "hidden_9"
+    },
+    {
+      "source": "H8_Global_Policy_Broadcast",
+      "target": "H9_Response_Payload_Composition",
+      "source_layer": "hidden_8",
+      "target_layer": "hidden_9"
+    },
+    {
+      "source": "H9_Commit_Ready_Delivery_Check",
+      "target": "H10_Global_Supervision_Arbitration",
+      "source_layer": "hidden_9",
+      "target_layer": "hidden_10"
+    },
+    {
+      "source": "H9_Commit_Ready_Delivery_Check",
+      "target": "H10_Long_Horizon_Outcome_Review",
+      "source_layer": "hidden_9",
+      "target_layer": "hidden_10"
+    },
+    {
+      "source": "H9_Commit_Ready_Delivery_Check",
+      "target": "H10_Rollback_Escalation_Governance",
+      "source_layer": "hidden_9",
+      "target_layer": "hidden_10"
+    },
+    {
+      "source": "H9_Execution_Surface_Binding",
+      "target": "H10_Global_Supervision_Arbitration",
+      "source_layer": "hidden_9",
+      "target_layer": "hidden_10"
+    },
+    {
+      "source": "H9_Execution_Surface_Binding",
+      "target": "H10_Rollback_Escalation_Governance",
+      "source_layer": "hidden_9",
+      "target_layer": "hidden_10"
+    },
+    {
+      "source": "H9_Execution_Surface_Binding",
+      "target": "H10_Strategic_Resource_Oversight",
+      "source_layer": "hidden_9",
+      "target_layer": "hidden_10"
+    },
+    {
+      "source": "H9_Failsafe_Action_Packaging",
+      "target": "H10_Global_Supervision_Arbitration",
+      "source_layer": "hidden_9",
+      "target_layer": "hidden_10"
+    },
+    {
+      "source": "H9_Failsafe_Action_Packaging",
+      "target": "H10_Long_Horizon_Outcome_Review",
+      "source_layer": "hidden_9",
+      "target_layer": "hidden_10"
+    },
+    {
+      "source": "H9_Failsafe_Action_Packaging",
+      "target": "H10_Strategic_Resource_Oversight",
+      "source_layer": "hidden_9",
+      "target_layer": "hidden_10"
+    },
+    {
+      "source": "H9_Response_Payload_Composition",
+      "target": "H10_Global_Supervision_Arbitration",
+      "source_layer": "hidden_9",
+      "target_layer": "hidden_10"
+    },
+    {
+      "source": "H9_Response_Payload_Composition",
+      "target": "H10_Rollback_Escalation_Governance",
+      "source_layer": "hidden_9",
+      "target_layer": "hidden_10"
+    },
+    {
+      "source": "H9_Response_Payload_Composition",
+      "target": "H10_Strategic_Resource_Oversight",
+      "source_layer": "hidden_9",
+      "target_layer": "hidden_10"
+    },
+    {
+      "source": "H10_Global_Supervision_Arbitration",
+      "target": "H11_Trace_Provenance_Attestation",
+      "source_layer": "hidden_10",
+      "target_layer": "hidden_11"
+    },
+    {
+      "source": "H10_Long_Horizon_Outcome_Review",
+      "target": "H11_Outcome_Regression_Postmortem",
+      "source_layer": "hidden_10",
+      "target_layer": "hidden_11"
+    },
+    {
+      "source": "H10_Rollback_Escalation_Governance",
+      "target": "H11_Rollback_Decision_Audit",
+      "source_layer": "hidden_10",
+      "target_layer": "hidden_11"
+    },
+    {
+      "source": "H10_Strategic_Resource_Oversight",
+      "target": "H11_Failsafe_Cost_Accounting",
+      "source_layer": "hidden_10",
+      "target_layer": "hidden_11"
+    },
+    {
+      "source": "Brain_Growth_Index",
+      "target": "Index_Apple_Silicon_and_MLX",
+      "source_layer": "index",
+      "target_layer": "index"
+    },
+    {
+      "source": "Brain_Growth_Index",
+      "target": "Index_Cognitive_Graph_RAG",
+      "source_layer": "index",
+      "target_layer": "index"
+    },
+    {
+      "source": "Brain_Growth_Index",
+      "target": "Index_Cryptography_and_Memory_Safety",
+      "source_layer": "index",
+      "target_layer": "index"
+    },
+    {
+      "source": "Brain_Growth_Index",
+      "target": "Index_Embedded_and_ESP32",
+      "source_layer": "index",
+      "target_layer": "index"
+    },
+    {
+      "source": "Index_Apple_Silicon_and_MLX",
+      "target": "Brain_Growth_Index",
+      "source_layer": "index",
+      "target_layer": "index"
+    },
+    {
+      "source": "Index_Cognitive_Graph_RAG",
+      "target": "Brain_Growth_Index",
+      "source_layer": "index",
+      "target_layer": "index"
+    },
+    {
+      "source": "Index_Cryptography_and_Memory_Safety",
+      "target": "Brain_Growth_Index",
+      "source_layer": "index",
+      "target_layer": "index"
+    },
+    {
+      "source": "Index_Embedded_and_ESP32",
+      "target": "Brain_Growth_Index",
+      "source_layer": "index",
+      "target_layer": "index"
+    }
+  ],
+  "summary": {
+    "total_nodes": 107,
+    "total_edges": 86,
+    "rag_trace_count": 1,
+    "rag_edge_count": 3
+  }
+}

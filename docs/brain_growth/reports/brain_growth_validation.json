@@ -1,0 +1,2108 @@
+{
+  "generated_at": "2026-08-30T18:43:45.686013+00:00",
+  "scope": "all",
+  "knowledge_dir": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge",
+  "summary": {
+    "files_scanned": 91,
+    "files_with_issues": 34,
+    "issue_count": 65,
+    "status": "fail"
+  },
+  "kinds": {
+    "raw": {
+      "kind": "raw",
+      "file_count": 52,
+      "ok_count": 52,
+      "issue_count": 0
+    },
+    "synthesis": {
+      "kind": "synthesis",
+      "file_count": 4,
+      "ok_count": 0,
+      "issue_count": 10
+    },
+    "h4": {
+      "kind": "h4",
+      "file_count": 6,
+      "ok_count": 0,
+      "issue_count": 6
+    },
+    "h5": {
+      "kind": "h5",
+      "file_count": 4,
+      "ok_count": 0,
+      "issue_count": 9
+    },
+    "h6": {
+      "kind": "h6",
+      "file_count": 4,
+      "ok_count": 0,
+      "issue_count": 8
+    },
+    "h7": {
+      "kind": "h7",
+      "file_count": 4,
+      "ok_count": 0,
+      "issue_count": 8
+    },
+    "h8": {
+      "kind": "h8",
+      "file_count": 4,
+      "ok_count": 0,
+      "issue_count": 8
+    },
+    "h9": {
+      "kind": "h9",
+      "file_count": 4,
+      "ok_count": 0,
+      "issue_count": 8
+    },
+    "h10": {
+      "kind": "h10",
+      "file_count": 4,
+      "ok_count": 0,
+      "issue_count": 8
+    },
+    "index": {
+      "kind": "index",
+      "file_count": 5,
+      "ok_count": 5,
+      "issue_count": 0
+    }
+  },
+  "graph_metrics": {
+    "node_count_by_kind": {
+      "raw": 52,
+      "synthesis": 4,
+      "h4": 6,
+      "h5": 4,
+      "h6": 4,
+      "h7": 4,
+      "h8": 4,
+      "h9": 4,
+      "h10": 4,
+      "index": 5
+    },
+    "forward_link_compliance_ratio": 0.6923,
+    "forbidden_reference_count": 0,
+    "total_wikilinks": 353
+  },
+  "remediation_map": {
+    "issue_code_count": 17,
+    "total_affected_files": 34,
+    "entries": [
+      {
+        "issue_code": "h10_spec_violation",
+        "repair_class": "family_spec_alignment_repair",
+        "summary": "H10 aile notunu builder spesifikasyonuyla yeniden hizala.",
+        "recommended_actions": [
+          "İlgili H10 family tanımındaki supervision frontmatter ve giriş/çıkış sırasını uygula."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Global_Supervision_Arbitration.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Long_Horizon_Outcome_Review.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Rollback_Escalation_Governance.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Strategic_Resource_Oversight.md"
+        ],
+        "sample_messages": [
+          "H10_Global_Supervision_Arbitration.md: H9 girdileri beklenen hedeflerle uyuşmuyor",
+          "H10_Long_Horizon_Outcome_Review.md: H9 girdileri beklenen hedeflerle uyuşmuyor",
+          "H10_Rollback_Escalation_Governance.md: H9 girdileri beklenen hedeflerle uyuşmuyor"
+        ]
+      },
+      {
+        "issue_code": "h5_spec_violation",
+        "repair_class": "family_spec_alignment_repair",
+        "summary": "H5 aile notunu builder spesifikasyonuyla yeniden hizala.",
+        "recommended_actions": [
+          "İlgili H5 family tanımındaki giriş/çıkış sırasını uygula."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Global_Escalation_Gate.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Metacognitive_Policy_Arbitration.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Retrieval_Depth_Governance.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Risk_Performance_Tradeoff_Control.md"
+        ],
+        "sample_messages": [
+          "H5_Global_Escalation_Gate.md: kaynak bağlantılar beklenen sırayla uyuşmuyor",
+          "H5_Metacognitive_Policy_Arbitration.md: kaynak bağlantılar beklenen sırayla uyuşmuyor",
+          "H5_Retrieval_Depth_Governance.md: kaynak bağlantılar beklenen sırayla uyuşmuyor"
+        ]
+      },
+      {
+        "issue_code": "h6_spec_violation",
+        "repair_class": "family_spec_alignment_repair",
+        "summary": "H6 aile notunu builder spesifikasyonuyla yeniden hizala.",
+        "recommended_actions": [
+          "İlgili H6 family tanımındaki giriş/çıkış sırasını uygula."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Executive_Priority_Orchestration.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Global_Response_Orchestration.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Recovery_Execution_Sequencing.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Retrieval_Action_Coordination.md"
+        ],
+        "sample_messages": [
+          "H6_Executive_Priority_Orchestration.md: kaynak bağlantılar beklenen sırayla uyuşmuyor",
+          "H6_Global_Response_Orchestration.md: kaynak bağlantılar beklenen sırayla uyuşmuyor",
+          "H6_Recovery_Execution_Sequencing.md: kaynak bağlantılar beklenen sırayla uyuşmuyor"
+        ]
+      },
+      {
+        "issue_code": "h7_spec_violation",
+        "repair_class": "family_spec_alignment_repair",
+        "summary": "H7 aile notunu builder spesifikasyonuyla yeniden hizala.",
+        "recommended_actions": [
+          "İlgili H7 family tanımındaki episodik frontmatter ve giriş/çıkış sırasını uygula."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Episodic_Timeline_Alignment.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Event_Entity_Binding.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Recency_Drift_Governance.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Temporal_Causal_Recall.md"
+        ],
+        "sample_messages": [
+          "H7_Episodic_Timeline_Alignment.md: H6 girdileri beklenen hedeflerle uyuşmuyor",
+          "H7_Event_Entity_Binding.md: H6 girdileri beklenen hedeflerle uyuşmuyor",
+          "H7_Recency_Drift_Governance.md: H6 girdileri beklenen hedeflerle uyuşmuyor"
+        ]
+      },
+      {
+        "issue_code": "h8_spec_violation",
+        "repair_class": "family_spec_alignment_repair",
+        "summary": "H8 aile notunu builder spesifikasyonuyla yeniden hizala.",
+        "recommended_actions": [
+          "İlgili H8 family tanımındaki workspace frontmatter ve giriş/çıkış sırasını uygula."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Decision_Commitment_Gate.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Dominant_Thoughtseed_Selection.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Exception_Override_Arbitration.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Global_Policy_Broadcast.md"
+        ],
+        "sample_messages": [
+          "H8_Decision_Commitment_Gate.md: H7 girdileri beklenen hedeflerle uyuşmuyor",
+          "H8_Dominant_Thoughtseed_Selection.md: H7 girdileri beklenen hedeflerle uyuşmuyor",
+          "H8_Exception_Override_Arbitration.md: H7 girdileri beklenen hedeflerle uyuşmuyor"
+        ]
+      },
+      {
+        "issue_code": "h9_spec_violation",
+        "repair_class": "family_spec_alignment_repair",
+        "summary": "H9 aile notunu builder spesifikasyonuyla yeniden hizala.",
+        "recommended_actions": [
+          "İlgili H9 family tanımındaki paketleme frontmatter ve giriş/çıkış sırasını uygula."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Commit_Ready_Delivery_Check.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Execution_Surface_Binding.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Failsafe_Action_Packaging.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Response_Payload_Composition.md"
+        ],
+        "sample_messages": [
+          "H9_Commit_Ready_Delivery_Check.md: H8 girdileri beklenen hedeflerle uyuşmuyor",
+          "H9_Execution_Surface_Binding.md: H8 girdileri beklenen hedeflerle uyuşmuyor",
+          "H9_Failsafe_Action_Packaging.md: H8 girdileri beklenen hedeflerle uyuşmuyor"
+        ]
+      },
+      {
+        "issue_code": "insufficient_forward_links",
+        "repair_class": "graph_output_coverage_repair",
+        "summary": "Downstream çıktı veya ileri bağlantı sayısını asgari seviyeye çıkar.",
+        "recommended_actions": [
+          "İlgili note için gereken minimum ileri wikilink sayısını ekle.",
+          "Bağlantıları gerçekten var olan downstream note'lara yönlendir."
+        ],
+        "occurrence_count": 1,
+        "affected_file_count": 1,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Risk_Performance_Tradeoff_Control.md"
+        ],
+        "sample_messages": [
+          "H5_Risk_Performance_Tradeoff_Control.md: en az 1 yönetilen çıktı linki gerekli"
+        ]
+      },
+      {
+        "issue_code": "insufficient_source_inputs",
+        "repair_class": "graph_input_coverage_repair",
+        "summary": "Kaynak giriş sayısını katman minimumuna yükselt.",
+        "recommended_actions": [
+          "Eksik upstream note bağlantılarını ekle.",
+          "Girdi sayısını ilgili validator metriğinin minimumuna getir."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Apple_Silicon_Memory_Execution_Synthesis.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Cognitive_Graph_RAG_Routing_Synthesis.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Embedded_Interrupt_DMA_Synthesis.md"
+        ],
+        "sample_messages": [
+          "H3_Apple_Silicon_Memory_Execution_Synthesis.md: en az 8 raw girdi gerekli",
+          "H3_Cognitive_Graph_RAG_Routing_Synthesis.md: en az 8 raw girdi gerekli",
+          "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md: en az 8 raw girdi gerekli"
+        ]
+      },
+      {
+        "issue_code": "missing_h3_input",
+        "repair_class": "graph_input_coverage_repair",
+        "summary": "H4 notuna en az bir H3 girişi bağla.",
+        "recommended_actions": [
+          "Besleyen sentez düğümleri bölümüne H3_* wikilink ekle."
+        ],
+        "occurrence_count": 6,
+        "affected_file_count": 6,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Cognitive_Retrieval_Policy_Selection.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Cross_Domain_Causal_Alignment.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Edge_Device_Response_Strategy.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Performance_Bottleneck_Disambiguation.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Resource_Execution_Prioritization.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Security_Failure_Mode_Arbitration.md"
+        ],
+        "sample_messages": [
+          "H4_Cognitive_Retrieval_Policy_Selection.md: en az bir H3 girdi linki gerekli",
+          "H4_Cross_Domain_Causal_Alignment.md: en az bir H3 girdi linki gerekli",
+          "H4_Edge_Device_Response_Strategy.md: en az bir H3 girdi linki gerekli"
+        ]
+      },
+      {
+        "issue_code": "missing_h4_input",
+        "repair_class": "graph_input_coverage_repair",
+        "summary": "H5 notuna en az bir H4 girişi bağla.",
+        "recommended_actions": [
+          "Besleyen H4 düğümleri bölümüne H4_* wikilink ekle."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Global_Escalation_Gate.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Metacognitive_Policy_Arbitration.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Retrieval_Depth_Governance.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Risk_Performance_Tradeoff_Control.md"
+        ],
+        "sample_messages": [
+          "H5_Global_Escalation_Gate.md: en az bir H4 girdi linki gerekli",
+          "H5_Metacognitive_Policy_Arbitration.md: en az bir H4 girdi linki gerekli",
+          "H5_Retrieval_Depth_Governance.md: en az bir H4 girdi linki gerekli"
+        ]
+      },
+      {
+        "issue_code": "missing_h5_input",
+        "repair_class": "graph_input_coverage_repair",
+        "summary": "H6 notuna birden fazla H5 girişi bağla.",
+        "recommended_actions": [
+          "Besleyen H5 düğümleri bölümüne en az iki H5_* wikilink ekle.",
+          "Tek girişli executive note'ları çoklu H5 koordinasyon şemasına yükselt."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Executive_Priority_Orchestration.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Global_Response_Orchestration.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Recovery_Execution_Sequencing.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Retrieval_Action_Coordination.md"
+        ],
+        "sample_messages": [
+          "H6_Executive_Priority_Orchestration.md: en az iki H5 girdi linki gerekli",
+          "H6_Global_Response_Orchestration.md: en az iki H5 girdi linki gerekli",
+          "H6_Recovery_Execution_Sequencing.md: en az iki H5 girdi linki gerekli"
+        ]
+      },
+      {
+        "issue_code": "missing_h6_input",
+        "repair_class": "graph_input_coverage_repair",
+        "summary": "H7 notuna en az bir H6 girişi bağla.",
+        "recommended_actions": [
+          "Besleyen H6 düğümleri bölümüne en az bir H6_* wikilink ekle.",
+          "Episodik notun upstream executive orkestrasyon kaynağını açıkça bağla."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Episodic_Timeline_Alignment.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Event_Entity_Binding.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Recency_Drift_Governance.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Temporal_Causal_Recall.md"
+        ],
+        "sample_messages": [
+          "H7_Episodic_Timeline_Alignment.md: en az bir H6 girdi linki gerekli",
+          "H7_Event_Entity_Binding.md: en az bir H6 girdi linki gerekli",
+          "H7_Recency_Drift_Governance.md: en az bir H6 girdi linki gerekli"
+        ]
+      },
+      {
+        "issue_code": "missing_h7_input",
+        "repair_class": "graph_input_coverage_repair",
+        "summary": "H8 notuna en az bir H7 girişi bağla.",
+        "recommended_actions": [
+          "Besleyen H7 düğümleri bölümüne en az bir H7_* wikilink ekle.",
+          "Karar montaj notunu episodik-temporal kaynağa açıkça bağla."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Decision_Commitment_Gate.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Dominant_Thoughtseed_Selection.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Exception_Override_Arbitration.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Global_Policy_Broadcast.md"
+        ],
+        "sample_messages": [
+          "H8_Decision_Commitment_Gate.md: en az bir H7 girdi linki gerekli",
+          "H8_Dominant_Thoughtseed_Selection.md: en az bir H7 girdi linki gerekli",
+          "H8_Exception_Override_Arbitration.md: en az bir H7 girdi linki gerekli"
+        ]
+      },
+      {
+        "issue_code": "missing_h8_input",
+        "repair_class": "graph_input_coverage_repair",
+        "summary": "H9 notuna en az bir H8 girişi bağla.",
+        "recommended_actions": [
+          "Besleyen H8 düğümleri bölümüne en az bir H8_* wikilink ekle.",
+          "Paketleme notunu karar montaj kaynağına açıkça bağla."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Commit_Ready_Delivery_Check.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Execution_Surface_Binding.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Failsafe_Action_Packaging.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Response_Payload_Composition.md"
+        ],
+        "sample_messages": [
+          "H9_Commit_Ready_Delivery_Check.md: en az bir H8 girdi linki gerekli",
+          "H9_Execution_Surface_Binding.md: en az bir H8 girdi linki gerekli",
+          "H9_Failsafe_Action_Packaging.md: en az bir H8 girdi linki gerekli"
+        ]
+      },
+      {
+        "issue_code": "missing_h9_input",
+        "repair_class": "graph_input_coverage_repair",
+        "summary": "H10 notuna en az bir H9 girişi bağla.",
+        "recommended_actions": [
+          "Besleyen H9 düğümleri bölümüne en az bir H9_* wikilink ekle.",
+          "Supervision notunu execution packaging kaynağına açıkça bağla."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Global_Supervision_Arbitration.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Long_Horizon_Outcome_Review.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Rollback_Escalation_Governance.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Strategic_Resource_Oversight.md"
+        ],
+        "sample_messages": [
+          "H10_Global_Supervision_Arbitration.md: en az bir H9 girdi linki gerekli",
+          "H10_Long_Horizon_Outcome_Review.md: en az bir H9 girdi linki gerekli",
+          "H10_Rollback_Escalation_Governance.md: en az bir H9 girdi linki gerekli"
+        ]
+      },
+      {
+        "issue_code": "synthesis_spec_violation",
+        "repair_class": "family_spec_alignment_repair",
+        "summary": "H3 aile notunu builder spesifikasyonuyla yeniden hizala.",
+        "recommended_actions": [
+          "İlgili H3 family tanımındaki giriş/çıkış sırasını uygula."
+        ],
+        "occurrence_count": 4,
+        "affected_file_count": 4,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Apple_Silicon_Memory_Execution_Synthesis.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Cognitive_Graph_RAG_Routing_Synthesis.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Embedded_Interrupt_DMA_Synthesis.md"
+        ],
+        "sample_messages": [
+          "H3_Apple_Silicon_Memory_Execution_Synthesis.md: 8'den az RAG_Memory_Cell girdisi var",
+          "H3_Cognitive_Graph_RAG_Routing_Synthesis.md: 8'den az RAG_Memory_Cell girdisi var",
+          "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md: 8'den az RAG_Memory_Cell girdisi var"
+        ]
+      },
+      {
+        "issue_code": "too_many_forward_links",
+        "repair_class": "graph_output_coverage_repair",
+        "summary": "İleri link hacmini katman sınırına indir.",
+        "recommended_actions": [
+          "Gereksiz downstream linkleri kaldır.",
+          "Sadece note ailesi şemasında izin verilen kadar hedef bırak."
+        ],
+        "occurrence_count": 2,
+        "affected_file_count": 2,
+        "affected_files": [
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md",
+          "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Embedded_Interrupt_DMA_Synthesis.md"
+        ],
+        "sample_messages": [
+          "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md: en fazla 3 ileri besleme linki olmalı",
+          "H3_Embedded_Interrupt_DMA_Synthesis.md: en fazla 3 ileri besleme linki olmalı"
+        ]
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_13_MLX_Lazy_Evaluation_And_Stream_Dependency_Barriers.md",
+      "kind": "raw",
+      "title": "MLX Lazy Evaluation and Stream Dependency Barriers",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 13,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_14_Metal_Heap_Residency_And_Buffer_Alias_Reuse.md",
+      "kind": "raw",
+      "title": "Metal Heap Residency and Buffer Alias Reuse",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 14,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_15_Apple_Silicon_UMA_Pressure_And_Page_Migration_Signals.md",
+      "kind": "raw",
+      "title": "Apple Silicon UMA Pressure and Page Migration Signals",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 15,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_16_MLX_Graph_Capture_And_Kernel_Fusion_Boundaries.md",
+      "kind": "raw",
+      "title": "MLX Graph Capture and Kernel Fusion Boundaries",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 16,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_17_Metal_Argument_Buffers_For_Batched_Dispatch_Coordination.md",
+      "kind": "raw",
+      "title": "Metal Argument Buffers for Batched Dispatch Coordination",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 17,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_18_MPS_Versus_MLX_Execution_Surface_Selection.md",
+      "kind": "raw",
+      "title": "MPS versus MLX Execution Surface Selection",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 18,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_19_AMX_Neural_Engine_And_GPU_Scheduling_Tradeoffs.md",
+      "kind": "raw",
+      "title": "AMX Neural Engine and GPU Scheduling Tradeoffs",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 19,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_20_Metal_Command_Buffer_Commit_Latency_And_Queue_Depth.md",
+      "kind": "raw",
+      "title": "Metal Command Buffer Commit Latency and Queue Depth",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 20,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_21_Unified_Memory_Backpressure_In_Token_Streaming_Pipelines.md",
+      "kind": "raw",
+      "title": "Unified Memory Backpressure in Token Streaming Pipelines",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 21,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_22_Zero_Copy_Tensor_Interop_Between_MLX_And_Pytorch.md",
+      "kind": "raw",
+      "title": "Zero Copy Tensor Interop between MLX and PyTorch",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 22,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_23_Sparse_Attention_On_Apple_Silicon_Memory_Budget.md",
+      "kind": "raw",
+      "title": "Sparse Attention on Apple Silicon Memory Budget",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 23,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_24_Quantized_KV_Cache_Placement_On_UMA.md",
+      "kind": "raw",
+      "title": "Quantized KV Cache Placement on UMA",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 24,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_25_Metal_Resource_Hazard_Tracking_And_Explicit_Fencing.md",
+      "kind": "raw",
+      "title": "Metal Resource Hazard Tracking and Explicit Fencing",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 25,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_26_ESP32_IRAM_Safe_ISR_Latency_Budgets.md",
+      "kind": "raw",
+      "title": "ESP32 IRAM Safe ISR Latency Budgets",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 26,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_27_ESP32_Task_Watchdog_And_Core_Starvation_Patterns.md",
+      "kind": "raw",
+      "title": "ESP32 Task Watchdog and Core Starvation Patterns",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 27,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_28_Freertos_Queue_Sets_Versus_Direct_Task_Notifications.md",
+      "kind": "raw",
+      "title": "FreeRTOS Queue Sets versus Direct Task Notifications",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 28,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_29_ESP32_Flash_Cache_Disable_Windows_And_Critical_Paths.md",
+      "kind": "raw",
+      "title": "ESP32 Flash Cache Disable Windows and Critical Paths",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 29,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_30_GPIO_Matrix_Interrupt_Fan_In_And_Signal_Jitter.md",
+      "kind": "raw",
+      "title": "GPIO Matrix Interrupt Fan In and Signal Jitter",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 30,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_31_RMT_Peripheral_Timing_Determinism_Under_System_Load.md",
+      "kind": "raw",
+      "title": "RMT Peripheral Timing Determinism under System Load",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 31,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_32_I2S_DMA_Descriptor_Rings_On_ESP32.md",
+      "kind": "raw",
+      "title": "I2S DMA Descriptor Rings on ESP32",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 32,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_33_SPI_DMA_Burst_Alignment_And_Cache_Coherency.md",
+      "kind": "raw",
+      "title": "SPI DMA Burst Alignment and Cache Coherency",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 33,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_34_UART_ISR_Backpressure_And_Ring_Buffer_Design.md",
+      "kind": "raw",
+      "title": "UART ISR Backpressure and Ring Buffer Design",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 34,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_35_Freertos_Event_Groups_Versus_Semaphores_For_Driver_States.md",
+      "kind": "raw",
+      "title": "FreeRTOS Event Groups versus Semaphores for Driver States",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 35,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_36_PSRAM_Access_Penalties_In_Real_Time_Paths.md",
+      "kind": "raw",
+      "title": "PSRAM Access Penalties in Real Time Paths",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 36,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_37_Multi_Core_Critical_Sections_And_Spinlock_Contention.md",
+      "kind": "raw",
+      "title": "Multi Core Critical Sections and Spinlock Contention",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 37,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_38_Tickless_Idle_And_Wake_Latency_On_ESP32.md",
+      "kind": "raw",
+      "title": "Tickless Idle and Wake Latency on ESP32",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 38,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_39_Pointer_Authentication_Key_Domains_And_Signing_Contexts.md",
+      "kind": "raw",
+      "title": "Pointer Authentication Key Domains and Signing Contexts",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 39,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_40_Control_Flow_Integrity_And_PAC_Complementarity.md",
+      "kind": "raw",
+      "title": "Control Flow Integrity and PAC Complementarity",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 40,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_41_Use_After_Free_Telemetry_And_Crash_Clustering.md",
+      "kind": "raw",
+      "title": "Use After Free Telemetry and Crash Clustering",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 41,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_42_Heap_Metadata_Corruption_Signatures.md",
+      "kind": "raw",
+      "title": "Heap Metadata Corruption Signatures",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 42,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_43_Stack_Canary_Failure_Telemetry_And_Triage.md",
+      "kind": "raw",
+      "title": "Stack Canary Failure Telemetry and Triage",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 43,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_44_Secure_Enclave_Boundaries_And_Key_Ladder_Separation.md",
+      "kind": "raw",
+      "title": "Secure Enclave Boundaries and Key Ladder Separation",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 44,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_45_AEAD_Nonce_Reuse_Failure_Modes.md",
+      "kind": "raw",
+      "title": "AEAD Nonce Reuse Failure Modes",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 45,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_46_Zero_Knowledge_Proof_Witness_Exposure_Surfaces.md",
+      "kind": "raw",
+      "title": "Zero Knowledge Proof Witness Exposure Surfaces",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 46,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_47_Merkle_Commitments_For_Retrieval_Integrity.md",
+      "kind": "raw",
+      "title": "Merkle Commitments for Retrieval Integrity",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 47,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_48_Forward_Secrecy_In_Peer_To_Peer_Session_Rotation.md",
+      "kind": "raw",
+      "title": "Forward Secrecy in Peer to Peer Session Rotation",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 48,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_49_Remote_Attestation_Signals_For_Edge_Nodes.md",
+      "kind": "raw",
+      "title": "Remote Attestation Signals for Edge Nodes",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 49,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_50_Memory_Disclosure_Versus_Code_Reuse_Attack_Paths.md",
+      "kind": "raw",
+      "title": "Memory Disclosure versus Code Reuse Attack Paths",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 50,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_51_Crash_Triage_For_Memory_Safety_Regressions.md",
+      "kind": "raw",
+      "title": "Crash Triage for Memory Safety Regressions",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 51,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_52_Hybrid_Sparse_Dense_Graph_Retrieval.md",
+      "kind": "raw",
+      "title": "Hybrid Sparse Dense Graph Retrieval",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 52,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_53_Graph_Expansion_Budgeting_And_Beam_Search.md",
+      "kind": "raw",
+      "title": "Graph Expansion Budgeting and Beam Search",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 53,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_54_Query_Decomposition_For_Multi_Hop_Retrieval.md",
+      "kind": "raw",
+      "title": "Query Decomposition for Multi Hop Retrieval",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 54,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_55_Edge_Reweighting_From_Retriever_Feedback.md",
+      "kind": "raw",
+      "title": "Edge Reweighting from Retriever Feedback",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 55,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_56_Temporal_Edges_In_Episodic_Memory_Graphs.md",
+      "kind": "raw",
+      "title": "Temporal Edges in Episodic Memory Graphs",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 56,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_57_Entity_Resolution_As_Graph_Construction_Discipline.md",
+      "kind": "raw",
+      "title": "Entity Resolution as Graph Construction Discipline",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 57,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_58_Cross_Encoder_Reranking_After_Graph_Traversal.md",
+      "kind": "raw",
+      "title": "Cross Encoder Reranking after Graph Traversal",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 58,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_59_Subgraph_Packing_For_Context_Window_Control.md",
+      "kind": "raw",
+      "title": "Subgraph Packing for Context Window Control",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 59,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_60_Semantic_Drift_Detection_In_Graph_RAG.md",
+      "kind": "raw",
+      "title": "Semantic Drift Detection in Graph RAG",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 60,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_61_Negative_Sampling_For_Relation_Aware_Embeddings.md",
+      "kind": "raw",
+      "title": "Negative Sampling for Relation Aware Embeddings",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 61,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_62_Graph_Neighborhood_Pruning_Under_Token_Budgets.md",
+      "kind": "raw",
+      "title": "Graph Neighborhood Pruning under Token Budgets",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 62,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_63_Tool_Augmented_Retrieval_Routing_Policies.md",
+      "kind": "raw",
+      "title": "Tool Augmented Retrieval Routing Policies",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 63,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_64_Citation_Grounding_Across_Multi_Source_Reasoning.md",
+      "kind": "raw",
+      "title": "Citation Grounding across Multi Source Reasoning",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "index": 64,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Apple_Silicon_Memory_Execution_Synthesis.md",
+      "kind": "synthesis",
+      "title": "Apple Silicon Memory Execution Synthesis",
+      "ok": false,
+      "issues": [
+        {
+          "code": "insufficient_source_inputs",
+          "message": "H3_Apple_Silicon_Memory_Execution_Synthesis.md: en az 8 raw girdi gerekli"
+        },
+        {
+          "code": "synthesis_spec_violation",
+          "message": "H3_Apple_Silicon_Memory_Execution_Synthesis.md: 8'den az RAG_Memory_Cell girdisi var"
+        }
+      ],
+      "metrics": {
+        "raw_inputs": 0,
+        "anchor_inputs": 0,
+        "forward_links": 3
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Cognitive_Graph_RAG_Routing_Synthesis.md",
+      "kind": "synthesis",
+      "title": "Cognitive Graph RAG Routing Synthesis",
+      "ok": false,
+      "issues": [
+        {
+          "code": "insufficient_source_inputs",
+          "message": "H3_Cognitive_Graph_RAG_Routing_Synthesis.md: en az 8 raw girdi gerekli"
+        },
+        {
+          "code": "synthesis_spec_violation",
+          "message": "H3_Cognitive_Graph_RAG_Routing_Synthesis.md: 8'den az RAG_Memory_Cell girdisi var"
+        }
+      ],
+      "metrics": {
+        "raw_inputs": 0,
+        "anchor_inputs": 0,
+        "forward_links": 3
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md",
+      "kind": "synthesis",
+      "title": "Cryptographic Integrity and Memory Safety Synthesis",
+      "ok": false,
+      "issues": [
+        {
+          "code": "insufficient_source_inputs",
+          "message": "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md: en az 8 raw girdi gerekli"
+        },
+        {
+          "code": "too_many_forward_links",
+          "message": "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md: en fazla 3 ileri besleme linki olmalı"
+        },
+        {
+          "code": "synthesis_spec_violation",
+          "message": "H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md: 8'den az RAG_Memory_Cell girdisi var"
+        }
+      ],
+      "metrics": {
+        "raw_inputs": 0,
+        "anchor_inputs": 0,
+        "forward_links": 5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Embedded_Interrupt_DMA_Synthesis.md",
+      "kind": "synthesis",
+      "title": "Embedded Interrupt DMA Synthesis",
+      "ok": false,
+      "issues": [
+        {
+          "code": "insufficient_source_inputs",
+          "message": "H3_Embedded_Interrupt_DMA_Synthesis.md: en az 8 raw girdi gerekli"
+        },
+        {
+          "code": "too_many_forward_links",
+          "message": "H3_Embedded_Interrupt_DMA_Synthesis.md: en fazla 3 ileri besleme linki olmalı"
+        },
+        {
+          "code": "synthesis_spec_violation",
+          "message": "H3_Embedded_Interrupt_DMA_Synthesis.md: 8'den az RAG_Memory_Cell girdisi var"
+        }
+      ],
+      "metrics": {
+        "raw_inputs": 0,
+        "anchor_inputs": 0,
+        "forward_links": 5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Cognitive_Retrieval_Policy_Selection.md",
+      "kind": "h4",
+      "title": "Cognitive Retrieval Policy Selection",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h3_input",
+          "message": "H4_Cognitive_Retrieval_Policy_Selection.md: en az bir H3 girdi linki gerekli"
+        }
+      ],
+      "metrics": {
+        "h3_inputs": 0,
+        "anchor_inputs": 0,
+        "forward_links": 1,
+        "wikilink_count": 1
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Cross_Domain_Causal_Alignment.md",
+      "kind": "h4",
+      "title": "Cross Domain Causal Alignment",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h3_input",
+          "message": "H4_Cross_Domain_Causal_Alignment.md: en az bir H3 girdi linki gerekli"
+        }
+      ],
+      "metrics": {
+        "h3_inputs": 0,
+        "anchor_inputs": 0,
+        "forward_links": 5,
+        "wikilink_count": 5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Edge_Device_Response_Strategy.md",
+      "kind": "h4",
+      "title": "Edge Device Response Strategy",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h3_input",
+          "message": "H4_Edge_Device_Response_Strategy.md: en az bir H3 girdi linki gerekli"
+        }
+      ],
+      "metrics": {
+        "h3_inputs": 0,
+        "anchor_inputs": 0,
+        "forward_links": 2,
+        "wikilink_count": 2
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Performance_Bottleneck_Disambiguation.md",
+      "kind": "h4",
+      "title": "Performance Bottleneck Disambiguation",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h3_input",
+          "message": "H4_Performance_Bottleneck_Disambiguation.md: en az bir H3 girdi linki gerekli"
+        }
+      ],
+      "metrics": {
+        "h3_inputs": 0,
+        "anchor_inputs": 0,
+        "forward_links": 2,
+        "wikilink_count": 2
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Resource_Execution_Prioritization.md",
+      "kind": "h4",
+      "title": "Resource Execution Prioritization",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h3_input",
+          "message": "H4_Resource_Execution_Prioritization.md: en az bir H3 girdi linki gerekli"
+        }
+      ],
+      "metrics": {
+        "h3_inputs": 0,
+        "anchor_inputs": 0,
+        "forward_links": 3,
+        "wikilink_count": 3
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Security_Failure_Mode_Arbitration.md",
+      "kind": "h4",
+      "title": "Security Failure Mode Arbitration",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h3_input",
+          "message": "H4_Security_Failure_Mode_Arbitration.md: en az bir H3 girdi linki gerekli"
+        }
+      ],
+      "metrics": {
+        "h3_inputs": 0,
+        "anchor_inputs": 0,
+        "forward_links": 1,
+        "wikilink_count": 1
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Global_Escalation_Gate.md",
+      "kind": "h5",
+      "title": "Global Escalation Gate",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h4_input",
+          "message": "H5_Global_Escalation_Gate.md: en az bir H4 girdi linki gerekli"
+        },
+        {
+          "code": "h5_spec_violation",
+          "message": "H5_Global_Escalation_Gate.md: kaynak bağlantılar beklenen sırayla uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h4_inputs": 0,
+        "control_anchors": 0,
+        "managed_outputs": 3,
+        "wikilink_count": 3
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Metacognitive_Policy_Arbitration.md",
+      "kind": "h5",
+      "title": "Metacognitive Policy Arbitration",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h4_input",
+          "message": "H5_Metacognitive_Policy_Arbitration.md: en az bir H4 girdi linki gerekli"
+        },
+        {
+          "code": "h5_spec_violation",
+          "message": "H5_Metacognitive_Policy_Arbitration.md: kaynak bağlantılar beklenen sırayla uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h4_inputs": 0,
+        "control_anchors": 2,
+        "managed_outputs": 1,
+        "wikilink_count": 3
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Retrieval_Depth_Governance.md",
+      "kind": "h5",
+      "title": "Retrieval Depth Governance",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h4_input",
+          "message": "H5_Retrieval_Depth_Governance.md: en az bir H4 girdi linki gerekli"
+        },
+        {
+          "code": "h5_spec_violation",
+          "message": "H5_Retrieval_Depth_Governance.md: kaynak bağlantılar beklenen sırayla uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h4_inputs": 0,
+        "control_anchors": 2,
+        "managed_outputs": 1,
+        "wikilink_count": 3
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Risk_Performance_Tradeoff_Control.md",
+      "kind": "h5",
+      "title": "Risk Performance Tradeoff Control",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h4_input",
+          "message": "H5_Risk_Performance_Tradeoff_Control.md: en az bir H4 girdi linki gerekli"
+        },
+        {
+          "code": "insufficient_forward_links",
+          "message": "H5_Risk_Performance_Tradeoff_Control.md: en az 1 yönetilen çıktı linki gerekli"
+        },
+        {
+          "code": "h5_spec_violation",
+          "message": "H5_Risk_Performance_Tradeoff_Control.md: kaynak bağlantılar beklenen sırayla uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h4_inputs": 0,
+        "control_anchors": 1,
+        "managed_outputs": 0,
+        "wikilink_count": 1
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Executive_Priority_Orchestration.md",
+      "kind": "h6",
+      "title": "Executive Priority Orchestration",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h5_input",
+          "message": "H6_Executive_Priority_Orchestration.md: en az iki H5 girdi linki gerekli"
+        },
+        {
+          "code": "h6_spec_violation",
+          "message": "H6_Executive_Priority_Orchestration.md: kaynak bağlantılar beklenen sırayla uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h5_inputs": 0,
+        "orchestration_anchors": 1,
+        "coordinated_outputs": 1,
+        "wikilink_count": 2
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Global_Response_Orchestration.md",
+      "kind": "h6",
+      "title": "Global Response Orchestration",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h5_input",
+          "message": "H6_Global_Response_Orchestration.md: en az iki H5 girdi linki gerekli"
+        },
+        {
+          "code": "h6_spec_violation",
+          "message": "H6_Global_Response_Orchestration.md: kaynak bağlantılar beklenen sırayla uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h5_inputs": 0,
+        "orchestration_anchors": 0,
+        "coordinated_outputs": 2,
+        "wikilink_count": 2
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Recovery_Execution_Sequencing.md",
+      "kind": "h6",
+      "title": "Recovery Execution Sequencing",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h5_input",
+          "message": "H6_Recovery_Execution_Sequencing.md: en az iki H5 girdi linki gerekli"
+        },
+        {
+          "code": "h6_spec_violation",
+          "message": "H6_Recovery_Execution_Sequencing.md: kaynak bağlantılar beklenen sırayla uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h5_inputs": 0,
+        "orchestration_anchors": 0,
+        "coordinated_outputs": 1,
+        "wikilink_count": 1
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Retrieval_Action_Coordination.md",
+      "kind": "h6",
+      "title": "Retrieval Action Coordination",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h5_input",
+          "message": "H6_Retrieval_Action_Coordination.md: en az iki H5 girdi linki gerekli"
+        },
+        {
+          "code": "h6_spec_violation",
+          "message": "H6_Retrieval_Action_Coordination.md: kaynak bağlantılar beklenen sırayla uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h5_inputs": 0,
+        "orchestration_anchors": 0,
+        "coordinated_outputs": 5,
+        "wikilink_count": 5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Episodic_Timeline_Alignment.md",
+      "kind": "h7",
+      "title": "Episodic Timeline Alignment",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h6_input",
+          "message": "H7_Episodic_Timeline_Alignment.md: en az bir H6 girdi linki gerekli"
+        },
+        {
+          "code": "h7_spec_violation",
+          "message": "H7_Episodic_Timeline_Alignment.md: H6 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h6_inputs": 0,
+        "episodic_anchors": 0,
+        "temporal_relation_count": 3,
+        "entity_count": 3,
+        "event_count": 3,
+        "memory_outputs": 4,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Event_Entity_Binding.md",
+      "kind": "h7",
+      "title": "Event Entity Binding",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h6_input",
+          "message": "H7_Event_Entity_Binding.md: en az bir H6 girdi linki gerekli"
+        },
+        {
+          "code": "h7_spec_violation",
+          "message": "H7_Event_Entity_Binding.md: H6 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h6_inputs": 0,
+        "episodic_anchors": 0,
+        "temporal_relation_count": 3,
+        "entity_count": 3,
+        "event_count": 3,
+        "memory_outputs": 4,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Recency_Drift_Governance.md",
+      "kind": "h7",
+      "title": "Recency Drift Governance",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h6_input",
+          "message": "H7_Recency_Drift_Governance.md: en az bir H6 girdi linki gerekli"
+        },
+        {
+          "code": "h7_spec_violation",
+          "message": "H7_Recency_Drift_Governance.md: H6 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h6_inputs": 0,
+        "episodic_anchors": 0,
+        "temporal_relation_count": 3,
+        "entity_count": 3,
+        "event_count": 3,
+        "memory_outputs": 1,
+        "wikilink_count": 1
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Temporal_Causal_Recall.md",
+      "kind": "h7",
+      "title": "Temporal Causal Recall",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h6_input",
+          "message": "H7_Temporal_Causal_Recall.md: en az bir H6 girdi linki gerekli"
+        },
+        {
+          "code": "h7_spec_violation",
+          "message": "H7_Temporal_Causal_Recall.md: H6 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h6_inputs": 0,
+        "episodic_anchors": 0,
+        "temporal_relation_count": 3,
+        "entity_count": 3,
+        "event_count": 3,
+        "memory_outputs": 5,
+        "wikilink_count": 5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Decision_Commitment_Gate.md",
+      "kind": "h8",
+      "title": "Decision Commitment Gate",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h7_input",
+          "message": "H8_Decision_Commitment_Gate.md: en az bir H7 girdi linki gerekli"
+        },
+        {
+          "code": "h8_spec_violation",
+          "message": "H8_Decision_Commitment_Gate.md: H7 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h7_inputs": 0,
+        "workspace_anchors": 0,
+        "candidate_policy_count": 2,
+        "broadcast_target_count": 2,
+        "downstream_output_count": 3,
+        "wikilink_count": 3
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Dominant_Thoughtseed_Selection.md",
+      "kind": "h8",
+      "title": "Dominant Thoughtseed Selection",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h7_input",
+          "message": "H8_Dominant_Thoughtseed_Selection.md: en az bir H7 girdi linki gerekli"
+        },
+        {
+          "code": "h8_spec_violation",
+          "message": "H8_Dominant_Thoughtseed_Selection.md: H7 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h7_inputs": 0,
+        "workspace_anchors": 0,
+        "candidate_policy_count": 2,
+        "broadcast_target_count": 2,
+        "downstream_output_count": 4,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Exception_Override_Arbitration.md",
+      "kind": "h8",
+      "title": "Exception Override Arbitration",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h7_input",
+          "message": "H8_Exception_Override_Arbitration.md: en az bir H7 girdi linki gerekli"
+        },
+        {
+          "code": "h8_spec_violation",
+          "message": "H8_Exception_Override_Arbitration.md: H7 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h7_inputs": 0,
+        "workspace_anchors": 0,
+        "candidate_policy_count": 2,
+        "broadcast_target_count": 2,
+        "downstream_output_count": 4,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Global_Policy_Broadcast.md",
+      "kind": "h8",
+      "title": "Global Policy Broadcast",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h7_input",
+          "message": "H8_Global_Policy_Broadcast.md: en az bir H7 girdi linki gerekli"
+        },
+        {
+          "code": "h8_spec_violation",
+          "message": "H8_Global_Policy_Broadcast.md: H7 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h7_inputs": 0,
+        "workspace_anchors": 0,
+        "candidate_policy_count": 2,
+        "broadcast_target_count": 2,
+        "downstream_output_count": 3,
+        "wikilink_count": 3
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Commit_Ready_Delivery_Check.md",
+      "kind": "h9",
+      "title": "Commit Ready Delivery Check",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h8_input",
+          "message": "H9_Commit_Ready_Delivery_Check.md: en az bir H8 girdi linki gerekli"
+        },
+        {
+          "code": "h9_spec_violation",
+          "message": "H9_Commit_Ready_Delivery_Check.md: H8 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h8_inputs": 0,
+        "packaging_anchors": 0,
+        "delivery_surface_count": 2,
+        "package_contract_count": 2,
+        "packaged_output_count": 2,
+        "wikilink_count": 2
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Execution_Surface_Binding.md",
+      "kind": "h9",
+      "title": "Execution Surface Binding",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h8_input",
+          "message": "H9_Execution_Surface_Binding.md: en az bir H8 girdi linki gerekli"
+        },
+        {
+          "code": "h9_spec_violation",
+          "message": "H9_Execution_Surface_Binding.md: H8 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h8_inputs": 0,
+        "packaging_anchors": 0,
+        "delivery_surface_count": 2,
+        "package_contract_count": 2,
+        "packaged_output_count": 4,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Failsafe_Action_Packaging.md",
+      "kind": "h9",
+      "title": "Failsafe Action Packaging",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h8_input",
+          "message": "H9_Failsafe_Action_Packaging.md: en az bir H8 girdi linki gerekli"
+        },
+        {
+          "code": "h9_spec_violation",
+          "message": "H9_Failsafe_Action_Packaging.md: H8 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h8_inputs": 0,
+        "packaging_anchors": 0,
+        "delivery_surface_count": 2,
+        "package_contract_count": 2,
+        "packaged_output_count": 3,
+        "wikilink_count": 3
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Response_Payload_Composition.md",
+      "kind": "h9",
+      "title": "Response Payload Composition",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h8_input",
+          "message": "H9_Response_Payload_Composition.md: en az bir H8 girdi linki gerekli"
+        },
+        {
+          "code": "h9_spec_violation",
+          "message": "H9_Response_Payload_Composition.md: H8 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h8_inputs": 0,
+        "packaging_anchors": 0,
+        "delivery_surface_count": 2,
+        "package_contract_count": 2,
+        "packaged_output_count": 2,
+        "wikilink_count": 2
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Global_Supervision_Arbitration.md",
+      "kind": "h10",
+      "title": "Global Supervision Arbitration",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h9_input",
+          "message": "H10_Global_Supervision_Arbitration.md: en az bir H9 girdi linki gerekli"
+        },
+        {
+          "code": "h10_spec_violation",
+          "message": "H10_Global_Supervision_Arbitration.md: H9 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h9_inputs": 0,
+        "supervision_anchors": 0,
+        "oversight_surface_count": 2,
+        "supervision_contract_count": 2,
+        "supervised_output_count": 5,
+        "wikilink_count": 5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Long_Horizon_Outcome_Review.md",
+      "kind": "h10",
+      "title": "Long Horizon Outcome Review",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h9_input",
+          "message": "H10_Long_Horizon_Outcome_Review.md: en az bir H9 girdi linki gerekli"
+        },
+        {
+          "code": "h10_spec_violation",
+          "message": "H10_Long_Horizon_Outcome_Review.md: H9 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h9_inputs": 0,
+        "supervision_anchors": 0,
+        "oversight_surface_count": 2,
+        "supervision_contract_count": 2,
+        "supervised_output_count": 4,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Rollback_Escalation_Governance.md",
+      "kind": "h10",
+      "title": "Rollback Escalation Governance",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h9_input",
+          "message": "H10_Rollback_Escalation_Governance.md: en az bir H9 girdi linki gerekli"
+        },
+        {
+          "code": "h10_spec_violation",
+          "message": "H10_Rollback_Escalation_Governance.md: H9 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h9_inputs": 0,
+        "supervision_anchors": 0,
+        "oversight_surface_count": 2,
+        "supervision_contract_count": 2,
+        "supervised_output_count": 3,
+        "wikilink_count": 3
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Strategic_Resource_Oversight.md",
+      "kind": "h10",
+      "title": "Strategic Resource Oversight",
+      "ok": false,
+      "issues": [
+        {
+          "code": "missing_h9_input",
+          "message": "H10_Strategic_Resource_Oversight.md: en az bir H9 girdi linki gerekli"
+        },
+        {
+          "code": "h10_spec_violation",
+          "message": "H10_Strategic_Resource_Oversight.md: H9 girdileri beklenen hedeflerle uyuşmuyor"
+        }
+      ],
+      "metrics": {
+        "h9_inputs": 0,
+        "supervision_anchors": 0,
+        "oversight_surface_count": 2,
+        "supervision_contract_count": 2,
+        "supervised_output_count": 4,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Brain_Growth_Index.md",
+      "kind": "index",
+      "title": "Brain Growth Index",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "wikilink_count": 12
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Index_Apple_Silicon_and_MLX.md",
+      "kind": "index",
+      "title": "Apple Silicon and MLX Index",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "wikilink_count": 11
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Index_Cognitive_Graph_RAG.md",
+      "kind": "index",
+      "title": "Cognitive Graph RAG Index",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "wikilink_count": 11
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Index_Cryptography_and_Memory_Safety.md",
+      "kind": "index",
+      "title": "Cryptography and Memory Safety Index",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "wikilink_count": 11
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Index_Embedded_and_ESP32.md",
+      "kind": "index",
+      "title": "Embedded and ESP32 Index",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "wikilink_count": 11
+      }
+    }
+  ],
+  "delta": {
+    "previous_generated_at": "2026-08-30T18:30:40.634788+00:00",
+    "summary": {
+      "files_scanned": {
+        "before": 87,
+        "after": 91,
+        "delta": 4
+      },
+      "files_with_issues": {
+        "before": 0,
+        "after": 34,
+        "delta": 34
+      },
+      "issue_count": {
+        "before": 0,
+        "after": 65,
+        "delta": 65
+      }
+    },
+    "kinds": {
+      "raw": {
+        "file_count": {
+          "before": 52,
+          "after": 52,
+          "delta": 0
+        },
+        "ok_count": {
+          "before": 52,
+          "after": 52,
+          "delta": 0
+        },
+        "issue_count": {
+          "before": 0,
+          "after": 0,
+          "delta": 0
+        }
+      },
+      "synthesis": {
+        "file_count": {
+          "before": 4,
+          "after": 4,
+          "delta": 0
+        },
+        "ok_count": {
+          "before": 4,
+          "after": 0,
+          "delta": -4
+        },
+        "issue_count": {
+          "before": 0,
+          "after": 10,
+          "delta": 10
+        }
+      },
+      "h4": {
+        "file_count": {
+          "before": 6,
+          "after": 6,
+          "delta": 0
+        },
+        "ok_count": {
+          "before": 6,
+          "after": 0,
+          "delta": -6
+        },
+        "issue_count": {
+          "before": 0,
+          "after": 6,
+          "delta": 6
+        }
+      },
+      "h5": {
+        "file_count": {
+          "before": 4,
+          "after": 4,
+          "delta": 0
+        },
+        "ok_count": {
+          "before": 4,
+          "after": 0,
+          "delta": -4
+        },
+        "issue_count": {
+          "before": 0,
+          "after": 9,
+          "delta": 9
+        }
+      },
+      "h6": {
+        "file_count": {
+          "before": 4,
+          "after": 4,
+          "delta": 0
+        },
+        "ok_count": {
+          "before": 4,
+          "after": 0,
+          "delta": -4
+        },
+        "issue_count": {
+          "before": 0,
+          "after": 8,
+          "delta": 8
+        }
+      },
+      "h7": {
+        "file_count": {
+          "before": 4,
+          "after": 4,
+          "delta": 0
+        },
+        "ok_count": {
+          "before": 4,
+          "after": 0,
+          "delta": -4
+        },
+        "issue_count": {
+          "before": 0,
+          "after": 8,
+          "delta": 8
+        }
+      },
+      "h8": {
+        "file_count": {
+          "before": 4,
+          "after": 4,
+          "delta": 0
+        },
+        "ok_count": {
+          "before": 4,
+          "after": 0,
+          "delta": -4
+        },
+        "issue_count": {
+          "before": 0,
+          "after": 8,
+          "delta": 8
+        }
+      },
+      "h9": {
+        "file_count": {
+          "before": 4,
+          "after": 4,
+          "delta": 0
+        },
+        "ok_count": {
+          "before": 4,
+          "after": 0,
+          "delta": -4
+        },
+        "issue_count": {
+          "before": 0,
+          "after": 8,
+          "delta": 8
+        }
+      },
+      "h10": {
+        "file_count": {
+          "before": 0,
+          "after": 4,
+          "delta": 4
+        },
+        "ok_count": {
+          "before": 0,
+          "after": 0,
+          "delta": 0
+        },
+        "issue_count": {
+          "before": 0,
+          "after": 8,
+          "delta": 8
+        }
+      },
+      "index": {
+        "file_count": {
+          "before": 5,
+          "after": 5,
+          "delta": 0
+        },
+        "ok_count": {
+          "before": 5,
+          "after": 5,
+          "delta": 0
+        },
+        "issue_count": {
+          "before": 0,
+          "after": 0,
+          "delta": 0
+        }
+      }
+    },
+    "graph_metrics": {
+      "node_count_by_kind": {
+        "raw": {
+          "before": 52,
+          "after": 52,
+          "delta": 0
+        },
+        "synthesis": {
+          "before": 4,
+          "after": 4,
+          "delta": 0
+        },
+        "h4": {
+          "before": 6,
+          "after": 6,
+          "delta": 0
+        },
+        "h5": {
+          "before": 4,
+          "after": 4,
+          "delta": 0
+        },
+        "h6": {
+          "before": 4,
+          "after": 4,
+          "delta": 0
+        },
+        "h7": {
+          "before": 4,
+          "after": 4,
+          "delta": 0
+        },
+        "h8": {
+          "before": 4,
+          "after": 4,
+          "delta": 0
+        },
+        "h9": {
+          "before": 4,
+          "after": 4,
+          "delta": 0
+        },
+        "h10": {
+          "before": 0,
+          "after": 4,
+          "delta": 4
+        },
+        "index": {
+          "before": 5,
+          "after": 5,
+          "delta": 0
+        }
+      },
+      "forward_link_compliance_ratio": {
+        "before": 1.0,
+        "after": 0.6923,
+        "delta": -0.3077
+      },
+      "forbidden_reference_count": {
+        "before": 0,
+        "after": 0,
+        "delta": 0
+      },
+      "total_wikilinks": {
+        "before": 421,
+        "after": 353,
+        "delta": -68
+      }
+    }
+  }
+}

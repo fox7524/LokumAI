@@ -6,32 +6,14 @@ tags:
 
 # Counterfactual Analysis
 
-Bu sinir ağı düğümü, Counterfactual_Analysis süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler.
+**Counterfactual_Analysis** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar. Mixture of Experts (MoE) kapılarından gelen verileri sentezler.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Logical_Deduction_Engine]]
-- [[Inductive_Reasoning_Core]]
-- [[Abductive_Reasoning_Module]]
-- [[Syllogism_Evaluator]]
-- [[Theorem_Prover]]
-- [[Satisfiability_Modulo_Theories]]
-- [[Constraint_Logic_Programming]]
-- [[Symbolic_Execution_Engine]]
-- [[Abstract_Interpretation]]
-- [[Control_Flow_Graph_Analysis]]
-- [[Data_Flow_Analysis]]
-- [[Taint_Analysis]]
-- [[Alias_Analysis]]
-- [[Pointer_Analysis]]
-- [[Escape_Analysis]]
-- [[Shape_Analysis]]
-- [[Type_Inference_Engine]]
-- [[Model_Checking_Module]]
-- [[Formal_Verification_Core]]
-- [[Hoare_Logic_Evaluator]]
-- [[Separation_Logic_Processor]]
 - [[Temporal_Logic_Analyzer]]
-- [[Linear_Temporal_Logic]]
-- [[Computation_Tree_Logic]]
-- [[Mu_Calculus_Evaluator]]
+- [[Logical_Deduction_Engine]]
+- [[Separation_Logic_Processor]]
+- [[Syllogism_Evaluator]]
+- [[Abductive_Reasoning_Module]]
+- [[Control_Flow_Graph_Analysis]]
+- [[Abstract_Interpretation]]

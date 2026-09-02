@@ -6,22 +6,10 @@ tags:
 
 # Particle Swarm Optimization
 
-Bu sinir ağı düğümü, Particle_Swarm_Optimization süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler.
+**Particle_Swarm_Optimization** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar. Mixture of Experts (MoE) kapılarından gelen verileri sentezler.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Metal_Shader_Dispatcher]]
-- [[Kernel_Panic_Trigger]]
-- [[System_Halt_Interrupt]]
-- [[Network_Firewall_Rule_Gen]]
-- [[ESP32_Firmware_Flasher]]
-- [[Auto_Remediation_Script]]
-- [[Cognitive_Response_Generator]]
-- [[Code_Refactoring_Output]]
-- [[Threat_Mitigation_Action]]
-- [[Resource_Reallocation_Command]]
-- [[Power_State_Adjustment]]
-- [[Cooling_Fan_Override]]
-- [[Process_Kill_Signal]]
-- [[Memory_Deallocation_Force]]
-- [[Alert_Notification_Broadcaster]]
+- [[M5_Pro_Tensor_Dispatch]]
+- [[Semantic_Graph_Weaver]]
+- [[Quantum_State_Simulation]]

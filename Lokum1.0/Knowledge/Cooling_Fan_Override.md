@@ -6,7 +6,7 @@ tags:
 
 # Cooling Fan Override
 
-Gelişmiş Cooling_Fan_Override algoritmaları kullanılarak, ağ üzerindeki anormallikler (anomalies) tespit edilir. ESP32 ve diğer IoT cihazlarıyla senkronize çalışabilir.
+Bu sinir ağı düğümü, Cooling_Fan_Override süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler. Deep Q-Networks ile eğitilmiştir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 

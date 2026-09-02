@@ -1,0 +1,102 @@
+{
+  "kind": "execution_plan",
+  "package_count": 4,
+  "packages": [
+    {
+      "package_id": "H9_Commit_Ready_Delivery_Check",
+      "path": "Lokum1.0/Knowledge/H9_Commit_Ready_Delivery_Check.md",
+      "package_mode": "commit_ready_gate_delivery",
+      "source_policy": "causal_commitment_delivery_gate",
+      "delivery_surfaces": [
+        "Final_Execution_Gate",
+        "Cognitive_Response_Generator"
+      ],
+      "package_contracts": [
+        "causal_release_contract",
+        "commit_readiness_manifest"
+      ],
+      "outputs": [
+        "H10_Long_Horizon_Outcome_Review",
+        "H10_Global_Supervision_Arbitration",
+        "H10_Rollback_Escalation_Governance"
+      ]
+    },
+    {
+      "package_id": "H9_Execution_Surface_Binding",
+      "path": "Lokum1.0/Knowledge/H9_Execution_Surface_Binding.md",
+      "package_mode": "surface_bound_policy_delivery",
+      "source_policy": "dominant_policy_surface_binding",
+      "delivery_surfaces": [
+        "Executive_Action_Formatter",
+        "Final_Execution_Gate"
+      ],
+      "package_contracts": [
+        "policy_binding_envelope",
+        "surface_route_manifest"
+      ],
+      "outputs": [
+        "H10_Strategic_Resource_Oversight",
+        "H10_Global_Supervision_Arbitration",
+        "H10_Rollback_Escalation_Governance"
+      ]
+    },
+    {
+      "package_id": "H9_Failsafe_Action_Packaging",
+      "path": "Lokum1.0/Knowledge/H9_Failsafe_Action_Packaging.md",
+      "package_mode": "failsafe_override_packaging",
+      "source_policy": "override_failsafe_delivery_alignment",
+      "delivery_surfaces": [
+        "Working_Memory_Flush",
+        "Final_Execution_Gate"
+      ],
+      "package_contracts": [
+        "failsafe_action_bundle",
+        "override_release_contract"
+      ],
+      "outputs": [
+        "H10_Global_Supervision_Arbitration",
+        "H10_Long_Horizon_Outcome_Review",
+        "H10_Strategic_Resource_Oversight"
+      ]
+    },
+    {
+      "package_id": "H9_Response_Payload_Composition",
+      "path": "Lokum1.0/Knowledge/H9_Response_Payload_Composition.md",
+      "package_mode": "broadcast_payload_composition",
+      "source_policy": "global_policy_payload_alignment",
+      "delivery_surfaces": [
+        "Global_State_Consensus",
+        "Executive_Action_Formatter"
+      ],
+      "package_contracts": [
+        "broadcast_delivery_manifest",
+        "payload_shape_contract"
+      ],
+      "outputs": [
+        "H10_Rollback_Escalation_Governance",
+        "H10_Strategic_Resource_Oversight",
+        "H10_Global_Supervision_Arbitration"
+      ]
+    }
+  ],
+  "surface_index": {
+    "Cognitive_Response_Generator": [
+      "H9_Commit_Ready_Delivery_Check"
+    ],
+    "Executive_Action_Formatter": [
+      "H9_Execution_Surface_Binding",
+      "H9_Response_Payload_Composition"
+    ],
+    "Final_Execution_Gate": [
+      "H9_Commit_Ready_Delivery_Check",
+      "H9_Execution_Surface_Binding",
+      "H9_Failsafe_Action_Packaging"
+    ],
+    "Global_State_Consensus": [
+      "H9_Response_Payload_Composition"
+    ],
+    "Working_Memory_Flush": [
+      "H9_Failsafe_Action_Packaging"
+    ]
+  }
+}

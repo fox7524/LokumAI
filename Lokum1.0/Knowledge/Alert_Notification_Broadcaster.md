@@ -6,7 +6,7 @@ tags:
 
 # Alert Notification Broadcaster
 
-**Alert_Notification_Broadcaster** modülü, Apple Silicon (M5 Pro) UMA mimarisi üzerinde sıfır-kopya (zero-copy) prensibiyle çalışır. Temel amacı veri akışını nanosaniye gecikmeyle optimize etmektir.
+**Alert_Notification_Broadcaster** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar. Mixture of Experts (MoE) kapılarından gelen verileri sentezler.
 
 ## İleri Besleme (Feed-Forward Synapses)
 

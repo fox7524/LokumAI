@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LokumAI Bilişsel Ağ (Cognitive Graph)</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+        #graph-container {
+            width: 100vw;
+            height: 100vh;
+        }
+        #ui-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(15, 23, 42, 0.85);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            max-width: 350px;
+        }
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+            color: #38bdf8;
+        }
+        p {
+            margin: 0 0 15px 0;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #334155;
+        }
+        .stat-box {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f8fafc;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        .legend {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+        .color-box {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+    </style>
+    <script src="https://unpkg.com/3d-force-graph"></script>
+    <script src="https://unpkg.com/d3-force-3d"></script>
+    <script src="https://unpkg.com/d3@7"></script>
+</head>
+<body>
+    <div id="ui-panel">
+        <h1>LokumAI Graphify</h1>
+        <p>M5 Pro UMA optimize edilmiş İleri Beslemeli (Feed-Forward) Bilişsel Ağ.</p>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-value" id="node-count">0</div>
+                <div class="stat-label">Hücre (Node)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="link-count">0</div>
+                <div class="stat-label">Sinaps (Link)</div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="color-box" style="background: #4ade80;"></div>Input Layer</div>
+            <div class="legend-item"><div class="color-box" style="background: #facc15;"></div>RAG Cell</div>
+            <div class="legend-item"><div class="color-box" style="background: #cbd5e1;"></div>Hidden 1</div>
+            <div class="legend-item"><div class="color-box" style="background: #94a3b8;"></div>Hidden 2</div>
+            <div class="legend-item"><div class="color-box" style="background: #64748b;"></div>Hidden 3</div>
+            <div class="legend-item"><div class="color-box" style="background: #475569;"></div>Hidden 4</div>
+            <div class="legend-item"><div class="color-box" style="background: #3b82f6;"></div>Hidden 5</div>
+            <div class="legend-item"><div class="color-box" style="background: #8b5cf6;"></div>Hidden 6</div>
+            <div class="legend-item"><div class="color-box" style="background: #d946ef;"></div>Hidden 7</div>
+            <div class="legend-item"><div class="color-box" style="background: #e11d48;"></div>Hidden 8</div>
+            <div class="legend-item"><div class="color-box" style="background: #be123c;"></div>Hidden 9</div>
+            <div class="legend-item"><div class="color-box" style="background: #9f1239;"></div>Hidden 10</div>
+            <div class="legend-item"><div class="color-box" style="background: #ff0000;"></div>Output Layer</div>
+            <div class="legend-item"><div class="color-box" style="background: #a855f7;"></div>Dictionary</div>
+        </div>
+    </div>
+
+    <div id="graph-container"></div>
+
+    <script>
+        let Graph;
+
+        function loadGraph() {
+            fetch('graph_data.json')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('node-count').innerText = data.nodes.length;
+                    document.getElementById('link-count').innerText = data.links.length;
+
+                    if (!Graph) {
+                        Graph = ForceGraph3D()(document.getElementById('graph-container'))
+                            .graphData(data)
+                            .nodeLabel('name')
+                            .nodeColor(node => node.color)
+                            .nodeRelSize(6)
+                            // direct vs rag edge ayrımı
+                            .linkColor(link => link.kind === 'rag'
+                                ? 'rgba(34, 211, 238, 0.65)'   // cyan (RAG hattı)
+                                : 'rgba(148, 163, 184, 0.15)'  // slate (direct)
+                            )
+                            .linkWidth(link => link.kind === 'rag' ? 1.8 : 0.5)
+                            .linkDirectionalParticles(link => link.kind === 'rag' ? 4 : 2)
+                            .linkDirectionalParticleWidth(link => link.kind === 'rag' ? 2.4 : 1.5)
+                            .linkDirectionalParticleSpeed(d => 0.005)
+                            .d3Force('charge', d3.forceManyBody().strength(-80)) // Düğümleri çok fazla itmesin (daha yoğun/dense görünsün)
+                            .d3Force('link', d3.forceLink().distance(40)); // Sinapsları kısalttık
+                            
+                        // Feed-forward ağları için hiyerarşik bir dizilim (soldan sağa)
+                        // Katman sayısı 8'e çıktığı için 200 birimlik mesafe ağı çok sündürüyordu. 80'e düşürüp merkeze çektik.
+                        Graph.d3Force('x', d3.forceX().x(d => (d.group - 5) * 80).strength(1.2));
+                        Graph.d3Force('y', d3.forceY().y(0).strength(0.3)); // Y ekseninde silindir (mitokondri) formuna bas
+                        if (d3.forceZ) {
+                            Graph.d3Force('z', d3.forceZ().z(0).strength(0.3)); // Z ekseninde silindir formuna bas
+                        }
+                    } else {
+                        Graph.graphData(data);
+                    }
+                });
+        }
+
+        // İlk yükleme
+        loadGraph();
+
+        // Her 5 saniyede bir verileri yenile (Live Refresh)
+        setInterval(loadGraph, 5000);
+    </script>
+</body>
+</html>

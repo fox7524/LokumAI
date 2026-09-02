@@ -1,0 +1,21 @@
+{
+  "trace_id": "sample_ui_export_001",
+  "query": "Execution surface binding nasıl çalışıyor?",
+  "sources": [
+    {
+      "source_path": "Lokum1.0/Knowledge/H9_Execution_Surface_Binding.md",
+      "file_id": "demo"
+    },
+    {
+      "source_path": "Lokum1.0/Knowledge/H8_Global_Policy_Broadcast.md",
+      "file_id": "demo"
+    },
+    {
+      "source_path": "Lokum1.0/Knowledge/H11_Trace_Provenance_Attestation.md",
+      "file_id": "demo"
+    }
+  ],
+  "distances": [0.92, 0.88, 0.83],
+  "count": 3
+}
+

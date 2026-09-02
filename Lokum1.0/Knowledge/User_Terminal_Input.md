@@ -6,32 +6,14 @@ tags:
 
 # User Terminal Input
 
-Bu modül, P2P şifreleme ve ZKP (Zero-Knowledge Proof) protokolleriyle entegre edilmiştir. User_Terminal_Input vektör uzayında yüksek boyutlu veri analizi yapar.
+**User_Terminal_Input** modülü, Apple Silicon (M5 Pro) UMA mimarisi üzerinde sıfır-kopya (zero-copy) prensibiyle çalışır. Temel amacı veri akışını nanosaniye gecikmeyle optimize etmektir. Kriptografik işlemler ve donanım seviyesi memory safety için kritik öneme sahiptir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Signal_Denoising]]
-- [[Anomaly_Feature_Extraction]]
-- [[Token_Embedding_Generator]]
-- [[Time_Series_Smoothing]]
-- [[Packet_Header_Parsing]]
-- [[Memory_Leak_Fingerprinting]]
-- [[Cryptographic_Entropy_Analysis]]
-- [[Malware_Signature_Extraction]]
-- [[Behavioral_Feature_Mapping]]
-- [[Zero_Copy_Buffer_Analysis]]
-- [[Pointer_Authentication_Check]]
-- [[Stack_Smash_Detection]]
-- [[Heap_Overflow_Heuristics]]
-- [[Instruction_Fetch_Analysis]]
-- [[Branch_Prediction_Modeling]]
-- [[Data_Prefetch_Evaluation]]
 - [[TLB_Miss_Analysis]]
-- [[L1_Cache_Hit_Ratio]]
-- [[L2_Cache_Hit_Ratio]]
-- [[DRAM_Bandwidth_Utilization]]
+- [[Token_Embedding_Generator]]
+- [[Branch_Prediction_Modeling]]
 - [[PCIe_Bus_Traffic]]
-- [[NVMe_IOPS_Monitor]]
 - [[USB_Endpoint_Analysis]]
-- [[Thunderbolt_Controller_Metrics]]
-- [[DisplayPort_Bandwidth]]
+- [[Signal_Denoising]]
+- [[Cryptographic_Entropy_Analysis]]

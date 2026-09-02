@@ -1,0 +1,228 @@
+Brain Growth Quality Report
+Scope: all
+Knowledge dir: /Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge
+Status: fail
+Files scanned: 91
+Files with issues: 34
+Issue count: 65
+
+Kinds:
+- raw: files=52, ok=52, issues=0
+- synthesis: files=4, ok=0, issues=10
+- h4: files=6, ok=0, issues=6
+- h5: files=4, ok=0, issues=9
+- h6: files=4, ok=0, issues=8
+- h7: files=4, ok=0, issues=8
+- h8: files=4, ok=0, issues=8
+- h9: files=4, ok=0, issues=8
+- h10: files=4, ok=0, issues=8
+- index: files=5, ok=5, issues=0
+
+Graph metrics:
+- node_count_by_kind: {'raw': 52, 'synthesis': 4, 'h4': 6, 'h5': 4, 'h6': 4, 'h7': 4, 'h8': 4, 'h9': 4, 'h10': 4, 'index': 5}
+- forward_link_compliance_ratio: 0.6923
+- forbidden_reference_count: 0
+- total_wikilinks: 353
+
+Remediation hints:
+- h10_spec_violation: repair_class=family_spec_alignment_repair, occurrences=4, affected_files=4
+  - summary: H10 aile notunu builder spesifikasyonuyla yeniden hizala.
+  - actions: İlgili H10 family tanımındaki supervision frontmatter ve giriş/çıkış sırasını uygula.
+- h5_spec_violation: repair_class=family_spec_alignment_repair, occurrences=4, affected_files=4
+  - summary: H5 aile notunu builder spesifikasyonuyla yeniden hizala.
+  - actions: İlgili H5 family tanımındaki giriş/çıkış sırasını uygula.
+- h6_spec_violation: repair_class=family_spec_alignment_repair, occurrences=4, affected_files=4
+  - summary: H6 aile notunu builder spesifikasyonuyla yeniden hizala.
+  - actions: İlgili H6 family tanımındaki giriş/çıkış sırasını uygula.
+- h7_spec_violation: repair_class=family_spec_alignment_repair, occurrences=4, affected_files=4
+  - summary: H7 aile notunu builder spesifikasyonuyla yeniden hizala.
+  - actions: İlgili H7 family tanımındaki episodik frontmatter ve giriş/çıkış sırasını uygula.
+- h8_spec_violation: repair_class=family_spec_alignment_repair, occurrences=4, affected_files=4
+  - summary: H8 aile notunu builder spesifikasyonuyla yeniden hizala.
+  - actions: İlgili H8 family tanımındaki workspace frontmatter ve giriş/çıkış sırasını uygula.
+- h9_spec_violation: repair_class=family_spec_alignment_repair, occurrences=4, affected_files=4
+  - summary: H9 aile notunu builder spesifikasyonuyla yeniden hizala.
+  - actions: İlgili H9 family tanımındaki paketleme frontmatter ve giriş/çıkış sırasını uygula.
+- insufficient_forward_links: repair_class=graph_output_coverage_repair, occurrences=1, affected_files=1
+  - summary: Downstream çıktı veya ileri bağlantı sayısını asgari seviyeye çıkar.
+  - actions: İlgili note için gereken minimum ileri wikilink sayısını ekle.; Bağlantıları gerçekten var olan downstream note'lara yönlendir.
+- insufficient_source_inputs: repair_class=graph_input_coverage_repair, occurrences=4, affected_files=4
+  - summary: Kaynak giriş sayısını katman minimumuna yükselt.
+  - actions: Eksik upstream note bağlantılarını ekle.; Girdi sayısını ilgili validator metriğinin minimumuna getir.
+- missing_h3_input: repair_class=graph_input_coverage_repair, occurrences=6, affected_files=6
+  - summary: H4 notuna en az bir H3 girişi bağla.
+  - actions: Besleyen sentez düğümleri bölümüne H3_* wikilink ekle.
+- missing_h4_input: repair_class=graph_input_coverage_repair, occurrences=4, affected_files=4
+  - summary: H5 notuna en az bir H4 girişi bağla.
+  - actions: Besleyen H4 düğümleri bölümüne H4_* wikilink ekle.
+- missing_h5_input: repair_class=graph_input_coverage_repair, occurrences=4, affected_files=4
+  - summary: H6 notuna birden fazla H5 girişi bağla.
+  - actions: Besleyen H5 düğümleri bölümüne en az iki H5_* wikilink ekle.; Tek girişli executive note'ları çoklu H5 koordinasyon şemasına yükselt.
+- missing_h6_input: repair_class=graph_input_coverage_repair, occurrences=4, affected_files=4
+  - summary: H7 notuna en az bir H6 girişi bağla.
+  - actions: Besleyen H6 düğümleri bölümüne en az bir H6_* wikilink ekle.; Episodik notun upstream executive orkestrasyon kaynağını açıkça bağla.
+- missing_h7_input: repair_class=graph_input_coverage_repair, occurrences=4, affected_files=4
+  - summary: H8 notuna en az bir H7 girişi bağla.
+  - actions: Besleyen H7 düğümleri bölümüne en az bir H7_* wikilink ekle.; Karar montaj notunu episodik-temporal kaynağa açıkça bağla.
+- missing_h8_input: repair_class=graph_input_coverage_repair, occurrences=4, affected_files=4
+  - summary: H9 notuna en az bir H8 girişi bağla.
+  - actions: Besleyen H8 düğümleri bölümüne en az bir H8_* wikilink ekle.; Paketleme notunu karar montaj kaynağına açıkça bağla.
+- missing_h9_input: repair_class=graph_input_coverage_repair, occurrences=4, affected_files=4
+  - summary: H10 notuna en az bir H9 girişi bağla.
+  - actions: Besleyen H9 düğümleri bölümüne en az bir H9_* wikilink ekle.; Supervision notunu execution packaging kaynağına açıkça bağla.
+- synthesis_spec_violation: repair_class=family_spec_alignment_repair, occurrences=4, affected_files=4
+  - summary: H3 aile notunu builder spesifikasyonuyla yeniden hizala.
+  - actions: İlgili H3 family tanımındaki giriş/çıkış sırasını uygula.
+- too_many_forward_links: repair_class=graph_output_coverage_repair, occurrences=2, affected_files=2
+  - summary: İleri link hacmini katman sınırına indir.
+  - actions: Gereksiz downstream linkleri kaldır.; Sadece note ailesi şemasında izin verilen kadar hedef bırak.
+
+Delta vs previous report:
+- previous_generated_at: 2026-08-30T18:43:45.686013+00:00
+- summary.files_scanned: 91 -> 91 (delta +0)
+- summary.files_with_issues: 34 -> 34 (delta +0)
+- summary.issue_count: 65 -> 65 (delta +0)
+- kinds.raw.file_count: 52 -> 52 (delta +0)
+- kinds.raw.ok_count: 52 -> 52 (delta +0)
+- kinds.raw.issue_count: 0 -> 0 (delta +0)
+- kinds.synthesis.file_count: 4 -> 4 (delta +0)
+- kinds.synthesis.ok_count: 0 -> 0 (delta +0)
+- kinds.synthesis.issue_count: 10 -> 10 (delta +0)
+- kinds.h4.file_count: 6 -> 6 (delta +0)
+- kinds.h4.ok_count: 0 -> 0 (delta +0)
+- kinds.h4.issue_count: 6 -> 6 (delta +0)
+- kinds.h5.file_count: 4 -> 4 (delta +0)
+- kinds.h5.ok_count: 0 -> 0 (delta +0)
+- kinds.h5.issue_count: 9 -> 9 (delta +0)
+- kinds.h6.file_count: 4 -> 4 (delta +0)
+- kinds.h6.ok_count: 0 -> 0 (delta +0)
+- kinds.h6.issue_count: 8 -> 8 (delta +0)
+- kinds.h7.file_count: 4 -> 4 (delta +0)
+- kinds.h7.ok_count: 0 -> 0 (delta +0)
+- kinds.h7.issue_count: 8 -> 8 (delta +0)
+- kinds.h8.file_count: 4 -> 4 (delta +0)
+- kinds.h8.ok_count: 0 -> 0 (delta +0)
+- kinds.h8.issue_count: 8 -> 8 (delta +0)
+- kinds.h9.file_count: 4 -> 4 (delta +0)
+- kinds.h9.ok_count: 0 -> 0 (delta +0)
+- kinds.h9.issue_count: 8 -> 8 (delta +0)
+- kinds.h10.file_count: 4 -> 4 (delta +0)
+- kinds.h10.ok_count: 0 -> 0 (delta +0)
+- kinds.h10.issue_count: 8 -> 8 (delta +0)
+- kinds.index.file_count: 5 -> 5 (delta +0)
+- kinds.index.ok_count: 5 -> 5 (delta +0)
+- kinds.index.issue_count: 0 -> 0 (delta +0)
+- graph_metrics.forward_link_compliance_ratio: 0.6923 -> 0.6923 (delta +0.0)
+- graph_metrics.forbidden_reference_count: 0 -> 0 (delta +0)
+- graph_metrics.total_wikilinks: 353 -> 353 (delta +0)
+- graph_metrics.node_count_by_kind.raw: 52 -> 52 (delta +0)
+- graph_metrics.node_count_by_kind.synthesis: 4 -> 4 (delta +0)
+- graph_metrics.node_count_by_kind.h4: 6 -> 6 (delta +0)
+- graph_metrics.node_count_by_kind.h5: 4 -> 4 (delta +0)
+- graph_metrics.node_count_by_kind.h6: 4 -> 4 (delta +0)
+- graph_metrics.node_count_by_kind.h7: 4 -> 4 (delta +0)
+- graph_metrics.node_count_by_kind.h8: 4 -> 4 (delta +0)
+- graph_metrics.node_count_by_kind.h9: 4 -> 4 (delta +0)
+- graph_metrics.node_count_by_kind.h10: 4 -> 4 (delta +0)
+- graph_metrics.node_count_by_kind.index: 5 -> 5 (delta +0)
+
+Issues:
+- H3_Apple_Silicon_Memory_Execution_Synthesis.md
+  - [insufficient_source_inputs] H3_Apple_Silicon_Memory_Execution_Synthesis.md: en az 8 raw girdi gerekli
+  - [synthesis_spec_violation] H3_Apple_Silicon_Memory_Execution_Synthesis.md: 8'den az RAG_Memory_Cell girdisi var
+- H3_Cognitive_Graph_RAG_Routing_Synthesis.md
+  - [insufficient_source_inputs] H3_Cognitive_Graph_RAG_Routing_Synthesis.md: en az 8 raw girdi gerekli
+  - [synthesis_spec_violation] H3_Cognitive_Graph_RAG_Routing_Synthesis.md: 8'den az RAG_Memory_Cell girdisi var
+- H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md
+  - [insufficient_source_inputs] H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md: en az 8 raw girdi gerekli
+  - [too_many_forward_links] H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md: en fazla 3 ileri besleme linki olmalı
+  - [synthesis_spec_violation] H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md: 8'den az RAG_Memory_Cell girdisi var
+- H3_Embedded_Interrupt_DMA_Synthesis.md
+  - [insufficient_source_inputs] H3_Embedded_Interrupt_DMA_Synthesis.md: en az 8 raw girdi gerekli
+  - [too_many_forward_links] H3_Embedded_Interrupt_DMA_Synthesis.md: en fazla 3 ileri besleme linki olmalı
+  - [synthesis_spec_violation] H3_Embedded_Interrupt_DMA_Synthesis.md: 8'den az RAG_Memory_Cell girdisi var
+- H4_Cognitive_Retrieval_Policy_Selection.md
+  - [missing_h3_input] H4_Cognitive_Retrieval_Policy_Selection.md: en az bir H3 girdi linki gerekli
+- H4_Cross_Domain_Causal_Alignment.md
+  - [missing_h3_input] H4_Cross_Domain_Causal_Alignment.md: en az bir H3 girdi linki gerekli
+- H4_Edge_Device_Response_Strategy.md
+  - [missing_h3_input] H4_Edge_Device_Response_Strategy.md: en az bir H3 girdi linki gerekli
+- H4_Performance_Bottleneck_Disambiguation.md
+  - [missing_h3_input] H4_Performance_Bottleneck_Disambiguation.md: en az bir H3 girdi linki gerekli
+- H4_Resource_Execution_Prioritization.md
+  - [missing_h3_input] H4_Resource_Execution_Prioritization.md: en az bir H3 girdi linki gerekli
+- H4_Security_Failure_Mode_Arbitration.md
+  - [missing_h3_input] H4_Security_Failure_Mode_Arbitration.md: en az bir H3 girdi linki gerekli
+- H5_Global_Escalation_Gate.md
+  - [missing_h4_input] H5_Global_Escalation_Gate.md: en az bir H4 girdi linki gerekli
+  - [h5_spec_violation] H5_Global_Escalation_Gate.md: kaynak bağlantılar beklenen sırayla uyuşmuyor
+- H5_Metacognitive_Policy_Arbitration.md
+  - [missing_h4_input] H5_Metacognitive_Policy_Arbitration.md: en az bir H4 girdi linki gerekli
+  - [h5_spec_violation] H5_Metacognitive_Policy_Arbitration.md: kaynak bağlantılar beklenen sırayla uyuşmuyor
+- H5_Retrieval_Depth_Governance.md
+  - [missing_h4_input] H5_Retrieval_Depth_Governance.md: en az bir H4 girdi linki gerekli
+  - [h5_spec_violation] H5_Retrieval_Depth_Governance.md: kaynak bağlantılar beklenen sırayla uyuşmuyor
+- H5_Risk_Performance_Tradeoff_Control.md
+  - [missing_h4_input] H5_Risk_Performance_Tradeoff_Control.md: en az bir H4 girdi linki gerekli
+  - [insufficient_forward_links] H5_Risk_Performance_Tradeoff_Control.md: en az 1 yönetilen çıktı linki gerekli
+  - [h5_spec_violation] H5_Risk_Performance_Tradeoff_Control.md: kaynak bağlantılar beklenen sırayla uyuşmuyor
+- H6_Executive_Priority_Orchestration.md
+  - [missing_h5_input] H6_Executive_Priority_Orchestration.md: en az iki H5 girdi linki gerekli
+  - [h6_spec_violation] H6_Executive_Priority_Orchestration.md: kaynak bağlantılar beklenen sırayla uyuşmuyor
+- H6_Global_Response_Orchestration.md
+  - [missing_h5_input] H6_Global_Response_Orchestration.md: en az iki H5 girdi linki gerekli
+  - [h6_spec_violation] H6_Global_Response_Orchestration.md: kaynak bağlantılar beklenen sırayla uyuşmuyor
+- H6_Recovery_Execution_Sequencing.md
+  - [missing_h5_input] H6_Recovery_Execution_Sequencing.md: en az iki H5 girdi linki gerekli
+  - [h6_spec_violation] H6_Recovery_Execution_Sequencing.md: kaynak bağlantılar beklenen sırayla uyuşmuyor
+- H6_Retrieval_Action_Coordination.md
+  - [missing_h5_input] H6_Retrieval_Action_Coordination.md: en az iki H5 girdi linki gerekli
+  - [h6_spec_violation] H6_Retrieval_Action_Coordination.md: kaynak bağlantılar beklenen sırayla uyuşmuyor
+- H7_Episodic_Timeline_Alignment.md
+  - [missing_h6_input] H7_Episodic_Timeline_Alignment.md: en az bir H6 girdi linki gerekli
+  - [h7_spec_violation] H7_Episodic_Timeline_Alignment.md: H6 girdileri beklenen hedeflerle uyuşmuyor
+- H7_Event_Entity_Binding.md
+  - [missing_h6_input] H7_Event_Entity_Binding.md: en az bir H6 girdi linki gerekli
+  - [h7_spec_violation] H7_Event_Entity_Binding.md: H6 girdileri beklenen hedeflerle uyuşmuyor
+- H7_Recency_Drift_Governance.md
+  - [missing_h6_input] H7_Recency_Drift_Governance.md: en az bir H6 girdi linki gerekli
+  - [h7_spec_violation] H7_Recency_Drift_Governance.md: H6 girdileri beklenen hedeflerle uyuşmuyor
+- H7_Temporal_Causal_Recall.md
+  - [missing_h6_input] H7_Temporal_Causal_Recall.md: en az bir H6 girdi linki gerekli
+  - [h7_spec_violation] H7_Temporal_Causal_Recall.md: H6 girdileri beklenen hedeflerle uyuşmuyor
+- H8_Decision_Commitment_Gate.md
+  - [missing_h7_input] H8_Decision_Commitment_Gate.md: en az bir H7 girdi linki gerekli
+  - [h8_spec_violation] H8_Decision_Commitment_Gate.md: H7 girdileri beklenen hedeflerle uyuşmuyor
+- H8_Dominant_Thoughtseed_Selection.md
+  - [missing_h7_input] H8_Dominant_Thoughtseed_Selection.md: en az bir H7 girdi linki gerekli
+  - [h8_spec_violation] H8_Dominant_Thoughtseed_Selection.md: H7 girdileri beklenen hedeflerle uyuşmuyor
+- H8_Exception_Override_Arbitration.md
+  - [missing_h7_input] H8_Exception_Override_Arbitration.md: en az bir H7 girdi linki gerekli
+  - [h8_spec_violation] H8_Exception_Override_Arbitration.md: H7 girdileri beklenen hedeflerle uyuşmuyor
+- H8_Global_Policy_Broadcast.md
+  - [missing_h7_input] H8_Global_Policy_Broadcast.md: en az bir H7 girdi linki gerekli
+  - [h8_spec_violation] H8_Global_Policy_Broadcast.md: H7 girdileri beklenen hedeflerle uyuşmuyor
+- H9_Commit_Ready_Delivery_Check.md
+  - [missing_h8_input] H9_Commit_Ready_Delivery_Check.md: en az bir H8 girdi linki gerekli
+  - [h9_spec_violation] H9_Commit_Ready_Delivery_Check.md: H8 girdileri beklenen hedeflerle uyuşmuyor
+- H9_Execution_Surface_Binding.md
+  - [missing_h8_input] H9_Execution_Surface_Binding.md: en az bir H8 girdi linki gerekli
+  - [h9_spec_violation] H9_Execution_Surface_Binding.md: H8 girdileri beklenen hedeflerle uyuşmuyor
+- H9_Failsafe_Action_Packaging.md
+  - [missing_h8_input] H9_Failsafe_Action_Packaging.md: en az bir H8 girdi linki gerekli
+  - [h9_spec_violation] H9_Failsafe_Action_Packaging.md: H8 girdileri beklenen hedeflerle uyuşmuyor
+- H9_Response_Payload_Composition.md
+  - [missing_h8_input] H9_Response_Payload_Composition.md: en az bir H8 girdi linki gerekli
+  - [h9_spec_violation] H9_Response_Payload_Composition.md: H8 girdileri beklenen hedeflerle uyuşmuyor
+- H10_Global_Supervision_Arbitration.md
+  - [missing_h9_input] H10_Global_Supervision_Arbitration.md: en az bir H9 girdi linki gerekli
+  - [h10_spec_violation] H10_Global_Supervision_Arbitration.md: H9 girdileri beklenen hedeflerle uyuşmuyor
+- H10_Long_Horizon_Outcome_Review.md
+  - [missing_h9_input] H10_Long_Horizon_Outcome_Review.md: en az bir H9 girdi linki gerekli
+  - [h10_spec_violation] H10_Long_Horizon_Outcome_Review.md: H9 girdileri beklenen hedeflerle uyuşmuyor
+- H10_Rollback_Escalation_Governance.md
+  - [missing_h9_input] H10_Rollback_Escalation_Governance.md: en az bir H9 girdi linki gerekli
+  - [h10_spec_violation] H10_Rollback_Escalation_Governance.md: H9 girdileri beklenen hedeflerle uyuşmuyor
+- H10_Strategic_Resource_Oversight.md
+  - [missing_h9_input] H10_Strategic_Resource_Oversight.md: en az bir H9 girdi linki gerekli
+  - [h10_spec_violation] H10_Strategic_Resource_Oversight.md: H9 girdileri beklenen hedeflerle uyuşmuyor

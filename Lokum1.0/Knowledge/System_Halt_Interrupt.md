@@ -6,7 +6,7 @@ tags:
 
 # System Halt Interrupt
 
-Gelişmiş System_Halt_Interrupt algoritmaları kullanılarak, ağ üzerindeki anormallikler (anomalies) tespit edilir. ESP32 ve diğer IoT cihazlarıyla senkronize çalışabilir.
+**System_Halt_Interrupt** modülü, Apple Silicon (M5 Pro) UMA mimarisi üzerinde sıfır-kopya (zero-copy) prensibiyle çalışır. Temel amacı veri akışını nanosaniye gecikmeyle optimize etmektir. Kriptografik işlemler ve donanım seviyesi memory safety için kritik öneme sahiptir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 

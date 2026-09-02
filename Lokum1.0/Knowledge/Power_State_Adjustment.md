@@ -6,7 +6,7 @@ tags:
 
 # Power State Adjustment
 
-Bu sinir ağı düğümü, Power_State_Adjustment süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler.
+**Power_State_Adjustment** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar. Mixture of Experts (MoE) kapılarından gelen verileri sentezler.
 
 ## İleri Besleme (Feed-Forward Synapses)
 

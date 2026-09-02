@@ -6,32 +6,14 @@ tags:
 
 # Branch Prediction Modeling
 
-Bu modül, P2P şifreleme ve ZKP (Zero-Knowledge Proof) protokolleriyle entegre edilmiştir. Branch_Prediction_Modeling vektör uzayında yüksek boyutlu veri analizi yapar.
+**Branch_Prediction_Modeling** modülü, Apple Silicon (M5 Pro) UMA mimarisi üzerinde sıfır-kopya (zero-copy) prensibiyle çalışır. Temel amacı veri akışını nanosaniye gecikmeyle optimize etmektir. Kriptografik işlemler ve donanım seviyesi memory safety için kritik öneme sahiptir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Attention_Head_1]]
-- [[Attention_Head_2]]
-- [[Attention_Head_3]]
-- [[Attention_Head_4]]
-- [[Multi_Head_Attention_Pool]]
-- [[Spatial_Pattern_Recognition]]
-- [[Temporal_Pattern_Recognition]]
-- [[Sequence_Alignment]]
-- [[Cross_Correlation_Matrix]]
 - [[Dimensionality_Reduction_PCA]]
-- [[Manifold_Learning_tSNE]]
-- [[Autoencoder_Latent_Space]]
-- [[Clustering_KMeans]]
-- [[Density_Based_Clustering]]
-- [[Markov_Chain_Transitions]]
-- [[Hidden_Markov_Models]]
-- [[Bayesian_Network_Inference]]
-- [[Fuzzy_Logic_Gates]]
-- [[Probabilistic_Graphical_Models]]
-- [[Causal_Inference_Engine]]
-- [[Counterfactual_Analysis]]
 - [[Graph_Neural_Network_Embeddings]]
-- [[Node2Vec_Mapping]]
-- [[Edge_Weight_Optimization]]
-- [[Topology_Analysis]]
+- [[Probabilistic_Graphical_Models]]
+- [[Attention_Head_1]]
+- [[Hidden_Markov_Models]]
+- [[Clustering_KMeans]]
+- [[Fuzzy_Logic_Gates]]

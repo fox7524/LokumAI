@@ -6,32 +6,14 @@ tags:
 
 # Multi Head Attention Pool
 
-Bu sinir ağı düğümü, Multi_Head_Attention_Pool süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler.
+**Multi_Head_Attention_Pool** modülü, Apple Silicon (M5 Pro) UMA mimarisi üzerinde sıfır-kopya (zero-copy) prensibiyle çalışır. Temel amacı veri akışını nanosaniye gecikmeyle optimize etmektir. Kriptografik işlemler ve donanım seviyesi memory safety için kritik öneme sahiptir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Logical_Deduction_Engine]]
-- [[Inductive_Reasoning_Core]]
-- [[Abductive_Reasoning_Module]]
-- [[Syllogism_Evaluator]]
-- [[Theorem_Prover]]
-- [[Satisfiability_Modulo_Theories]]
-- [[Constraint_Logic_Programming]]
-- [[Symbolic_Execution_Engine]]
-- [[Abstract_Interpretation]]
-- [[Control_Flow_Graph_Analysis]]
-- [[Data_Flow_Analysis]]
-- [[Taint_Analysis]]
-- [[Alias_Analysis]]
-- [[Pointer_Analysis]]
-- [[Escape_Analysis]]
-- [[Shape_Analysis]]
-- [[Type_Inference_Engine]]
-- [[Model_Checking_Module]]
-- [[Formal_Verification_Core]]
-- [[Hoare_Logic_Evaluator]]
-- [[Separation_Logic_Processor]]
-- [[Temporal_Logic_Analyzer]]
-- [[Linear_Temporal_Logic]]
-- [[Computation_Tree_Logic]]
 - [[Mu_Calculus_Evaluator]]
+- [[Escape_Analysis]]
+- [[Data_Flow_Analysis]]
+- [[Temporal_Logic_Analyzer]]
+- [[Pointer_Analysis]]
+- [[Taint_Analysis]]
+- [[Linear_Temporal_Logic]]

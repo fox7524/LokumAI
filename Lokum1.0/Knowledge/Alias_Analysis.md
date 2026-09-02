@@ -2,31 +2,20 @@
 date: 2026-08-30
 tags:
   - layer/hidden_3_logic_synthesis
+  - topic/memory
 ---
 
 # Alias Analysis
 
-**Alias_Analysis** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar.
+**Alias_Analysis** modülü, Apple Silicon (M5 Pro) UMA mimarisi üzerinde sıfır-kopya (zero-copy) prensibiyle çalışır. Temel amacı veri akışını nanosaniye gecikmeyle optimize etmektir. Kriptografik işlemler ve donanım seviyesi memory safety için kritik öneme sahiptir.
+**Konu Sentezi (Topic Synthesis):** Bu düğüm 'Memory' konsepti üzerine uzmanlaşmıştır ve verileri bu bağlamda sentezler.
+
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Reinforcement_Learning_Agent]]
-- [[Q_Learning_Table]]
-- [[Deep_Q_Network]]
-- [[Policy_Gradient_Optimization]]
-- [[Actor_Critic_Method]]
-- [[Proximal_Policy_Optimization]]
-- [[Trust_Region_Policy_Optimization]]
-- [[Soft_Actor_Critic]]
-- [[Deterministic_Policy_Gradient]]
-- [[Evolutionary_Strategies]]
-- [[Genetic_Algorithms]]
-- [[Simulated_Annealing]]
-- [[Particle_Swarm_Optimization]]
-- [[Ant_Colony_Optimization]]
-- [[Monte_Carlo_Tree_Search]]
-- [[Minimax_Algorithm]]
 - [[Alpha_Beta_Pruning]]
-- [[Game_Theory_Matrix]]
-- [[Nash_Equilibrium_Solver]]
+- [[Deep_Q_Network]]
+- [[Simulated_Annealing]]
+- [[Q_Learning_Table]]
 - [[Pareto_Optimality_Analyzer]]
+- [[Deterministic_Policy_Gradient]]

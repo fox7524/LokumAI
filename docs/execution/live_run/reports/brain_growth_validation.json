@@ -1,0 +1,163 @@
+{
+  "generated_at": "2026-08-31T10:50:23.731184+00:00",
+  "scope": "h11",
+  "knowledge_dir": "Lokum1.0/Knowledge",
+  "summary": {
+    "files_scanned": 4,
+    "files_with_issues": 0,
+    "issue_count": 0,
+    "status": "pass"
+  },
+  "kinds": {
+    "raw": {
+      "kind": "raw",
+      "file_count": 0,
+      "ok_count": 0,
+      "issue_count": 0
+    },
+    "synthesis": {
+      "kind": "synthesis",
+      "file_count": 0,
+      "ok_count": 0,
+      "issue_count": 0
+    },
+    "h4": {
+      "kind": "h4",
+      "file_count": 0,
+      "ok_count": 0,
+      "issue_count": 0
+    },
+    "h5": {
+      "kind": "h5",
+      "file_count": 0,
+      "ok_count": 0,
+      "issue_count": 0
+    },
+    "h6": {
+      "kind": "h6",
+      "file_count": 0,
+      "ok_count": 0,
+      "issue_count": 0
+    },
+    "h7": {
+      "kind": "h7",
+      "file_count": 0,
+      "ok_count": 0,
+      "issue_count": 0
+    },
+    "h8": {
+      "kind": "h8",
+      "file_count": 0,
+      "ok_count": 0,
+      "issue_count": 0
+    },
+    "h9": {
+      "kind": "h9",
+      "file_count": 0,
+      "ok_count": 0,
+      "issue_count": 0
+    },
+    "h10": {
+      "kind": "h10",
+      "file_count": 0,
+      "ok_count": 0,
+      "issue_count": 0
+    },
+    "h11": {
+      "kind": "h11",
+      "file_count": 4,
+      "ok_count": 4,
+      "issue_count": 0
+    },
+    "index": {
+      "kind": "index",
+      "file_count": 0,
+      "ok_count": 0,
+      "issue_count": 0
+    }
+  },
+  "graph_metrics": {
+    "node_count_by_kind": {
+      "raw": 0,
+      "synthesis": 0,
+      "h4": 0,
+      "h5": 0,
+      "h6": 0,
+      "h7": 0,
+      "h8": 0,
+      "h9": 0,
+      "h10": 0,
+      "index": 0
+    },
+    "forward_link_compliance_ratio": 1.0,
+    "forbidden_reference_count": 0,
+    "total_wikilinks": 16
+  },
+  "remediation_map": {
+    "issue_code_count": 0,
+    "total_affected_files": 0,
+    "entries": []
+  },
+  "files": [
+    {
+      "path": "Lokum1.0/Knowledge/H11_Failsafe_Cost_Accounting.md",
+      "kind": "h11",
+      "title": "Failsafe Cost Accounting",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "h10_inputs": 1,
+        "audit_anchors": 0,
+        "audit_surfaces": 2,
+        "audit_contracts": 2,
+        "audit_outputs": 3,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "Lokum1.0/Knowledge/H11_Outcome_Regression_Postmortem.md",
+      "kind": "h11",
+      "title": "Outcome Regression Postmortem",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "h10_inputs": 1,
+        "audit_anchors": 0,
+        "audit_surfaces": 2,
+        "audit_contracts": 2,
+        "audit_outputs": 3,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "Lokum1.0/Knowledge/H11_Rollback_Decision_Audit.md",
+      "kind": "h11",
+      "title": "Rollback Decision Audit",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "h10_inputs": 1,
+        "audit_anchors": 0,
+        "audit_surfaces": 2,
+        "audit_contracts": 2,
+        "audit_outputs": 3,
+        "wikilink_count": 4
+      }
+    },
+    {
+      "path": "Lokum1.0/Knowledge/H11_Trace_Provenance_Attestation.md",
+      "kind": "h11",
+      "title": "Trace Provenance Attestation",
+      "ok": true,
+      "issues": [],
+      "metrics": {
+        "h10_inputs": 1,
+        "audit_anchors": 0,
+        "audit_surfaces": 2,
+        "audit_contracts": 2,
+        "audit_outputs": 3,
+        "wikilink_count": 4
+      }
+    }
+  ]
+}

@@ -6,7 +6,7 @@ tags:
 
 # Process Kill Signal
 
-Bu sinir ağı düğümü, Process_Kill_Signal süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler.
+Bu sinir ağı düğümü, Process_Kill_Signal süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler. Deep Q-Networks ile eğitilmiştir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 

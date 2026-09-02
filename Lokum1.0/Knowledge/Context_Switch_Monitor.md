@@ -6,32 +6,14 @@ tags:
 
 # Context Switch Monitor
 
-Gelişmiş Context_Switch_Monitor algoritmaları kullanılarak, ağ üzerindeki anormallikler (anomalies) tespit edilir. ESP32 ve diğer IoT cihazlarıyla senkronize çalışabilir.
+Bu sinir ağı düğümü, Context_Switch_Monitor süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler. Deep Q-Networks ile eğitilmiştir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Signal_Denoising]]
-- [[Anomaly_Feature_Extraction]]
 - [[Token_Embedding_Generator]]
 - [[Time_Series_Smoothing]]
-- [[Packet_Header_Parsing]]
-- [[Memory_Leak_Fingerprinting]]
-- [[Cryptographic_Entropy_Analysis]]
-- [[Malware_Signature_Extraction]]
-- [[Behavioral_Feature_Mapping]]
 - [[Zero_Copy_Buffer_Analysis]]
-- [[Pointer_Authentication_Check]]
-- [[Stack_Smash_Detection]]
-- [[Heap_Overflow_Heuristics]]
-- [[Instruction_Fetch_Analysis]]
-- [[Branch_Prediction_Modeling]]
-- [[Data_Prefetch_Evaluation]]
-- [[TLB_Miss_Analysis]]
-- [[L1_Cache_Hit_Ratio]]
-- [[L2_Cache_Hit_Ratio]]
-- [[DRAM_Bandwidth_Utilization]]
-- [[PCIe_Bus_Traffic]]
-- [[NVMe_IOPS_Monitor]]
+- [[Cryptographic_Entropy_Analysis]]
 - [[USB_Endpoint_Analysis]]
-- [[Thunderbolt_Controller_Metrics]]
-- [[DisplayPort_Bandwidth]]
+- [[Stack_Smash_Detection]]
+- [[Anomaly_Feature_Extraction]]

@@ -1,0 +1,29 @@
+Brain Growth Quality Report
+Scope: h11
+Knowledge dir: Lokum1.0/Knowledge
+Status: pass
+Files scanned: 4
+Files with issues: 0
+Issue count: 0
+
+Kinds:
+- raw: files=0, ok=0, issues=0
+- synthesis: files=0, ok=0, issues=0
+- h4: files=0, ok=0, issues=0
+- h5: files=0, ok=0, issues=0
+- h6: files=0, ok=0, issues=0
+- h7: files=0, ok=0, issues=0
+- h8: files=0, ok=0, issues=0
+- h9: files=0, ok=0, issues=0
+- h10: files=0, ok=0, issues=0
+- h11: files=4, ok=4, issues=0
+- index: files=0, ok=0, issues=0
+
+Graph metrics:
+- node_count_by_kind: {'raw': 0, 'synthesis': 0, 'h4': 0, 'h5': 0, 'h6': 0, 'h7': 0, 'h8': 0, 'h9': 0, 'h10': 0, 'index': 0}
+- forward_link_compliance_ratio: 1.0
+- forbidden_reference_count: 0
+- total_wikilinks: 16
+
+Remediation hints:
+- none

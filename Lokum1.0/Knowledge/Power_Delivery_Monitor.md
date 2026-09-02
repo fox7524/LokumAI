@@ -6,32 +6,14 @@ tags:
 
 # Power Delivery Monitor
 
-Bu sinir ağı düğümü, Power_Delivery_Monitor süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler.
+**Power_Delivery_Monitor** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar. Mixture of Experts (MoE) kapılarından gelen verileri sentezler.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Signal_Denoising]]
-- [[Anomaly_Feature_Extraction]]
-- [[Token_Embedding_Generator]]
-- [[Time_Series_Smoothing]]
-- [[Packet_Header_Parsing]]
-- [[Memory_Leak_Fingerprinting]]
-- [[Cryptographic_Entropy_Analysis]]
-- [[Malware_Signature_Extraction]]
-- [[Behavioral_Feature_Mapping]]
-- [[Zero_Copy_Buffer_Analysis]]
-- [[Pointer_Authentication_Check]]
-- [[Stack_Smash_Detection]]
-- [[Heap_Overflow_Heuristics]]
-- [[Instruction_Fetch_Analysis]]
-- [[Branch_Prediction_Modeling]]
-- [[Data_Prefetch_Evaluation]]
-- [[TLB_Miss_Analysis]]
-- [[L1_Cache_Hit_Ratio]]
-- [[L2_Cache_Hit_Ratio]]
 - [[DRAM_Bandwidth_Utilization]]
-- [[PCIe_Bus_Traffic]]
-- [[NVMe_IOPS_Monitor]]
+- [[Data_Prefetch_Evaluation]]
+- [[Malware_Signature_Extraction]]
+- [[Branch_Prediction_Modeling]]
 - [[USB_Endpoint_Analysis]]
-- [[Thunderbolt_Controller_Metrics]]
-- [[DisplayPort_Bandwidth]]
+- [[PCIe_Bus_Traffic]]
+- [[Cryptographic_Entropy_Analysis]]

@@ -6,22 +6,10 @@ tags:
 
 # Trust Region Policy Optimization
 
-Bu modül, P2P şifreleme ve ZKP (Zero-Knowledge Proof) protokolleriyle entegre edilmiştir. Trust_Region_Policy_Optimization vektör uzayında yüksek boyutlu veri analizi yapar.
+Bu sinir ağı düğümü, Trust_Region_Policy_Optimization süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler. Deep Q-Networks ile eğitilmiştir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Metal_Shader_Dispatcher]]
-- [[Kernel_Panic_Trigger]]
-- [[System_Halt_Interrupt]]
-- [[Network_Firewall_Rule_Gen]]
-- [[ESP32_Firmware_Flasher]]
-- [[Auto_Remediation_Script]]
-- [[Cognitive_Response_Generator]]
-- [[Code_Refactoring_Output]]
-- [[Threat_Mitigation_Action]]
-- [[Resource_Reallocation_Command]]
-- [[Power_State_Adjustment]]
-- [[Cooling_Fan_Override]]
-- [[Process_Kill_Signal]]
-- [[Memory_Deallocation_Force]]
-- [[Alert_Notification_Broadcaster]]
+- [[Adversarial_Robustness_Check]]
+- [[Semantic_Graph_Weaver]]
+- [[Differential_Privacy_Filter]]

@@ -6,7 +6,7 @@ tags:
 
 # Metal Shader Dispatcher
 
-Gelişmiş Metal_Shader_Dispatcher algoritmaları kullanılarak, ağ üzerindeki anormallikler (anomalies) tespit edilir. ESP32 ve diğer IoT cihazlarıyla senkronize çalışabilir.
+Bu sinir ağı düğümü, Metal_Shader_Dispatcher süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler. Deep Q-Networks ile eğitilmiştir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 

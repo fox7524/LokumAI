@@ -6,22 +6,10 @@ tags:
 
 # Policy Gradient Optimization
 
-**Policy_Gradient_Optimization** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar.
+**Policy_Gradient_Optimization** modülü, Apple Silicon (M5 Pro) UMA mimarisi üzerinde sıfır-kopya (zero-copy) prensibiyle çalışır. Temel amacı veri akışını nanosaniye gecikmeyle optimize etmektir. Kriptografik işlemler ve donanım seviyesi memory safety için kritik öneme sahiptir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Metal_Shader_Dispatcher]]
-- [[Kernel_Panic_Trigger]]
-- [[System_Halt_Interrupt]]
-- [[Network_Firewall_Rule_Gen]]
-- [[ESP32_Firmware_Flasher]]
-- [[Auto_Remediation_Script]]
-- [[Cognitive_Response_Generator]]
-- [[Code_Refactoring_Output]]
-- [[Threat_Mitigation_Action]]
-- [[Resource_Reallocation_Command]]
-- [[Power_State_Adjustment]]
-- [[Cooling_Fan_Override]]
-- [[Process_Kill_Signal]]
-- [[Memory_Deallocation_Force]]
-- [[Alert_Notification_Broadcaster]]
+- [[Quantum_State_Simulation]]
+- [[Vector_Database_Pruning]]
+- [[Homomorphic_Encryption_Processor]]

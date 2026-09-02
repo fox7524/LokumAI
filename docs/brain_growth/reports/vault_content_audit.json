@@ -1,0 +1,5021 @@
+{
+  "summary": {
+    "total_notes": 362,
+    "thin_count": 0,
+    "medium_count": 350,
+    "strong_count": 12
+  },
+  "notes": [
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Abductive_Reasoning_Module.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.16,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Abstract_Interpretation.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Abstract_Syntax_Tree_Eval.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.147,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Actor_Critic_Method.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.116,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Advanced_Evasion_Techniques.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.173,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Advanced_Persistent_Threat_Sim.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.147,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Adversarial_Robustness_Check.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.096,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Alert_Notification_Broadcaster.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Algorithmic_Bias_Evaluator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.178,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Alias_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.158,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Alpha_Beta_Pruning.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.116,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Anomaly_Feature_Extraction.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Ant_Colony_Optimization.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.1,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Asymmetric_Warfare_Sim.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.144,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Attention_Head_1.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Attention_Head_2.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Attention_Head_3.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Attention_Head_4.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Attention_Routing_Metacontroller.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.178,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Auto_Remediation_Script.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Autoencoder_Latent_Space.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Automated_Vulnerability_Discovery.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Autonomous_Kill_Chain_Auth.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.14,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Autonomous_Weapon_System_Auth.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.173,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Bayesian_Network_Inference.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Bayesian_Optimization_Oracle.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.144,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Behavioral_Feature_Mapping.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Blind_Signature_Validator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.178,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Bluetooth_LE_Sniffer.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Brain_Growth_Index.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.456,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Branch_Prediction_Modeling.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Branch_Target_Buffer_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.173,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Buffer_Overflow_Predictor.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.176,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Byzantine_Fault_Tolerance.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.138,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/CPU_Microcode_Telemetry.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.14,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Cache_Miss_Detector.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Causal_Inference_Engine.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Clock_Speed_Telemetry.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Clustering_KMeans.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Code_Refactoring_Output.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.102,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Cognitive_Bias_Detection.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Cognitive_Dissonance_Resolver.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Cognitive_RAG_Finalizer.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.1,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Cognitive_Response_Generator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Computation_Tree_Logic.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.16,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Constraint_Logic_Programming.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.144,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Context_Switch_Monitor.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Continuous_Action_Space_Actor.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.182,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Control_Flow_Graph_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.144,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Cooling_Fan_Override.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.102,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Counterfactual_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Cross_Correlation_Matrix.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Cryptographic_Entropy_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Cryptographic_Nonce_Validation.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.138,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Cyber_Kill_Chain_Modeling.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Cyber_Warfare_Doctrine_Engine.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.173,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/DMA_Ring_Buffer_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/DRAM_Bandwidth_Utilization.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Data_Flow_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.16,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Data_Prefetch_Evaluation.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Deep_Deterministic_Policy_Grad.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.147,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Deep_Q_Network.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.1,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Def_Use_Chain_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Density_Based_Clustering.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Deterministic_Policy_Gradient.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.116,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Differential_Power_Analysis_Pattern.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.176,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Differential_Privacy_Filter.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.113,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Dimensionality_Reduction_PCA.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/DisplayPort_Bandwidth.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/ESP32_Firmware_Flasher.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.12,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/ESP32_Serial_Input.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Edge_Weight_Optimization.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Elliptic_Curve_Cryptography_Core.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.176,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Episodic_Memory_Consolidation.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Episodic_Memory_Decay_Controller.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.176,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Epistemological_Uncertainty_Calc.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Escape_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Ethical_Constraint_Validator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.118,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Evolutionary_Strategies.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Executive_Action_Formatter.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.116,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Fail_Deadly_Switch.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.14,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Failsafe_Condition_Check.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.1,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Federated_Learning_Aggregator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.113,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/File_System_Monitor.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Final_Execution_Gate.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.14,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Flash_Attention_Routing.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.096,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Formal_Verification_Core.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Fourier_Transform_Convolution.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.176,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Fully_Homomorphic_Encryption.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Fuzzy_Logic_Gates.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/GAN_Discriminator_Node.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.096,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/GPU_Performance_Counters.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Game_Theoretic_Threat_Model.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Game_Theory_Matrix.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.116,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Genetic_Algorithms.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Global_Risk_Assessment.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.113,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Global_State_Consensus.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.1,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Global_Threat_Intelligence_Feed.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.176,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/God_Mode_Overrides.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.138,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/God_Mode_Telemetry_Broadcast.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.173,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Graph_Neural_Network_Embeddings.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.127,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Global_Supervision_Arbitration.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.373,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Long_Horizon_Outcome_Review.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.358,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Rollback_Escalation_Governance.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.367,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H10_Strategic_Resource_Oversight.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.367,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H11_Failsafe_Cost_Accounting.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.322,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H11_Outcome_Regression_Postmortem.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.327,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H11_Rollback_Decision_Audit.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.324,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H11_Trace_Provenance_Attestation.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.336,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Apple_Silicon_Memory_Execution_Synthesis.md",
+      "kind": "synthesis",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 0.402,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Cognitive_Graph_RAG_Routing_Synthesis.md",
+      "kind": "synthesis",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 0.353,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Cryptographic_Integrity_And_Memory_Safety_Synthesis.md",
+      "kind": "synthesis",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 0.387,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H3_Embedded_Interrupt_DMA_Synthesis.md",
+      "kind": "synthesis",
+      "depth_class": "strong",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 0.909,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Cognitive_Retrieval_Policy_Selection.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.291,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Cross_Domain_Causal_Alignment.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.342,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Edge_Device_Response_Strategy.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.302,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Performance_Bottleneck_Disambiguation.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.318,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Resource_Execution_Prioritization.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.304,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H4_Security_Failure_Mode_Arbitration.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.32,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Global_Escalation_Gate.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.32,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Metacognitive_Policy_Arbitration.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.351,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Retrieval_Depth_Governance.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.316,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H5_Risk_Performance_Tradeoff_Control.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.311,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Executive_Priority_Orchestration.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.387,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Global_Response_Orchestration.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.329,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Recovery_Execution_Sequencing.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.331,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H6_Retrieval_Action_Coordination.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.329,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Episodic_Timeline_Alignment.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.453,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Event_Entity_Binding.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.447,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Recency_Drift_Governance.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.451,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H7_Temporal_Causal_Recall.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.469,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Decision_Commitment_Gate.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.307,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Dominant_Thoughtseed_Selection.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.338,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Exception_Override_Arbitration.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.309,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H8_Global_Policy_Broadcast.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.316,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Commit_Ready_Delivery_Check.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.342,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Execution_Surface_Binding.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.347,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Failsafe_Action_Packaging.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.322,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/H9_Response_Payload_Composition.md",
+      "kind": "governance",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.333,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Hallucination_Detection_Filter.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.176,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Hardware_Interrupts.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Hardware_Lockdown_Protocol.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.096,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Hardware_Root_Of_Trust.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Heap_Overflow_Heuristics.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Heuristic_Bias_Filter.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.14,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Hidden_Markov_Models.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Hoare_Logic_Evaluator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.16,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Homomorphic_Encryption_Processor.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.113,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Hopfield_Energy_Minimization.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.14,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Hyperbolic_Embeddings.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.138,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Hyperparameter_Auto_Tuning.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.113,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/I2C_Bus_Stream.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/I2S_Audio_Bus_Sniffer.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.18,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Index_Apple_Silicon_and_MLX.md",
+      "kind": "index",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 0.307,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Index_Cognitive_Graph_RAG.md",
+      "kind": "index",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 0.3,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Index_Cryptography_and_Memory_Safety.md",
+      "kind": "index",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 0.296,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Index_Embedded_and_ESP32.md",
+      "kind": "index",
+      "depth_class": "strong",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 0.862,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Inductive_Reasoning_Core.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.144,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Instruction_Fetch_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Kernel_Panic_Trigger.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Kernel_Telemetry.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/L1_Cache_Hit_Ratio.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/L2_Cache_Hit_Ratio.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.111,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/L2_Cache_Miss_Prediction.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.178,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/L3_Cache_Snooping.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.14,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Lattice_Based_Crypto.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.138,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Linear_Temporal_Logic.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.16,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Logical_Deduction_Engine.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/LokumAI-1.0.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.611,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Long_Term_Strategic_Planner.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/M5_Neural_Engine_Telemetry.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.176,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/M5_Pro_Tensor_Dispatch.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.116,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Malware_Signature_Extraction.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Manifold_Learning_tSNE.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Markov_Chain_Transitions.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Markov_Decision_Process_Solver.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.144,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Memory_Corruption_Fingerprint.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.173,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Memory_Deallocation_Force.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Memory_Leak_Fingerprinting.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Metacognitive_Reflection_Core.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.113,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Metal_Shader_Dispatcher.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.102,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Minimax_Algorithm.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.113,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Mixture_Of_Experts_Gate.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.116,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Model_Checking_Module.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Monte_Carlo_Tree_Search.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.1,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Monte_Carlo_Tree_Search_Deep.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.178,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Moral_Turing_Test.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.136,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Mu_Calculus_Evaluator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Multi_Agent_RL_Coordinator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Multi_Head_Attention_Pool.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.127,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/NVMe_IOPS_Monitor.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Nash_Bargaining_Solver.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.176,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Nash_Equilibrium_Enforcer.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.14,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Nash_Equilibrium_Solver.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Network_Firewall_Rule_Gen.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Network_Packet_Stream.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Neural_Engine_Metrics.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Neuromorphic_Hardware_Mapping.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.096,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Neuromorphic_Spike_Trains.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.144,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Node2Vec_Mapping.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Non_Euclidean_Manifolds.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.144,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Ontological_Graph_Mapper.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.144,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/PCIe_Bus_Traffic.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Packet_Header_Parsing.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Page_Fault_Handler.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Pareto_Optimality_Analyzer.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.1,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Particle_Swarm_Optimization.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.1,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Pointer_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.14,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Pointer_Authentication_Check.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Policy_Gradient_Optimization.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.116,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Polymorphic_Engine_Simulator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.176,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Post_Quantum_Cryptography.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.138,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Power_Delivery_Monitor.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Power_State_Adjustment.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Predictive_Maintenance_Oracle.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Probabilistic_Graphical_Models.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Process_Kill_Signal.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.102,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Proximal_Policy_Optimization.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Q_Learning_Table.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.116,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Quantum_Noise_Reduction.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.138,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Quantum_State_Simulation.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.096,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_01_MLX_Unified_Memory_Model.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.558,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_02_MLX_Zero_Copy_DLPack_and_Buffer_Reusage.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.527,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_03_Metal_Shared_vs_Private_StorageMode.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.527,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_04_ESP32_FreeRTOS_SMP_Core_Affinity.md",
+      "kind": "raw",
+      "depth_class": "strong",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 1.0,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_05_ESP32_Interrupt_Allocation_and_Shared_ISR.md",
+      "kind": "raw",
+      "depth_class": "strong",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 1.0,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_06_ESP32_DMA_Capable_Memory_and_ISR_Preallocation.md",
+      "kind": "raw",
+      "depth_class": "strong",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 1.0,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_07_P2P_Encryption_and_ZKP_Constraint_Surface.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.589,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_08_Apple_PAC_Runtime_Integrity.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.553,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_09_Memory_Safety_Primitives_and_Failure_Signatures.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.564,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_10_GNN_Message_Passing_for_Graph_Retrieval.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.489,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_11_GLM_RAG_Semantic_Graph_Fusion.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.516,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_12_Cognitive_RAG_SingleHop_vs_MultiHop_Routing.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.471,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_13_MLX_Lazy_Evaluation_And_Stream_Dependency_Barriers.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.564,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_14_Metal_Heap_Residency_And_Buffer_Alias_Reuse.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.531,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_15_Apple_Silicon_UMA_Pressure_And_Page_Migration_Signals.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.576,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_16_MLX_Graph_Capture_And_Kernel_Fusion_Boundaries.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.549,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_17_Metal_Argument_Buffers_For_Batched_Dispatch_Coordination.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.527,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_18_MPS_Versus_MLX_Execution_Surface_Selection.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.529,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_19_AMX_Neural_Engine_And_GPU_Scheduling_Tradeoffs.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.544,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_20_Metal_Command_Buffer_Commit_Latency_And_Queue_Depth.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.536,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_21_Unified_Memory_Backpressure_In_Token_Streaming_Pipelines.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.522,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_22_Zero_Copy_Tensor_Interop_Between_MLX_And_Pytorch.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.553,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_23_Sparse_Attention_On_Apple_Silicon_Memory_Budget.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.544,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_24_Quantized_KV_Cache_Placement_On_UMA.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.502,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_25_Metal_Resource_Hazard_Tracking_And_Explicit_Fencing.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.549,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_26_ESP32_IRAM_Safe_ISR_Latency_Budgets.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.556,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_27_ESP32_Task_Watchdog_And_Core_Starvation_Patterns.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.567,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_28_Freertos_Queue_Sets_Versus_Direct_Task_Notifications.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.556,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_29_ESP32_Flash_Cache_Disable_Windows_And_Critical_Paths.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.571,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_30_GPIO_Matrix_Interrupt_Fan_In_And_Signal_Jitter.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.571,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_31_RMT_Peripheral_Timing_Determinism_Under_System_Load.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.576,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_32_I2S_DMA_Descriptor_Rings_On_ESP32.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.58,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_33_SPI_DMA_Burst_Alignment_And_Cache_Coherency.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.556,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_34_UART_ISR_Backpressure_And_Ring_Buffer_Design.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.584,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_35_Freertos_Event_Groups_Versus_Semaphores_For_Driver_States.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.567,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_36_PSRAM_Access_Penalties_In_Real_Time_Paths.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.571,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_37_Multi_Core_Critical_Sections_And_Spinlock_Contention.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.562,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_38_Tickless_Idle_And_Wake_Latency_On_ESP32.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.553,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_39_Pointer_Authentication_Key_Domains_And_Signing_Contexts.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.529,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_40_Control_Flow_Integrity_And_PAC_Complementarity.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.507,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_41_Use_After_Free_Telemetry_And_Crash_Clustering.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.513,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_42_Heap_Metadata_Corruption_Signatures.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.504,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_43_Stack_Canary_Failure_Telemetry_And_Triage.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.507,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_44_Secure_Enclave_Boundaries_And_Key_Ladder_Separation.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.522,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_45_AEAD_Nonce_Reuse_Failure_Modes.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.511,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_46_Zero_Knowledge_Proof_Witness_Exposure_Surfaces.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.502,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_47_Merkle_Commitments_For_Retrieval_Integrity.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.507,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_48_Forward_Secrecy_In_Peer_To_Peer_Session_Rotation.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.54,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_49_Remote_Attestation_Signals_For_Edge_Nodes.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.504,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_50_Memory_Disclosure_Versus_Code_Reuse_Attack_Paths.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.524,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_51_Crash_Triage_For_Memory_Safety_Regressions.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.513,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_52_Hybrid_Sparse_Dense_Graph_Retrieval.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.511,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_53_Graph_Expansion_Budgeting_And_Beam_Search.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.478,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_54_Query_Decomposition_For_Multi_Hop_Retrieval.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.498,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_55_Edge_Reweighting_From_Retriever_Feedback.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.476,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_56_Temporal_Edges_In_Episodic_Memory_Graphs.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.504,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_57_Entity_Resolution_As_Graph_Construction_Discipline.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.498,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_58_Cross_Encoder_Reranking_After_Graph_Traversal.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.487,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_59_Subgraph_Packing_For_Context_Window_Control.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.48,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_60_Semantic_Drift_Detection_In_Graph_RAG.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.487,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_61_Negative_Sampling_For_Relation_Aware_Embeddings.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.473,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_62_Graph_Neighborhood_Pruning_Under_Token_Budgets.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.48,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_63_Tool_Augmented_Retrieval_Routing_Policies.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.502,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_64_Citation_Grounding_Across_Multi_Source_Reasoning.md",
+      "kind": "raw",
+      "depth_class": "medium",
+      "missing_sections": [
+        "## Mimari davranış",
+        "## Kritik sınırlamalar",
+        "## Failure modes",
+        "## Debug / telemetry / profiling sinyalleri"
+      ],
+      "scores": {
+        "structure_score": 0.5,
+        "technical_depth_score": 0.484,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_65_ESP32_S3_Vector_Unit_Alignment_And_DMA_Tension.md",
+      "kind": "raw",
+      "depth_class": "strong",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 1.0,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_66_ESP8266_Nodemcu_Wifi_Timing_And_Watchdog_Pressure.md",
+      "kind": "raw",
+      "depth_class": "strong",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 1.0,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_67_STM32_DMA_Cache_Coherency_And_ISR_Boundaries.md",
+      "kind": "raw",
+      "depth_class": "strong",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 1.0,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_68_RP2040_PIO_State_Machine_Timing_Debug.md",
+      "kind": "raw",
+      "depth_class": "strong",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 1.0,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_69_nRF52_Softdevice_Interrupt_Priority_Constraints.md",
+      "kind": "raw",
+      "depth_class": "strong",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 1.0,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_70_Zephyr_Devicetree_Driver_Bringup_Failure_Modes.md",
+      "kind": "raw",
+      "depth_class": "strong",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 1.0,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Memory_Cell_71_Platformio_Build_Graph_Drift_And_Flag_Parity.md",
+      "kind": "raw",
+      "depth_class": "strong",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 1.0,
+        "technical_depth_score": 1.0,
+        "retrieval_utility_score": 1.0,
+        "source_grounding_score": 1.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/RAG_Trace_sample_ui_export_001.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.211,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/ROP_Chain_Heuristic_Builder.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.178,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Reality_Anchor_Validator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.164,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Red_Team_Behavioral_Clone.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.116,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Reinforcement_Learning_Agent.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.116,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Resource_Lifecycle_Manager.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Resource_Reallocation_Command.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.102,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Return_Oriented_Programming_Eval.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.178,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Ring_LWE_Encryption.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.169,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/SPI_Bus_Stream.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Satisfiability_Modulo_Theories.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.16,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Secure_Enclave_Processor.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.178,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Self_Attention_Optimization.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Self_Healing_Code_Deployer.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Self_Modifying_Code_Auditor.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.173,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Semantic_Drift_Detector.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Semantic_Graph_Weaver.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.096,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Semantic_Memory_Indexing.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Separation_Logic_Processor.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Sequence_Alignment.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Shape_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.14,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Signal_Denoising.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Simulated_Annealing.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.113,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Singularity_Threshold_Monitor.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.164,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Soft_Actor_Critic.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.1,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Spatial_Pattern_Recognition.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Spectre_Mitigation_Heuristics.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.169,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Spiking_Neural_Network_Sim.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.176,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Stack_Smash_Detection.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Stochastic_Gradient_Langevin.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.178,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Strategic_Resource_Allocator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Swarm_Intelligence_Routing.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.14,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Syllogism_Evaluator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Symbolic_Execution_Engine.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.144,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Syscall_Interceptor.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.122,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/System_Halt_Interrupt.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.12,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Systemic_Collapse_Failsafe.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.164,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/TLB_Miss_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Taint_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Temporal_Logic_Analyzer.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.144,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Temporal_Pattern_Recognition.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Tensor_Core_Scheduling.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.138,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Theorem_Prover.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.158,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Thermal_Sensors.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.122,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Thermal_Throttling_Heuristics.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Thompson_Sampling_Optimization.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.173,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Threat_Actor_Simulation.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Threat_Mitigation_Action.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Thunderbolt_Controller_Metrics.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Time_Series_Smoothing.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Token_Embedding_Generator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Topological_Data_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.173,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Topology_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.104,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Trust_Region_Policy_Optimization.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.1,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.5
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Trusted_Execution_Environment_Sync.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.176,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.833
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Turing_Completeness_Validator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.169,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Type_Inference_Engine.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.142,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/UMA_Bandwidth_Saturator.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.113,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/USB_Endpoint_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Unified_Memory_Bus.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.107,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/User_Terminal_Input.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.124,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Vector_Database_Pruning.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Web_Crawler_Intake.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.109,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Working_Memory_Flush.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.096,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Z3_Theorem_Proving_Engine.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.178,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Zero_Copy_Buffer_Analysis.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.111,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Zero_Day_Exploit_Synthesizer.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Zero_Day_Market_Analyzer.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.178,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 1.0
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Zero_Knowledge_Rollups.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.14,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.667
+      }
+    },
+    {
+      "path": "/Users/fox/Documents/PROJECTS/LokumAI/Lokum1.0/Knowledge/Zero_Trust_Architecture_Eval.md",
+      "kind": "other",
+      "depth_class": "medium",
+      "missing_sections": [],
+      "scores": {
+        "structure_score": 0.0,
+        "technical_depth_score": 0.098,
+        "retrieval_utility_score": 0.0,
+        "source_grounding_score": 0.0,
+        "graph_integration_score": 0.333
+      }
+    }
+  ]
+}

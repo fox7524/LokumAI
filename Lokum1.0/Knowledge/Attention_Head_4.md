@@ -6,32 +6,14 @@ tags:
 
 # Attention Head 4
 
-Gelişmiş Attention_Head_4 algoritmaları kullanılarak, ağ üzerindeki anormallikler (anomalies) tespit edilir. ESP32 ve diğer IoT cihazlarıyla senkronize çalışabilir.
+Bu sinir ağı düğümü, Attention_Head_4 süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler. Deep Q-Networks ile eğitilmiştir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Logical_Deduction_Engine]]
-- [[Inductive_Reasoning_Core]]
-- [[Abductive_Reasoning_Module]]
-- [[Syllogism_Evaluator]]
-- [[Theorem_Prover]]
-- [[Satisfiability_Modulo_Theories]]
-- [[Constraint_Logic_Programming]]
-- [[Symbolic_Execution_Engine]]
-- [[Abstract_Interpretation]]
-- [[Control_Flow_Graph_Analysis]]
-- [[Data_Flow_Analysis]]
-- [[Taint_Analysis]]
-- [[Alias_Analysis]]
-- [[Pointer_Analysis]]
-- [[Escape_Analysis]]
-- [[Shape_Analysis]]
-- [[Type_Inference_Engine]]
-- [[Model_Checking_Module]]
-- [[Formal_Verification_Core]]
 - [[Hoare_Logic_Evaluator]]
+- [[Pointer_Analysis]]
+- [[Theorem_Prover]]
+- [[Constraint_Logic_Programming]]
+- [[Satisfiability_Modulo_Theories]]
 - [[Separation_Logic_Processor]]
-- [[Temporal_Logic_Analyzer]]
-- [[Linear_Temporal_Logic]]
-- [[Computation_Tree_Logic]]
-- [[Mu_Calculus_Evaluator]]
+- [[Inductive_Reasoning_Core]]

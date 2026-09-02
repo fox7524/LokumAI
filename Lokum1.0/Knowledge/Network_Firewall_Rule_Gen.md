@@ -6,7 +6,7 @@ tags:
 
 # Network Firewall Rule Gen
 
-**Network_Firewall_Rule_Gen** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar.
+Bu sinir ağı düğümü, Network_Firewall_Rule_Gen süreçlerini otonom olarak yönetir. Yüksek frekanslı donanım kesmeleri (hardware interrupts) ve kernel düzeyindeki telemetri verilerini işler. Deep Q-Networks ile eğitilmiştir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 

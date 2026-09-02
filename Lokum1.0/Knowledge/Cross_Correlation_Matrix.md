@@ -6,32 +6,14 @@ tags:
 
 # Cross Correlation Matrix
 
-Bu modül, P2P şifreleme ve ZKP (Zero-Knowledge Proof) protokolleriyle entegre edilmiştir. Cross_Correlation_Matrix vektör uzayında yüksek boyutlu veri analizi yapar.
+**Cross_Correlation_Matrix** modülü, Apple Silicon (M5 Pro) UMA mimarisi üzerinde sıfır-kopya (zero-copy) prensibiyle çalışır. Temel amacı veri akışını nanosaniye gecikmeyle optimize etmektir. Kriptografik işlemler ve donanım seviyesi memory safety için kritik öneme sahiptir.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Logical_Deduction_Engine]]
-- [[Inductive_Reasoning_Core]]
-- [[Abductive_Reasoning_Module]]
-- [[Syllogism_Evaluator]]
-- [[Theorem_Prover]]
 - [[Satisfiability_Modulo_Theories]]
-- [[Constraint_Logic_Programming]]
-- [[Symbolic_Execution_Engine]]
-- [[Abstract_Interpretation]]
-- [[Control_Flow_Graph_Analysis]]
-- [[Data_Flow_Analysis]]
-- [[Taint_Analysis]]
-- [[Alias_Analysis]]
-- [[Pointer_Analysis]]
-- [[Escape_Analysis]]
-- [[Shape_Analysis]]
-- [[Type_Inference_Engine]]
-- [[Model_Checking_Module]]
-- [[Formal_Verification_Core]]
-- [[Hoare_Logic_Evaluator]]
-- [[Separation_Logic_Processor]]
 - [[Temporal_Logic_Analyzer]]
-- [[Linear_Temporal_Logic]]
-- [[Computation_Tree_Logic]]
-- [[Mu_Calculus_Evaluator]]
+- [[Pointer_Analysis]]
+- [[Taint_Analysis]]
+- [[Inductive_Reasoning_Core]]
+- [[Data_Flow_Analysis]]
+- [[Theorem_Prover]]

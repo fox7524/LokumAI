@@ -6,32 +6,14 @@ tags:
 
 # Temporal Pattern Recognition
 
-**Temporal_Pattern_Recognition** modülü, Apple Silicon (M5 Pro) UMA mimarisi üzerinde sıfır-kopya (zero-copy) prensibiyle çalışır. Temel amacı veri akışını nanosaniye gecikmeyle optimize etmektir.
+**Temporal_Pattern_Recognition** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar. Mixture of Experts (MoE) kapılarından gelen verileri sentezler.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
-- [[Logical_Deduction_Engine]]
-- [[Inductive_Reasoning_Core]]
-- [[Abductive_Reasoning_Module]]
-- [[Syllogism_Evaluator]]
-- [[Theorem_Prover]]
-- [[Satisfiability_Modulo_Theories]]
-- [[Constraint_Logic_Programming]]
-- [[Symbolic_Execution_Engine]]
-- [[Abstract_Interpretation]]
-- [[Control_Flow_Graph_Analysis]]
-- [[Data_Flow_Analysis]]
-- [[Taint_Analysis]]
-- [[Alias_Analysis]]
-- [[Pointer_Analysis]]
-- [[Escape_Analysis]]
-- [[Shape_Analysis]]
-- [[Type_Inference_Engine]]
-- [[Model_Checking_Module]]
-- [[Formal_Verification_Core]]
-- [[Hoare_Logic_Evaluator]]
-- [[Separation_Logic_Processor]]
-- [[Temporal_Logic_Analyzer]]
 - [[Linear_Temporal_Logic]]
-- [[Computation_Tree_Logic]]
-- [[Mu_Calculus_Evaluator]]
+- [[Data_Flow_Analysis]]
+- [[Alias_Analysis]]
+- [[Syllogism_Evaluator]]
+- [[Abstract_Interpretation]]
+- [[Abductive_Reasoning_Module]]
+- [[Pointer_Analysis]]

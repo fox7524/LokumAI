@@ -6,7 +6,7 @@ tags:
 
 # Memory Deallocation Force
 
-Bu modül, P2P şifreleme ve ZKP (Zero-Knowledge Proof) protokolleriyle entegre edilmiştir. Memory_Deallocation_Force vektör uzayında yüksek boyutlu veri analizi yapar.
+**Memory_Deallocation_Force** sistemi, LokumAI'nin bilişsel çıkarım motorunun bir parçasıdır. Özellik çıkarımı ve gürültü filtreleme aşamalarında kritik bir rol oynar. Mixture of Experts (MoE) kapılarından gelen verileri sentezler.
 
 ## İleri Besleme (Feed-Forward Synapses)
 
